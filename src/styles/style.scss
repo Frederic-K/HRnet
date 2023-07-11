@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;600;700;900&display=swap');
+
 @import '../styles/utils/variables', '../styles/utils/mixins';
+@import '../styles/layout/layout';
 @import '../styles/bases/typos', '../styles/bases/bases';
 
 @import '../pages/Login/login';
