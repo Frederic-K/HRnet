@@ -41,46 +41,47 @@ export default function Login() {
           <img src={Logo} alt="Logo Wealth Health" />
           <h1 className="login__content--title">Welcome to HRnet</h1>
         </div>
-        <form
-          onSubmit={(e) => {
-            HandleSubmit(e)
-          }}
-        >
-          <div>
-            <Box
-              component="form"
-              sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <div>
-                <TextField
-                  required
-                  id="userID"
-                  label="userId required"
-                  ref={userID}
-                  // defaultValue="Hello World"
-                />
-              </div>
-            </Box>
-          </div>
-          <div>
-            <Stack direction="row" spacing={2}>
-              <Button
-                variant="outlined"
-                type="reset"
-                startIcon={<DeleteIcon />}
-              >
-                Reset
-              </Button>
-              <Button variant="contained" type="submit" endIcon={<SendIcon />}>
-                Login
-              </Button>
-            </Stack>
-          </div>
-        </form>
+        <div>
+          <Box
+            component="form"
+            sx={{
+              '& .MuiTextField-root': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+            onSubmit={(e) => {
+              HandleSubmit(e)
+            }}
+          >
+            <div>
+              <TextField
+                required
+                id="userID"
+                label="userId required"
+                ref={userID}
+                // defaultValue="Hello World"
+              />
+            </div>
+            <div>
+              <Stack direction="row" spacing={2}>
+                <Button
+                  variant="outlined"
+                  type="reset"
+                  startIcon={<DeleteIcon />}
+                >
+                  Reset
+                </Button>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  endIcon={<SendIcon />}
+                >
+                  Login
+                </Button>
+              </Stack>
+            </div>
+          </Box>
+        </div>
       </section>
     </main>
   )
