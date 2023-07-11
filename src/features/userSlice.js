@@ -28,7 +28,6 @@ export const userSlice = createSlice({
         isError: false,
         errorMessage: '',
         successMessage: '',
-        auth: false,
       }
     },
     logout: (state) => {
@@ -43,7 +42,6 @@ export const userSlice = createSlice({
         isError: false,
         errorMessage: '',
         successMessage: '',
-        auth: false,
       }
     },
   },
@@ -58,7 +56,6 @@ export const userSlice = createSlice({
           lastName: payload.body.lastName,
           isFetching: false,
           successMessage: payload.message,
-          auth: true,
         }
       })
       .addCase(useUser.rejected, (state, { payload }) => {
@@ -68,7 +65,6 @@ export const userSlice = createSlice({
           isFetching: false,
           isError: true,
           errorMessage: payload.message,
-          auth: false,
         }
       })
       .addCase(useUser.pending, (state) => {
