@@ -31,6 +31,7 @@ export default function Login() {
   const HandleSubmit = (e) => {
     e.preventDefault()
     // Call api to login
+    console.log('userIduseRef', userID.current.value)
     dispatch(useUser(userID.current.value))
   }
 
@@ -58,7 +59,7 @@ export default function Login() {
                 required
                 id="userID"
                 label="userId required"
-                ref={userID}
+                inputRef={userID}
                 // defaultValue="Hello World"
               />
             </div>
