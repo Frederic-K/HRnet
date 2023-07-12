@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { useUser } from '../services/API/useUser'
 
 const initialState = {
-  userId: '',
+  userId: localStorage.getItem('userId') ?? null,
   firstName: '',
   lastName: '',
   isFetching: false,
@@ -49,22 +49,22 @@ export const userSlice = createSlice({
     // State management from api feedback
     builder
       .addCase(useUser.fulfilled, (state, { payload }) => {
+        // console.log('payload', payload)
         return {
           ...state,
-          userId: payload.body.userId,
-          firstName: payload.body.firstName,
-          lastName: payload.body.lastName,
+          userId: payload.userData.id,
+          firstName: payload.userData.firstName,
+          lastName: payload.userData.lastName,
           isFetching: false,
-          successMessage: payload.message,
+          successMessage: 'Login success',
         }
       })
       .addCase(useUser.rejected, (state, { payload }) => {
-        console.log('payload', payload)
         return {
           ...state,
           isFetching: false,
           isError: true,
-          errorMessage: payload.message,
+          errorMessage: 'Login rejected',
         }
       })
       .addCase(useUser.pending, (state) => {

@@ -5,8 +5,7 @@ export const useUser = createAsyncThunk(
   async (userId, thunkAPI) => {
     console.log('api')
     let url = `./userMockedDatas/${userId}/user.json`
-    console.log('url', url)
-
+    //console.log('url', url)
     try {
       const response = await fetch(url)
       let data = await response.json()
@@ -14,8 +13,6 @@ export const useUser = createAsyncThunk(
       if (response.status === 200) {
         localStorage.setItem('userId', data.userData.id)
         return { ...data }
-      } else {
-        return thunkAPI.rejectWithValue(data)
       }
     } catch (error) {
       console.log('Error', error.response.data)
