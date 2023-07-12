@@ -24,8 +24,7 @@ export default function Login() {
   const userId = useRef()
 
   // Grab user state (store)
-  // const { isFetching, token, isError, errorMessage, successMessage } =
-  //   useSelector(userSelector)
+  const { errorMessage } = useSelector(userSelector)
 
   // Manage login form to authentificate user
   const HandleSubmit = (e) => {
@@ -55,13 +54,24 @@ export default function Login() {
             }}
           >
             <div>
-              <TextField
-                required
-                id="userID"
-                label="userId required"
-                inputRef={userId}
-                // defaultValue="Hello World"
-              />
+              {errorMessage ? (
+                <TextField
+                  error
+                  id="outlined-error-helper-text"
+                  label="Error"
+                  inputRef={userId}
+                  // defaultValue="Hello World"
+                  helperText="Incorrect entry."
+                />
+              ) : (
+                <TextField
+                  required
+                  id="userID"
+                  label="userId required"
+                  inputRef={userId}
+                  // defaultValue="Hello World"
+                />
+              )}
             </div>
             <div>
               <Stack direction="row" spacing={2}>
