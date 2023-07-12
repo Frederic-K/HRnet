@@ -64,7 +64,7 @@ export const userSlice = createSlice({
           ...state,
           isFetching: false,
           isError: true,
-          errorMessage: 'Login rejected',
+          errorMessage: 'Request rejected',
         }
       })
       .addCase(useUser.pending, (state) => {

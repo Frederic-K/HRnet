@@ -3,7 +3,7 @@ import { useUser } from '../../services/API/useUser'
 import { useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { userSelector } from '../../features/userSlice'
+import { clearState, userSelector } from '../../features/userSlice'
 
 // import toast from 'react-hot-toast'
 
@@ -33,19 +33,22 @@ export default function Login() {
     console.log('userIduseRef', userId.current.value)
     dispatch(useUser(userId.current.value))
   }
+  const HandleReset = () => {
+    dispatch(clearState())
+  }
 
   return (
-    <main className="login">
-      <section className="login__content">
-        <div className="login__content--header">
+    <main className="login__container">
+      <section className="login">
+        <div className="login__hero">
           <img src={Logo} alt="Logo Wealth Health" />
-          <h1 className="login__content--title">Welcome to HRnet</h1>
+          <h1 className="login__hero--title">Welcome to HRnet</h1>
         </div>
-        <div>
+        <div className="login__form">
           <Box
             component="form"
             sx={{
-              '& .MuiTextField-root': { m: 1, width: '25ch' },
+              '& .MuiTextField-root': { m: 1, width: 500, maxWidth: '100%' },
             }}
             noValidate
             autoComplete="off"
@@ -53,7 +56,7 @@ export default function Login() {
               HandleSubmit(e)
             }}
           >
-            <div>
+            <div className="login__form--input">
               {errorMessage ? (
                 <TextField
                   error
@@ -62,6 +65,7 @@ export default function Login() {
                   inputRef={userId}
                   // defaultValue="Hello World"
                   helperText="Incorrect entry."
+                  fullWidth
                 />
               ) : (
                 <TextField
@@ -70,22 +74,32 @@ export default function Login() {
                   label="userId required"
                   inputRef={userId}
                   // defaultValue="Hello World"
+                  fullWidth
                 />
               )}
             </div>
-            <div>
+            <div className="login__form--btn">
               <Stack direction="row" spacing={2}>
                 <Button
+                  className="login__form--btn-reset"
                   variant="outlined"
                   type="reset"
                   startIcon={<DeleteIcon />}
+                  // fullWidth
+                  sx={{ width: 240, maxWidth: '100%' }}
+                  onClick={() => {
+                    HandleReset()
+                  }}
                 >
                   Reset
                 </Button>
                 <Button
+                  className="login__form--btn-submit"
                   variant="contained"
                   type="submit"
                   endIcon={<SendIcon />}
+                  // fullWidth
+                  sx={{ width: 240, maxWidth: '100%' }}
                 >
                   Login
                 </Button>
