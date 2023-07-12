@@ -44,11 +44,13 @@ export default function Login() {
           <img src={Logo} alt="Logo Wealth Health" />
           <h1 className="login__hero--title">Welcome to HRnet</h1>
         </div>
-        <div className="login__form">
+        <div className="login__form-container">
           <Box
+            className="login__form"
             component="form"
             sx={{
-              '& .MuiTextField-root': { m: 1, width: 500, maxWidth: '100%' },
+              width: 500,
+              maxWidth: '100%',
             }}
             noValidate
             autoComplete="off"
@@ -56,25 +58,26 @@ export default function Login() {
               HandleSubmit(e)
             }}
           >
-            <div className="login__form--input">
-              {errorMessage ? (
+            <div className="login__form--textField">
+              {!errorMessage ? (
                 <TextField
-                  error
-                  id="outlined-error-helper-text"
-                  label="Error"
-                  inputRef={userId}
-                  // defaultValue="Hello World"
-                  helperText="Incorrect entry."
+                  className="login__form--input"
                   fullWidth
+                  id="userId"
+                  label="userId"
+                  variant="outlined"
+                  inputRef={userId}
                 />
               ) : (
                 <TextField
-                  required
-                  id="userID"
-                  label="userId required"
-                  inputRef={userId}
-                  // defaultValue="Hello World"
+                  className="login__form--input"
+                  error
                   fullWidth
+                  id="outlined-error-helper-text"
+                  label="Error"
+                  defaultValue="Hello World"
+                  helperText="Incorrect entry."
+                  inputRef={userId}
                 />
               )}
             </div>
@@ -85,8 +88,8 @@ export default function Login() {
                   variant="outlined"
                   type="reset"
                   startIcon={<DeleteIcon />}
-                  // fullWidth
-                  sx={{ width: 240, maxWidth: '100%' }}
+                  fullWidth
+                  // sx={{ width: 240, maxWidth: '100%' }}
                   onClick={() => {
                     HandleReset()
                   }}
@@ -98,8 +101,8 @@ export default function Login() {
                   variant="contained"
                   type="submit"
                   endIcon={<SendIcon />}
-                  // fullWidth
-                  sx={{ width: 240, maxWidth: '100%' }}
+                  fullWidth
+                  // sx={{ width: 240, maxWidth: '100%' }}
                 >
                   Login
                 </Button>

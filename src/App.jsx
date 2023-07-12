@@ -4,17 +4,15 @@ import Login from './pages/Login/Login'
 
 function App() {
   return (
-    <div className="layout">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          {/* <Route path="/user/:id" element={<Home />} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        {/* <Route path="/user/:id" element={<Home />} />
         <Route path="/user/:id/CreateEmployee" element={<CreateEmployee />} />
         <Route path="/user/:id/ListEmployee" element={<ListEmployees />} /> */}
-          {/* <Route path="*" element={<Error404 />} /> */}
-        </Routes>
-      </BrowserRouter>
-    </div>
+        {/* <Route path="*" element={<Error404 />} /> */}
+      </Routes>
+    </BrowserRouter>
   )
 }
 
