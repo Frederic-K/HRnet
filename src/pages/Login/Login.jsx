@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { useUser } from '../../services/API/useUser'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { clearState, userSelector } from '../../features/userSlice'
 
-// import toast from 'react-hot-toast'
+import toast from 'react-hot-toast'
 
 import Logo from '../../assets/WealthHealth_Logo_1.png'
 import SpinLoader from '../../components/Loader/spinLoader'
@@ -21,30 +21,38 @@ export default function Login() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  // Local states
   const userId = useRef()
 
-  // Grab user state (store)
-  const { isFetching, errorMessage } = useSelector(userSelector)
+  const { isError, errorMessage, successMessage, id } =
+    useSelector(userSelector)
+  console.log('id', id)
 
-  // Manage login form to authentificate user
   const HandleSubmit = (e) => {
     e.preventDefault()
-    // Call api to login
     console.log('userIduseRef', userId.current.value)
     dispatch(useUser(userId.current.value))
   }
   const HandleReset = () => {
+    localStorage.clear()
     dispatch(clearState())
   }
 
   const HandleError = () => {
+    localStorage.clear()
     dispatch(clearState())
   }
 
-  if (isFetching) {
-    return <SpinLoader />
-  }
+  useEffect(() => {
+    if (id) {
+      toast.success(successMessage)
+      navigate(`/home`)
+    } else if (isError) {
+      toast.error(errorMessage)
+    }
+    // else {
+    //   navigate(`*`)
+    // }
+  }, [isError, id])
 
   return (
     <main className="login__container">
@@ -68,7 +76,7 @@ export default function Login() {
             }}
           >
             <div className="login__form--textField">
-              {!errorMessage ? (
+              {!isError ? (
                 <TextField
                   className="login__form--input"
                   fullWidth

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { useUser } from '../services/API/useUser'
 
 const initialState = {
-  userId: localStorage.getItem('userId') ?? null,
+  id: localStorage.getItem('userId') ?? null,
   firstName: '',
   lastName: '',
   isFetching: false,
@@ -20,7 +20,7 @@ export const userSlice = createSlice({
     clearState: (state) => {
       return {
         ...state,
-        userId: '',
+        id: '',
         firstName: '',
         lastName: '',
         isFetching: false,
@@ -34,7 +34,7 @@ export const userSlice = createSlice({
       localStorage.clear()
       return {
         ...state,
-        userId: '',
+        id: '',
         firstName: '',
         lastName: '',
         isFetching: false,
@@ -52,7 +52,7 @@ export const userSlice = createSlice({
         // console.log('payload', payload)
         return {
           ...state,
-          userId: payload.userData.id,
+          id: payload.userData.id,
           firstName: payload.userData.firstName,
           lastName: payload.userData.lastName,
           isFetching: false,

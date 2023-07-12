@@ -11,7 +11,7 @@ export const useUser = createAsyncThunk(
       let data = await response.json()
       console.log('user data', data, response.status)
       if (response.status === 200) {
-        localStorage.setItem('userId', data.userData.id)
+        localStorage.setItem('id', data.userData.id)
         return { ...data }
       }
     } catch (error) {
