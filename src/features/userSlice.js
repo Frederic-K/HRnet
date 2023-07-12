@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { useUser } from '../services/API/useUser'
 
 const initialState = {
-  userId: localStorage.getItem('userId') ?? null,
+  userId: '',
   firstName: '',
   lastName: '',
   isFetching: false,

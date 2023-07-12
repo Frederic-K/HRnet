@@ -1,9 +1,7 @@
 {
-  "data": {
+  "userData": {
     "id": 120,
-    "userInfos": {
-      "firstName": "Marina",
-      "lastName": "Tuilya"
-    }
+    "firstName": "Marina",
+    "lastName": "Tuilya"
   }
 }

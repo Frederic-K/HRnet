@@ -21,7 +21,7 @@ export default function Login() {
   const navigate = useNavigate()
 
   // Local states
-  const userID = useRef()
+  const userId = useRef()
 
   // Grab user state (store)
   // const { isFetching, token, isError, errorMessage, successMessage } =
@@ -31,8 +31,8 @@ export default function Login() {
   const HandleSubmit = (e) => {
     e.preventDefault()
     // Call api to login
-    console.log('userIduseRef', userID.current.value)
-    dispatch(useUser(userID.current.value))
+    console.log('userIduseRef', userId.current.value)
+    dispatch(useUser(userId.current.value))
   }
 
   return (
@@ -59,7 +59,7 @@ export default function Login() {
                 required
                 id="userID"
                 label="userId required"
-                inputRef={userID}
+                inputRef={userId}
                 // defaultValue="Hello World"
               />
             </div>
