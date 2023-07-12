@@ -8,6 +8,7 @@ import { clearState, userSelector } from '../../features/userSlice'
 // import toast from 'react-hot-toast'
 
 import Logo from '../../assets/WealthHealth_Logo_1.png'
+import SpinLoader from '../../components/Loader/spinLoader'
 
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
@@ -24,7 +25,7 @@ export default function Login() {
   const userId = useRef()
 
   // Grab user state (store)
-  const { errorMessage } = useSelector(userSelector)
+  const { isFetching, errorMessage } = useSelector(userSelector)
 
   // Manage login form to authentificate user
   const HandleSubmit = (e) => {
@@ -35,6 +36,14 @@ export default function Login() {
   }
   const HandleReset = () => {
     dispatch(clearState())
+  }
+
+  const HandleError = () => {
+    dispatch(clearState())
+  }
+
+  if (isFetching) {
+    return <SpinLoader />
   }
 
   return (
@@ -75,9 +84,12 @@ export default function Login() {
                   fullWidth
                   id="outlined-error-helper-text"
                   label="Error"
-                  defaultValue="Hello World"
+                  // defaultValue="Press Reset"
                   helperText="Incorrect entry."
                   inputRef={userId}
+                  onChange={() => {
+                    HandleError()
+                  }}
                 />
               )}
             </div>
