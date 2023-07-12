@@ -6,3 +6,22 @@
   box-sizing: border-box;
   text-decoration: none;
 }
+
+html {
+  background: url(../../assets/pexels-fabien-burgue-2029968-3.jpg);
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.layout {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
