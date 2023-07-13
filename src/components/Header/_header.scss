@@ -1,0 +1,20 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 2px solid bisque;
+  padding: 2rem 1rem 1.5rem;
+  color: $colour-secondary;
+  background-color: rgba(255, 228, 196, 0.273);
+  &__liveDate {
+    width: 150px;
+  }
+  &__liveClock {
+    width: 150px;
+    text-align: center;
+  }
+  &__title {
+    width: 150px;
+  }
+}
