@@ -1,0 +1,33 @@
+.errorPage {
+  width: 100%;
+  display: flex;
+  margin: auto;
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    color: $colour-primary;
+  }
+  &__type {
+    font-size: 16rem;
+    font-weight: 700;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    margin: 0px;
+  }
+  &__title {
+    font-size: 2rem;
+    text-align: center;
+    margin: 0px;
+  }
+  &__link {
+    font-size: 1rem;
+    color: $colour-primary;
+    padding-top: 10rem;
+    text-decoration: underline;
+    margin: 0px;
+    margin-bottom: 50px;
+  }
+}
