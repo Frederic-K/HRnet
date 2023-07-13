@@ -4,6 +4,7 @@ import Login from './pages/Login/Login'
 import CreateEmployee from '../src/pages/CreateEmployee/CreateEmployee'
 import ManageEmployees from '../src/pages/ManageEmployees/ManageEmployees'
 import Error404 from '../src/pages/404/404'
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/manage" element={<ManageEmployees />} /> */}
         <Route path="*" element={<Error404 />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }
