@@ -59,7 +59,7 @@ export default function Login() {
     dispatch(clearState())
   }
 
-  const HandleError = () => {
+  const HandleNewInput = () => {
     localStorage.clear()
     dispatch(clearState())
   }
@@ -141,6 +141,9 @@ export default function Login() {
                       label="userId"
                       variant="outlined"
                       inputRef={userId}
+                      onChange={() => {
+                        HandleNewInput()
+                      }}
                     />
                   ) : (
                     <TextField
@@ -153,7 +156,7 @@ export default function Login() {
                       helperText="Incorrect entry."
                       inputRef={userId}
                       onChange={() => {
-                        HandleError()
+                        HandleNewInput()
                       }}
                     />
                   )}
