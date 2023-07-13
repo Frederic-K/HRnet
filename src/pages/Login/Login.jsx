@@ -12,6 +12,7 @@ import Logo from '../../assets/WealthHealth_Logo_1.png'
 import SpinLoader from '../../components/Loader/spinLoader'
 import xcrossClose from '../../assets/close.png'
 import LiveClock from '../../components/LiveClock/LiveClock'
+import LiveDate from '../../components/LiveDate/LiveDate'
 
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
@@ -94,7 +95,10 @@ export default function Login() {
         <Toaster />
       </div>
       <header className="login__header">
-        <div className="login__header--date"> {date}</div>
+        {/* <div className="login__header--date"> {date}</div> */}
+        <div className="login__header--date">
+          <LiveDate />
+        </div>
         {/* <div className="login__header--liveClock">
           <LiveClockUpdate />
         </div> */}
