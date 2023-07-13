@@ -11,8 +11,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        {/* <Route path="/creation" element={<CreateEmployee />} />
-        <Route path="/manage" element={<ManageEmployees />} /> */}
+        <Route path="/creation-employee" element={<CreateEmployee />} />
+        <Route path="/manage-employees" element={<ManageEmployees />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
