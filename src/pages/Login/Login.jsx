@@ -26,6 +26,16 @@ export default function Login() {
   const userId = useRef()
   const [isModalShown, setIsModalShow] = useState(false)
 
+  let today = new Date()
+  let date =
+    today.getDate() +
+    '-' +
+    parseInt(today.getMonth() + 1) +
+    '-' +
+    today.getFullYear()
+
+  console.log(date)
+
   const {
     isFetching,
     isError,
@@ -82,7 +92,10 @@ export default function Login() {
       <div>
         <Toaster />
       </div>
-      <header></header>
+      <header className="login__header">
+        <div className="login__header--date"> {date}</div>
+        <div className="login__header--title">WHEALTH HEALTH</div>
+      </header>
       <main className="login__container">
         {isModalShown ? (
           <div className="modale__activity">
