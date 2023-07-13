@@ -74,6 +74,7 @@ export default function Login() {
     // else {
     //   navigate(`*`)
     // }
+    // eslint-disable-next-line
   }, [isError, id])
 
   return (
@@ -81,6 +82,7 @@ export default function Login() {
       <div>
         <Toaster />
       </div>
+      <header></header>
       <main className="login__container">
         {isModalShown ? (
           <div className="modale__activity">
