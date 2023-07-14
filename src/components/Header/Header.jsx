@@ -31,7 +31,11 @@ export default function Header() {
         >
           <div className="nav__link--title">
             <img src={addUserIcon} alt="Add an Employees" />
-            <span>Create Employee</span>
+            <span>
+              Create
+              <br />
+              Employee
+            </span>
           </div>
         </NavLink>
         <NavLink
@@ -42,7 +46,11 @@ export default function Header() {
         >
           <div className="nav__link--title">
             <img src={manageUsersIcon} alt="List of Employees" />
-            <span>Manage Employees</span>
+            <span>
+              Manage
+              <br />
+              Employees
+            </span>
           </div>
         </NavLink>
       </nav>
