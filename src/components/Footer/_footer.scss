@@ -1,15 +1,21 @@
 .footer {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   border-top: 2px solid bisque;
   padding: 2rem 0 1.5rem;
   color: $colour-secondary;
   background-color: rgba(255, 228, 196, 0.273);
   &__mail {
+    padding: 0px 20px 0px 20px;
     color: $colour-secondary;
     &:hover {
       color: $colour-primary;
     }
+  }
+  &__copyright {
+    width: 300px;
+    display: flex;
+    justify-content: center;
   }
 }

@@ -1,9 +1,8 @@
 import Header from '../../components/Header/Header'
 
-export default function CreateEmployeeForm() {
+export default function CreateEmployee() {
   return (
-    <div>
-      Container
+    <div className="createEmployee__container">
       <div>
         <Header />
       </div>
