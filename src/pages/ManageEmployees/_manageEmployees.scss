@@ -4,4 +4,13 @@
 
 .manageEmployees__table {
   width: 100%;
+  // background-color: bisque;
+}
+
+.manageEmployees__table--bg {
+  background-color: rgba(255, 228, 196, 0.3);
+}
+
+.manageEmployees__table-header--bg {
+  background-color: rgba(255, 228, 196, 0.649);
 }

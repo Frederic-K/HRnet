@@ -204,6 +204,7 @@ function EnhancedTableToolbar(props) {
             ),
         }),
       }}
+      className="manageEmployees__table--bg"
     >
       {numSelected > 0 ? (
         <Typography
@@ -326,13 +327,14 @@ export default function ManageEmployees() {
       </div>
       <main className="manageEmployees__table">
         <Box sx={{ width: '100%' }}>
-          <Paper sx={{ width: '100%', mb: 2, backgroundColor: 'lightPink' }}>
+          <Paper sx={{ width: '100%', mb: 2 }}>
             <EnhancedTableToolbar numSelected={selected.length} />
             <TableContainer>
               <Table
                 sx={{ minWidth: 750 }}
                 aria-labelledby="tableTitle"
                 size={dense ? 'small' : 'medium'}
+                className="manageEmployees__table--bg"
               >
                 <EnhancedTableHead
                   numSelected={selected.length}
@@ -357,6 +359,7 @@ export default function ManageEmployees() {
                         key={row.name}
                         selected={isItemSelected}
                         sx={{ cursor: 'pointer' }}
+                        className="manageEmployees__table--bg"
                       >
                         <TableCell padding="checkbox">
                           <Checkbox
@@ -402,6 +405,7 @@ export default function ManageEmployees() {
               page={page}
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
+              className="manageEmployees__table--bg"
             />
           </Paper>
           <FormControlLabel
