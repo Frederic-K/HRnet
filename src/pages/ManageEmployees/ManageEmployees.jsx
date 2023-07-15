@@ -11,54 +11,42 @@ import Header from '../../components/Header/Header'
 //   )
 // }
 
-import * as React from 'react'
-import PropTypes from 'prop-types'
-import { alpha } from '@mui/material/styles'
-import Box from '@mui/material/Box'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TablePagination from '@mui/material/TablePagination'
-import TableRow from '@mui/material/TableRow'
-import TableSortLabel from '@mui/material/TableSortLabel'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import Paper from '@mui/material/Paper'
-import Checkbox from '@mui/material/Checkbox'
-import IconButton from '@mui/material/IconButton'
-import Tooltip from '@mui/material/Tooltip'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Switch from '@mui/material/Switch'
-import DeleteIcon from '@mui/icons-material/Delete'
-import FilterListIcon from '@mui/icons-material/FilterList'
-import { visuallyHidden } from '@mui/utils'
+import { DataGrid, GridToolbar, GridToolbarQuickFilter } from '@mui/x-data-grid'
 
-import TextField from '@mui/material/TextField'
+const columns = [
+  { field: 'id', headerName: 'ID', width: 70 },
+  { field: 'firstName', headerName: 'First name', width: 130 },
+  { field: 'lastName', headerName: 'Last name', width: 130 },
+  {
+    field: 'age',
+    headerName: 'Age',
+    type: 'number',
+    width: 90,
+  },
+  // {
+  //   field: 'fullName',
+  //   headerName: 'Full name',
+  //   description: 'This column has a value getter and is not sortable.',
+  //   sortable: false,
+  //   width: 160,
+  //   valueGetter: (params) =>
+  //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+  // },
+]
 
-import { useState } from 'react'
-
-import {
-  DataGrid,
-  GridRowsProp,
-  GridColDef,
-  GridToolbar,
-  GridToolbarQuickFilter,
-} from '@mui/x-data-grid'
+const rows = [
+  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
+  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
+  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
+  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
+  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
+  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
+  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
+  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
+  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+]
 
 export default function ManageEmployees() {
-  const rows = [
-    { id: 1, col1: 'Hello', col2: 'World' },
-    { id: 2, col1: 'DataGridPro', col2: 'is Awesome' },
-    { id: 3, col1: 'MUI', col2: 'is Amazing' },
-  ]
-
-  const columns = [
-    { field: 'col1', headerName: 'Column 1', width: 150 },
-    { field: 'col2', headerName: 'Column 2', width: 150 },
-  ]
-
   return (
     <>
       <header className="layout__header">
@@ -68,14 +56,25 @@ export default function ManageEmployees() {
         <div className="manageEmployees__banner--title">List of employees</div>
       </section>
       <main className="manageEmployees__container">
-        <div style={{ height: 400, width: '100%' }}>
-          {/* <DataGrid rows={rows} columns={columns} slots={{ toolbar: GridToolbar }} /> */}
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            slots={{ toolbar: GridToolbarQuickFilter }}
-          />
-        </div>
+        <DataGrid
+          className="manageEmployees__table--bg"
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 5 },
+            },
+          }}
+          pageSizeOptions={[5, 10]}
+          checkboxSelection
+          slots={{ toolbar: GridToolbarQuickFilter }}
+          slotProps={{
+            toolbar: {
+              showQuickFilter: true,
+              quickFilterProps: { debounceMs: 500 },
+            },
+          }}
+        />
       </main>
     </>
   )
