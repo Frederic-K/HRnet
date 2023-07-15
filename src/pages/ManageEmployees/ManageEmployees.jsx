@@ -46,30 +46,174 @@ function Search() {
 
 // import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 
-function createData(name, calories, fat, carbs, protein) {
+function createData(
+  firstName,
+  lastName,
+  startDate,
+  department,
+  dateOfBirth,
+  street,
+  city,
+  state,
+  zipCode,
+) {
   return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
+    lastName,
+    firstName,
+    startDate,
+    department,
+    dateOfBirth,
+    street,
+    city,
+    state,
+    zipCode,
   }
 }
 
 const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Honeycomb', 408, 3.2, 87, 6.5),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  createData('KitKat', 518, 26.0, 65, 7.0),
-  createData('Lollipop', 392, 0.2, 98, 0.0),
-  createData('Marshmallow', 318, 0, 81, 2.0),
-  createData('Nougat', 360, 19.0, 9, 37.0),
-  createData('Oreo', 437, 18.0, 63, 4.0),
+  createData(
+    'KJalie',
+    'Fudith',
+    '15/08/2001',
+    'GackerRoad',
+    '20/02/6999',
+    'TOneheim',
+    'Gloscoui',
+    'Purtipa',
+    885585944,
+  ),
+  createData(
+    'Salie',
+    'Gudith',
+    '15/05/2001',
+    'DackerRoad',
+    '20/12/6999',
+    'POneheim',
+    'Gloscouf',
+    'Gurtipa',
+    885415944,
+  ),
+  createData(
+    'Malie',
+    'Sudith',
+    '15/07/2001',
+    'SackerRoad',
+    '20/11/6999',
+    'Zneheim',
+    'Gloscouf',
+    'Furtipa',
+    885775944,
+  ),
+  createData(
+    'Aalie',
+    'Mudith',
+    '15/03/2001',
+    'AackerRoad',
+    '10/09/6999',
+    'Oneheim',
+    'Gloscouxc',
+    'Hurtipa',
+    8855944,
+  ),
+  createData(
+    'Falie',
+    'Ludith',
+    '15/07/2001',
+    'SackerRoad',
+    '20/09/6999',
+    'Qneheim',
+    'Gloscouxs',
+    'Qurtipa',
+    998855944,
+  ),
+  createData(
+    'Balie',
+    'Vudith',
+    '15/09/2001',
+    'FackerRoad',
+    '20/01/6999',
+    'Gneheim',
+    'Hloscouc',
+    'Prtipa',
+    856855944,
+  ),
+  createData(
+    'Calie',
+    'Dudith',
+    '15/12/2001',
+    'SackerRoad',
+    '20/05/6899',
+    'Dneheim',
+    'Tloscou',
+    'Trtipa',
+    885555944,
+  ),
+  createData(
+    'Xalie',
+    'Qudith',
+    '15/11/2001',
+    'XackerRoad',
+    '10/05/6999',
+    'OPneheim',
+    'SGloscou',
+    'Jurtipa',
+    885755944,
+  ),
+  createData(
+    'Nalie',
+    'Nudith',
+    '15/05/2001',
+    'HackerRoad',
+    '20/05/6997',
+    'Oneheim',
+    'Ploscou',
+    'Gfrtipa',
+    889655944,
+  ),
+  createData(
+    'Jalie',
+    'Oudith',
+    '15/08/2001',
+    'MackerRoad',
+    '21/05/6999',
+    'Hneheim',
+    'Sloscou',
+    'Gdetipa',
+    748855944,
+  ),
+  createData(
+    'Qalie',
+    'Eudith',
+    '15/08/2001',
+    'MackerRoad',
+    '20/01/6999',
+    'Rneheim',
+    'Dloscou',
+    'Gdetipa',
+    885855944,
+  ),
+  createData(
+    'Walie',
+    'Rudith',
+    '15/08/2001',
+    'EackerRoad',
+    '20/06/6999',
+    'Fneheim',
+    'Hloscou',
+    'Gaqtipa',
+    899855944,
+  ),
+  createData(
+    'Salie',
+    'Audith',
+    '15/08/2001',
+    'AackerRoad',
+    '20/05/6999',
+    'Sneheim',
+    'Oloscou',
+    'Gkotipa',
+    998855944,
+  ),
 ]
 
 function descendingComparator(a, b, orderBy) {
@@ -106,34 +250,59 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'name',
+    id: 'firstName',
     numeric: false,
-    disablePadding: true,
-    label: 'Dessert (100g serving)',
+    disablePadding: false,
+    label: 'First Name',
   },
   {
-    id: 'calories',
-    numeric: true,
+    id: 'lastName',
+    numeric: false,
     disablePadding: false,
-    label: 'Calories',
+    label: 'Last Name',
+  },
+
+  {
+    id: 'startDate',
+    numeric: false,
+    disablePadding: false,
+    label: 'Start Date',
   },
   {
-    id: 'fat',
-    numeric: true,
+    id: 'department',
+    numeric: false,
     disablePadding: false,
-    label: 'Fat (g)',
+    label: 'Department',
   },
   {
-    id: 'carbs',
-    numeric: true,
+    id: 'dateOfBirth',
+    numeric: false,
     disablePadding: false,
-    label: 'Carbs (g)',
+    label: 'Birth Date',
   },
   {
-    id: 'protein',
-    numeric: true,
+    id: 'street',
+    numeric: false,
     disablePadding: false,
-    label: 'Protein (g)',
+    label: 'Street',
+  },
+  {
+    id: 'city',
+    numeric: false,
+    disablePadding: false,
+    label: 'City',
+  },
+  {
+    id: 'state',
+    numeric: false,
+    disablePadding: false,
+    label: 'State',
+  },
+  {
+    id: 'zipCode',
+    numeric: false,
+    disablePadding: false,
+    label: 'Zip Code',
   },
 ]
 
@@ -233,7 +402,7 @@ function EnhancedTableToolbar(props) {
           id="tableTitle"
           component="div"
         >
-          Nutrition
+          Employees
         </Typography>
       )}
 
@@ -261,7 +430,7 @@ EnhancedTableToolbar.propTypes = {
 
 export default function ManageEmployees() {
   const [order, setOrder] = React.useState('asc')
-  const [orderBy, setOrderBy] = React.useState('calories')
+  const [orderBy, setOrderBy] = React.useState('firstName')
   const [selected, setSelected] = React.useState([])
   const [page, setPage] = React.useState(0)
   const [dense, setDense] = React.useState(false)
@@ -275,19 +444,19 @@ export default function ManageEmployees() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.name)
+      const newSelected = rows.map((n) => n.lastName)
       setSelected(newSelected)
       return
     }
     setSelected([])
   }
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name)
+  const handleClick = (event, lastName) => {
+    const selectedIndex = selected.indexOf(lastName)
     let newSelected = []
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name)
+      newSelected = newSelected.concat(selected, lastName)
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1))
     } else if (selectedIndex === selected.length - 1) {
@@ -315,7 +484,7 @@ export default function ManageEmployees() {
   //   setDense(event.target.checked)
   // }
 
-  const isSelected = (name) => selected.indexOf(name) !== -1
+  const isSelected = (lastName) => selected.indexOf(lastName) !== -1
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -385,17 +554,17 @@ export default function ManageEmployees() {
                   />
                   <TableBody>
                     {visibleRows.map((row, index) => {
-                      const isItemSelected = isSelected(row.name)
+                      const isItemSelected = isSelected(row.lastName)
                       const labelId = `enhanced-table-checkbox-${index}`
 
                       return (
                         <TableRow
                           hover
-                          onClick={(event) => handleClick(event, row.name)}
+                          onClick={(event) => handleClick(event, row.lastName)}
                           role="checkbox"
                           aria-checked={isItemSelected}
                           tabIndex={-1}
-                          key={row.name}
+                          key={row.lastName}
                           selected={isItemSelected}
                           sx={{ cursor: 'pointer' }}
                           className="manageEmployees__table--bg"
@@ -409,18 +578,23 @@ export default function ManageEmployees() {
                               }}
                             />
                           </TableCell>
-                          <TableCell
+                          {/* <TableCell
                             component="th"
                             id={labelId}
                             scope="row"
                             padding="none"
                           >
-                            {row.name}
-                          </TableCell>
-                          <TableCell align="right">{row.calories}</TableCell>
-                          <TableCell align="right">{row.fat}</TableCell>
-                          <TableCell align="right">{row.carbs}</TableCell>
-                          <TableCell align="right">{row.protein}</TableCell>
+                            {row.firstName}
+                          </TableCell> */}
+                          <TableCell align="left">{row.firstName}</TableCell>
+                          <TableCell align="left">{row.lastName}</TableCell>
+                          <TableCell align="left">{row.startDate}</TableCell>
+                          <TableCell align="left">{row.department}</TableCell>
+                          <TableCell align="left">{row.dateOfBirth}</TableCell>
+                          <TableCell align="left">{row.street}</TableCell>
+                          <TableCell align="left">{row.city}</TableCell>
+                          <TableCell align="left">{row.state}</TableCell>
+                          <TableCell align="left">{row.zipCode}</TableCell>
                         </TableRow>
                       )
                     })}
