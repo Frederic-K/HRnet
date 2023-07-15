@@ -1,6 +1,8 @@
 .modale {
   &__activity {
     position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 1;
     &--container {
       width: 650px;

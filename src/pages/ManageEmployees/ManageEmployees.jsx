@@ -258,7 +258,7 @@ const headCells = [
   {
     id: 'lastName',
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: 'Last Name',
   },
 
@@ -300,7 +300,7 @@ const headCells = [
   },
   {
     id: 'zipCode',
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: 'Zip Code',
   },
@@ -578,22 +578,23 @@ export default function ManageEmployees() {
                               }}
                             />
                           </TableCell>
-                          <TableCell
+                          {/* <TableCell
                             component="th"
                             id={labelId}
                             scope="row"
                             padding="none"
                           >
-                            {row.lastName}
-                          </TableCell>
-                          <TableCell align="right">{row.firstName}</TableCell>
-                          <TableCell align="right">{row.startDate}</TableCell>
-                          <TableCell align="right">{row.department}</TableCell>
-                          <TableCell align="right">{row.dateOfBirth}</TableCell>
-                          <TableCell align="right">{row.street}</TableCell>
-                          <TableCell align="right">{row.city}</TableCell>
-                          <TableCell align="right">{row.state}</TableCell>
-                          <TableCell align="right">{row.zipCode}</TableCell>
+                            {row.firstName}
+                          </TableCell> */}
+                          <TableCell align="left">{row.firstName}</TableCell>
+                          <TableCell align="left">{row.lastName}</TableCell>
+                          <TableCell align="left">{row.startDate}</TableCell>
+                          <TableCell align="left">{row.department}</TableCell>
+                          <TableCell align="left">{row.dateOfBirth}</TableCell>
+                          <TableCell align="left">{row.street}</TableCell>
+                          <TableCell align="left">{row.city}</TableCell>
+                          <TableCell align="left">{row.state}</TableCell>
+                          <TableCell align="left">{row.zipCode}</TableCell>
                         </TableRow>
                       )
                     })}
