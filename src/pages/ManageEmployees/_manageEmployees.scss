@@ -2,13 +2,41 @@
   &__header {
     width: 100%;
   }
+  &__banner {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+    border-bottom: 1px solid teal;
+    &--title {
+      font-size: 40px;
+      font-weight: 700;
+      color: teal;
+    }
+  }
   &__container {
     width: 100%;
-    margin: auto;
+    margin-bottom: auto;
+  }
+  &__search {
+    width: 90%;
+    margin: 40px auto;
   }
   &__table {
+    width: 90%;
+    margin: auto;
     &--bg {
       background-color: rgba(255, 228, 196, 0.3);
     }
   }
 }
+
+// .searchField {
+//   &--hidden {
+//     display: none;
+//   }
+//   &--visible {
+//     display: block;
+//   }
+// }
