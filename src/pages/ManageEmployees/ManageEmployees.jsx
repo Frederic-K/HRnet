@@ -35,6 +35,17 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
 
+import TextField from '@mui/material/TextField'
+
+import { useState } from 'react'
+
+function Search() {
+  console.log('Tada')
+  const [isResult, setIsResult] = useState(true)
+}
+
+// import { DataGrid, GridToolbar } from '@mui/x-data-grid'
+
 function createData(name, calories, fat, carbs, protein) {
   return {
     name,
@@ -232,13 +243,14 @@ function EnhancedTableToolbar(props) {
             <DeleteIcon />
           </IconButton>
         </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
-      )}
+      ) : // (
+      //   <Tooltip title="Filter list">
+      //     <IconButton>
+      //       <FilterListIcon />
+      //     </IconButton>
+      //   </Tooltip>
+      // )
+      null}
     </Toolbar>
   )
 }
@@ -299,9 +311,9 @@ export default function ManageEmployees() {
     setPage(0)
   }
 
-  const handleChangeDense = (event) => {
-    setDense(event.target.checked)
-  }
+  // const handleChangeDense = (event) => {
+  //   setDense(event.target.checked)
+  // }
 
   const isSelected = (name) => selected.indexOf(name) !== -1
 
@@ -320,11 +332,39 @@ export default function ManageEmployees() {
 
   return (
     <>
-      <div className="manageEmployees__header">
+      <header className="layout__header">
         <Header />
-      </div>
-      <div className="manageEmployees__container">
-        <main className="manageEmployees__table">
+      </header>
+      <section className="manageEmployees__banner">
+        <div className="manageEmployees__banner--title">List of employees</div>
+      </section>
+      <main className="manageEmployees__container">
+        <div className="manageEmployees__search">
+          <TextField
+            id="outlined-basic"
+            label="Search"
+            variant="outlined"
+            fullWidth
+            onChange={() => {
+              Search()
+            }}
+          />
+          {/* <TextField
+            error
+            id="outlined-error-helper-text"
+            fullWidth
+            label="Error"
+            // defaultValue="Hello World"
+            helperText="No Result."
+            onChange={() => {
+              Search()
+            }}
+            // className={({ isResult }) =>
+            //   isResult ? 'seachField--hidden' : 'searchField--visible'
+            // }
+          /> */}
+        </div>
+        <div className="manageEmployees__table">
           <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
               <EnhancedTableToolbar numSelected={selected.length} />
@@ -407,13 +447,13 @@ export default function ManageEmployees() {
                 className="manageEmployees__table--bg"
               />
             </Paper>
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Switch checked={dense} onChange={handleChangeDense} />}
               label="Dense padding"
-            />
+            /> */}
           </Box>
-        </main>
-      </div>
+        </div>
+      </main>
     </>
   )
 }
