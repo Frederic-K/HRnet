@@ -51,12 +51,14 @@ export default function Login() {
   // Manage opening the form to update user's names
   const HandleOpenModal = () => {
     // Ensure that the form is closed
-    HandleCloseModal()
+    // HandleCloseModal()
     // Manage form's local state
     setIsModalShow(true)
   }
 
   const HandleCloseModal = () => {
+    localStorage.clear()
+    dispatch(clearState())
     setIsModalShow(false)
   }
 
