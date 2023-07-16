@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useUser } from '../../services/API/useUser'
 import { useRef, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { clearState, userSelector } from '../../features/userSlice'
 
 import { Toaster } from 'react-hot-toast'
@@ -23,20 +23,20 @@ import Stack from '@mui/material/Stack'
 
 export default function Login() {
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const userId = useRef()
   const [isModalShown, setIsModalShow] = useState(false)
 
-  let today = new Date()
-  let date =
-    today.getDate() +
-    '-' +
-    parseInt(today.getMonth() + 1) +
-    '-' +
-    today.getFullYear()
+  // let today = new Date()
+  // let date =
+  //   today.getDate() +
+  //   '-' +
+  //   parseInt(today.getMonth() + 1) +
+  //   '-' +
+  //   today.getFullYear()
 
-  console.log(date)
+  // console.log(date)
 
   const {
     isFetching,
