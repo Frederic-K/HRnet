@@ -1,8 +1,7 @@
-import * as React from 'react'
 import { useUser } from '../../services/API/useUser'
 import { useRef, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, NavLink } from 'react-router-dom'
 import { clearState, userSelector } from '../../features/userSlice'
 
 import { Toaster } from 'react-hot-toast'
@@ -127,12 +126,18 @@ export default function Login() {
                 Please choose your activity
               </div>
               <div className="modale__activity--links">
-                <Button variant="contained" href="/creation-employee" fullWidth>
-                  Add Employee
-                </Button>
-                <Button variant="contained" href="/manage-employees" fullWidth>
-                  List of Employees
-                </Button>
+                <NavLink
+                  to="/creation-employee"
+                  className="modale__activity--link"
+                >
+                  <Button variant="contained">Add Employee</Button>
+                </NavLink>
+                <NavLink
+                  to="/manage-employees"
+                  className="modale__activity--link"
+                >
+                  <Button variant="contained">List of Employees</Button>
+                </NavLink>
               </div>
             </div>
           </div>
