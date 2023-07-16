@@ -130,13 +130,17 @@ export default function Login() {
                   to="/creation-employee"
                   className="modale__activity--link"
                 >
-                  <Button variant="contained">Add Employee</Button>
+                  <Button variant="contained" fullWidth>
+                    Add Employee
+                  </Button>
                 </NavLink>
                 <NavLink
                   to="/manage-employees"
                   className="modale__activity--link"
                 >
-                  <Button variant="contained">List of Employees</Button>
+                  <Button variant="contained" fullWidth>
+                    List of Employees
+                  </Button>
                 </NavLink>
               </div>
             </div>
