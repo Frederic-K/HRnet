@@ -29,370 +29,14 @@ import Paper from '@mui/material/Paper'
 import Checkbox from '@mui/material/Checkbox'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Switch from '@mui/material/Switch'
+//import FormControlLabel from '@mui/material/FormControlLabel'
+// import Switch from '@mui/material/Switch'
 import DeleteIcon from '@mui/icons-material/Delete'
-import FilterListIcon from '@mui/icons-material/FilterList'
+// import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
-
 import TextField from '@mui/material/TextField'
-
-import { useState } from 'react'
-
-function Search() {
-  console.log('Tada')
-  const [isResult, setIsResult] = useState(true)
-}
-
-// import { DataGrid, GridToolbar } from '@mui/x-data-grid'
-
-// function createData(
-//   firstName,
-//   lastName,
-//   startDate,
-//   department,
-//   dateOfBirth,
-//   street,
-//   city,
-//   state,
-//   zipCode,
-// ) {
-//   return {
-//     lastName,
-//     firstName,
-//     startDate,
-//     department,
-//     dateOfBirth,
-//     street,
-//     city,
-//     state,
-//     zipCode,
-//   }
-// }
-
-const rows = [
-  {
-    firstName: 'Shara',
-    lastName: 'Fausch',
-    startDate: '3/20/2023',
-    department: 'Research and Development',
-    dateOfBirth: '5/13/2023',
-    street: 'Springs',
-    city: 'Cái Nhum',
-    state: null,
-    zipCode: null,
-  },
-  {
-    firstName: 'Dominga',
-    lastName: 'Nalder',
-    startDate: '2/26/2023',
-    department: 'Legal',
-    dateOfBirth: '4/16/2023',
-    street: 'Almo',
-    city: 'Haiyan',
-    state: null,
-    zipCode: null,
-  },
-  {
-    firstName: 'Wilbert',
-    lastName: 'Haldin',
-    startDate: '9/24/2022',
-    department: 'Engineering',
-    dateOfBirth: '8/6/2022',
-    street: 'Coleman',
-    city: 'Yuyang',
-    state: null,
-    zipCode: null,
-  },
-  {
-    firstName: 'Celestia',
-    lastName: 'Rosenkranc',
-    startDate: '12/5/2022',
-    department: 'Training',
-    dateOfBirth: '3/29/2023',
-    street: 'Ohio',
-    city: 'Nanfeng',
-    state: null,
-    zipCode: null,
-  },
-  {
-    firstName: 'Krishnah',
-    lastName: 'Hortop',
-    startDate: '10/30/2022',
-    department: 'Accounting',
-    dateOfBirth: '5/20/2023',
-    street: 'Clemons',
-    city: 'Dolo',
-    state: null,
-    zipCode: '1270',
-  },
-  {
-    firstName: 'Kelby',
-    lastName: 'Ridout',
-    startDate: '12/30/2022',
-    department: 'Training',
-    dateOfBirth: '2/3/2023',
-    street: 'Larry',
-    city: 'Velyki Mezhyrichi',
-    state: null,
-    zipCode: null,
-  },
-  {
-    firstName: 'Lorelei',
-    lastName: 'Howship',
-    startDate: '12/12/2022',
-    department: 'Services',
-    dateOfBirth: '9/10/2022',
-    street: 'Ruskin',
-    city: 'Vynohradove',
-    state: null,
-    zipCode: null,
-  },
-  {
-    firstName: 'Hedvig',
-    lastName: 'Horick',
-    startDate: '12/22/2022',
-    department: 'Sales',
-    dateOfBirth: '3/1/2023',
-    street: 'Dapin',
-    city: 'Maurisu',
-    state: null,
-    zipCode: null,
-  },
-  {
-    firstName: 'Evvy',
-    lastName: 'Baynes',
-    startDate: '1/26/2023',
-    department: 'Marketing',
-    dateOfBirth: '9/14/2022',
-    street: 'Express',
-    city: 'Wugui',
-    state: null,
-    zipCode: null,
-  },
-  {
-    firstName: 'Wileen',
-    lastName: 'Durrett',
-    startDate: '4/18/2023',
-    department: 'Marketing',
-    dateOfBirth: '2/24/2023',
-    street: 'Bartelt',
-    city: 'Dalun',
-    state: null,
-    zipCode: null,
-  },
-  {
-    firstName: 'Pearl',
-    lastName: "O'Moylan",
-    startDate: '9/24/2022',
-    department: 'Research and Development',
-    dateOfBirth: '1/12/2023',
-    street: 'Badeau',
-    city: 'Kitsuki',
-    state: null,
-    zipCode: '873-0001',
-  },
-  {
-    firstName: 'Zak',
-    lastName: 'Larret',
-    startDate: '9/1/2022',
-    department: 'Training',
-    dateOfBirth: '6/19/2023',
-    street: 'Troy',
-    city: 'Outeirô',
-    state: 'Porto',
-    zipCode: '4785-035',
-  },
-  {
-    firstName: 'Violante',
-    lastName: 'Bootes',
-    startDate: '4/9/2023',
-    department: 'Research and Development',
-    dateOfBirth: '8/30/2022',
-    street: 'Buell',
-    city: 'Yangzi',
-    state: null,
-    zipCode: null,
-  },
-  {
-    firstName: 'Retha',
-    lastName: 'Heijne',
-    startDate: '12/18/2022',
-    department: 'Product Management',
-    dateOfBirth: '1/17/2023',
-    street: 'Lindbergh',
-    city: 'Dadamtu',
-    state: null,
-    zipCode: null,
-  },
-  {
-    firstName: 'Susanna',
-    lastName: 'Yakebovich',
-    startDate: '6/13/2023',
-    department: 'Training',
-    dateOfBirth: '11/22/2022',
-    street: 'Sunnyside',
-    city: 'Santa Cruz',
-    state: null,
-    zipCode: null,
-  },
-]
-// const rows = [
-//   {
-//     firstName: 'Fudith',
-//     lastName: 'KJalie',
-//     startDate: '15/08/2001',
-//     department: 'GackerRoad',
-//     dateOfBirth: '20/02/6999',
-//     street: 'TOneheim',
-//     city: 'Gloscoui',
-//     state: 'Purtipa',
-//     zipCode: 885585944,
-//   },
-//   // createData(
-//   //   'KJalie',
-//   //   'Fudith',
-//   //   '15/08/2001',
-//   //   'GackerRoad',
-//   //   '20/02/6999',
-//   //   'TOneheim',
-//   //   'Gloscoui',
-//   //   'Purtipa',
-//   //   885585944,
-//   // ),
-//   // createData(
-//   //   'Salie',
-//   //   'Gudith',
-//   //   '15/05/2001',
-//   //   'DackerRoad',
-//   //   '20/12/6999',
-//   //   'POneheim',
-//   //   'Gloscouf',
-//   //   'Gurtipa',
-//   //   885415944,
-//   // ),
-//   // createData(
-//   //   'Malie',
-//   //   'Sudith',
-//   //   '15/07/2001',
-//   //   'SackerRoad',
-//   //   '20/11/6999',
-//   //   'Zneheim',
-//   //   'Gloscouf',
-//   //   'Furtipa',
-//   //   885775944,
-//   // ),
-//   // createData(
-//   //   'Aalie',
-//   //   'Mudith',
-//   //   '15/03/2001',
-//   //   'AackerRoad',
-//   //   '10/09/6999',
-//   //   'Oneheim',
-//   //   'Gloscouxc',
-//   //   'Hurtipa',
-//   //   8855944,
-//   // ),
-//   // createData(
-//   //   'Falie',
-//   //   'Ludith',
-//   //   '15/07/2001',
-//   //   'SackerRoad',
-//   //   '20/09/6999',
-//   //   'Qneheim',
-//   //   'Gloscouxs',
-//   //   'Qurtipa',
-//   //   998855944,
-//   // ),
-//   // createData(
-//   //   'Balie',
-//   //   'Vudith',
-//   //   '15/09/2001',
-//   //   'FackerRoad',
-//   //   '20/01/6999',
-//   //   'Gneheim',
-//   //   'Hloscouc',
-//   //   'Prtipa',
-//   //   856855944,
-//   // ),
-//   // createData(
-//   //   'Calie',
-//   //   'Dudith',
-//   //   '15/12/2001',
-//   //   'SackerRoad',
-//   //   '20/05/6899',
-//   //   'Dneheim',
-//   //   'Tloscou',
-//   //   'Trtipa',
-//   //   885555944,
-//   // ),
-//   // createData(
-//   //   'Xalie',
-//   //   'Qudith',
-//   //   '15/11/2001',
-//   //   'XackerRoad',
-//   //   '10/05/6999',
-//   //   'OPneheim',
-//   //   'SGloscou',
-//   //   'Jurtipa',
-//   //   885755944,
-//   // ),
-//   // createData(
-//   //   'Nalie',
-//   //   'Nudith',
-//   //   '15/05/2001',
-//   //   'HackerRoad',
-//   //   '20/05/6997',
-//   //   'Oneheim',
-//   //   'Ploscou',
-//   //   'Gfrtipa',
-//   //   889655944,
-//   // ),
-//   // createData(
-//   //   'Jalie',
-//   //   'Oudith',
-//   //   '15/08/2001',
-//   //   'MackerRoad',
-//   //   '21/05/6999',
-//   //   'Hneheim',
-//   //   'Sloscou',
-//   //   'Gdetipa',
-//   //   748855944,
-//   // ),
-//   // createData(
-//   //   'Qalie',
-//   //   'Eudith',
-//   //   '15/08/2001',
-//   //   'MackerRoad',
-//   //   '20/01/6999',
-//   //   'Rneheim',
-//   //   'Dloscou',
-//   //   'Gdetipa',
-//   //   885855944,
-//   // ),
-//   // createData(
-//   //   'Walie',
-//   //   'Rudith',
-//   //   '15/08/2001',
-//   //   'EackerRoad',
-//   //   '20/06/6999',
-//   //   'Fneheim',
-//   //   'Hloscou',
-//   //   'Gaqtipa',
-//   //   899855944,
-//   // ),
-//   // createData(
-//   //   'Salie',
-//   //   'Audith',
-//   //   '15/08/2001',
-//   //   'AackerRoad',
-//   //   '20/05/6999',
-//   //   'Sneheim',
-//   //   'Oloscou',
-//   //   'Gkotipa',
-//   //   998855944,
-//   // ),
-// ]
+import mockedEmployeesDatas from '../../mockedEmployeesDatas/MOCK_DATA.json'
+import { useRef, useState, useEffect } from 'react'
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -614,6 +258,10 @@ export default function ManageEmployees() {
   const [dense, setDense] = React.useState(false)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
 
+  let [rows, setRows] = useState(mockedEmployeesDatas)
+
+  //let rows = mockedEmployeesDatas
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc'
     setOrder(isAsc ? 'desc' : 'asc')
@@ -677,6 +325,33 @@ export default function ManageEmployees() {
     [order, orderBy, page, rowsPerPage],
   )
 
+  const searchInput = useRef()
+
+  function Search() {
+    // useEffect(() => {
+    //   if (inputSearchValue !== null) {
+    //     setRows(filteredEmployees)
+    //   } else {
+    //     setRows(mockedEmployeesDatas)
+    //   }
+    // }, [])
+    console.log('rows', rows)
+    let inputSearchValue = searchInput.current.value.toLowerCase()
+    let filteredEmployees = mockedEmployeesDatas.filter(
+      (employee) =>
+        employee.firstName.toLowerCase().includes(inputSearchValue) ||
+        employee.lastName.toLowerCase().includes(inputSearchValue) ||
+        employee.startDate.toLowerCase().includes(inputSearchValue) ||
+        employee.department.toLowerCase().includes(inputSearchValue) ||
+        employee.dateOfBirth.toLowerCase().includes(inputSearchValue) ||
+        // employee.state.toLowerCase().includes(inputSearchValue) ||
+        employee.street.toLowerCase().includes(inputSearchValue),
+      // employee.zipCode.toLowerCase().includes(inputSearchValue),
+    )
+    console.log('filteredEmployees', filteredEmployees)
+    // setRows(filteredEmployees)
+  }
+
   return (
     <>
       <header className="layout__header">
@@ -692,6 +367,7 @@ export default function ManageEmployees() {
             label="Search"
             variant="outlined"
             fullWidth
+            inputRef={searchInput}
             onChange={() => {
               Search()
             }}
