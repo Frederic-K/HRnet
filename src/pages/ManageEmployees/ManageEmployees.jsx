@@ -270,19 +270,19 @@ export default function ManageEmployees() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.lastName)
+      const newSelected = rows.map((n) => n.firstName)
       setSelected(newSelected)
       return
     }
     setSelected([])
   }
 
-  const handleClick = (event, lastName) => {
-    const selectedIndex = selected.indexOf(lastName)
+  const handleClick = (event, firstName) => {
+    const selectedIndex = selected.indexOf(firstName)
     let newSelected = []
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, lastName)
+      newSelected = newSelected.concat(selected, firstName)
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1))
     } else if (selectedIndex === selected.length - 1) {
@@ -310,7 +310,7 @@ export default function ManageEmployees() {
   //   setDense(event.target.checked)
   // }
 
-  const isSelected = (lastName) => selected.indexOf(lastName) !== -1
+  const isSelected = (firstName) => selected.indexOf(firstName) !== -1
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -408,17 +408,17 @@ export default function ManageEmployees() {
                   />
                   <TableBody>
                     {visibleRows.map((row, index) => {
-                      const isItemSelected = isSelected(row.lastName)
+                      const isItemSelected = isSelected(row.firstName)
                       const labelId = `enhanced-table-checkbox-${index}`
 
                       return (
                         <TableRow
                           hover
-                          onClick={(event) => handleClick(event, row.lastName)}
+                          onClick={(event) => handleClick(event, row.firstName)}
                           role="checkbox"
                           aria-checked={isItemSelected}
                           tabIndex={-1}
-                          key={row.lastName}
+                          key={row.firstName}
                           selected={isItemSelected}
                           sx={{ cursor: 'pointer' }}
                           className="manageEmployees__table--bg"
