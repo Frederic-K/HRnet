@@ -1,6 +1,8 @@
 .modale {
   &__activity {
     position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 1;
     &--container {
       width: 650px;
@@ -50,6 +52,11 @@
       justify-content: center;
       align-items: center;
       gap: 25px;
+    }
+    &--link {
+      width: 100%;
+      // display: flex;
+      // justify-content: center;
     }
   }
 }

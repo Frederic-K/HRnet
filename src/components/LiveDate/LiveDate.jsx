@@ -7,7 +7,5 @@ export default function LiveDate() {
     '-' +
     today.getFullYear()
 
-  console.log(date)
-
   return <div className="liveDate">{date}</div>
 }

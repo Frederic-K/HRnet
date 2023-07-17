@@ -1,8 +1,7 @@
-import * as React from 'react'
 import { useUser } from '../../services/API/useUser'
 import { useRef, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-// import { useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { clearState, userSelector } from '../../features/userSlice'
 
 import { Toaster } from 'react-hot-toast'
@@ -23,20 +22,18 @@ import Stack from '@mui/material/Stack'
 
 export default function Login() {
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
-
   const userId = useRef()
   const [isModalShown, setIsModalShow] = useState(false)
 
-  let today = new Date()
-  let date =
-    today.getDate() +
-    '-' +
-    parseInt(today.getMonth() + 1) +
-    '-' +
-    today.getFullYear()
+  // let today = new Date()
+  // let date =
+  //   today.getDate() +
+  //   '-' +
+  //   parseInt(today.getMonth() + 1) +
+  //   '-' +
+  //   today.getFullYear()
 
-  console.log(date)
+  // console.log(date)
 
   const {
     isFetching,
@@ -47,32 +44,31 @@ export default function Login() {
     firstName,
     lastName,
   } = useSelector(userSelector)
-  console.log('id', id)
+  // console.log('id', id)
 
   // Manage opening the form to update user's names
   const HandleOpenModal = () => {
     // Ensure that the form is closed
-    HandleCloseModal()
+    // HandleCloseModal()
     // Manage form's local state
     setIsModalShow(true)
   }
 
   const HandleCloseModal = () => {
+    dispatch(clearState())
     setIsModalShow(false)
   }
 
   const HandleSubmit = (e) => {
     e.preventDefault()
-    console.log('userIduseRef', userId.current.value)
+    // console.log('userIduseRef', userId.current.value)
     dispatch(useUser(userId.current.value))
   }
   const HandleReset = () => {
-    localStorage.clear()
     dispatch(clearState())
   }
 
   const HandleNewInput = () => {
-    localStorage.clear()
     dispatch(clearState())
   }
 
@@ -83,9 +79,6 @@ export default function Login() {
     } else if (isError) {
       toast.error(errorMessage, { position: 'top-center' })
     }
-    // else {
-    //   navigate(`*`)
-    // }
     // eslint-disable-next-line
   }, [isError, id])
 
@@ -127,12 +120,22 @@ export default function Login() {
                 Please choose your activity
               </div>
               <div className="modale__activity--links">
-                <Button variant="contained" href="/creation-employee" fullWidth>
-                  Add Employee
-                </Button>
-                <Button variant="contained" href="/manage-employees" fullWidth>
-                  List of Employees
-                </Button>
+                <NavLink
+                  to="/creation-employee"
+                  className="modale__activity--link"
+                >
+                  <Button variant="contained" fullWidth>
+                    Add Employee
+                  </Button>
+                </NavLink>
+                <NavLink
+                  to="/manage-employees"
+                  className="modale__activity--link"
+                >
+                  <Button variant="contained" fullWidth>
+                    List of Employees
+                  </Button>
+                </NavLink>
               </div>
             </div>
           </div>

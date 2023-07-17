@@ -18,6 +18,7 @@ export const userSlice = createSlice({
   reducers: {
     // State management from actions
     clearState: (state) => {
+      localStorage.clear()
       return {
         ...state,
         id: '',
