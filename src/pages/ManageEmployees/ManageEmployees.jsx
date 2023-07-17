@@ -100,11 +100,12 @@ export default function ManageEmployees() {
   }
 
   useEffect(() => {
-    if (searchInput !== null) {
+    if (searchInput !== '') {
       setRows(filteredEmployeesResults)
       console.log('rows', rows)
     } else {
       setRows(mockedEmployeesDatas)
+      console.log('rows-2', rows)
     }
   }, [filteredEmployeesResults])
 
