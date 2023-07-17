@@ -11,7 +11,6 @@ function useGetDepartements(url) {
     async function fetchData() {
       try {
         const response = await fetch(url)
-        console.log('respFetch', response)
         const data = await response.json()
         setData(data)
       } catch (err) {

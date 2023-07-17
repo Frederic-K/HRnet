@@ -24,14 +24,19 @@ import Select from '@mui/material/Select'
 import { departmentsDatas } from '../../services/Datas/departementsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
 import useGetStates from '../../services/API/useGetStates'
+import useGetDepartements from '../../services/API/useGetDepartements'
+
+// test
+// import departementData from '../../../public/departementsDatas.json'
 
 export default function CreateEmployee() {
-  let urlDepartements = '../../services/Datas/departementsDatas.json'
-  const { data } = useGetStates(urlDepartements)
-  console.log('dataFetch', data)
+  // let urlDepartements = '../../services/Datas/departementsDatas.json'
+  // let urlDepartements = '../../../public/departementsDatas.json'
+  // const { data } = useGetDepartements(urlDepartements)
+  // console.log('dataFetch', data)
 
-  const statesNames = statesDatas
-  console.log('statesNames', statesNames)
+  // const statesNames = statesDatas
+  // console.log('statesNames', statesNames)
 
   const departmentsNames = departmentsDatas
 
@@ -41,7 +46,7 @@ export default function CreateEmployee() {
     setDepartement(event.target.value)
   }
 
-  console.log('departement', departement)
+  //console.log('departement', departement)
 
   return (
     <>
