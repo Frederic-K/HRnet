@@ -1,7 +1,3 @@
-
-
-["Sales", "Marketing", "Engineering", "Human ressources", "Legal"]
-
 [
   { "nameDepartement": "Sales" },
   { "nameDepartement": "Marketing" },

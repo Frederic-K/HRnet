@@ -1,6 +1,5 @@
 import Header from '../../components/Header/Header'
 import { useState, useRef } from 'react'
-import useGetDepartements from '../../services/API/useGetDepartements'
 
 import Button from '@mui/material/Button'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -16,16 +15,20 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import 'dayjs/locale/de'
 import 'dayjs/locale/en-gb'
 
+import OutlinedInput from '@mui/material/OutlinedInput'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 
 export default function CreateEmployee() {
-  const { departementsDatas } = useGetDepartements(
-    'https://github.com/Frederic-K/hrnet/blob/main/public/adressesDatas/departementsDatas.json',
-  )
-  console.log('departementsDatas', departementsDatas)
+  const departmentsNames = [
+    'Sales',
+    'Marketing',
+    'Engineering',
+    'Human ressources',
+    'Legal',
+  ]
 
   const [departements, setDepartements] = useState('')
 
@@ -33,7 +36,7 @@ export default function CreateEmployee() {
     setDepartements(event.target.value)
   }
 
-  const selectedDepartement = useRef()
+  console.log('departements', departements)
 
   return (
     <>
@@ -74,11 +77,6 @@ export default function CreateEmployee() {
                 fullWidth
               />
             </Grid>
-            {/* <Grid xs={6}>
-              <h2 className="createEmployee__form--birthDate-caption">
-                Birtdate
-              </h2>
-            </Grid> */}
             <Grid xs={4} className="createEmployee__form--datePicker">
               <LocalizationProvider
                 dateAdapter={AdapterDayjs}
@@ -89,20 +87,19 @@ export default function CreateEmployee() {
             </Grid>
             <Grid xs={12}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">
-                  Departement
-                </InputLabel>
+                <InputLabel id="demo-simple-name-label">Departement</InputLabel>
                 <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
+                  labelId="demo-simple-name-label"
+                  id="demo-simple-name"
                   value={departements}
-                  label="Departements"
-                  inputRef={selectedDepartement}
                   onChange={handleChange}
+                  input={<OutlinedInput label="departements" />}
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  {departmentsNames.map((departements) => (
+                    <MenuItem key={departements} value={departements}>
+                      {departements}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </Grid>
