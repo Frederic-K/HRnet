@@ -21,14 +21,20 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 
+import { departmentsDatas } from '../../services/Datas/departementsDatas'
+
 export default function CreateEmployee() {
-  const departmentsNames = [
-    'Sales',
-    'Marketing',
-    'Engineering',
-    'Human ressources',
-    'Legal',
-  ]
+  console.log('departmentsDatas', departmentsDatas)
+
+  // const departmentsNames = [
+  //   'Sales',
+  //   'Marketing',
+  //   'Engineering',
+  //   'Human ressources',
+  //   'Legal',
+  // ]
+
+  const departmentsNames = departmentsDatas
 
   const [departements, setDepartements] = useState('')
 
@@ -53,6 +59,11 @@ export default function CreateEmployee() {
           sx={{ flexGrow: 1 }}
         >
           <Grid container spacing={2}>
+            <Grid xs={12}>
+              <h2 className="createEmployee__form--caption">
+                Personnal informations
+              </h2>
+            </Grid>
             <Grid xs={8}>
               <TextField
                 id="outlined-basic"
@@ -103,6 +114,36 @@ export default function CreateEmployee() {
                 </Select>
               </FormControl>
             </Grid>
+            <Grid xs={12}>
+              <h2 className="createEmployee__form--caption">
+                Address informations
+              </h2>
+            </Grid>
+            <Grid xs={12}>
+              <TextField
+                id="outlined-basic"
+                label="Street"
+                variant="outlined"
+                fullWidth
+              />
+            </Grid>
+            <Grid xs={6}>
+              <TextField
+                id="outlined-basic"
+                label="City"
+                variant="outlined"
+                fullWidth
+              />
+            </Grid>
+            <Grid xs={6}>
+              <TextField
+                id="outlined-basic"
+                label="Zip Code"
+                variant="outlined"
+                fullWidth
+              />
+            </Grid>
+
             <Grid xs={12}>
               <Stack direction="row" spacing={2}>
                 <Grid xs={6}>
