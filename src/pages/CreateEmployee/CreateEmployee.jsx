@@ -68,7 +68,24 @@ export default function CreateEmployee() {
                 <DatePicker label="Start day" />
               </LocalizationProvider>
             </Grid>
-            <Grid></Grid>
+            <Grid xs={12}>
+              <Stack direction="row" spacing={2}>
+                <Grid xs={6}>
+                  <Button
+                    variant="outlined"
+                    startIcon={<DeleteIcon />}
+                    fullWidth
+                  >
+                    Reset
+                  </Button>
+                </Grid>
+                <Grid xs={6}>
+                  <Button variant="contained" endIcon={<SendIcon />} fullWidth>
+                    Send
+                  </Button>
+                </Grid>
+              </Stack>
+            </Grid>
           </Grid>
         </Box>
       </main>
