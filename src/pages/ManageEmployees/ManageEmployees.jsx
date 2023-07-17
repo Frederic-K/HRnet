@@ -102,10 +102,10 @@ export default function ManageEmployees() {
   useEffect(() => {
     if (searchInput !== '') {
       setRows(filteredEmployeesResults)
-      console.log('rows', rows)
+      // console.log('rows', rows)
     } else {
       setRows(mockedEmployeesDatas)
-      console.log('rows-2', rows)
+      // console.log('rows-2', rows)
     }
   }, [filteredEmployeesResults])
 
