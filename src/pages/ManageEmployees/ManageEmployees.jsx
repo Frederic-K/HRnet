@@ -48,9 +48,6 @@ export default function ManageEmployees() {
     }
   }, [id])
 
-  const [rows, setRows] = useState(mockedEmployeesDatas)
-  const [filteredEmployeesResults, setFilteredEmployeesResults] = useState([])
-
   // const searchInput = useRef()
   // function Filter() {
   //   let inputSearchValue = searchInput.current.value.toLowerCase()
@@ -74,27 +71,43 @@ export default function ManageEmployees() {
   //   return console.log('filteredEmployees', filteredEmployees)
   // }
 
+  const [rows, setRows] = useState(mockedEmployeesDatas)
+  const [filteredEmployeesResults, setFilteredEmployeesResults] = useState([])
+
   const searchInput = useRef()
   function Filter() {
     let inputSearchValue = searchInput.current.value.toLowerCase()
-    const filteredEmployees = mockedEmployeesDatas.filter(
-      (employee) =>
-        employee.firstName.toLowerCase().includes(inputSearchValue) ||
-        employee.lastName.toLowerCase().includes(inputSearchValue) ||
-        employee.startDate.toLowerCase().includes(inputSearchValue) ||
-        employee.department.toLowerCase().includes(inputSearchValue) ||
-        employee.dateOfBirth.toLowerCase().includes(inputSearchValue) ||
-        employee.street.toLowerCase().includes(inputSearchValue) ||
-        employee.city.toLowerCase().includes(inputSearchValue) ||
-        employee.state.toLowerCase().includes(inputSearchValue) ||
-        employee.zipCode.toLowerCase().includes(inputSearchValue),
-    )
-    setFilteredEmployeesResults(filteredEmployees)
-    return (
-      console.log('filteredEmployees', filteredEmployees),
-      console.log('filteredEmployeesResults', filteredEmployeesResults)
-    )
+    if (inputSearchValue !== '') {
+      const filteredEmployees = mockedEmployeesDatas.filter(
+        (employee) =>
+          employee.firstName.toLowerCase().includes(inputSearchValue) ||
+          employee.lastName.toLowerCase().includes(inputSearchValue) ||
+          employee.startDate.toLowerCase().includes(inputSearchValue) ||
+          employee.department.toLowerCase().includes(inputSearchValue) ||
+          employee.dateOfBirth.toLowerCase().includes(inputSearchValue) ||
+          employee.street.toLowerCase().includes(inputSearchValue) ||
+          employee.city.toLowerCase().includes(inputSearchValue) ||
+          employee.state.toLowerCase().includes(inputSearchValue) ||
+          employee.zipCode.toLowerCase().includes(inputSearchValue),
+      )
+      setFilteredEmployeesResults(filteredEmployees)
+      console.log('filteredEmployees', filteredEmployees)
+      console.log('filteredEmployeesResults-1', filteredEmployeesResults)
+    } else {
+      setFilteredEmployeesResults(mockedEmployeesDatas)
+    }
+    return filteredEmployeesResults
   }
+
+  useEffect(() => {
+    if (searchInput !== null) {
+      setRows(filteredEmployeesResults)
+      console.log('rows', rows)
+    } else {
+      setRows(mockedEmployeesDatas)
+    }
+  }, [filteredEmployeesResults])
+
   // function Filter() {
   //   let inputSearchValue = searchInput.current.value.toLowerCase()
   //   let filteredEmployees = mockedEmployeesDatas.filter(
