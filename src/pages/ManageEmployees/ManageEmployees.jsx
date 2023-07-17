@@ -48,7 +48,30 @@ export default function ManageEmployees() {
     }
   }, [id])
 
-  let [rows, setRows] = useState(mockedEmployeesDatas)
+  const [rows, setRows] = useState(mockedEmployeesDatas)
+
+  const searchInput = useRef()
+  function Filter() {
+    let inputSearchValue = searchInput.current.value.toLowerCase()
+    let filteredEmployees = mockedEmployeesDatas.filter(
+      (employee) =>
+        employee.firstName.toLowerCase().includes(inputSearchValue) ||
+        employee.lastName.toLowerCase().includes(inputSearchValue) ||
+        employee.startDate.toLowerCase().includes(inputSearchValue) ||
+        employee.department.toLowerCase().includes(inputSearchValue) ||
+        employee.dateOfBirth.toLowerCase().includes(inputSearchValue) ||
+        employee.street.toLowerCase().includes(inputSearchValue) ||
+        employee.city.toLowerCase().includes(inputSearchValue) ||
+        employee.state.toLowerCase().includes(inputSearchValue) ||
+        employee.zipCode.toLowerCase().includes(inputSearchValue),
+    )
+    if (inputSearchValue !== null) {
+      setRows(filteredEmployees)
+    } else {
+      setRows(mockedEmployeesDatas)
+    }
+    return console.log('filteredEmployees', filteredEmployees)
+  }
 
   function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -327,30 +350,30 @@ export default function ManageEmployees() {
     [order, orderBy, page, rowsPerPage],
   )
 
-  const searchInput = useRef()
-  function Search() {
-    console.log('rows', rows)
-    let inputSearchValue = searchInput.current.value.toLowerCase()
-    let filteredEmployees = mockedEmployeesDatas.filter(
-      (employee) =>
-        employee.firstName.toLowerCase().includes(inputSearchValue) ||
-        employee.lastName.toLowerCase().includes(inputSearchValue) ||
-        employee.startDate.toLowerCase().includes(inputSearchValue) ||
-        employee.department.toLowerCase().includes(inputSearchValue) ||
-        employee.dateOfBirth.toLowerCase().includes(inputSearchValue) ||
-        employee.street.toLowerCase().includes(inputSearchValue) ||
-        employee.city.toLowerCase().includes(inputSearchValue) ||
-        employee.state.toLowerCase().includes(inputSearchValue) ||
-        employee.zipCode.toLowerCase().includes(inputSearchValue),
-    )
-    if (inputSearchValue !== null) {
-      setRows(filteredEmployees)
-    } else {
-      setRows(mockedEmployeesDatas)
-    }
-    return console.log('filteredEmployees', filteredEmployees)
-    // setRows(filteredEmployees)
-  }
+  // const searchInput = useRef()
+  // function Search() {
+  //   console.log('rows', rows)
+  //   let inputSearchValue = searchInput.current.value.toLowerCase()
+  //   let filteredEmployees = mockedEmployeesDatas.filter(
+  //     (employee) =>
+  //       employee.firstName.toLowerCase().includes(inputSearchValue) ||
+  //       employee.lastName.toLowerCase().includes(inputSearchValue) ||
+  //       employee.startDate.toLowerCase().includes(inputSearchValue) ||
+  //       employee.department.toLowerCase().includes(inputSearchValue) ||
+  //       employee.dateOfBirth.toLowerCase().includes(inputSearchValue) ||
+  //       employee.street.toLowerCase().includes(inputSearchValue) ||
+  //       employee.city.toLowerCase().includes(inputSearchValue) ||
+  //       employee.state.toLowerCase().includes(inputSearchValue) ||
+  //       employee.zipCode.toLowerCase().includes(inputSearchValue),
+  //   )
+  //   if (inputSearchValue !== null) {
+  //     setRows(filteredEmployees)
+  //   } else {
+  //     setRows(mockedEmployeesDatas)
+  //   }
+  //   return console.log('filteredEmployees', filteredEmployees)
+  //   // setRows(filteredEmployees)
+  // }
 
   return (
     <>
@@ -369,7 +392,7 @@ export default function ManageEmployees() {
             fullWidth
             inputRef={searchInput}
             onChange={() => {
-              Search()
+              Filter()
             }}
           />
           {/* <TextField

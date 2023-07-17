@@ -1,7 +1,7 @@
 import { useUser } from '../../services/API/useUser'
 import { useRef, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { clearState, userSelector } from '../../features/userSlice'
 
 import { Toaster } from 'react-hot-toast'
@@ -22,8 +22,6 @@ import Stack from '@mui/material/Stack'
 
 export default function Login() {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-
   const userId = useRef()
   const [isModalShown, setIsModalShow] = useState(false)
 
@@ -46,7 +44,7 @@ export default function Login() {
     firstName,
     lastName,
   } = useSelector(userSelector)
-  console.log('id', id)
+  // console.log('id', id)
 
   // Manage opening the form to update user's names
   const HandleOpenModal = () => {
@@ -63,7 +61,7 @@ export default function Login() {
 
   const HandleSubmit = (e) => {
     e.preventDefault()
-    console.log('userIduseRef', userId.current.value)
+    // console.log('userIduseRef', userId.current.value)
     dispatch(useUser(userId.current.value))
   }
   const HandleReset = () => {
