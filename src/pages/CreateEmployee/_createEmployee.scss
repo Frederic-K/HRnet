@@ -1,5 +1,29 @@
 .createEmployee {
+  &__banner {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+    border-bottom: 1px solid teal;
+    &--title {
+      font-size: 40px;
+      font-weight: 700;
+      color: teal;
+    }
+  }
   &__container {
     width: 100%;
+  }
+  &__form {
+    width: 50%;
+    margin: auto;
+    &--datePicker {
+      display: flex;
+      justify-content: flex-end;
+      // &-caption {
+
+      // }
+    }
   }
 }
