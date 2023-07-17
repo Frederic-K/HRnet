@@ -21,10 +21,13 @@ import DeleteIcon from '@mui/icons-material/Delete'
 // import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
 import TextField from '@mui/material/TextField'
+
 import Header from '../../components/Header/Header'
 import mockedEmployeesDatas from '../../mockedEmployeesDatas/MOCK_DATA.json'
-import { useMemo } from 'react'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { userSelector, clearState } from '../../features/userSlice'
 
 export default function ManageEmployees() {
   const [order, setOrder] = useState('asc')
@@ -33,6 +36,20 @@ export default function ManageEmployees() {
   const [page, setPage] = useState(0)
   const [dense, setDense] = useState(false)
   const [rowsPerPage, setRowsPerPage] = useState(5)
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { id } = useSelector(userSelector)
+
+  useEffect(() => {
+    if (!id) {
+      dispatch(clearState())
+      navigate('/')
+    }
+  }, [id])
+
+  let [rows, setRows] = useState(mockedEmployeesDatas)
+
   function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
       return -1
@@ -247,10 +264,6 @@ export default function ManageEmployees() {
     numSelected: PropTypes.number.isRequired,
   }
 
-  let [rows, setRows] = useState(mockedEmployeesDatas)
-
-  //let rows = mockedEmployeesDatas
-
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc'
     setOrder(isAsc ? 'desc' : 'asc')
@@ -315,15 +328,7 @@ export default function ManageEmployees() {
   )
 
   const searchInput = useRef()
-
   function Search() {
-    // useEffect(() => {
-    //   if (inputSearchValue !== null) {
-    //     setRows(filteredEmployees)
-    //   } else {
-    //     setRows(mockedEmployeesDatas)
-    //   }
-    // }, [])
     console.log('rows', rows)
     let inputSearchValue = searchInput.current.value.toLowerCase()
     let filteredEmployees = mockedEmployeesDatas.filter(
@@ -333,11 +338,17 @@ export default function ManageEmployees() {
         employee.startDate.toLowerCase().includes(inputSearchValue) ||
         employee.department.toLowerCase().includes(inputSearchValue) ||
         employee.dateOfBirth.toLowerCase().includes(inputSearchValue) ||
-        // employee.state.toLowerCase().includes(inputSearchValue) ||
-        employee.street.toLowerCase().includes(inputSearchValue),
-      // employee.zipCode.toLowerCase().includes(inputSearchValue),
+        employee.street.toLowerCase().includes(inputSearchValue) ||
+        employee.city.toLowerCase().includes(inputSearchValue) ||
+        employee.state.toLowerCase().includes(inputSearchValue) ||
+        employee.zipCode.toLowerCase().includes(inputSearchValue),
     )
-    console.log('filteredEmployees', filteredEmployees)
+    if (inputSearchValue !== null) {
+      setRows(filteredEmployees)
+    } else {
+      setRows(mockedEmployeesDatas)
+    }
+    return console.log('filteredEmployees', filteredEmployees)
     // setRows(filteredEmployees)
   }
 

@@ -57,7 +57,6 @@ export default function Login() {
   }
 
   const HandleCloseModal = () => {
-    localStorage.clear()
     dispatch(clearState())
     setIsModalShow(false)
   }
@@ -68,12 +67,10 @@ export default function Login() {
     dispatch(useUser(userId.current.value))
   }
   const HandleReset = () => {
-    localStorage.clear()
     dispatch(clearState())
   }
 
   const HandleNewInput = () => {
-    localStorage.clear()
     dispatch(clearState())
   }
 
@@ -84,9 +81,6 @@ export default function Login() {
     } else if (isError) {
       toast.error(errorMessage, { position: 'top-center' })
     }
-    // else {
-    //   navigate(`*`)
-    // }
     // eslint-disable-next-line
   }, [isError, id])
 
