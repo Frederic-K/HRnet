@@ -48,29 +48,6 @@ export default function ManageEmployees() {
     }
   }, [id])
 
-  // const searchInput = useRef()
-  // function Filter() {
-  //   let inputSearchValue = searchInput.current.value.toLowerCase()
-  //   let filteredEmployees = mockedEmployeesDatas.filter(
-  //     (employee) =>
-  //       employee.firstName.toLowerCase().includes(inputSearchValue) ||
-  //       employee.lastName.toLowerCase().includes(inputSearchValue) ||
-  //       employee.startDate.toLowerCase().includes(inputSearchValue) ||
-  //       employee.department.toLowerCase().includes(inputSearchValue) ||
-  //       employee.dateOfBirth.toLowerCase().includes(inputSearchValue) ||
-  //       employee.street.toLowerCase().includes(inputSearchValue) ||
-  //       employee.city.toLowerCase().includes(inputSearchValue) ||
-  //       employee.state.toLowerCase().includes(inputSearchValue) ||
-  //       employee.zipCode.toLowerCase().includes(inputSearchValue),
-  //   )
-  //   // if (inputSearchValue !== null) {
-  //   //   setRows(filteredEmployees)
-  //   // } else {
-  //   //   setRows(mockedEmployeesDatas)
-  //   // }
-  //   return console.log('filteredEmployees', filteredEmployees)
-  // }
-
   const [rows, setRows] = useState(mockedEmployeesDatas)
   const [filteredEmployeesResults, setFilteredEmployeesResults] = useState([])
 
@@ -99,37 +76,15 @@ export default function ManageEmployees() {
     return filteredEmployeesResults
   }
 
-  useEffect(() => {
-    if (searchInput !== '') {
-      setRows(filteredEmployeesResults)
-      // console.log('rows', rows)
-    } else {
-      setRows(mockedEmployeesDatas)
-      // console.log('rows-2', rows)
-    }
-  }, [filteredEmployeesResults])
-
-  // function Filter() {
-  //   let inputSearchValue = searchInput.current.value.toLowerCase()
-  //   let filteredEmployees = mockedEmployeesDatas.filter(
-  //     (employee) =>
-  //       employee.firstName.toLowerCase().includes(inputSearchValue) ||
-  //       employee.lastName.toLowerCase().includes(inputSearchValue) ||
-  //       employee.startDate.toLowerCase().includes(inputSearchValue) ||
-  //       employee.department.toLowerCase().includes(inputSearchValue) ||
-  //       employee.dateOfBirth.toLowerCase().includes(inputSearchValue) ||
-  //       employee.street.toLowerCase().includes(inputSearchValue) ||
-  //       employee.city.toLowerCase().includes(inputSearchValue) ||
-  //       employee.state.toLowerCase().includes(inputSearchValue) ||
-  //       employee.zipCode.toLowerCase().includes(inputSearchValue),
-  //   )
-  //   // if (inputSearchValue !== null) {
-  //   //   setRows(filteredEmployees)
-  //   // } else {
-  //   //   setRows(mockedEmployeesDatas)
-  //   // }
-  //   return console.log('filteredEmployees', filteredEmployees)
-  // }
+  // useEffect(() => {
+  //   if (searchInput !== '') {
+  //     setRows(filteredEmployeesResults)
+  //     // console.log('rows', rows)
+  //   } else {
+  //     setRows(mockedEmployeesDatas)
+  //     // console.log('rows-2', rows)
+  //   }
+  // }, [filteredEmployeesResults])
 
   function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {

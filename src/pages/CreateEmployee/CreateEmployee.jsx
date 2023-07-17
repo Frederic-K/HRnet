@@ -22,27 +22,26 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 
 import { departmentsDatas } from '../../services/Datas/departementsDatas'
+import { statesDatas } from '../../services/Datas/statesDatas'
+import useGetStates from '../../services/API/useGetStates'
 
 export default function CreateEmployee() {
-  console.log('departmentsDatas', departmentsDatas)
+  let urlDepartements = '../../services/Datas/departementsDatas.json'
+  const { data } = useGetStates(urlDepartements)
+  console.log('dataFetch', data)
 
-  // const departmentsNames = [
-  //   'Sales',
-  //   'Marketing',
-  //   'Engineering',
-  //   'Human ressources',
-  //   'Legal',
-  // ]
+  const statesNames = statesDatas
+  console.log('statesNames', statesNames)
 
   const departmentsNames = departmentsDatas
 
-  const [departements, setDepartements] = useState('')
+  const [departement, setDepartement] = useState('')
 
-  const handleChange = (event) => {
-    setDepartements(event.target.value)
+  const handleChangeDepartement = (event) => {
+    setDepartement(event.target.value)
   }
 
-  console.log('departements', departements)
+  console.log('departement', departement)
 
   return (
     <>
@@ -102,13 +101,13 @@ export default function CreateEmployee() {
                 <Select
                   labelId="demo-simple-name-label"
                   id="demo-simple-name"
-                  value={departements}
-                  onChange={handleChange}
-                  input={<OutlinedInput label="departements" />}
+                  value={departement}
+                  onChange={handleChangeDepartement}
+                  input={<OutlinedInput label="departement" />}
                 >
-                  {departmentsNames.map((departements) => (
-                    <MenuItem key={departements} value={departements}>
-                      {departements}
+                  {departmentsNames.map((departement) => (
+                    <MenuItem key={departement} value={departement}>
+                      {departement}
                     </MenuItem>
                   ))}
                 </Select>
