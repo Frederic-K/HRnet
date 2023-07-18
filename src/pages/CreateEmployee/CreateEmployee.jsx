@@ -1,5 +1,8 @@
 import Header from '../../components/Header/Header'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { userSelector, clearState } from '../../features/userSlice'
 
 import Button from '@mui/material/Button'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -26,10 +29,18 @@ import { statesDatas } from '../../services/Datas/statesDatas'
 import useGetStates from '../../services/API/useGetStates'
 import useGetDepartements from '../../services/API/useGetDepartements'
 
-// test
-// import departementData from '../../../public/departementsDatas.json'
-
 export default function CreateEmployee() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { id } = useSelector(userSelector)
+
+  useEffect(() => {
+    if (!id) {
+      dispatch(clearState())
+      navigate('/')
+    }
+  }, [id])
+
   // let urlDepartements = '../../services/Datas/departementsDatas.json'
   // let urlDepartements = '../../../public/departementsDatas.json'
   // const { data } = useGetDepartements(urlDepartements)
@@ -55,7 +66,7 @@ export default function CreateEmployee() {
     setState(event.target.value)
   }
 
-  console.log('state', state)
+  // console.log('state', state)
 
   return (
     <>
