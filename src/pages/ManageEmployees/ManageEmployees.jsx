@@ -363,6 +363,7 @@ export default function ManageEmployees() {
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
       ),
+    // eslint-disable-next-line
     [order, orderBy, page, rowsPerPage],
   )
 
@@ -386,20 +387,6 @@ export default function ManageEmployees() {
               Filter()
             }}
           />
-          {/* <TextField
-            error
-            id="outlined-error-helper-text"
-            fullWidth
-            label="Error"
-            // defaultValue="Hello World"
-            helperText="No Result."
-            onChange={() => {
-              Search()
-            }}
-            // className={({ isResult }) =>
-            //   isResult ? 'seachField--hidden' : 'searchField--visible'
-            // }
-          /> */}
         </div>
         <div className="manageEmployees__table">
           <Box sx={{ width: '100%' }}>

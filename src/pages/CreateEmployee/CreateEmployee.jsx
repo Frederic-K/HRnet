@@ -26,8 +26,6 @@ import Select from '@mui/material/Select'
 
 import { departmentsDatas } from '../../services/Datas/departementsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
-import useGetStates from '../../services/API/useGetStates'
-import useGetDepartements from '../../services/API/useGetDepartements'
 
 export default function CreateEmployee() {
   const navigate = useNavigate()
@@ -41,14 +39,6 @@ export default function CreateEmployee() {
     }
   }, [id])
 
-  // let urlDepartements = '../../services/Datas/departementsDatas.json'
-  // let urlDepartements = '../../../public/departementsDatas.json'
-  // const { data } = useGetDepartements(urlDepartements)
-  // console.log('dataFetch', data)
-
-  // const statesNames = statesDatas
-  // console.log('statesNames', statesNames)
-
   const departmentsNames = departmentsDatas
   const [departement, setDepartement] = useState('')
   const handleChangeDepartement = (event) => {
@@ -58,7 +48,6 @@ export default function CreateEmployee() {
       departement: event.target.value,
     })
   }
-  //console.log('departement', departement)
 
   const stateNames = statesDatas
   const [locationState, setLocationState] = useState('')
@@ -69,8 +58,6 @@ export default function CreateEmployee() {
       state: event.target.value,
     })
   }
-
-  // console.log('locationState', locationState)
 
   // const handleFormReset = () => {
   //   setEmployeeCreationDatas(initEmployeeCreationDatas)
@@ -134,7 +121,7 @@ export default function CreateEmployee() {
             <Grid xs={4} className="createEmployee__form--datePicker">
               <LocalizationProvider
                 dateAdapter={AdapterDayjs}
-                adapterLocale="en-gb"
+                adapterLocale="en"
               >
                 <DatePicker
                   label="Birthdate"
@@ -166,7 +153,7 @@ export default function CreateEmployee() {
             <Grid xs={4} className="createEmployee__form--datePicker">
               <LocalizationProvider
                 dateAdapter={AdapterDayjs}
-                adapterLocale="en-gb"
+                adapterLocale="en"
               >
                 <DatePicker
                   label="Start day"
@@ -265,7 +252,7 @@ export default function CreateEmployee() {
                 >
                   {stateNames.map((locationState) => (
                     <MenuItem
-                      key={locationState.name}
+                      key={locationState.abbreviation}
                       value={locationState.abbreviation}
                     >
                       {locationState.name}
