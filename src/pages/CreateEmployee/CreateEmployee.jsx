@@ -90,10 +90,13 @@ export default function CreateEmployee() {
             </Grid>
             <Grid xs={8}>
               <TextField
-                id="outlined-basic"
+                id="firstName"
+                name="firstName"
                 label="First Name"
                 variant="outlined"
                 fullWidth
+                autoFocus
+                required
               />
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
@@ -106,10 +109,12 @@ export default function CreateEmployee() {
             </Grid>
             <Grid xs={8}>
               <TextField
-                id="outlined-basic"
+                id="lastName"
+                name="lastName"
                 label="Last Name"
                 variant="outlined"
                 fullWidth
+                required
               />
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
@@ -122,10 +127,12 @@ export default function CreateEmployee() {
             </Grid>
             <Grid xs={12}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-name-label">Departement</InputLabel>
+                <InputLabel id="departement-label">Departement *</InputLabel>
                 <Select
-                  labelId="demo-simple-name-label"
-                  id="demo-simple-name"
+                  labelId="departement"
+                  id="departement"
+                  name="departement"
+                  required
                   value={departement}
                   onChange={handleChangeDepartement}
                   input={<OutlinedInput label="departement" />}
@@ -145,34 +152,41 @@ export default function CreateEmployee() {
             </Grid>
             <Grid xs={12}>
               <TextField
-                id="outlined-basic"
+                id="street"
+                name="street"
                 label="Street"
                 variant="outlined"
+                required
                 fullWidth
               />
             </Grid>
             <Grid xs={6}>
               <TextField
-                id="outlined-basic"
+                id="city"
+                name="city"
                 label="City"
                 variant="outlined"
+                required
                 fullWidth
               />
             </Grid>
             <Grid xs={6}>
               <TextField
-                id="outlined-basic"
+                id="zipCode"
+                name="zipCode"
                 label="Zip Code"
                 variant="outlined"
+                required
                 fullWidth
               />
             </Grid>
             <Grid xs={12}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-name-label">State</InputLabel>
+                <InputLabel id="state-label">State *</InputLabel>
                 <Select
-                  labelId="demo-simple-name-label"
-                  id="demo-simple-name"
+                  labelId="state"
+                  id="state"
+                  name="state"
                   value={state}
                   onChange={handleChangeState}
                   input={<OutlinedInput label="state" />}

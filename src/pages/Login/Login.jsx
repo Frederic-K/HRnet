@@ -168,6 +168,7 @@ export default function Login() {
                       fullWidth
                       id="userId"
                       label="userId"
+                      name="userId"
                       variant="outlined"
                       inputRef={userId}
                       onChange={() => {
@@ -179,8 +180,9 @@ export default function Login() {
                       className="login__form--input"
                       error
                       fullWidth
-                      id="outlined-error-helper-text"
-                      label="Error"
+                      id="errorUserId"
+                      name="errorUserId"
+                      label="errorUserId"
                       // defaultValue="Press Reset"
                       helperText="Incorrect entry."
                       inputRef={userId}
@@ -198,7 +200,6 @@ export default function Login() {
                       type="reset"
                       startIcon={<DeleteIcon />}
                       fullWidth
-                      // sx={{ width: 240, maxWidth: '100%' }}
                       onClick={() => {
                         HandleReset()
                       }}
