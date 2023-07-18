@@ -62,7 +62,11 @@ export default function CreateEmployee() {
 
   const handleFormatDate = (date) => {
     console.log('startDate', date)
-    const shortDateFormate = dayjs(date).format('MM/DD/YYYY')
+    const shortDateFormate = Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    }).format(date)
     setEmployeeCreationDatas({
       ...employeeCreationDatas,
       startDay: shortDateFormate,
