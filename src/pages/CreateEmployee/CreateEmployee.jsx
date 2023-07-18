@@ -60,7 +60,20 @@ export default function CreateEmployee() {
     })
   }
 
-  const handleFormatDate = (date) => {
+  const handleFormatBirthOftDate = (date) => {
+    console.log('startDate', date)
+    const shortDateFormate = Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    }).format(date)
+    setEmployeeCreationDatas({
+      ...employeeCreationDatas,
+      birthOfDate: shortDateFormate,
+    })
+  }
+
+  const handleFormatStartDate = (date) => {
     console.log('startDate', date)
     const shortDateFormate = Intl.DateTimeFormat('en-US', {
       year: 'numeric',
@@ -139,11 +152,8 @@ export default function CreateEmployee() {
               >
                 <DatePicker
                   label="Birthdate"
-                  onChange={(selectedDate) =>
-                    setEmployeeCreationDatas({
-                      ...employeeCreationDatas,
-                      dateOfBirth: selectedDate,
-                    })
+                  onChange={(selectedBirthOfDate) =>
+                    handleFormatBirthOftDate(selectedBirthOfDate)
                   }
                 />
               </LocalizationProvider>
@@ -171,7 +181,9 @@ export default function CreateEmployee() {
               >
                 <DatePicker
                   label="Start day"
-                  onChange={(selectedDate) => handleFormatDate(selectedDate)}
+                  onChange={(selectedStartDate) =>
+                    handleFormatStartDate(selectedStartDate)
+                  }
                 />
               </LocalizationProvider>
             </Grid>
