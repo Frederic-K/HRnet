@@ -45,8 +45,17 @@ export default function CreateEmployee() {
   const handleChangeDepartement = (event) => {
     setDepartement(event.target.value)
   }
-
   //console.log('departement', departement)
+
+  const stateNames = statesDatas
+
+  const [state, setState] = useState('')
+
+  const handleChangeState = (event) => {
+    setState(event.target.value)
+  }
+
+  console.log('state', state)
 
   return (
     <>
@@ -147,7 +156,24 @@ export default function CreateEmployee() {
                 fullWidth
               />
             </Grid>
-
+            <Grid xs={12}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-name-label">State</InputLabel>
+                <Select
+                  labelId="demo-simple-name-label"
+                  id="demo-simple-name"
+                  value={state}
+                  onChange={handleChangeState}
+                  input={<OutlinedInput label="state" />}
+                >
+                  {stateNames.map((state) => (
+                    <MenuItem key={state.name} value={state.abbreviation}>
+                      {state.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
             <Grid xs={12}>
               <Stack direction="row" spacing={2}>
                 <Grid xs={6}>
