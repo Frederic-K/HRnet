@@ -49,7 +49,7 @@ export default function ManageEmployees() {
   }, [id])
 
   const [rows, setRows] = useState(mockedEmployeesDatas)
-  const [filteredEmployeesResults, setFilteredEmployeesResults] = useState([])
+  const [filteredEmployees, setFilteredEmployees] = useState([])
 
   const searchInput = useRef()
 
@@ -68,26 +68,25 @@ export default function ManageEmployees() {
           employee.state.toLowerCase().includes(inputSearchValue) ||
           employee.zipCode.toLowerCase().includes(inputSearchValue),
       )
-      setFilteredEmployeesResults(filteredEmployees)
+      setFilteredEmployees(filteredEmployees)
       // console.log('filteredEmployees', filteredEmployees)
-      // console.log('filteredEmployeesResults-1', filteredEmployeesResults)
     } else {
-      setFilteredEmployeesResults(mockedEmployeesDatas)
+      setFilteredEmployees(mockedEmployeesDatas)
     }
-    return filteredEmployeesResults
+    return filteredEmployees
   }
 
-  console.log('filteredEmployeesResults-outofthebox', filteredEmployeesResults)
+  console.log('filteredEmployees-outofthebox', filteredEmployees)
 
   // useEffect(() => {
   //   if (searchInput !== '') {
-  //     setRows(filteredEmployeesResults)
+  //     setRows(filteredEmployees)
   //     // console.log('rows', rows)
   //   } else {
   //     setRows(mockedEmployeesDatas)
   //     // console.log('rows-2', rows)
   //   }
-  // }, [filteredEmployeesResults])
+  // }, [filteredEmployees])
 
   function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {

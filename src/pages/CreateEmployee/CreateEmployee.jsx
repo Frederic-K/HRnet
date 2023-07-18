@@ -26,6 +26,7 @@ import Select from '@mui/material/Select'
 
 import { departmentsDatas } from '../../services/Datas/departementsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
+import dayjs from 'dayjs'
 
 export default function CreateEmployee() {
   const navigate = useNavigate()
@@ -56,6 +57,15 @@ export default function CreateEmployee() {
     setEmployeeCreationDatas({
       ...employeeCreationDatas,
       state: event.target.value,
+    })
+  }
+
+  const handleFormatDate = (date) => {
+    console.log('startDate', date)
+    const shortDateFormate = dayjs(date).format('MM/DD/YYYY')
+    setEmployeeCreationDatas({
+      ...employeeCreationDatas,
+      startDay: shortDateFormate,
     })
   }
 
@@ -157,12 +167,7 @@ export default function CreateEmployee() {
               >
                 <DatePicker
                   label="Start day"
-                  onChange={(selectedDate) =>
-                    setEmployeeCreationDatas({
-                      ...employeeCreationDatas,
-                      dateStart: selectedDate,
-                    })
-                  }
+                  onChange={(selectedDate) => handleFormatDate(selectedDate)}
                 />
               </LocalizationProvider>
             </Grid>
