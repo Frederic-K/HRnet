@@ -50,30 +50,38 @@ export default function CreateEmployee() {
   // console.log('statesNames', statesNames)
 
   const departmentsNames = departmentsDatas
-
   const [departement, setDepartement] = useState('')
-
   const handleChangeDepartement = (event) => {
     setDepartement(event.target.value)
+    setEmployeeCreationDatas({
+      ...employeeCreationDatas,
+      departement: event.target.value,
+    })
   }
   //console.log('departement', departement)
 
   const stateNames = statesDatas
-
   const [locationState, setLocationState] = useState('')
-
   const handleChangeLocationState = (event) => {
     setLocationState(event.target.value)
+    setEmployeeCreationDatas({
+      ...employeeCreationDatas,
+      state: event.target.value,
+    })
   }
 
-  // console.log('state', state)
+  // console.log('locationState', locationState)
+
+  // const handleFormReset = () => {
+  //   setEmployeeCreationDatas(initEmployeeCreationDatas)
+  // }
 
   const initEmployeeCreationDatas = {
-    firstname: '',
-    lastname: '',
-    dateBirth: null,
+    firstName: '',
+    lastName: '',
+    dateOfBirth: null,
     dateStart: null,
-    department: '',
+    departement: '',
     street: '',
     city: '',
     zipCode: '',
@@ -83,6 +91,8 @@ export default function CreateEmployee() {
   const [employeeCreationDatas, setEmployeeCreationDatas] = useState(
     initEmployeeCreationDatas,
   )
+
+  console.log('employeeCreationDatas', employeeCreationDatas)
 
   return (
     <>
@@ -113,6 +123,12 @@ export default function CreateEmployee() {
                 fullWidth
                 autoFocus
                 required
+                onChange={(e) =>
+                  setEmployeeCreationDatas({
+                    ...employeeCreationDatas,
+                    firstName: e.target.value,
+                  })
+                }
               />
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
@@ -120,7 +136,15 @@ export default function CreateEmployee() {
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en-gb"
               >
-                <DatePicker label="Birthdate" />
+                <DatePicker
+                  label="Birthdate"
+                  onChange={(selectedDate) =>
+                    setEmployeeCreationDatas({
+                      ...employeeCreationDatas,
+                      dateOfBirth: selectedDate,
+                    })
+                  }
+                />
               </LocalizationProvider>
             </Grid>
             <Grid xs={8}>
@@ -131,6 +155,12 @@ export default function CreateEmployee() {
                 variant="outlined"
                 fullWidth
                 required
+                onChange={(e) =>
+                  setEmployeeCreationDatas({
+                    ...employeeCreationDatas,
+                    lastName: e.target.value,
+                  })
+                }
               />
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
@@ -138,7 +168,15 @@ export default function CreateEmployee() {
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en-gb"
               >
-                <DatePicker label="Start day" />
+                <DatePicker
+                  label="Start day"
+                  onChange={(selectedDate) =>
+                    setEmployeeCreationDatas({
+                      ...employeeCreationDatas,
+                      dateStart: selectedDate,
+                    })
+                  }
+                />
               </LocalizationProvider>
             </Grid>
             <Grid xs={12}>
@@ -174,6 +212,12 @@ export default function CreateEmployee() {
                 variant="outlined"
                 required
                 fullWidth
+                onChange={(e) =>
+                  setEmployeeCreationDatas({
+                    ...employeeCreationDatas,
+                    street: e.target.value,
+                  })
+                }
               />
             </Grid>
             <Grid xs={6}>
@@ -184,6 +228,12 @@ export default function CreateEmployee() {
                 variant="outlined"
                 required
                 fullWidth
+                onChange={(e) =>
+                  setEmployeeCreationDatas({
+                    ...employeeCreationDatas,
+                    city: e.target.value,
+                  })
+                }
               />
             </Grid>
             <Grid xs={6}>
@@ -194,6 +244,12 @@ export default function CreateEmployee() {
                 variant="outlined"
                 required
                 fullWidth
+                onChange={(e) =>
+                  setEmployeeCreationDatas({
+                    ...employeeCreationDatas,
+                    zipCode: e.target.value,
+                  })
+                }
               />
             </Grid>
             <Grid xs={12}>
@@ -226,6 +282,7 @@ export default function CreateEmployee() {
                     startIcon={<DeleteIcon />}
                     type="reset"
                     fullWidth
+                    // onClick={() => handleFormReset()}
                   >
                     Reset
                   </Button>

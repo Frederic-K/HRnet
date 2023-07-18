@@ -52,6 +52,7 @@ export default function ManageEmployees() {
   const [filteredEmployeesResults, setFilteredEmployeesResults] = useState([])
 
   const searchInput = useRef()
+
   function Filter() {
     let inputSearchValue = searchInput.current.value.toLowerCase()
     if (inputSearchValue !== '') {
