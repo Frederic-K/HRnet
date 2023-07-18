@@ -69,13 +69,15 @@ export default function ManageEmployees() {
           employee.zipCode.toLowerCase().includes(inputSearchValue),
       )
       setFilteredEmployeesResults(filteredEmployees)
-      console.log('filteredEmployees', filteredEmployees)
-      console.log('filteredEmployeesResults-1', filteredEmployeesResults)
+      // console.log('filteredEmployees', filteredEmployees)
+      // console.log('filteredEmployeesResults-1', filteredEmployeesResults)
     } else {
       setFilteredEmployeesResults(mockedEmployeesDatas)
     }
     return filteredEmployeesResults
   }
+
+  console.log('filteredEmployeesResults-outofthebox', filteredEmployeesResults)
 
   // useEffect(() => {
   //   if (searchInput !== '') {
