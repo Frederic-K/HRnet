@@ -68,6 +68,22 @@ export default function CreateEmployee() {
 
   // console.log('state', state)
 
+  const initEmployeeCreationDatas = {
+    firstname: '',
+    lastname: '',
+    dateBirth: null,
+    dateStart: null,
+    department: '',
+    street: '',
+    city: '',
+    zipCode: '',
+    state: '',
+  }
+
+  const [employeeCreationDatas, setEmployeeCreationDatas] = useState(
+    initEmployeeCreationDatas,
+  )
+
   return (
     <>
       <div className="layout__header">
