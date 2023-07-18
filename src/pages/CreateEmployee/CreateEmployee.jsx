@@ -60,10 +60,10 @@ export default function CreateEmployee() {
 
   const stateNames = statesDatas
 
-  const [state, setState] = useState('')
+  const [locationState, setLocationState] = useState('')
 
-  const handleChangeState = (event) => {
-    setState(event.target.value)
+  const handleChangeLocationState = (event) => {
+    setLocationState(event.target.value)
   }
 
   // console.log('state', state)
@@ -203,13 +203,16 @@ export default function CreateEmployee() {
                   labelId="state"
                   id="state"
                   name="state"
-                  value={state}
-                  onChange={handleChangeState}
+                  value={locationState}
+                  onChange={handleChangeLocationState}
                   input={<OutlinedInput label="state" />}
                 >
-                  {stateNames.map((state) => (
-                    <MenuItem key={state.name} value={state.abbreviation}>
-                      {state.name}
+                  {stateNames.map((locationState) => (
+                    <MenuItem
+                      key={locationState.name}
+                      value={locationState.abbreviation}
+                    >
+                      {locationState.name}
                     </MenuItem>
                   ))}
                 </Select>
