@@ -29,6 +29,8 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { userSelector, clearState } from '../../features/userSlice'
 import { employeeSelector } from '../../features/employeeSlice'
+import { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 
 export default function ManageEmployees() {
   const [order, setOrder] = useState('asc')
@@ -84,9 +86,11 @@ export default function ManageEmployees() {
   useEffect(() => {
     if (filteredEmployees.length > 0) {
       setRows(filteredEmployees)
+      toast.success(`Show results ${filteredEmployees.length}`)
       // console.log('rows', rows)
     } else {
       setRows(mockedEmployeesDatas)
+      toast.error('No results')
       // console.log('rows-2', rows)
     }
   }, [filteredEmployees])
@@ -370,6 +374,7 @@ export default function ManageEmployees() {
 
   return (
     <>
+      <Toaster />
       <header className="layout__header">
         <Header />
       </header>
