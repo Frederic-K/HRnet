@@ -1,4 +1,5 @@
 import Header from '../../components/Header/Header'
+import Calendar from '../../components/Calendar/Calendar'
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,7 +12,7 @@ import Stack from '@mui/material/Stack'
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
-
+// DatePicker
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
@@ -24,15 +25,16 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 
+// CustomActionBar for date picker
 import DialogActions from '@mui/material/DialogActions'
 import Menu from '@mui/material/Menu'
 import { useLocaleText } from '@mui/x-date-pickers/internals'
 import { unstable_useId as useId } from '@mui/utils'
+import { Clear } from '@mui/icons-material'
 
 import { departmentsDatas } from '../../services/Datas/departementsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
 import { addEmployee } from '../../features/employeeSlice'
-import { Clear } from '@mui/icons-material'
 
 export default function CreateEmployee() {
   const navigate = useNavigate()
@@ -347,7 +349,7 @@ export default function CreateEmployee() {
                   <Button
                     variant="outlined"
                     startIcon={<DeleteIcon />}
-                    type="reset"
+                    type="button"
                     fullWidth
                   >
                     Reset
