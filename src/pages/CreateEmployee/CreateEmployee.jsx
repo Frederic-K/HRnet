@@ -27,6 +27,8 @@ import Select from '@mui/material/Select'
 import { departmentsDatas } from '../../services/Datas/departementsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
 
+import { getData } from '../../services/Model/DataModeling'
+
 export default function CreateEmployee() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -51,6 +53,14 @@ export default function CreateEmployee() {
     setLocationState(event.target.value)
   }
 
+  const firstNameInput = useRef()
+  const dateOfBirthInput = useRef()
+  const lastNameInput = useRef()
+  const startDateInput = useRef()
+  const streetInput = useRef()
+  const cityInput = useRef()
+  const zipCodeInput = useRef()
+
   const initCreationFormDatas = {
     firstName: '',
     lastName: '',
@@ -69,13 +79,19 @@ export default function CreateEmployee() {
 
   console.log('employeeCreationDatas', creationFormDatas)
 
-  const firstNameInput = useRef()
-  const dateOfBirthInput = useRef()
-  const lastNameInput = useRef()
-  const startDateInput = useRef()
-  const streetInput = useRef()
-  const cityInput = useRef()
-  const zipCodeInput = useRef()
+  const HandleSubmit = () => {
+    const creationFormInputs = {
+      firstName: '',
+      lastName: '',
+      dateOfBirth: null,
+      dateStart: null,
+      departement: '',
+      street: '',
+      city: '',
+      zipCode: '',
+      state: '',
+    }
+  }
 
   return (
     <>
