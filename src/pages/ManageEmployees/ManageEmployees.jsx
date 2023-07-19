@@ -369,7 +369,7 @@ export default function ManageEmployees() {
         page * rowsPerPage + rowsPerPage,
       ),
     // eslint-disable-next-line
-    [order, orderBy, page, rowsPerPage],
+    [order, orderBy, page, rowsPerPage, rows],
   )
 
   return (
