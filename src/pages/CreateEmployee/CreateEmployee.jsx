@@ -26,7 +26,6 @@ import Select from '@mui/material/Select'
 
 import { departmentsDatas } from '../../services/Datas/departementsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
-import dayjs from 'dayjs'
 
 export default function CreateEmployee() {
   const navigate = useNavigate()
@@ -60,17 +59,35 @@ export default function CreateEmployee() {
     })
   }
 
+  // const handleFormatBirthOftDate = (date) => {
+  //   console.log('startDate', date)
+  //   const shortDateFormate = Intl.DateTimeFormat('en-US', {
+  //     year: 'numeric',
+  //     month: 'numeric',
+  //     day: 'numeric',
+  //   }).format(date)
+  //   setEmployeeCreationDatas({
+  //     ...employeeCreationDatas,
+  //     dateOfBirth: shortDateFormate,
+  //   })
+  // }
+
   const handleFormatBirthOftDate = (date) => {
     console.log('startDate', date)
-    const shortDateFormate = Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    }).format(date)
-    setEmployeeCreationDatas({
-      ...employeeCreationDatas,
-      birthOfDate: shortDateFormate,
-    })
+    if (date !== null) {
+      console.log('toto')
+      const shortDateFormate = Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+      }).format(date)
+      setEmployeeCreationDatas({
+        ...employeeCreationDatas,
+        dateOfBirth: shortDateFormate,
+      })
+    } else {
+      return null
+    }
   }
 
   const handleFormatStartDate = (date) => {
@@ -190,6 +207,12 @@ export default function CreateEmployee() {
                   onChange={(selectedStartDate) =>
                     handleFormatStartDate(selectedStartDate)
                   }
+                  // onChange={(selectedDate) =>
+                  //   setEmployeeCreationDatas({
+                  //     ...employeeCreationDatas,
+                  //     dateStart: selectedDate,
+                  //   })
+                  // }
                 />
               </LocalizationProvider>
             </Grid>
