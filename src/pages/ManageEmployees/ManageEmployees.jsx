@@ -46,6 +46,7 @@ export default function ManageEmployees() {
       dispatch(clearState())
       navigate('/')
     }
+    // eslint-disable-next-line
   }, [id])
 
   const [rows, setRows] = useState(mockedEmployeesDatas)
@@ -78,15 +79,15 @@ export default function ManageEmployees() {
 
   console.log('filteredEmployees-outofthebox', filteredEmployees)
 
-  // useEffect(() => {
-  //   if (searchInput !== '') {
-  //     setRows(filteredEmployees)
-  //     // console.log('rows', rows)
-  //   } else {
-  //     setRows(mockedEmployeesDatas)
-  //     // console.log('rows-2', rows)
-  //   }
-  // }, [filteredEmployees])
+  useEffect(() => {
+    if (filteredEmployees.length > 0) {
+      setRows(filteredEmployees)
+      // console.log('rows', rows)
+    } else {
+      setRows(mockedEmployeesDatas)
+      // console.log('rows-2', rows)
+    }
+  }, [filteredEmployees])
 
   function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
