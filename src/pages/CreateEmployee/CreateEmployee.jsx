@@ -1,4 +1,5 @@
 import Header from '../../components/Header/Header'
+import Calendar from '../../components/Calendar/Calendar'
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,7 +12,7 @@ import Stack from '@mui/material/Stack'
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
-
+// DatePicker
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
@@ -24,8 +25,16 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 
+// CustomActionBar for date picker
+import DialogActions from '@mui/material/DialogActions'
+import Menu from '@mui/material/Menu'
+import { useLocaleText } from '@mui/x-date-pickers/internals'
+import { unstable_useId as useId } from '@mui/utils'
+import { Clear } from '@mui/icons-material'
+
 import { departmentsDatas } from '../../services/Datas/departementsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
+import { addEmployee } from '../../features/employeeSlice'
 
 export default function CreateEmployee() {
   const navigate = useNavigate()
@@ -43,87 +52,137 @@ export default function CreateEmployee() {
   const [departement, setDepartement] = useState('')
   const handleChangeDepartement = (event) => {
     setDepartement(event.target.value)
-    setEmployeeCreationDatas({
-      ...employeeCreationDatas,
-      departement: event.target.value,
-    })
   }
 
   const stateNames = statesDatas
   const [locationState, setLocationState] = useState('')
   const handleChangeLocationState = (event) => {
     setLocationState(event.target.value)
-    setEmployeeCreationDatas({
-      ...employeeCreationDatas,
-      state: event.target.value,
-    })
   }
 
-  // const handleFormatBirthOftDate = (date) => {
-  //   console.log('startDate', date)
-  //   const shortDateFormate = Intl.DateTimeFormat('en-US', {
-  //     year: 'numeric',
-  //     month: 'numeric',
-  //     day: 'numeric',
-  //   }).format(date)
-  //   setEmployeeCreationDatas({
-  //     ...employeeCreationDatas,
-  //     dateOfBirth: shortDateFormate,
-  //   })
-  // }
+  const firstNameInput = useRef()
+  const dateOfBirthInput = useRef()
+  const lastNameInput = useRef()
+  const startDateInput = useRef()
+  const streetInput = useRef()
+  const cityInput = useRef()
+  const zipCodeInput = useRef()
 
-  const handleFormatBirthOftDate = (date) => {
-    console.log('startDate', date)
-    if (date !== null) {
-      console.log('toto')
-      const shortDateFormate = Intl.DateTimeFormat('en-US', {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-      }).format(date)
-      setEmployeeCreationDatas({
-        ...employeeCreationDatas,
-        dateOfBirth: shortDateFormate,
-      })
-    } else {
-      return null
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const creationFormInputs = {
+      firstName: firstNameInput.current.value,
+      lastName: lastNameInput.current.value,
+      dateOfBirth: dateOfBirthInput.current.value,
+      dateStart: startDateInput.current.value,
+      departement: departement,
+      street: streetInput.current.value,
+      city: cityInput.current.value,
+      zipCode: zipCodeInput.current.value,
+      state: locationState,
     }
+    console.log('creationFormInputs', creationFormInputs)
+    dispatch(addEmployee(creationFormInputs))
   }
+  // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
+  // function CustomActionBar(props) {
+  //   const { onAccept, onClear, onCancel, onSetToday, actions, className } =
+  //     props
+  //   const localeText = useLocaleText()
+  //   const [anchorEl, setAnchorEl] = useState(null)
+  //   const open = Boolean(anchorEl)
+  //   const id = useId()
 
-  const handleFormatStartDate = (date) => {
-    console.log('startDate', date)
-    const shortDateFormate = Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    }).format(date)
-    setEmployeeCreationDatas({
-      ...employeeCreationDatas,
-      startDay: shortDateFormate,
-    })
-  }
+  //   if (actions == null || actions.length === 0) {
+  //     return null
+  //   }
 
-  // const handleFormReset = () => {
-  //   setEmployeeCreationDatas(initEmployeeCreationDatas)
+  //   const menuItems = actions?.map((actionType) => {
+  //     switch (actionType) {
+  //       case 'clear':
+  //         return (
+  //           <MenuItem
+  //             data-mui-test="clear-action-button"
+  //             onClick={() => {
+  //               onClear()
+  //               setAnchorEl(null)
+  //             }}
+  //             key={actionType}
+  //           >
+  //             {localeText.clearButtonLabel}
+  //           </MenuItem>
+  //         )
+
+  //       case 'cancel':
+  //         return (
+  //           <MenuItem
+  //             onClick={() => {
+  //               setAnchorEl(null)
+  //               onCancel()
+  //             }}
+  //             key={actionType}
+  //           >
+  //             {localeText.cancelButtonLabel}
+  //           </MenuItem>
+  //         )
+
+  //       case 'accept':
+  //         return (
+  //           <MenuItem
+  //             onClick={() => {
+  //               setAnchorEl(null)
+  //               onAccept()
+  //             }}
+  //             key={actionType}
+  //           >
+  //             {localeText.okButtonLabel}
+  //           </MenuItem>
+  //         )
+
+  //       case 'today':
+  //         return (
+  //           <MenuItem
+  //             data-mui-test="today-action-button"
+  //             onClick={() => {
+  //               setAnchorEl(null)
+  //               onSetToday()
+  //             }}
+  //             key={actionType}
+  //           >
+  //             {localeText.todayButtonLabel}
+  //           </MenuItem>
+  //         )
+
+  //       default:
+  //         return null
+  //     }
+  //   })
+
+  //   return (
+  //     <DialogActions className={className}>
+  //       <Button
+  //         id={`picker-actions-${id}`}
+  //         aria-controls={open ? 'basic-menu' : undefined}
+  //         aria-haspopup="true"
+  //         aria-expanded={open ? 'true' : undefined}
+  //         onClick={(event) => setAnchorEl(event.currentTarget)}
+  //       >
+  //         Actions
+  //       </Button>
+  //       <Menu
+  //         id="basic-menu"
+  //         anchorEl={anchorEl}
+  //         open={open}
+  //         onClose={() => setAnchorEl(null)}
+  //         MenuListProps={{
+  //           'aria-labelledby': `picker-actions-${id}`,
+  //         }}
+  //       >
+  //         {menuItems}
+  //       </Menu>
+  //     </DialogActions>
+  //   )
   // }
-
-  const initEmployeeCreationDatas = {
-    firstName: '',
-    lastName: '',
-    dateOfBirth: null,
-    dateStart: null,
-    departement: '',
-    street: '',
-    city: '',
-    zipCode: '',
-    state: '',
-  }
-
-  const [employeeCreationDatas, setEmployeeCreationDatas] = useState(
-    initEmployeeCreationDatas,
-  )
-
-  console.log('employeeCreationDatas', employeeCreationDatas)
 
   return (
     <>
@@ -154,12 +213,7 @@ export default function CreateEmployee() {
                 fullWidth
                 autoFocus
                 required
-                onChange={(e) =>
-                  setEmployeeCreationDatas({
-                    ...employeeCreationDatas,
-                    firstName: e.target.value,
-                  })
-                }
+                inputRef={firstNameInput}
               />
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
@@ -169,15 +223,16 @@ export default function CreateEmployee() {
               >
                 <DatePicker
                   label="Birthdate"
-                  onChange={(selectedBirthOfDate) =>
-                    handleFormatBirthOftDate(selectedBirthOfDate)
-                  }
-                  // onChange={(selectedDate) =>
-                  //   setEmployeeCreationDatas({
-                  //     ...employeeCreationDatas,
-                  //     dateStart: selectedDate,
-                  //   })
-                  // }
+                  inputRef={dateOfBirthInput}
+                  // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
+                  // slots={{
+                  //   actionBar: CustomActionBar,
+                  // }}
+                  slotProps={{
+                    actionBar: {
+                      actions: ['today', 'clear'],
+                    },
+                  }}
                 />
               </LocalizationProvider>
             </Grid>
@@ -189,12 +244,7 @@ export default function CreateEmployee() {
                 variant="outlined"
                 fullWidth
                 required
-                onChange={(e) =>
-                  setEmployeeCreationDatas({
-                    ...employeeCreationDatas,
-                    lastName: e.target.value,
-                  })
-                }
+                inputRef={lastNameInput}
               />
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
@@ -204,15 +254,12 @@ export default function CreateEmployee() {
               >
                 <DatePicker
                   label="Start day"
-                  onChange={(selectedStartDate) =>
-                    handleFormatStartDate(selectedStartDate)
-                  }
-                  // onChange={(selectedDate) =>
-                  //   setEmployeeCreationDatas({
-                  //     ...employeeCreationDatas,
-                  //     dateStart: selectedDate,
-                  //   })
-                  // }
+                  inputRef={startDateInput}
+                  slotProps={{
+                    actionBar: {
+                      actions: ['today', 'clear'],
+                    },
+                  }}
                 />
               </LocalizationProvider>
             </Grid>
@@ -249,12 +296,7 @@ export default function CreateEmployee() {
                 variant="outlined"
                 required
                 fullWidth
-                onChange={(e) =>
-                  setEmployeeCreationDatas({
-                    ...employeeCreationDatas,
-                    street: e.target.value,
-                  })
-                }
+                inputRef={streetInput}
               />
             </Grid>
             <Grid xs={6}>
@@ -265,12 +307,7 @@ export default function CreateEmployee() {
                 variant="outlined"
                 required
                 fullWidth
-                onChange={(e) =>
-                  setEmployeeCreationDatas({
-                    ...employeeCreationDatas,
-                    city: e.target.value,
-                  })
-                }
+                inputRef={cityInput}
               />
             </Grid>
             <Grid xs={6}>
@@ -281,12 +318,7 @@ export default function CreateEmployee() {
                 variant="outlined"
                 required
                 fullWidth
-                onChange={(e) =>
-                  setEmployeeCreationDatas({
-                    ...employeeCreationDatas,
-                    zipCode: e.target.value,
-                  })
-                }
+                inputRef={zipCodeInput}
               />
             </Grid>
             <Grid xs={12}>
@@ -317,9 +349,8 @@ export default function CreateEmployee() {
                   <Button
                     variant="outlined"
                     startIcon={<DeleteIcon />}
-                    type="reset"
+                    type="button"
                     fullWidth
-                    // onClick={() => handleFormReset()}
                   >
                     Reset
                   </Button>
@@ -330,6 +361,9 @@ export default function CreateEmployee() {
                     endIcon={<SendIcon />}
                     type="submit"
                     fullWidth
+                    onClick={(e) => {
+                      handleSubmit(e)
+                    }}
                   >
                     Send
                   </Button>
