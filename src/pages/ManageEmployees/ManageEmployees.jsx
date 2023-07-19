@@ -28,6 +28,7 @@ import { useRef, useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { userSelector, clearState } from '../../features/userSlice'
+import { employeeSelector } from '../../features/employeeSlice'
 
 export default function ManageEmployees() {
   const [order, setOrder] = useState('asc')
@@ -40,6 +41,9 @@ export default function ManageEmployees() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { id } = useSelector(userSelector)
+  const { employees } = useSelector(employeeSelector)
+
+  console.log('employees', employees)
 
   useEffect(() => {
     if (!id) {
@@ -71,8 +75,6 @@ export default function ManageEmployees() {
       )
       setFilteredEmployees(filteredEmployees)
       // console.log('filteredEmployees', filteredEmployees)
-    } else {
-      setFilteredEmployees(mockedEmployeesDatas)
     }
     return filteredEmployees
   }
@@ -431,14 +433,6 @@ export default function ManageEmployees() {
                                 'aria-labelledby': labelId,
                               }}
                             />
-                          </TableCell>
-                          <TableCell
-                            component="th"
-                            id={labelId}
-                            scope="row"
-                            padding="none"
-                          >
-                            {row.firstName}
                           </TableCell>
                           <TableCell align="left">{row.firstName}</TableCell>
                           <TableCell align="left">{row.lastName}</TableCell>
