@@ -26,8 +26,7 @@ import Select from '@mui/material/Select'
 
 import { departmentsDatas } from '../../services/Datas/departementsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
-
-import { getData } from '../../services/Model/DataModeling'
+import { addEmployee } from '../../features/employeeSlice'
 
 export default function CreateEmployee() {
   const navigate = useNavigate()
@@ -61,36 +60,25 @@ export default function CreateEmployee() {
   const cityInput = useRef()
   const zipCodeInput = useRef()
 
-  const initCreationFormDatas = {
-    firstName: '',
-    lastName: '',
-    dateOfBirth: null,
-    dateStart: null,
-    departement: '',
-    street: '',
-    city: '',
-    zipCode: '',
-    state: '',
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const creationFormInputs = {
+      firstName: firstNameInput.current.value,
+      lastName: lastNameInput.current.value,
+      dateOfBirth: dateOfBirthInput.current.value,
+      dateStart: startDateInput.current.value,
+      departement: departement,
+      street: streetInput.current.value,
+      city: cityInput.current.value,
+      zipCode: zipCodeInput.current.value,
+      state: locationState,
+    }
+    console.log('creationFormInputs', creationFormInputs)
+    dispatch(addEmployee(creationFormInputs))
   }
 
-  const [creationFormDatas, setCreationFormDatas] = useState(
-    initCreationFormDatas,
-  )
-
-  console.log('employeeCreationDatas', creationFormDatas)
-
-  const HandleSubmit = () => {
-    const creationFormInputs = {
-      firstName: '',
-      lastName: '',
-      dateOfBirth: null,
-      dateStart: null,
-      departement: '',
-      street: '',
-      city: '',
-      zipCode: '',
-      state: '',
-    }
+  const handleReset = () => {
+    ;<DatePicker defaultValue />
   }
 
   return (
@@ -240,7 +228,7 @@ export default function CreateEmployee() {
                     startIcon={<DeleteIcon />}
                     type="reset"
                     fullWidth
-                    // onClick={() => handleFormReset()}
+                    onClick={() => handleReset()}
                   >
                     Reset
                   </Button>
@@ -251,6 +239,9 @@ export default function CreateEmployee() {
                     endIcon={<SendIcon />}
                     type="submit"
                     fullWidth
+                    onClick={(e) => {
+                      handleSubmit(e)
+                    }}
                   >
                     Send
                   </Button>
