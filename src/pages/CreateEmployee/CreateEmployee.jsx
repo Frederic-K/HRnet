@@ -1,7 +1,7 @@
 import Header from '../../components/Header/Header'
 import Calendar from '../../components/Calendar/Calendar'
 import { useState, useRef, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { userSelector, clearState } from '../../features/userSlice'
 
@@ -346,14 +346,17 @@ export default function CreateEmployee() {
             <Grid xs={12}>
               <Stack direction="row" spacing={2}>
                 <Grid xs={6}>
-                  <Button
-                    variant="outlined"
-                    startIcon={<DeleteIcon />}
-                    type="button"
-                    fullWidth
-                  >
-                    Reset
-                  </Button>
+                  <NavLink to="/">
+                    {' '}
+                    <Button
+                      variant="outlined"
+                      startIcon={<DeleteIcon />}
+                      type="button"
+                      fullWidth
+                    >
+                      Cancel
+                    </Button>
+                  </NavLink>
                 </Grid>
                 <Grid xs={6}>
                   <Button
