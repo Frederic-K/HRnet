@@ -107,12 +107,6 @@ export default function CreateEmployee() {
                 autoFocus
                 required
                 inputRef={firstNameInput}
-                // onChange={(e) =>
-                //   setEmployeeCreationDatas({
-                //     ...employeeCreationDatas,
-                //     firstName: e.target.value,
-                //   })
-                // }
               />
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
@@ -120,19 +114,7 @@ export default function CreateEmployee() {
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
-                <DatePicker
-                  label="Birthdate"
-                  inputRef={dateOfBirthInput}
-                  // onChange={(selectedBirthOfDate) =>
-                  //   handleFormatBirthOftDate(selectedBirthOfDate)
-                  // }
-                  // onChange={(selectedDate) =>
-                  //   setEmployeeCreationDatas({
-                  //     ...employeeCreationDatas,
-                  //     dateStart: selectedDate,
-                  //   })
-                  // }
-                />
+                <DatePicker label="Birthdate" inputRef={dateOfBirthInput} />
               </LocalizationProvider>
             </Grid>
             <Grid xs={8}>
@@ -144,12 +126,6 @@ export default function CreateEmployee() {
                 fullWidth
                 required
                 inputRef={lastNameInput}
-                // onChange={(e) =>
-                //   setEmployeeCreationDatas({
-                //     ...employeeCreationDatas,
-                //     lastName: e.target.value,
-                //   })
-                // }
               />
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
@@ -157,19 +133,7 @@ export default function CreateEmployee() {
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
-                <DatePicker
-                  label="Start day"
-                  inputRef={startDateInput}
-                  // onChange={(selectedStartDate) =>
-                  //   handleFormatStartDate(selectedStartDate)
-                  // }
-                  // onChange={(selectedDate) =>
-                  //   setEmployeeCreationDatas({
-                  //     ...employeeCreationDatas,
-                  //     dateStart: selectedDate,
-                  //   })
-                  // }
-                />
+                <DatePicker label="Start day" inputRef={startDateInput} />
               </LocalizationProvider>
             </Grid>
             <Grid xs={12}>
@@ -206,12 +170,6 @@ export default function CreateEmployee() {
                 required
                 fullWidth
                 inputRef={streetInput}
-                // onChange={(e) =>
-                //   setEmployeeCreationDatas({
-                //     ...employeeCreationDatas,
-                //     street: e.target.value,
-                //   })
-                // }
               />
             </Grid>
             <Grid xs={6}>
@@ -223,12 +181,6 @@ export default function CreateEmployee() {
                 required
                 fullWidth
                 inputRef={cityInput}
-                // onChange={(e) =>
-                //   setEmployeeCreationDatas({
-                //     ...employeeCreationDatas,
-                //     city: e.target.value,
-                //   })
-                // }
               />
             </Grid>
             <Grid xs={6}>
@@ -240,12 +192,6 @@ export default function CreateEmployee() {
                 required
                 fullWidth
                 inputRef={zipCodeInput}
-                // onChange={(e) =>
-                //   setEmployeeCreationDatas({
-                //     ...employeeCreationDatas,
-                //     zipCode: e.target.value,
-                //   })
-                // }
               />
             </Grid>
             <Grid xs={12}>
