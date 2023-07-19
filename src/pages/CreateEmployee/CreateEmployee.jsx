@@ -43,71 +43,15 @@ export default function CreateEmployee() {
   const [departement, setDepartement] = useState('')
   const handleChangeDepartement = (event) => {
     setDepartement(event.target.value)
-    setEmployeeCreationDatas({
-      ...employeeCreationDatas,
-      departement: event.target.value,
-    })
   }
 
   const stateNames = statesDatas
   const [locationState, setLocationState] = useState('')
   const handleChangeLocationState = (event) => {
     setLocationState(event.target.value)
-    setEmployeeCreationDatas({
-      ...employeeCreationDatas,
-      state: event.target.value,
-    })
   }
 
-  // const handleFormatBirthOftDate = (date) => {
-  //   console.log('startDate', date)
-  //   const shortDateFormate = Intl.DateTimeFormat('en-US', {
-  //     year: 'numeric',
-  //     month: 'numeric',
-  //     day: 'numeric',
-  //   }).format(date)
-  //   setEmployeeCreationDatas({
-  //     ...employeeCreationDatas,
-  //     dateOfBirth: shortDateFormate,
-  //   })
-  // }
-
-  const handleFormatBirthOftDate = (date) => {
-    console.log('startDate', date)
-    if (date !== null) {
-      console.log('toto')
-      const shortDateFormate = Intl.DateTimeFormat('en-US', {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-      }).format(date)
-      setEmployeeCreationDatas({
-        ...employeeCreationDatas,
-        dateOfBirth: shortDateFormate,
-      })
-    } else {
-      return null
-    }
-  }
-
-  const handleFormatStartDate = (date) => {
-    console.log('startDate', date)
-    const shortDateFormate = Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    }).format(date)
-    setEmployeeCreationDatas({
-      ...employeeCreationDatas,
-      startDay: shortDateFormate,
-    })
-  }
-
-  // const handleFormReset = () => {
-  //   setEmployeeCreationDatas(initEmployeeCreationDatas)
-  // }
-
-  const initEmployeeCreationDatas = {
+  const initCreationFormDatas = {
     firstName: '',
     lastName: '',
     dateOfBirth: null,
@@ -119,11 +63,19 @@ export default function CreateEmployee() {
     state: '',
   }
 
-  const [employeeCreationDatas, setEmployeeCreationDatas] = useState(
-    initEmployeeCreationDatas,
+  const [creationFormDatas, setCreationFormDatas] = useState(
+    initCreationFormDatas,
   )
 
-  console.log('employeeCreationDatas', employeeCreationDatas)
+  console.log('employeeCreationDatas', creationFormDatas)
+
+  const firstNameInput = useRef()
+  const dateOfBirthInput = useRef()
+  const lastNameInput = useRef()
+  const startDateInput = useRef()
+  const streetInput = useRef()
+  const cityInput = useRef()
+  const zipCodeInput = useRef()
 
   return (
     <>
@@ -154,12 +106,13 @@ export default function CreateEmployee() {
                 fullWidth
                 autoFocus
                 required
-                onChange={(e) =>
-                  setEmployeeCreationDatas({
-                    ...employeeCreationDatas,
-                    firstName: e.target.value,
-                  })
-                }
+                inputRef={firstNameInput}
+                // onChange={(e) =>
+                //   setEmployeeCreationDatas({
+                //     ...employeeCreationDatas,
+                //     firstName: e.target.value,
+                //   })
+                // }
               />
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
@@ -169,9 +122,10 @@ export default function CreateEmployee() {
               >
                 <DatePicker
                   label="Birthdate"
-                  onChange={(selectedBirthOfDate) =>
-                    handleFormatBirthOftDate(selectedBirthOfDate)
-                  }
+                  inputRef={dateOfBirthInput}
+                  // onChange={(selectedBirthOfDate) =>
+                  //   handleFormatBirthOftDate(selectedBirthOfDate)
+                  // }
                   // onChange={(selectedDate) =>
                   //   setEmployeeCreationDatas({
                   //     ...employeeCreationDatas,
@@ -189,12 +143,13 @@ export default function CreateEmployee() {
                 variant="outlined"
                 fullWidth
                 required
-                onChange={(e) =>
-                  setEmployeeCreationDatas({
-                    ...employeeCreationDatas,
-                    lastName: e.target.value,
-                  })
-                }
+                inputRef={lastNameInput}
+                // onChange={(e) =>
+                //   setEmployeeCreationDatas({
+                //     ...employeeCreationDatas,
+                //     lastName: e.target.value,
+                //   })
+                // }
               />
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
@@ -204,9 +159,10 @@ export default function CreateEmployee() {
               >
                 <DatePicker
                   label="Start day"
-                  onChange={(selectedStartDate) =>
-                    handleFormatStartDate(selectedStartDate)
-                  }
+                  inputRef={startDateInput}
+                  // onChange={(selectedStartDate) =>
+                  //   handleFormatStartDate(selectedStartDate)
+                  // }
                   // onChange={(selectedDate) =>
                   //   setEmployeeCreationDatas({
                   //     ...employeeCreationDatas,
@@ -249,12 +205,13 @@ export default function CreateEmployee() {
                 variant="outlined"
                 required
                 fullWidth
-                onChange={(e) =>
-                  setEmployeeCreationDatas({
-                    ...employeeCreationDatas,
-                    street: e.target.value,
-                  })
-                }
+                inputRef={streetInput}
+                // onChange={(e) =>
+                //   setEmployeeCreationDatas({
+                //     ...employeeCreationDatas,
+                //     street: e.target.value,
+                //   })
+                // }
               />
             </Grid>
             <Grid xs={6}>
@@ -265,12 +222,13 @@ export default function CreateEmployee() {
                 variant="outlined"
                 required
                 fullWidth
-                onChange={(e) =>
-                  setEmployeeCreationDatas({
-                    ...employeeCreationDatas,
-                    city: e.target.value,
-                  })
-                }
+                inputRef={cityInput}
+                // onChange={(e) =>
+                //   setEmployeeCreationDatas({
+                //     ...employeeCreationDatas,
+                //     city: e.target.value,
+                //   })
+                // }
               />
             </Grid>
             <Grid xs={6}>
@@ -281,12 +239,13 @@ export default function CreateEmployee() {
                 variant="outlined"
                 required
                 fullWidth
-                onChange={(e) =>
-                  setEmployeeCreationDatas({
-                    ...employeeCreationDatas,
-                    zipCode: e.target.value,
-                  })
-                }
+                inputRef={zipCodeInput}
+                // onChange={(e) =>
+                //   setEmployeeCreationDatas({
+                //     ...employeeCreationDatas,
+                //     zipCode: e.target.value,
+                //   })
+                // }
               />
             </Grid>
             <Grid xs={12}>
