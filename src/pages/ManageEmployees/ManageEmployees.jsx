@@ -18,7 +18,7 @@ import Tooltip from '@mui/material/Tooltip'
 //import FormControlLabel from '@mui/material/FormControlLabel'
 // import Switch from '@mui/material/Switch'
 import DeleteIcon from '@mui/icons-material/Delete'
-// import FilterListIcon from '@mui/icons-material/FilterList'
+import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
 import TextField from '@mui/material/TextField'
 
@@ -286,14 +286,13 @@ export default function ManageEmployees() {
               <DeleteIcon />
             </IconButton>
           </Tooltip>
-        ) : // (
-        //   <Tooltip title="Filter list">
-        //     <IconButton>
-        //       <FilterListIcon />
-        //     </IconButton>
-        //   </Tooltip>
-        // )
-        null}
+        ) : (
+          <Tooltip title="Filter list">
+            <IconButton>
+              <FilterListIcon />
+            </IconButton>
+          </Tooltip>
+        )}
       </Toolbar>
     )
   }
@@ -432,14 +431,14 @@ export default function ManageEmployees() {
                               }}
                             />
                           </TableCell>
-                          {/* <TableCell
+                          <TableCell
                             component="th"
                             id={labelId}
                             scope="row"
                             padding="none"
                           >
                             {row.firstName}
-                          </TableCell> */}
+                          </TableCell>
                           <TableCell align="left">{row.firstName}</TableCell>
                           <TableCell align="left">{row.lastName}</TableCell>
                           <TableCell align="left">{row.startDate}</TableCell>

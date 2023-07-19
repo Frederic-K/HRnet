@@ -1,12 +1,16 @@
+// React
+import { useState, useRef, useEffect } from 'react'
+import { useNavigate, NavLink } from 'react-router-dom'
+// Redux User
+import { useDispatch, useSelector } from 'react-redux'
+import { userSelector, clearState } from '../../features/userSlice'
+// Redux Add employee
+import { addEmployee } from '../../features/employeeSlice'
+// Components
 import Header from '../../components/Header/Header'
 import { Toaster } from 'react-hot-toast'
 import toast from 'react-hot-toast'
-// import Calendar from '../../components/Calendar/Calendar'
-import { useState, useRef, useEffect } from 'react'
-import { useNavigate, NavLink } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { userSelector, clearState } from '../../features/userSlice'
-
+// Field nd button
 import Button from '@mui/material/Button'
 import DeleteIcon from '@mui/icons-material/Delete'
 import SendIcon from '@mui/icons-material/Send'
@@ -20,23 +24,21 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import 'dayjs/locale/de'
 import 'dayjs/locale/en-gb'
-
-import OutlinedInput from '@mui/material/OutlinedInput'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import Select from '@mui/material/Select'
-
 // CustomActionBar for date picker
 // import DialogActions from '@mui/material/DialogActions'
 // import Menu from '@mui/material/Menu'
 // import { useLocaleText } from '@mui/x-date-pickers/internals'
 // import { unstable_useId as useId } from '@mui/utils'
 // import { Clear } from '@mui/icons-material'
-
+// Dropdown menu
+import OutlinedInput from '@mui/material/OutlinedInput'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
+// Datas
 import { departmentsDatas } from '../../services/Datas/departementsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
-import { addEmployee } from '../../features/employeeSlice'
 
 export default function CreateEmployee() {
   const navigate = useNavigate()
@@ -48,6 +50,7 @@ export default function CreateEmployee() {
       dispatch(clearState())
       navigate('/')
     }
+    // eslint-disable-next-line
   }, [id])
 
   const departmentsNames = departmentsDatas
@@ -212,11 +215,7 @@ export default function CreateEmployee() {
         <div className="createEmployee__banner--title">Create employees</div>
       </section>
       <main className="createEmployee__container">
-        <Box
-          className="createEmployee__form"
-          component="form"
-          sx={{ flexGrow: 1 }}
-        >
+        <Box className="createEmployee__form" component="form">
           <Grid container spacing={2}>
             <Grid xs={12}>
               <h2 className="createEmployee__form--caption">
@@ -241,7 +240,7 @@ export default function CreateEmployee() {
                 adapterLocale="en"
               >
                 <DatePicker
-                  label="Birthdate"
+                  label="Birthdate *"
                   inputRef={dateOfBirthInput}
                   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
                   // slots={{
@@ -272,7 +271,7 @@ export default function CreateEmployee() {
                 adapterLocale="en"
               >
                 <DatePicker
-                  label="Start day"
+                  label="Start day *"
                   inputRef={startDateInput}
                   slotProps={{
                     actionBar: {
@@ -335,6 +334,7 @@ export default function CreateEmployee() {
                 name="zipCode"
                 label="Zip Code"
                 variant="outlined"
+                type="number"
                 required
                 fullWidth
                 inputRef={zipCodeInput}
@@ -366,7 +366,6 @@ export default function CreateEmployee() {
               <Stack direction="row" spacing={2}>
                 <Grid xs={6}>
                   <NavLink to="/">
-                    {' '}
                     <Button
                       variant="outlined"
                       startIcon={<DeleteIcon />}
