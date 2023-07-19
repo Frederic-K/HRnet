@@ -1,5 +1,7 @@
 import Header from '../../components/Header/Header'
-import Calendar from '../../components/Calendar/Calendar'
+import { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
+// import Calendar from '../../components/Calendar/Calendar'
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -26,11 +28,11 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 
 // CustomActionBar for date picker
-import DialogActions from '@mui/material/DialogActions'
-import Menu from '@mui/material/Menu'
-import { useLocaleText } from '@mui/x-date-pickers/internals'
-import { unstable_useId as useId } from '@mui/utils'
-import { Clear } from '@mui/icons-material'
+// import DialogActions from '@mui/material/DialogActions'
+// import Menu from '@mui/material/Menu'
+// import { useLocaleText } from '@mui/x-date-pickers/internals'
+// import { unstable_useId as useId } from '@mui/utils'
+// import { Clear } from '@mui/icons-material'
 
 import { departmentsDatas } from '../../services/Datas/departementsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
@@ -81,8 +83,22 @@ export default function CreateEmployee() {
       zipCode: zipCodeInput.current.value,
       state: locationState,
     }
-    console.log('creationFormInputs', creationFormInputs)
-    dispatch(addEmployee(creationFormInputs))
+    if (
+      creationFormInputs.firstName !== '' &&
+      creationFormInputs.lastName !== '' &&
+      creationFormInputs.dateOfBirth !== '' &&
+      creationFormInputs.dateStart !== '' &&
+      creationFormInputs.departement !== '' &&
+      creationFormInputs.street !== '' &&
+      creationFormInputs.city !== '' &&
+      creationFormInputs.zipCode !== '' &&
+      creationFormInputs.state !== ''
+    ) {
+      console.log('creationFormInputs', creationFormInputs)
+      dispatch(addEmployee(creationFormInputs))
+    } else {
+      toast.error("Emplty field isn't allowed")
+    }
   }
   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
   // function CustomActionBar(props) {
@@ -189,6 +205,9 @@ export default function CreateEmployee() {
       <div className="layout__header">
         <Header />
       </div>
+      <div>
+        <Toaster />
+      </div>
       <section className="createEmployee__banner">
         <div className="createEmployee__banner--title">Create employees</div>
       </section>
@@ -201,7 +220,7 @@ export default function CreateEmployee() {
           <Grid container spacing={2}>
             <Grid xs={12}>
               <h2 className="createEmployee__form--caption">
-                Personnal informations
+                Personnal informations <span>(required field *)</span>
               </h2>
             </Grid>
             <Grid xs={8}>
@@ -285,7 +304,7 @@ export default function CreateEmployee() {
             </Grid>
             <Grid xs={12}>
               <h2 className="createEmployee__form--caption">
-                Address informations
+                Address informations <span>(required field *)</span>
               </h2>
             </Grid>
             <Grid xs={12}>
