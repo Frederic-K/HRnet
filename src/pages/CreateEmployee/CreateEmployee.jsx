@@ -24,9 +24,15 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 
+import DialogActions from '@mui/material/DialogActions'
+import Menu from '@mui/material/Menu'
+import { useLocaleText } from '@mui/x-date-pickers/internals'
+import { unstable_useId as useId } from '@mui/utils'
+
 import { departmentsDatas } from '../../services/Datas/departementsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
 import { addEmployee } from '../../features/employeeSlice'
+import { Clear } from '@mui/icons-material'
 
 export default function CreateEmployee() {
   const navigate = useNavigate()
@@ -76,10 +82,105 @@ export default function CreateEmployee() {
     console.log('creationFormInputs', creationFormInputs)
     dispatch(addEmployee(creationFormInputs))
   }
+  // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
+  // function CustomActionBar(props) {
+  //   const { onAccept, onClear, onCancel, onSetToday, actions, className } =
+  //     props
+  //   const localeText = useLocaleText()
+  //   const [anchorEl, setAnchorEl] = useState(null)
+  //   const open = Boolean(anchorEl)
+  //   const id = useId()
 
-  const handleReset = () => {
-    ;<DatePicker defaultValue />
-  }
+  //   if (actions == null || actions.length === 0) {
+  //     return null
+  //   }
+
+  //   const menuItems = actions?.map((actionType) => {
+  //     switch (actionType) {
+  //       case 'clear':
+  //         return (
+  //           <MenuItem
+  //             data-mui-test="clear-action-button"
+  //             onClick={() => {
+  //               onClear()
+  //               setAnchorEl(null)
+  //             }}
+  //             key={actionType}
+  //           >
+  //             {localeText.clearButtonLabel}
+  //           </MenuItem>
+  //         )
+
+  //       case 'cancel':
+  //         return (
+  //           <MenuItem
+  //             onClick={() => {
+  //               setAnchorEl(null)
+  //               onCancel()
+  //             }}
+  //             key={actionType}
+  //           >
+  //             {localeText.cancelButtonLabel}
+  //           </MenuItem>
+  //         )
+
+  //       case 'accept':
+  //         return (
+  //           <MenuItem
+  //             onClick={() => {
+  //               setAnchorEl(null)
+  //               onAccept()
+  //             }}
+  //             key={actionType}
+  //           >
+  //             {localeText.okButtonLabel}
+  //           </MenuItem>
+  //         )
+
+  //       case 'today':
+  //         return (
+  //           <MenuItem
+  //             data-mui-test="today-action-button"
+  //             onClick={() => {
+  //               setAnchorEl(null)
+  //               onSetToday()
+  //             }}
+  //             key={actionType}
+  //           >
+  //             {localeText.todayButtonLabel}
+  //           </MenuItem>
+  //         )
+
+  //       default:
+  //         return null
+  //     }
+  //   })
+
+  //   return (
+  //     <DialogActions className={className}>
+  //       <Button
+  //         id={`picker-actions-${id}`}
+  //         aria-controls={open ? 'basic-menu' : undefined}
+  //         aria-haspopup="true"
+  //         aria-expanded={open ? 'true' : undefined}
+  //         onClick={(event) => setAnchorEl(event.currentTarget)}
+  //       >
+  //         Actions
+  //       </Button>
+  //       <Menu
+  //         id="basic-menu"
+  //         anchorEl={anchorEl}
+  //         open={open}
+  //         onClose={() => setAnchorEl(null)}
+  //         MenuListProps={{
+  //           'aria-labelledby': `picker-actions-${id}`,
+  //         }}
+  //       >
+  //         {menuItems}
+  //       </Menu>
+  //     </DialogActions>
+  //   )
+  // }
 
   return (
     <>
@@ -118,7 +219,19 @@ export default function CreateEmployee() {
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
-                <DatePicker label="Birthdate" inputRef={dateOfBirthInput} />
+                <DatePicker
+                  label="Birthdate"
+                  inputRef={dateOfBirthInput}
+                  // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
+                  // slots={{
+                  //   actionBar: CustomActionBar,
+                  // }}
+                  slotProps={{
+                    actionBar: {
+                      actions: ['today', 'clear'],
+                    },
+                  }}
+                />
               </LocalizationProvider>
             </Grid>
             <Grid xs={8}>
@@ -137,7 +250,15 @@ export default function CreateEmployee() {
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
-                <DatePicker label="Start day" inputRef={startDateInput} />
+                <DatePicker
+                  label="Start day"
+                  inputRef={startDateInput}
+                  slotProps={{
+                    actionBar: {
+                      actions: ['today', 'clear'],
+                    },
+                  }}
+                />
               </LocalizationProvider>
             </Grid>
             <Grid xs={12}>
@@ -228,7 +349,6 @@ export default function CreateEmployee() {
                     startIcon={<DeleteIcon />}
                     type="reset"
                     fullWidth
-                    onClick={() => handleReset()}
                   >
                     Reset
                   </Button>
