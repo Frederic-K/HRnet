@@ -34,7 +34,8 @@ import toast from 'react-hot-toast'
 
 export default function ManageEmployees() {
   const [order, setOrder] = useState('asc')
-  const [orderBy, setOrderBy] = useState('firstName')
+  // const [orderBy, setOrderBy] = useState('firstName')
+  const [orderBy, setOrderBy] = useState('employeeID')
   const [selected, setSelected] = useState([])
   const [page, setPage] = useState(0)
   const [dense, setDense] = useState(false)
@@ -361,8 +362,13 @@ export default function ManageEmployees() {
   // const handleDeleteClick = () => {
   //   setRows(rows.filter((row) => row.employeeID !== selected))
   // }
+  // const handleDeleteClick = () => {
+  //   setRows(rows.filter((row) => row.employeeID !== selected[0]))
+  // }
   const handleDeleteClick = () => {
-    setRows(rows.filter((row) => row.id !== selected))
+    let undeleteRows = rows.filter((el) => !selected.includes(el.employeeID))
+    console.log('returnDeleteRows', undeleteRows)
+    setRows(undeleteRows)
   }
 
   const handleChangePage = (event, newPage) => {
