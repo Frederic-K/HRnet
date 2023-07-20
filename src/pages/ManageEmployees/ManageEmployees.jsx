@@ -49,7 +49,7 @@ export default function ManageEmployees() {
   const [filteredEmployees, setFilteredEmployees] = useState([])
 
   console.log('employees', employees)
-  console.log('selected', selected[0])
+  console.log('selected', selected)
 
   useEffect(() => {
     if (!id) {
@@ -332,19 +332,19 @@ export default function ManageEmployees() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.firstName)
+      const newSelected = rows.map((n) => n.employeeID)
       setSelected(newSelected)
       return
     }
     setSelected([])
   }
 
-  const handleClick = (event, firstName) => {
-    const selectedIndex = selected.indexOf(firstName)
+  const handleClick = (event, employeeID) => {
+    const selectedIndex = selected.indexOf(employeeID)
     let newSelected = []
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, firstName)
+      newSelected = newSelected.concat(selected, employeeID)
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1))
     } else if (selectedIndex === selected.length - 1) {
@@ -358,8 +358,11 @@ export default function ManageEmployees() {
 
     setSelected(newSelected)
   }
+  // const handleDeleteClick = () => {
+  //   setRows(rows.filter((row) => row.firstName !== selected))
+  // }
   const handleDeleteClick = () => {
-    setRows(rows.filter((row) => row.firstName !== selected))
+    setRows(rows.filter((row) => row.id !== selected))
   }
 
   const handleChangePage = (event, newPage) => {
@@ -375,7 +378,7 @@ export default function ManageEmployees() {
     setDense(event.target.checked)
   }
 
-  const isSelected = (firstName) => selected.indexOf(firstName) !== -1
+  const isSelected = (employeeID) => selected.indexOf(employeeID) !== -1
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
