@@ -415,18 +415,32 @@ export default function ManageEmployees() {
         <div className="manageEmployees__banner--title">List of employees</div>
       </section>
       <main className="manageEmployees__container">
-        <div className="manageEmployees__search">
-          <TextField
-            id="outlined-basic"
-            label="Search"
-            variant="outlined"
-            fullWidth
-            inputRef={searchInput}
-            onChange={() => {
-              processChanges()
-            }}
-          />
-        </div>
+        {isFilterShown ? (
+          <div className="manageEmployees__search">
+            <TextField
+              id="outlined-basic"
+              label="Search"
+              variant="outlined"
+              fullWidth
+              inputRef={searchInput}
+              onChange={() => {
+                processChanges()
+              }}
+            />
+          </div>
+        ) : null}
+        {/* // <div className="manageEmployees__search">
+        //   <TextField
+        //     id="outlined-basic"
+        //     label="Search"
+        //     variant="outlined"
+        //     fullWidth
+        //     inputRef={searchInput}
+        //     onChange={() => {
+        //       processChanges()
+        //     }}
+        //   />
+        // </div> */}
         <div className="manageEmployees__table">
           <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
