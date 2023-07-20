@@ -48,7 +48,7 @@ export default function ManageEmployees() {
   const [rows, setRows] = useState(mockedEmployeesDatas)
   const [filteredEmployees, setFilteredEmployees] = useState([])
 
-  console.log('employees', employees)
+  //console.log('employees', employees)
   console.log('selected', selected)
 
   useEffect(() => {
@@ -359,7 +359,7 @@ export default function ManageEmployees() {
     setSelected(newSelected)
   }
   // const handleDeleteClick = () => {
-  //   setRows(rows.filter((row) => row.firstName !== selected))
+  //   setRows(rows.filter((row) => row.employeeID !== selected))
   // }
   const handleDeleteClick = () => {
     setRows(rows.filter((row) => row.id !== selected))
@@ -437,17 +437,19 @@ export default function ManageEmployees() {
                   />
                   <TableBody>
                     {visibleRows.map((row, index) => {
-                      const isItemSelected = isSelected(row.firstName)
+                      const isItemSelected = isSelected(row.employeeID)
                       const labelId = `enhanced-table-checkbox-${index}`
 
                       return (
                         <TableRow
                           hover
-                          onClick={(event) => handleClick(event, row.firstName)}
+                          onClick={(event) =>
+                            handleClick(event, row.employeeID)
+                          }
                           role="checkbox"
                           aria-checked={isItemSelected}
                           tabIndex={-1}
-                          key={row.firstName}
+                          key={row.employeeID}
                           selected={isItemSelected}
                           sx={{ cursor: 'pointer' }}
                           className="manageEmployees__table--bg"
