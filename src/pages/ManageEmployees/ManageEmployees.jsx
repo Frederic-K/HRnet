@@ -49,7 +49,7 @@ export default function ManageEmployees() {
   const [filteredEmployees, setFilteredEmployees] = useState([])
 
   console.log('employees', employees)
-  console.log('selected', selected[0])
+  console.log('selected', selected)
 
   useEffect(() => {
     if (!id) {
@@ -358,8 +358,11 @@ export default function ManageEmployees() {
 
     setSelected(newSelected)
   }
+  // const handleDeleteClick = () => {
+  //   setRows(rows.filter((row) => row.firstName !== selected))
+  // }
   const handleDeleteClick = () => {
-    setRows(rows.filter((row) => row.firstName !== selected))
+    setRows(rows.filter((row) => row.id !== id))
   }
 
   const handleChangePage = (event, newPage) => {
