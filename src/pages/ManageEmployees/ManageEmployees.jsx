@@ -23,7 +23,7 @@ import { visuallyHidden } from '@mui/utils'
 import TextField from '@mui/material/TextField'
 
 import Header from '../../components/Header/Header'
-import mockedEmployeesDatas from '../../mockedEmployeesDatas/MOCK_DATA.json'
+import mockedEmployeesDatas from '../../mockedEmployeesDatas/MOCK_DATA-id.json'
 import { useRef, useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -49,7 +49,7 @@ export default function ManageEmployees() {
   const [filteredEmployees, setFilteredEmployees] = useState([])
 
   console.log('employees', employees)
-  console.log('selected', selected)
+  console.log('selected', selected[0])
 
   useEffect(() => {
     if (!id) {
@@ -301,7 +301,11 @@ export default function ManageEmployees() {
 
         {numSelected > 0 ? (
           <Tooltip title="Delete">
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                handleDeleteClick()
+              }}
+            >
               <DeleteIcon />
             </IconButton>
           </Tooltip>
@@ -353,6 +357,9 @@ export default function ManageEmployees() {
     }
 
     setSelected(newSelected)
+  }
+  const handleDeleteClick = () => {
+    setRows(rows.filter((row) => row.firstName !== selected))
   }
 
   const handleChangePage = (event, newPage) => {
@@ -450,14 +457,6 @@ export default function ManageEmployees() {
                                 'aria-labelledby': labelId,
                               }}
                             />
-                            <TableCell
-                              component="th"
-                              id={labelId}
-                              scope="row"
-                              padding="none"
-                            >
-                              {row.name}
-                            </TableCell>
                           </TableCell>
                           <TableCell align="left">{row.firstName}</TableCell>
                           <TableCell align="left">{row.lastName}</TableCell>
