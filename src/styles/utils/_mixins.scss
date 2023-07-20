@@ -1,1 +1,7 @@
-
+@mixin modale__bg {
+  background: radial-gradient(
+    circle,
+    rgba(255, 228, 196, 1) 53%,
+    rgba(255, 248, 240, 1) 100%
+  );
+}

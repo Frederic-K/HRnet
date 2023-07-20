@@ -13,8 +13,9 @@
       align-items: center;
       border-radius: 10px;
       padding-bottom: 55px;
-      background-color: bisque;
+      // background-color: #ffe4c4;
       box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
+      @include modale__bg;
     }
     &--closeBtn {
       position: absolute;
@@ -38,6 +39,7 @@
       font-size: 50px;
       text-align: center;
       color: $colour-primary;
+      // color: $colour-secondary;
       padding-bottom: 25px;
     }
     &--actionTitle {
