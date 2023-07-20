@@ -24,12 +24,14 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import 'dayjs/locale/de'
 import 'dayjs/locale/en-gb'
+
 // CustomActionBar for date picker
 // import DialogActions from '@mui/material/DialogActions'
 // import Menu from '@mui/material/Menu'
 // import { useLocaleText } from '@mui/x-date-pickers/internals'
 // import { unstable_useId as useId } from '@mui/utils'
 // import { Clear } from '@mui/icons-material'
+
 // Dropdown menu
 import OutlinedInput from '@mui/material/OutlinedInput'
 import InputLabel from '@mui/material/InputLabel'
