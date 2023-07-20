@@ -41,6 +41,8 @@ import Select from '@mui/material/Select'
 // Datas
 import { departmentsDatas } from '../../services/Datas/departementsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
+// uuid
+import { v4 as uuidv4 } from 'uuid'
 
 export default function CreateEmployee() {
   const navigate = useNavigate()
@@ -66,7 +68,8 @@ export default function CreateEmployee() {
   const handleChangeLocationState = (event) => {
     setLocationState(event.target.value)
   }
-
+  const uniqueID = uuidv4()
+  const shortUniqueID = uniqueID.slice(0, 13)
   const firstNameInput = useRef()
   const dateOfBirthInput = useRef()
   const lastNameInput = useRef()
@@ -78,6 +81,7 @@ export default function CreateEmployee() {
   const handleSubmit = (e) => {
     e.preventDefault()
     const creationFormInputs = {
+      employeeID: shortUniqueID,
       firstName: firstNameInput.current.value,
       lastName: lastNameInput.current.value,
       dateOfBirth: dateOfBirthInput.current.value,
@@ -102,7 +106,7 @@ export default function CreateEmployee() {
       console.log('creationFormInputs', creationFormInputs)
       dispatch(addEmployee(creationFormInputs))
     } else {
-      toast.error("Emplty field isn't allowed")
+      toast.error('Emplty fields are not allowed')
     }
   }
   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
@@ -367,7 +371,7 @@ export default function CreateEmployee() {
             <Grid xs={12}>
               <Stack direction="row" spacing={2}>
                 <Grid xs={6}>
-                  <NavLink to="/">
+                  {/* <NavLink to="/">
                     <Button
                       variant="outlined"
                       startIcon={<DeleteIcon />}
@@ -376,7 +380,16 @@ export default function CreateEmployee() {
                     >
                       Cancel
                     </Button>
-                  </NavLink>
+                  </NavLink> */}
+
+                  <Button
+                    variant="outlined"
+                    startIcon={<DeleteIcon />}
+                    type="reset"
+                    fullWidth
+                  >
+                    Reset
+                  </Button>
                 </Grid>
                 <Grid xs={6}>
                   <Button

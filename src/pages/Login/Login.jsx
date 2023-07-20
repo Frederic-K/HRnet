@@ -46,7 +46,6 @@ export default function Login() {
   } = useSelector(userSelector)
   // console.log('id', id)
 
-  // Manage opening the form to update user's names
   const HandleOpenModal = () => {
     // Ensure that the form is closed
     // HandleCloseModal()
@@ -76,6 +75,8 @@ export default function Login() {
     if (id) {
       toast.success(successMessage)
       HandleOpenModal()
+    } else if (!id) {
+      HandleCloseModal()
     } else if (isError) {
       toast.error(errorMessage, { position: 'top-center' })
     }
