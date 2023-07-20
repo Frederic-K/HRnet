@@ -59,6 +59,7 @@ export default function ManageEmployees() {
     }
     // eslint-disable-next-line
   }, [id])
+
   useEffect(() => {
     if (filteredEmployees.length > 0) {
       setRows(filteredEmployees)
@@ -311,7 +312,11 @@ export default function ManageEmployees() {
           </Tooltip>
         ) : (
           <Tooltip title="Filter list">
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                handleFilterClick()
+              }}
+            >
               <FilterListIcon />
             </IconButton>
           </Tooltip>
@@ -357,6 +362,11 @@ export default function ManageEmployees() {
     }
 
     setSelected(newSelected)
+  }
+  const [isFilterShown, setIsFilterShown] = useState(false)
+  const handleFilterClick = () => {
+    setIsFilterShown(!isFilterShown)
+    console.log('handleFilterClick', isFilterShown)
   }
 
   const handleDeleteClick = () => {
