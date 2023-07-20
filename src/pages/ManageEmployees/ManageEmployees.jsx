@@ -49,6 +49,7 @@ export default function ManageEmployees() {
   const [filteredEmployees, setFilteredEmployees] = useState([])
 
   console.log('employees', employees)
+  console.log('selected', selected)
 
   useEffect(() => {
     if (!id) {
@@ -368,7 +369,6 @@ export default function ManageEmployees() {
   }
 
   const isSelected = (firstName) => selected.indexOf(firstName) !== -1
-  console.log('isSelected rows', isSelected)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -450,6 +450,14 @@ export default function ManageEmployees() {
                                 'aria-labelledby': labelId,
                               }}
                             />
+                            <TableCell
+                              component="th"
+                              id={labelId}
+                              scope="row"
+                              padding="none"
+                            >
+                              {row.name}
+                            </TableCell>
                           </TableCell>
                           <TableCell align="left">{row.firstName}</TableCell>
                           <TableCell align="left">{row.lastName}</TableCell>
