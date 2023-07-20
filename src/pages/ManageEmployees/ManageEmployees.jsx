@@ -59,6 +59,7 @@ export default function ManageEmployees() {
     }
     // eslint-disable-next-line
   }, [id])
+
   useEffect(() => {
     if (filteredEmployees.length > 0) {
       setRows(filteredEmployees)
@@ -311,7 +312,11 @@ export default function ManageEmployees() {
           </Tooltip>
         ) : (
           <Tooltip title="Filter list">
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                handleFilterClick()
+              }}
+            >
               <FilterListIcon />
             </IconButton>
           </Tooltip>
@@ -357,6 +362,11 @@ export default function ManageEmployees() {
     }
 
     setSelected(newSelected)
+  }
+  const [isFilterShown, setIsFilterShown] = useState(false)
+  const handleFilterClick = () => {
+    setIsFilterShown(!isFilterShown)
+    console.log('handleFilterClick', isFilterShown)
   }
 
   const handleDeleteClick = () => {
@@ -405,18 +415,32 @@ export default function ManageEmployees() {
         <div className="manageEmployees__banner--title">List of employees</div>
       </section>
       <main className="manageEmployees__container">
-        <div className="manageEmployees__search">
-          <TextField
-            id="outlined-basic"
-            label="Search"
-            variant="outlined"
-            fullWidth
-            inputRef={searchInput}
-            onChange={() => {
-              processChanges()
-            }}
-          />
-        </div>
+        {isFilterShown ? (
+          <div className="manageEmployees__search">
+            <TextField
+              id="outlined-basic"
+              label="Search"
+              variant="outlined"
+              fullWidth
+              inputRef={searchInput}
+              onChange={() => {
+                processChanges()
+              }}
+            />
+          </div>
+        ) : null}
+        {/* // <div className="manageEmployees__search">
+        //   <TextField
+        //     id="outlined-basic"
+        //     label="Search"
+        //     variant="outlined"
+        //     fullWidth
+        //     inputRef={searchInput}
+        //     onChange={() => {
+        //       processChanges()
+        //     }}
+        //   />
+        // </div> */}
         <div className="manageEmployees__table">
           <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
