@@ -50,7 +50,7 @@ export default function ManageEmployees() {
   const [filteredEmployees, setFilteredEmployees] = useState([])
 
   //console.log('employees', employees)
-  console.log('selected', selected)
+  // console.log('selected', selected)
 
   useEffect(() => {
     if (!id) {
@@ -59,6 +59,17 @@ export default function ManageEmployees() {
     }
     // eslint-disable-next-line
   }, [id])
+  useEffect(() => {
+    if (filteredEmployees.length > 0) {
+      setRows(filteredEmployees)
+      toast.success(`Show results ${filteredEmployees.length}`)
+      // console.log('rows', rows)
+    } else {
+      setRows(mockedEmployeesDatas)
+      toast.error('No results')
+      // console.log('rows-2', rows)
+    }
+  }, [filteredEmployees])
 
   function Debounce(func, timeout = 2000) {
     let timer
@@ -85,7 +96,7 @@ export default function ManageEmployees() {
           employee.street.toLowerCase().includes(inputSearchValue) ||
           employee.city.toLowerCase().includes(inputSearchValue) ||
           employee.state.toLowerCase().includes(inputSearchValue) ||
-          employee.zipCode.toLowerCase().includes(inputSearchValue),
+          employee.zipCode.toString().includes(inputSearchValue),
       )
       setFilteredEmployees(filteredEmployees)
       // console.log('filteredEmployees', filteredEmployees)
@@ -95,18 +106,6 @@ export default function ManageEmployees() {
     return filteredEmployees
   }
   // console.log('filteredEmployees-outofthebox', filteredEmployees)
-
-  useEffect(() => {
-    if (filteredEmployees.length > 0) {
-      setRows(filteredEmployees)
-      toast.success(`Show results ${filteredEmployees.length}`)
-      // console.log('rows', rows)
-    } else {
-      setRows(mockedEmployeesDatas)
-      toast.error('No results')
-      // console.log('rows-2', rows)
-    }
-  }, [filteredEmployees])
 
   function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -359,16 +358,12 @@ export default function ManageEmployees() {
 
     setSelected(newSelected)
   }
-  // const handleDeleteClick = () => {
-  //   setRows(rows.filter((row) => row.employeeID !== selected))
-  // }
-  // const handleDeleteClick = () => {
-  //   setRows(rows.filter((row) => row.employeeID !== selected[0]))
-  // }
+
   const handleDeleteClick = () => {
     let undeleteRows = rows.filter((el) => !selected.includes(el.employeeID))
-    console.log('returnDeleteRows', undeleteRows)
+    // console.log('returnDeleteRows', undeleteRows)
     setRows(undeleteRows)
+    setSelected([])
   }
 
   const handleChangePage = (event, newPage) => {
