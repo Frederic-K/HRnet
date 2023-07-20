@@ -44,6 +44,9 @@ export default function ManageEmployees() {
   const dispatch = useDispatch()
   const { id } = useSelector(userSelector)
   const { employees } = useSelector(employeeSelector)
+  const searchInput = useRef()
+  const [rows, setRows] = useState(mockedEmployeesDatas)
+  const [filteredEmployees, setFilteredEmployees] = useState([])
 
   console.log('employees', employees)
 
@@ -55,10 +58,17 @@ export default function ManageEmployees() {
     // eslint-disable-next-line
   }, [id])
 
-  const [rows, setRows] = useState(mockedEmployeesDatas)
-  const [filteredEmployees, setFilteredEmployees] = useState([])
+  function Debounce(func, timeout = 2000) {
+    let timer
+    return (...args) => {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        func.apply(this, args)
+      }, timeout)
+    }
+  }
 
-  const searchInput = useRef()
+  const processChanges = Debounce(() => Filter())
 
   function Filter() {
     let inputSearchValue = searchInput.current.value.toLowerCase()
@@ -77,6 +87,8 @@ export default function ManageEmployees() {
       )
       setFilteredEmployees(filteredEmployees)
       // console.log('filteredEmployees', filteredEmployees)
+    } else {
+      setFilteredEmployees(mockedEmployeesDatas)
     }
     return filteredEmployees
   }
@@ -390,7 +402,7 @@ export default function ManageEmployees() {
             fullWidth
             inputRef={searchInput}
             onChange={() => {
-              Filter()
+              processChanges()
             }}
           />
         </div>
