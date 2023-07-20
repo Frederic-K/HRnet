@@ -15,8 +15,8 @@ import Paper from '@mui/material/Paper'
 import Checkbox from '@mui/material/Checkbox'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
-//import FormControlLabel from '@mui/material/FormControlLabel'
-// import Switch from '@mui/material/Switch'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Switch from '@mui/material/Switch'
 import DeleteIcon from '@mui/icons-material/Delete'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
@@ -92,8 +92,7 @@ export default function ManageEmployees() {
     }
     return filteredEmployees
   }
-
-  console.log('filteredEmployees-outofthebox', filteredEmployees)
+  // console.log('filteredEmployees-outofthebox', filteredEmployees)
 
   useEffect(() => {
     if (filteredEmployees.length > 0) {
@@ -364,11 +363,12 @@ export default function ManageEmployees() {
     setPage(0)
   }
 
-  // const handleChangeDense = (event) => {
-  //   setDense(event.target.checked)
-  // }
+  const handleChangeDense = (event) => {
+    setDense(event.target.checked)
+  }
 
   const isSelected = (firstName) => selected.indexOf(firstName) !== -1
+  console.log('isSelected rows', isSelected)
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -486,10 +486,10 @@ export default function ManageEmployees() {
                 className="manageEmployees__table--bg"
               />
             </Paper>
-            {/* <FormControlLabel
+            <FormControlLabel
               control={<Switch checked={dense} onChange={handleChangeDense} />}
               label="Dense padding"
-            /> */}
+            />
           </Box>
         </div>
       </main>
