@@ -88,7 +88,7 @@ export default function ManageEmployees() {
   function Filter() {
     let inputSearchValue = searchInput.current.value.toLowerCase()
     if (inputSearchValue !== '') {
-      const filteredEmployees = mockedEmployeesDatas.filter(
+      const filteredEmployees = rows.filter(
         (employee) =>
           employee.firstName.toLowerCase().includes(inputSearchValue) ||
           employee.lastName.toLowerCase().includes(inputSearchValue) ||
@@ -108,10 +108,6 @@ export default function ManageEmployees() {
     return filteredEmployees
   }
   // console.log('filteredEmployees-outofthebox', filteredEmployees)
-  const handleFilterSubmit = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-  }
 
   function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -381,10 +377,6 @@ export default function ManageEmployees() {
     setSelected([])
   }
 
-  const handleResetFilterClick = () => {
-    setRows(mockedEmployeesDatas)
-  }
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
   }
@@ -426,29 +418,35 @@ export default function ManageEmployees() {
       <main className="manageEmployees__container">
         {isFilterShown ? (
           <div className="manageEmployees__search">
-            <TextField
-              id="outlined-basic"
-              label="Search"
-              variant="outlined"
-              fullWidth
-              inputRef={searchInput}
-              onChange={() => {
-                processChanges()
-              }}
-              // onSubmit={(e) => {
-              //   handleFilterSubmit(e)
-              // }}
-            />
-            <Button
-              type="reset"
-              variant="outlined"
-              startIcon={<DeleteIcon />}
-              onClick={() => {
-                handleResetFilterClick()
-              }}
+            <Box
+              className="manageEmployees__search--box"
+              component="form"
+              onSubmit={(e) => e.preventDefault()}
             >
-              Reset
-            </Button>
+              <TextField
+                id="outlined-basic"
+                label="Search"
+                variant="outlined"
+                fullWidth
+                inputRef={searchInput}
+                onChange={() => {
+                  processChanges()
+                }}
+                // onSubmit={(e) => {
+                //   handleFilterSubmit(e)
+                // }}
+              />
+              <Button
+                type="reset"
+                variant="outlined"
+                startIcon={<DeleteIcon />}
+                onClick={() => {
+                  processChanges()
+                }}
+              >
+                Reset
+              </Button>
+            </Box>
           </div>
         ) : null}
         {/* // <div className="manageEmployees__search">
