@@ -1,9 +1,11 @@
 export default function LiveDate() {
   let today = new Date()
   let date =
-    today.getDate() +
-    '-' +
+    // today.getDate() +
     parseInt(today.getMonth() + 1) +
+    '-' +
+    today.getDate() +
+    // parseInt(today.getMonth() + 1) +
     '-' +
     today.getFullYear()
 
