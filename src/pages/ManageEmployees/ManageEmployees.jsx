@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Checkbox from '@mui/material/Checkbox'
 import IconButton from '@mui/material/IconButton'
+import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Switch from '@mui/material/Switch'
@@ -82,7 +83,6 @@ export default function ManageEmployees() {
       }, timeout)
     }
   }
-
   const processChanges = Debounce(() => Filter())
 
   function Filter() {
@@ -108,6 +108,10 @@ export default function ManageEmployees() {
     return filteredEmployees
   }
   // console.log('filteredEmployees-outofthebox', filteredEmployees)
+  const handleFilterSubmit = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+  }
 
   function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -377,6 +381,10 @@ export default function ManageEmployees() {
     setSelected([])
   }
 
+  const handleResetFilterClick = () => {
+    setRows(mockedEmployeesDatas)
+  }
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
   }
@@ -427,7 +435,20 @@ export default function ManageEmployees() {
               onChange={() => {
                 processChanges()
               }}
+              // onSubmit={(e) => {
+              //   handleFilterSubmit(e)
+              // }}
             />
+            <Button
+              type="reset"
+              variant="outlined"
+              startIcon={<DeleteIcon />}
+              onClick={() => {
+                handleResetFilterClick()
+              }}
+            >
+              Reset
+            </Button>
           </div>
         ) : null}
         {/* // <div className="manageEmployees__search">
