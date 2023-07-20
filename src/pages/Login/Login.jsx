@@ -75,10 +75,10 @@ export default function Login() {
     if (id) {
       toast.success(successMessage)
       HandleOpenModal()
-    } else if (!id) {
-      HandleCloseModal()
     } else if (isError) {
       toast.error(errorMessage, { position: 'top-center' })
+    } else if (!id) {
+      HandleCloseModal()
     }
     // eslint-disable-next-line
   }, [isError, id])
