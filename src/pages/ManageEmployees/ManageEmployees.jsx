@@ -48,6 +48,7 @@ export default function ManageEmployees() {
   const searchInput = useRef()
   const [rows, setRows] = useState(mockedEmployeesDatas)
   const [filteredEmployees, setFilteredEmployees] = useState([])
+  const [isFilterShown, setIsFilterShown] = useState(false)
 
   //console.log('employees', employees)
   // console.log('selected', selected)
@@ -363,10 +364,10 @@ export default function ManageEmployees() {
 
     setSelected(newSelected)
   }
-  const [isFilterShown, setIsFilterShown] = useState(false)
+
   const handleFilterClick = () => {
     setIsFilterShown(!isFilterShown)
-    console.log('handleFilterClick', isFilterShown)
+    // console.log('handleFilterClick', isFilterShown)
   }
 
   const handleDeleteClick = () => {
