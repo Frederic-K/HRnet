@@ -22,7 +22,6 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
 import TextField from '@mui/material/TextField'
-// import SendIcon from '@mui/icons-material/Send'
 
 import Header from '../../components/Header/Header'
 import { useRef, useState, useEffect, useMemo } from 'react'
@@ -39,7 +38,6 @@ import toast from 'react-hot-toast'
 
 export default function ManageEmployees() {
   const [order, setOrder] = useState('asc')
-  // const [orderBy, setOrderBy] = useState('firstName')
   const [orderBy, setOrderBy] = useState('employeeID')
   const [selected, setSelected] = useState([])
   const [page, setPage] = useState(0)
@@ -56,11 +54,8 @@ export default function ManageEmployees() {
   const [filteredEmployees, setFilteredEmployees] = useState([])
   const [isFilterShown, setIsFilterShown] = useState(false)
 
-  // console.log('selected', selected)
-
   useEffect(() => {
     if (!id) {
-      // dispatch(clearUserState())
       navigate('/')
     }
     // eslint-disable-next-line
@@ -368,7 +363,6 @@ export default function ManageEmployees() {
 
   const handleFilterClick = () => {
     setIsFilterShown(!isFilterShown)
-    // console.log('handleFilterClick', isFilterShown)
   }
 
   const handleDeleteClick = () => {
@@ -436,9 +430,6 @@ export default function ManageEmployees() {
                 onChange={() => {
                   processChanges()
                 }}
-                // onSubmit={(e) => {
-                //   handleFilterSubmit(e)
-                // }}
               />
               <Button
                 type="reset"
@@ -453,18 +444,6 @@ export default function ManageEmployees() {
             </Box>
           </div>
         ) : null}
-        {/* // <div className="manageEmployees__search">
-        //   <TextField
-        //     id="outlined-basic"
-        //     label="Search"
-        //     variant="outlined"
-        //     fullWidth
-        //     inputRef={searchInput}
-        //     onChange={() => {
-        //       processChanges()
-        //     }}
-        //   />
-        // </div> */}
         <div className="manageEmployees__table">
           <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>

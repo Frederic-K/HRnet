@@ -1,6 +1,6 @@
 // React
 import { useState, useRef, useEffect } from 'react'
-import { useNavigate, NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 // Redux User
 import { useDispatch, useSelector } from 'react-redux'
 import { userSelector, clearUserState } from '../../features/userSlice'
@@ -377,17 +377,6 @@ export default function CreateEmployee() {
             <Grid xs={12}>
               <Stack direction="row" spacing={2}>
                 <Grid xs={6}>
-                  {/* <NavLink to="/">
-                    <Button
-                      variant="outlined"
-                      startIcon={<DeleteIcon />}
-                      type="button"
-                      fullWidth
-                    >
-                      Cancel
-                    </Button>
-                  </NavLink> */}
-
                   <Button
                     variant="outlined"
                     startIcon={<DeleteIcon />}
@@ -416,8 +405,6 @@ export default function CreateEmployee() {
             <Grid xs={12} className="createEmployee__popBtn">
               <Button
                 color="secondary"
-                // variant="contained"
-                // endIcon={<SendIcon />}
                 onClick={() => {
                   handlePopulateClick()
                 }}
