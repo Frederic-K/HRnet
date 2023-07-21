@@ -36,5 +36,10 @@
       background-color: rgba(255, 228, 196, 0.3);
       // @include table__bg;
     }
+    &--switch {
+      display: flex;
+      justify-content: space-between;
+      margin: 0px 5px;
+    }
   }
 }
