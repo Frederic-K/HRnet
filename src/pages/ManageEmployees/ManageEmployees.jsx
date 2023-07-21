@@ -25,7 +25,6 @@ import TextField from '@mui/material/TextField'
 // import SendIcon from '@mui/icons-material/Send'
 
 import Header from '../../components/Header/Header'
-import mockedEmployeesDatas from '../../mockedEmployeesDatas/MOCK_DATA-id.json'
 import { useRef, useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -393,12 +392,6 @@ export default function ManageEmployees() {
     setSelected([])
   }
 
-  const handlePopulateClick = () => {
-    const fakeEmployees = mockedEmployeesDatas
-    console.log('fakeEmployees', fakeEmployees)
-    fakeEmployees.forEach((fakeEmployee) => dispatch(addEmployee(fakeEmployee)))
-  }
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
   }
@@ -566,24 +559,12 @@ export default function ManageEmployees() {
               />
             </Paper>
             <div className="manageEmployees__table--action">
-              {' '}
               <FormControlLabel
                 control={
                   <Switch checked={dense} onChange={handleChangeDense} />
                 }
                 label="Dense padding"
               />
-              <Button
-                className="manageEmployees__table--action-btn"
-                color="primary"
-                // variant="contained"
-                // endIcon={<SendIcon />}
-                onClick={() => {
-                  handlePopulateClick()
-                }}
-              >
-                Populate
-              </Button>
             </div>
           </Box>
         </div>

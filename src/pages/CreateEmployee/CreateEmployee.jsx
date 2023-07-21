@@ -4,6 +4,7 @@ import { useNavigate, NavLink } from 'react-router-dom'
 // Redux User
 import { useDispatch, useSelector } from 'react-redux'
 import { userSelector, clearUserState } from '../../features/userSlice'
+import mockedEmployeesDatas from '../../mockedEmployeesDatas/MOCK_DATA-id.json'
 // Redux Add employee
 import { addEmployee } from '../../features/employeeSlice'
 // Components
@@ -77,6 +78,11 @@ export default function CreateEmployee() {
   const streetInput = useRef()
   const cityInput = useRef()
   const zipCodeInput = useRef()
+
+  const handlePopulateClick = () => {
+    const fakeEmployees = mockedEmployeesDatas
+    fakeEmployees.forEach((fakeEmployee) => dispatch(addEmployee(fakeEmployee)))
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -405,6 +411,19 @@ export default function CreateEmployee() {
                   </Button>
                 </Grid>
               </Stack>
+            </Grid>
+
+            <Grid xs={12} className="createEmployee__popBtn">
+              <Button
+                color="secondary"
+                // variant="contained"
+                // endIcon={<SendIcon />}
+                onClick={() => {
+                  handlePopulateClick()
+                }}
+              >
+                Populate
+              </Button>
             </Grid>
           </Grid>
         </Box>
