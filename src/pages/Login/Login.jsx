@@ -25,16 +25,6 @@ export default function Login() {
   const userId = useRef()
   const [isModalShown, setIsModalShow] = useState(false)
 
-  // let today = new Date()
-  // let date =
-  //   today.getDate() +
-  //   '-' +
-  //   parseInt(today.getMonth() + 1) +
-  //   '-' +
-  //   today.getFullYear()
-
-  // console.log(date)
-
   const {
     isFetching,
     isError,

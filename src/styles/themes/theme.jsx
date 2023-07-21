@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles'
-import { green, teal } from '@mui/material/colors'
+import { teal } from '@mui/material/colors'
 
 export const globalTheme = createTheme({
   typography: {
@@ -9,7 +9,7 @@ export const globalTheme = createTheme({
   palette: {
     primary: teal,
     secondary: {
-      main: '#f9fbe7',
+      main: '#f5f5f5',
     },
   },
 })

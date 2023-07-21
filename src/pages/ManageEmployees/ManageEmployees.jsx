@@ -22,7 +22,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
 import TextField from '@mui/material/TextField'
-import SendIcon from '@mui/icons-material/Send'
+// import SendIcon from '@mui/icons-material/Send'
 
 import Header from '../../components/Header/Header'
 import mockedEmployeesDatas from '../../mockedEmployeesDatas/MOCK_DATA-id.json'
@@ -57,29 +57,32 @@ export default function ManageEmployees() {
   const [filteredEmployees, setFilteredEmployees] = useState([])
   const [isFilterShown, setIsFilterShown] = useState(false)
 
-  //console.log('employees', employees)
   // console.log('selected', selected)
 
   useEffect(() => {
     if (!id) {
-      dispatch(clearUserState())
+      // dispatch(clearUserState())
       navigate('/')
     }
     // eslint-disable-next-line
   }, [id])
 
   useEffect(() => {
-    if (filteredEmployees.length > 0) {
-      setRows(filteredEmployees)
-      toast.success(`Show results ${filteredEmployees.length}`)
-      // console.log('rows', rows)
+    if (employees.length > 0) {
+      // setRows(employees)
+      toast.success(`Show results ${employees.length}`)
+      console.log('titi')
+      console.log('filteredEmployees', filteredEmployees.length)
+      console.log('filteredEmployees', filteredEmployees)
+      console.log('rows-A', rows.length)
     } else {
       // setRows(mockedEmployeesDatas)
-      setRows(employees)
+      // setRows(employees)
       toast.error('No results')
-      // console.log('rows-2', rows)
+      console.log('toto')
+      console.log('employeeLength', employees.length)
     }
-  }, [filteredEmployees, employees])
+  }, [filteredEmployees, employees, rows])
 
   function Debounce(func, timeout = 2000) {
     let timer
@@ -95,7 +98,7 @@ export default function ManageEmployees() {
   function Filter() {
     let inputSearchValue = searchInput.current.value.toLowerCase()
     if (inputSearchValue !== '') {
-      const filteredEmployees = rows.filter(
+      const filteredEmployees = employees.filter(
         (employee) =>
           employee.firstName.toLowerCase().includes(inputSearchValue) ||
           employee.lastName.toLowerCase().includes(inputSearchValue) ||
@@ -107,11 +110,13 @@ export default function ManageEmployees() {
           employee.state.toLowerCase().includes(inputSearchValue) ||
           employee.zipCode.toString().includes(inputSearchValue),
       )
-      setFilteredEmployees(filteredEmployees)
-      // console.log('filteredEmployees', filteredEmployees)
+      console.log('filteredEmployees', filteredEmployees)
+      // setFilteredEmployees(filteredEmployees)
+      setRows(filteredEmployees)
     } else {
       // setFilteredEmployees(mockedEmployeesDatas)
-      setFilteredEmployees(employees)
+      // setFilteredEmployees(employees)
+      setRows(employees)
     }
     return filteredEmployees
   }
@@ -379,11 +384,12 @@ export default function ManageEmployees() {
   }
 
   const handleDeleteClick = () => {
-    let undeleteRows = rows.filter((el) => !selected.includes(el.employeeID))
-    console.log('returnUnDeleteRows', undeleteRows)
-    // setRows(undeleteRows)
+    const undeleteRows = employees.filter(
+      (el) => !selected.includes(el.employeeID),
+    )
     dispatch(clearEmployeeState())
     undeleteRows.forEach((undeleteRow) => dispatch(addEmployee(undeleteRow)))
+    setRows(undeleteRows)
     setSelected([])
   }
 
@@ -404,6 +410,9 @@ export default function ManageEmployees() {
     mockedEmployeesDatas.forEach((mockedEmployeesData) =>
       dispatch(addEmployee(mockedEmployeesData)),
     )
+    setRows(employees)
+    console.log('employees-pop', employees.length)
+    console.log('Rows-pop', rows.length)
   }
 
   const isSelected = (employeeID) => selected.indexOf(employeeID) !== -1
@@ -569,14 +578,14 @@ export default function ManageEmployees() {
               />
               <Button
                 className="manageEmployees__table--action-btn"
-                color="secondary"
-                variant="contained"
-                endIcon={<SendIcon />}
+                color="primary"
+                // variant="contained"
+                // endIcon={<SendIcon />}
                 onClick={() => {
                   handlePopulateEmployeeStore()
                 }}
               >
-                Send
+                Populate
               </Button>
             </div>
           </Box>
