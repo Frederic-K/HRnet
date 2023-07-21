@@ -407,7 +407,7 @@ export default function CreateEmployee() {
                       handleSubmit(e)
                     }}
                   >
-                    Send
+                    Create
                   </Button>
                 </Grid>
               </Stack>
