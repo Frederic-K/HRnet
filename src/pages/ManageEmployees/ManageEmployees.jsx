@@ -22,9 +22,10 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
 import TextField from '@mui/material/TextField'
+import SendIcon from '@mui/icons-material/Send'
 
 import Header from '../../components/Header/Header'
-// import mockedEmployeesDatas from '../../mockedEmployeesDatas/MOCK_DATA-id.json'
+import mockedEmployeesDatas from '../../mockedEmployeesDatas/MOCK_DATA-id.json'
 import { useRef, useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -379,7 +380,7 @@ export default function ManageEmployees() {
 
   const handleDeleteClick = () => {
     let undeleteRows = rows.filter((el) => !selected.includes(el.employeeID))
-    console.log('returnDeleteRows', undeleteRows)
+    console.log('returnUnDeleteRows', undeleteRows)
     // setRows(undeleteRows)
     dispatch(clearEmployeeState())
     undeleteRows.forEach((undeleteRow) => dispatch(addEmployee(undeleteRow)))
@@ -397,6 +398,12 @@ export default function ManageEmployees() {
 
   const handleChangeDense = (event) => {
     setDense(event.target.checked)
+  }
+
+  const handlePopulateEmployeeStore = () => {
+    mockedEmployeesDatas.forEach((mockedEmployeesData) =>
+      dispatch(addEmployee(mockedEmployeesData)),
+    )
   }
 
   const isSelected = (employeeID) => selected.indexOf(employeeID) !== -1
@@ -552,7 +559,7 @@ export default function ManageEmployees() {
                 className="manageEmployees__table--bg"
               />
             </Paper>
-            <div className="manageEmployees__table--switch">
+            <div className="manageEmployees__table--action">
               {' '}
               <FormControlLabel
                 control={
@@ -560,12 +567,17 @@ export default function ManageEmployees() {
                 }
                 label="Dense padding"
               />
-              <FormControlLabel
-                value="start"
-                control={<Switch color="primary" />}
-                label="Start"
-                labelPlacement="start"
-              />
+              <Button
+                className="manageEmployees__table--action-btn"
+                color="secondary"
+                variant="contained"
+                endIcon={<SendIcon />}
+                onClick={() => {
+                  handlePopulateEmployeeStore()
+                }}
+              >
+                Send
+              </Button>
             </div>
           </Box>
         </div>

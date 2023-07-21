@@ -8,6 +8,8 @@ export const globalTheme = createTheme({
   },
   palette: {
     primary: teal,
-    secondary: green,
+    secondary: {
+      main: '#f9fbe7',
+    },
   },
 })
