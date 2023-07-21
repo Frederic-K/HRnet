@@ -2,7 +2,7 @@ import { useUser } from '../../services/API/useUser'
 import { useRef, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { clearState, userSelector } from '../../features/userSlice'
+import { clearUserState, userSelector } from '../../features/userSlice'
 
 import { Toaster } from 'react-hot-toast'
 import toast from 'react-hot-toast'
@@ -54,7 +54,7 @@ export default function Login() {
   }
 
   const HandleCloseModal = () => {
-    dispatch(clearState())
+    dispatch(clearUserState())
     setIsModalShow(false)
   }
 
@@ -64,11 +64,11 @@ export default function Login() {
     dispatch(useUser(userId.current.value))
   }
   const HandleReset = () => {
-    dispatch(clearState())
+    dispatch(clearUserState())
   }
 
   const HandleNewInput = () => {
-    dispatch(clearState())
+    dispatch(clearUserState())
   }
 
   useEffect(() => {

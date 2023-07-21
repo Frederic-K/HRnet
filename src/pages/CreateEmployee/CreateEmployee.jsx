@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 // Redux User
 import { useDispatch, useSelector } from 'react-redux'
-import { userSelector, clearState } from '../../features/userSlice'
+import { userSelector, clearUserState } from '../../features/userSlice'
 // Redux Add employee
 import { addEmployee } from '../../features/employeeSlice'
 // Components
@@ -51,7 +51,7 @@ export default function CreateEmployee() {
 
   useEffect(() => {
     if (!id) {
-      dispatch(clearState())
+      dispatch(clearUserState())
       navigate('/')
     }
     // eslint-disable-next-line

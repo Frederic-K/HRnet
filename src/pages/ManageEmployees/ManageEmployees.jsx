@@ -28,7 +28,7 @@ import mockedEmployeesDatas from '../../mockedEmployeesDatas/MOCK_DATA-id.json'
 import { useRef, useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { userSelector, clearState } from '../../features/userSlice'
+import { userSelector, clearUserState } from '../../features/userSlice'
 import { employeeSelector } from '../../features/employeeSlice'
 import { Toaster } from 'react-hot-toast'
 import toast from 'react-hot-toast'
@@ -56,7 +56,7 @@ export default function ManageEmployees() {
 
   useEffect(() => {
     if (!id) {
-      dispatch(clearState())
+      dispatch(clearUserState())
       navigate('/')
     }
     // eslint-disable-next-line

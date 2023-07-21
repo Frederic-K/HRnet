@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { clearState } from '../../features/userSlice'
+import { clearUserState } from '../../features/userSlice'
 
 import Button from '@mui/material/Button'
 import LoginIcon from '@mui/icons-material/Login'
@@ -15,7 +15,7 @@ export default function Footer() {
   }
 
   const handelLogoutClick = () => {
-    dispatch(clearState())
+    dispatch(clearUserState())
     navigate('/')
   }
 

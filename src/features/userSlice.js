@@ -17,7 +17,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     // State management from actions
-    clearState: (state) => {
+    clearUserState: (state) => {
       localStorage.clear()
       return {
         ...state,
@@ -77,7 +77,7 @@ export const userSlice = createSlice({
   },
 })
 // Actions to manage state
-export const { clearState, logout } = userSlice.actions
+export const { clearUserState, logout } = userSlice.actions
 // Grab states
 export const userSelector = (state) => state.user
 
