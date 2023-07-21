@@ -69,7 +69,7 @@ export default function CreateEmployee() {
     setLocationState(event.target.value)
   }
   const uniqueID = uuidv4()
-  const shortUniqueID = uniqueID.slice(0, 13)
+  // const shortUniqueID = uniqueID.slice(0, 13)
   const firstNameInput = useRef()
   const dateOfBirthInput = useRef()
   const lastNameInput = useRef()
@@ -81,12 +81,12 @@ export default function CreateEmployee() {
   const handleSubmit = (e) => {
     e.preventDefault()
     const creationFormInputs = {
-      employeeID: shortUniqueID,
+      employeeID: uniqueID,
       firstName: firstNameInput.current.value,
       lastName: lastNameInput.current.value,
       dateOfBirth: dateOfBirthInput.current.value,
-      dateStart: startDateInput.current.value,
-      departement: departement,
+      startDate: startDateInput.current.value,
+      department: departement,
       street: streetInput.current.value,
       city: cityInput.current.value,
       zipCode: zipCodeInput.current.value,
@@ -96,8 +96,8 @@ export default function CreateEmployee() {
       creationFormInputs.firstName !== '' &&
       creationFormInputs.lastName !== '' &&
       creationFormInputs.dateOfBirth !== '' &&
-      creationFormInputs.dateStart !== '' &&
-      creationFormInputs.departement !== '' &&
+      creationFormInputs.startDate !== '' &&
+      creationFormInputs.department !== '' &&
       creationFormInputs.street !== '' &&
       creationFormInputs.city !== '' &&
       creationFormInputs.zipCode !== '' &&

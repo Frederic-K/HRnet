@@ -11,13 +11,16 @@ export const employeesSlice = createSlice({
     addEmployee: (state, action) => {
       state.employees.push(action.payload)
     },
-    // deleteEmployee: (state, action) => {
-    //   state.employees.
-    // }
+    clearEmployeeState: (state) => {
+      // localStorage.clear()
+      return {
+        employees: [],
+      }
+    },
   },
 })
 
-export const { addEmployee } = employeesSlice.actions
+export const { addEmployee, clearEmployeeState } = employeesSlice.actions
 
 export const employeeSelector = (state) => state.employees
 

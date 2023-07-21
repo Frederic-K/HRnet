@@ -24,12 +24,16 @@ import { visuallyHidden } from '@mui/utils'
 import TextField from '@mui/material/TextField'
 
 import Header from '../../components/Header/Header'
-import mockedEmployeesDatas from '../../mockedEmployeesDatas/MOCK_DATA-id.json'
+// import mockedEmployeesDatas from '../../mockedEmployeesDatas/MOCK_DATA-id.json'
 import { useRef, useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { userSelector, clearUserState } from '../../features/userSlice'
-import { employeeSelector } from '../../features/employeeSlice'
+import {
+  employeeSelector,
+  addEmployee,
+  clearEmployeeState,
+} from '../../features/employeeSlice'
 import { Toaster } from 'react-hot-toast'
 import toast from 'react-hot-toast'
 
@@ -47,7 +51,8 @@ export default function ManageEmployees() {
   const { id } = useSelector(userSelector)
   const { employees } = useSelector(employeeSelector)
   const searchInput = useRef()
-  const [rows, setRows] = useState(mockedEmployeesDatas)
+  // const [rows, setRows] = useState(mockedEmployeesDatas)
+  const [rows, setRows] = useState(employees)
   const [filteredEmployees, setFilteredEmployees] = useState([])
   const [isFilterShown, setIsFilterShown] = useState(false)
 
@@ -68,11 +73,12 @@ export default function ManageEmployees() {
       toast.success(`Show results ${filteredEmployees.length}`)
       // console.log('rows', rows)
     } else {
-      setRows(mockedEmployeesDatas)
+      // setRows(mockedEmployeesDatas)
+      setRows(employees)
       toast.error('No results')
       // console.log('rows-2', rows)
     }
-  }, [filteredEmployees])
+  }, [filteredEmployees, employees])
 
   function Debounce(func, timeout = 2000) {
     let timer
@@ -103,7 +109,8 @@ export default function ManageEmployees() {
       setFilteredEmployees(filteredEmployees)
       // console.log('filteredEmployees', filteredEmployees)
     } else {
-      setFilteredEmployees(mockedEmployeesDatas)
+      // setFilteredEmployees(mockedEmployeesDatas)
+      setFilteredEmployees(employees)
     }
     return filteredEmployees
   }
@@ -372,8 +379,10 @@ export default function ManageEmployees() {
 
   const handleDeleteClick = () => {
     let undeleteRows = rows.filter((el) => !selected.includes(el.employeeID))
-    // console.log('returnDeleteRows', undeleteRows)
-    setRows(undeleteRows)
+    console.log('returnDeleteRows', undeleteRows)
+    // setRows(undeleteRows)
+    dispatch(clearEmployeeState())
+    undeleteRows.forEach((undeleteRow) => dispatch(addEmployee(undeleteRow)))
     setSelected([])
   }
 
@@ -543,10 +552,21 @@ export default function ManageEmployees() {
                 className="manageEmployees__table--bg"
               />
             </Paper>
-            <FormControlLabel
-              control={<Switch checked={dense} onChange={handleChangeDense} />}
-              label="Dense padding"
-            />
+            <div className="manageEmployees__table--switch">
+              {' '}
+              <FormControlLabel
+                control={
+                  <Switch checked={dense} onChange={handleChangeDense} />
+                }
+                label="Dense padding"
+              />
+              <FormControlLabel
+                value="start"
+                control={<Switch color="primary" />}
+                label="Start"
+                labelPlacement="start"
+              />
+            </div>
           </Box>
         </div>
       </main>
