@@ -171,6 +171,7 @@ export default function Login() {
                       label="userId"
                       name="userId"
                       variant="outlined"
+                      helperText="(mocked users : 110 or 120)"
                       inputRef={userId}
                       onChange={() => {
                         HandleNewInput()
@@ -184,7 +185,6 @@ export default function Login() {
                       id="errorUserId"
                       name="errorUserId"
                       label="errorUserId"
-                      // defaultValue="Press Reset"
                       helperText="Incorrect entry."
                       inputRef={userId}
                       onChange={() => {
