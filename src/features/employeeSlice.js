@@ -11,7 +11,13 @@ export const employeesSlice = createSlice({
     addEmployee: (state, action) => {
       state.employees.push(action.payload)
     },
-    clearEmployeeState: (state) => {
+    deleteEmployee: (state, action) => {
+      console.log('action.payload', action.payload)
+      // state.employees.filter((el) => el.employeeID !== action.payload)
+      state.employees.filter((el) => !action.payload.includes(el.employeeID))
+      // console.log('employees-state', state.employees)
+    },
+    clearEmployeeState: () => {
       // localStorage.clear()
       return {
         employees: [],
@@ -20,7 +26,8 @@ export const employeesSlice = createSlice({
   },
 })
 
-export const { addEmployee, clearEmployeeState } = employeesSlice.actions
+export const { addEmployee, deleteEmployee, clearEmployeeState } =
+  employeesSlice.actions
 
 export const employeeSelector = (state) => state.employees
 

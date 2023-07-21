@@ -32,6 +32,7 @@ import {
   employeeSelector,
   addEmployee,
   clearEmployeeState,
+  deleteEmployee,
 } from '../../features/employeeSlice'
 import { Toaster } from 'react-hot-toast'
 import toast from 'react-hot-toast'
@@ -374,6 +375,13 @@ export default function ManageEmployees() {
     setRows(undeleteRows)
     setSelected([])
   }
+
+  // const handleDeleteClick = () => {
+  //   console.log('selected', selected)
+  //   dispatch(deleteEmployee(selected))
+  //   console.log('employees', employees)
+  //   setSelected([])
+  // }
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
