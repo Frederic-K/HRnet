@@ -1,7 +1,15 @@
 @mixin modale__bg {
   background: radial-gradient(
     circle,
-    rgba(255, 228, 196, 1) 53%,
-    rgba(255, 248, 240, 1) 100%
+    rgba(255, 246, 235, 1) 0%,
+    rgba(255, 228, 196, 1) 70%
   );
 }
+
+// @mixin table__bg {
+//   background: linear-gradient(
+//     90deg,
+//     rgba(255, 228, 196, 1) 0%,
+//     rgba(255, 246, 235, 1) 100%
+//   );
+// }
