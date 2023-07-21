@@ -28,7 +28,7 @@ import Header from '../../components/Header/Header'
 import { useRef, useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { userSelector, clearUserState } from '../../features/userSlice'
+import { userSelector } from '../../features/userSlice'
 import {
   employeeSelector,
   addEmployee,
@@ -68,18 +68,9 @@ export default function ManageEmployees() {
 
   useEffect(() => {
     if (employees.length > 0) {
-      // setRows(employees)
-      toast.success(`Show results ${employees.length}`)
-      console.log('titi')
-      console.log('filteredEmployees', filteredEmployees.length)
-      console.log('filteredEmployees', filteredEmployees)
-      console.log('rows-A', rows.length)
+      toast.success(`Employees: ${employees.length}`)
     } else {
-      // setRows(mockedEmployeesDatas)
-      // setRows(employees)
-      toast.error('No results')
-      console.log('toto')
-      console.log('employeeLength', employees.length)
+      toast.error('Nothing interesting to show you')
     }
   }, [employees, filteredEmployees, rows])
 
@@ -95,31 +86,29 @@ export default function ManageEmployees() {
   const processChanges = Debounce(() => Filter())
 
   function Filter() {
-    let inputSearchValue = searchInput.current.value.toLowerCase()
+    let inputSearchValue = searchInput.current.value
     if (inputSearchValue !== '') {
+      let filterValue = inputSearchValue.toLowerCase()
       const filteredEmployees = employees.filter(
         (employee) =>
-          employee.firstName.toLowerCase().includes(inputSearchValue) ||
-          employee.lastName.toLowerCase().includes(inputSearchValue) ||
-          employee.startDate.toLowerCase().includes(inputSearchValue) ||
-          employee.department.toLowerCase().includes(inputSearchValue) ||
-          employee.dateOfBirth.toLowerCase().includes(inputSearchValue) ||
-          employee.street.toLowerCase().includes(inputSearchValue) ||
-          employee.city.toLowerCase().includes(inputSearchValue) ||
-          employee.state.toLowerCase().includes(inputSearchValue) ||
-          employee.zipCode.toString().includes(inputSearchValue),
+          employee.firstName.toLowerCase().includes(filterValue) ||
+          employee.lastName.toLowerCase().includes(filterValue) ||
+          employee.startDate.toLowerCase().includes(filterValue) ||
+          employee.department.toLowerCase().includes(filterValue) ||
+          employee.dateOfBirth.toLowerCase().includes(filterValue) ||
+          employee.street.toLowerCase().includes(filterValue) ||
+          employee.city.toLowerCase().includes(filterValue) ||
+          employee.state.toLowerCase().includes(filterValue) ||
+          employee.zipCode.toString().includes(filterValue),
       )
-      console.log('filteredEmployees', filteredEmployees)
-      // setFilteredEmployees(filteredEmployees)
+      setFilteredEmployees(filteredEmployees)
       setRows(filteredEmployees)
     } else {
       // setFilteredEmployees(mockedEmployeesDatas)
-      // setFilteredEmployees(employees)
+      setFilteredEmployees([])
       setRows(employees)
     }
-    return filteredEmployees
   }
-  // console.log('filteredEmployees-outofthebox', filteredEmployees)
 
   function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
