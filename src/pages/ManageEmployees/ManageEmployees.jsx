@@ -82,7 +82,7 @@ export default function ManageEmployees() {
       console.log('toto')
       console.log('employeeLength', employees.length)
     }
-  }, [filteredEmployees, employees, rows])
+  }, [employees, filteredEmployees, rows])
 
   function Debounce(func, timeout = 2000) {
     let timer
@@ -393,6 +393,12 @@ export default function ManageEmployees() {
     setSelected([])
   }
 
+  const handlePopulateClick = () => {
+    const fakeEmployees = mockedEmployeesDatas
+    console.log('fakeEmployees', fakeEmployees)
+    fakeEmployees.forEach((fakeEmployee) => dispatch(addEmployee(fakeEmployee)))
+  }
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
   }
@@ -404,15 +410,6 @@ export default function ManageEmployees() {
 
   const handleChangeDense = (event) => {
     setDense(event.target.checked)
-  }
-
-  const handlePopulateEmployeeStore = () => {
-    mockedEmployeesDatas.forEach((mockedEmployeesData) =>
-      dispatch(addEmployee(mockedEmployeesData)),
-    )
-    setRows(employees)
-    console.log('employees-pop', employees.length)
-    console.log('Rows-pop', rows.length)
   }
 
   const isSelected = (employeeID) => selected.indexOf(employeeID) !== -1
@@ -582,7 +579,7 @@ export default function ManageEmployees() {
                 // variant="contained"
                 // endIcon={<SendIcon />}
                 onClick={() => {
-                  handlePopulateEmployeeStore()
+                  handlePopulateClick()
                 }}
               >
                 Populate
