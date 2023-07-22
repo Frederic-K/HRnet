@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { useUser } from '../services/API/useUser'
 
 const initialState = {
-  id: localStorage.getItem('userId') ?? null,
+  id: localStorage.getItem('id') ?? null,
   firstName: '',
   lastName: '',
   isFetching: false,
@@ -18,7 +18,7 @@ export const userSlice = createSlice({
   reducers: {
     // State management from actions
     clearUserState: (state) => {
-      localStorage.removeItem('id')
+      // localStorage.removeItem('id')
       return {
         ...state,
         id: '',
@@ -32,7 +32,7 @@ export const userSlice = createSlice({
       }
     },
     logout: (state) => {
-      localStorage.clear()
+      // localStorage.clear()
       return {
         ...state,
         id: '',
