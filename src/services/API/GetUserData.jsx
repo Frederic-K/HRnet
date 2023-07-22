@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-export const useUser = createAsyncThunk(
+export const GetUserData = createAsyncThunk(
   'user/load',
   async (userId, thunkAPI) => {
     // console.log('api')

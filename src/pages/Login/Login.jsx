@@ -1,4 +1,4 @@
-import { useUser } from '../../services/API/useUser'
+import { GetUserData } from '../../services/API/GetUserData'
 import { useRef, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
@@ -53,7 +53,7 @@ export default function Login() {
   const HandleSubmit = (e) => {
     e.preventDefault()
     // console.log('userIduseRef', userId.current.value)
-    dispatch(useUser(userId.current.value))
+    dispatch(GetUserData(userId.current.value))
   }
   const HandleReset = () => {
     dispatch(clearUserState())
@@ -65,6 +65,7 @@ export default function Login() {
 
   useEffect(() => {
     if (id) {
+      dispatch(GetUserData(id))
       toast.success(successMessage)
       HandleOpenModal()
     } else if (isError) {

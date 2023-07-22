@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { useUser } from '../services/API/useUser'
+import { GetUserData } from '../services/API/GetUserData'
 
 const initialState = {
   id: localStorage.getItem('id') ?? null,
@@ -18,7 +18,7 @@ export const userSlice = createSlice({
   reducers: {
     // State management from actions
     clearUserState: (state) => {
-      // localStorage.removeItem('id')
+      localStorage.removeItem('id')
       return {
         ...state,
         id: '',
@@ -32,7 +32,7 @@ export const userSlice = createSlice({
       }
     },
     logout: (state) => {
-      // localStorage.clear()
+      localStorage.clear()
       return {
         ...state,
         id: '',
@@ -49,7 +49,7 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     // State management from api feedback
     builder
-      .addCase(useUser.fulfilled, (state, { payload }) => {
+      .addCase(GetUserData.fulfilled, (state, { payload }) => {
         // console.log('payload', payload)
         return {
           ...state,
@@ -60,7 +60,7 @@ export const userSlice = createSlice({
           successMessage: 'Login success',
         }
       })
-      .addCase(useUser.rejected, (state, { payload }) => {
+      .addCase(GetUserData.rejected, (state, { payload }) => {
         return {
           ...state,
           isFetching: false,
@@ -68,7 +68,7 @@ export const userSlice = createSlice({
           errorMessage: 'Request rejected',
         }
       })
-      .addCase(useUser.pending, (state) => {
+      .addCase(GetUserData.pending, (state) => {
         return {
           ...state,
           isFetching: true,
