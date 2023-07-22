@@ -82,12 +82,14 @@ export default function CreateEmployee() {
   const handlePopulateClick = () => {
     const fakeEmployees = mockedEmployeesDatas
     fakeEmployees.forEach((fakeEmployee) => dispatch(addEmployee(fakeEmployee)))
-    fakeEmployees.forEach((fakeEmployee) =>
-      localStorage.setItem(
-        `employee+${fakeEmployee.employeeID}`,
-        JSON.stringify(fakeEmployee),
-      ),
-    )
+    // fakeEmployees.forEach((fakeEmployee) =>
+    //   localStorage.setItem(
+    //     `employee+${fakeEmployee.employeeID}`,
+    //     JSON.stringify(fakeEmployee),
+    //   ),
+    // )
+    let fakeEmployeesToString = JSON.stringify(fakeEmployees)
+    localStorage.setItem('employees', fakeEmployeesToString)
   }
 
   const handleSubmit = (e) => {
@@ -117,10 +119,10 @@ export default function CreateEmployee() {
     ) {
       console.log('creationFormInputs', creationFormInputs)
       dispatch(addEmployee(creationFormInputs))
-      localStorage.setItem(
-        `employee+${creationFormInputs.employeeID}`,
-        JSON.stringify(creationFormInputs),
-      )
+      // localStorage.setItem(
+      //   `employee+${creationFormInputs.employeeID}`,
+      //   JSON.stringify(creationFormInputs),
+      // )
     } else {
       toast.error('Emplty fields are not allowed')
     }
