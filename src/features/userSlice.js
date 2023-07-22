@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 import { GetUserData } from '../services/API/GetUserData'
 
 const initialState = {
-  id: localStorage.getItem('id') ?? null,
-  firstName: '',
-  lastName: '',
+  id: localStorage.getItem('userID') ?? null,
+  firstName: localStorage.getItem('userFirstName') ?? null,
+  lastName: localStorage.getItem('userLastName') ?? null,
   isFetching: false,
   isUpdated: false,
   isError: false,
@@ -18,7 +18,9 @@ export const userSlice = createSlice({
   reducers: {
     // State management from actions
     clearUserState: (state) => {
-      localStorage.removeItem('id')
+      localStorage.removeItem('userID', 'userFirstName', 'userLastName')
+      localStorage.removeItem('userFirstName')
+      localStorage.removeItem('userLastName')
       return {
         ...state,
         id: '',

@@ -65,8 +65,7 @@ export default function Login() {
 
   useEffect(() => {
     if (id) {
-      dispatch(GetUserData(id))
-      toast.success(successMessage)
+      toast.success('Connexion success')
       HandleOpenModal()
     } else if (isError) {
       toast.error(errorMessage, { position: 'top-center' })
