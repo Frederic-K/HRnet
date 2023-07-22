@@ -372,6 +372,12 @@ export default function ManageEmployees() {
     )
     dispatch(clearEmployeeState())
     undeleteRows.forEach((undeleteRow) => dispatch(addEmployee(undeleteRow)))
+    undeleteRows.forEach((undeleteRow) =>
+      localStorage.setItem(
+        `employee+${undeleteRow.employeeID}`,
+        JSON.stringify(undeleteRow),
+      ),
+    )
     setRows(undeleteRows)
     setSelected([])
   }
