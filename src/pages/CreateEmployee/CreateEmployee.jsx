@@ -80,19 +80,45 @@ export default function CreateEmployee() {
   const zipCodeInput = useRef()
 
   const handlePopulateClick = () => {
-    const fakeEmployees = mockedEmployeesDatas
-    fakeEmployees.forEach((fakeEmployee) => dispatch(addEmployee(fakeEmployee)))
-    // fakeEmployees.forEach((fakeEmployee) =>
-    //   localStorage.setItem(
-    //     `employee+${fakeEmployee.employeeID}`,
-    //     JSON.stringify(fakeEmployee),
-    //   ),
+    const mockedEmployees = mockedEmployeesDatas
+    mockedEmployees.forEach((fakeEmployee) =>
+      dispatch(addEmployee(fakeEmployee)),
+    )
+
+    // const employeesFromLocalStorage = JSON.parse(
+    //   localStorage.getItem('employees'),
     // )
-    let fakeEmployeesToString = JSON.stringify(fakeEmployees)
-    localStorage.setItem('employees', fakeEmployeesToString)
+
+    // console.log('employeeFromLocalStorage', employeesFromLocalStorage)
+    // console.log('mockedEmployees', mockedEmployees)
+
+    // if (employeesFromLocalStorage !== null) {
+    //   console.log('toto')
+    //   console.log('employeesFromLocalStorage', employeesFromLocalStorage)
+    //   console.log('mockedEmployees', mockedEmployees)
+
+    //   const mergeEmployeesDatas = [].concat(
+    //     mockedEmployees,
+    //     employeesFromLocalStorage,
+    //   )
+
+    //   console.log('mergeEmployeesDatas', mergeEmployeesDatas)
+
+    //   localStorage.removeItem('employees')
+
+    //   const mergeEmployeesDatasToString = JSON.stringify(mergeEmployeesDatas)
+
+    //   localStorage.setItem('employees', mergeEmployeesDatasToString)
+    // } else {
+    //   console.log('titi')
+
+    //   const mockedEmployeeToString = JSON.stringify(mockedEmployees)
+
+    //   localStorage.setItem('employees', mockedEmployeeToString)
+    // }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const creationFormInputs = {
       employeeID: uniqueID,
@@ -118,11 +144,8 @@ export default function CreateEmployee() {
       creationFormInputs.state !== ''
     ) {
       console.log('creationFormInputs', creationFormInputs)
+
       dispatch(addEmployee(creationFormInputs))
-      // localStorage.setItem(
-      //   `employee+${creationFormInputs.employeeID}`,
-      //   JSON.stringify(creationFormInputs),
-      // )
     } else {
       toast.error('Emplty fields are not allowed')
     }
