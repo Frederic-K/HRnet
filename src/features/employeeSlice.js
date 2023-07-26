@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { json } from 'react-router-dom'
 
 const initialState = {
-  employees: [],
+  employees: JSON.parse(localStorage.getItem('employees')) ?? [],
 }
 
 // let arrayEmployees = JSON.parse(localStorage.getItem('employees')) || []

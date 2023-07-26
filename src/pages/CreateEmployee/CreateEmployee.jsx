@@ -131,7 +131,6 @@ export default function CreateEmployee() {
   }
 
   const handeResetClick = () => {
-    console.log('toto')
     setDepartement('')
     setLocationState('')
     setDateOfBirthState(null)
