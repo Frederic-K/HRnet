@@ -23,7 +23,6 @@ export const employeesSlice = createSlice({
       // console.log('employees-state', state.employees)
     },
     clearEmployeeState: () => {
-      // localStorage.removeItem('employees')
       return {
         employees: [],
       }
