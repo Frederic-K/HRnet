@@ -64,9 +64,11 @@ export default function ManageEmployees() {
 
   useEffect(() => {
     if (employees.length > 0) {
+      setRows(employees)
       toast.success(`Employees: ${employees.length}`)
     } else {
       toast.error('Nothing interesting to show you')
+      setRows(employees)
     }
   }, [employees, filteredEmployees, rows])
 
