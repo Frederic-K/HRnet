@@ -76,6 +76,11 @@ export default function CreateEmployee() {
     setDateOfBirthState(e)
   }
 
+  const [startOfDateState, setStartOfDateState] = useState(null)
+  const handlestartOfDateState = (e) => {
+    setStartOfDateState(e)
+  }
+
   const uniqueID = uuidv4()
   // const shortUniqueID = uniqueID.slice(0, 13)
   const firstNameInput = useRef()
@@ -130,6 +135,7 @@ export default function CreateEmployee() {
     setDepartement('')
     setLocationState('')
     setDateOfBirthState(null)
+    setStartOfDateState(null)
   }
   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
   // function CustomActionBar(props) {
@@ -304,6 +310,8 @@ export default function CreateEmployee() {
                 <DatePicker
                   label="Start day *"
                   inputRef={startDateInput}
+                  value={startOfDateState}
+                  onChange={handlestartOfDateState}
                   slotProps={{
                     actionBar: {
                       actions: ['today', 'clear'],
