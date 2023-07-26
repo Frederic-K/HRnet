@@ -81,13 +81,9 @@ export default function Login() {
         <Toaster />
       </div>
       <header className="login__header">
-        {/* <div className="login__header--date"> {date}</div> */}
         <div className="login__header--date">
           <LiveDate />
         </div>
-        {/* <div className="login__header--liveClock">
-          <LiveClockUpdate />
-        </div> */}
         <div className="login__header--liveClock">
           <LiveClock />
         </div>
