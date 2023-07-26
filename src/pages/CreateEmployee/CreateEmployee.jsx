@@ -69,6 +69,12 @@ export default function CreateEmployee() {
   const handleChangeLocationState = (event) => {
     setLocationState(event.target.value)
   }
+
+  // const [dateOfBirthState, setDateOfBirthState] = useState()
+  // const handleDateOfBirthState = (event) => {
+  //   setDateOfBirthState(event)
+  // }
+
   const uniqueID = uuidv4()
   // const shortUniqueID = uniqueID.slice(0, 13)
   const firstNameInput = useRef()
@@ -116,6 +122,13 @@ export default function CreateEmployee() {
     } else {
       toast.error('Empty fields are not allowed')
     }
+  }
+
+  const handeResetClick = () => {
+    console.log('toto')
+    setDepartement('')
+    setLocationState('')
+    // setDateOfBirthState('')
   }
   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
   // function CustomActionBar(props) {
@@ -254,8 +267,11 @@ export default function CreateEmployee() {
                 adapterLocale="en"
               >
                 <DatePicker
+                  id="dateOfBirth"
                   label="Birthdate *"
                   inputRef={dateOfBirthInput}
+                  // value={dateOfBirthState}
+                  // onChange={handleDateOfBirthState}
                   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
                   // slots={{
                   //   actionBar: CustomActionBar,
@@ -384,6 +400,9 @@ export default function CreateEmployee() {
                     startIcon={<DeleteIcon />}
                     type="reset"
                     fullWidth
+                    onClick={() => {
+                      handeResetClick()
+                    }}
                   >
                     Reset
                   </Button>
