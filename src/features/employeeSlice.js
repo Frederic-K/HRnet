@@ -20,7 +20,6 @@ export const employeesSlice = createSlice({
       console.log('action.payload', action.payload)
       // state.employees.filter((el) => el.employeeID !== action.payload)
       state.employees.filter((el) => !action.payload.includes(el.employeeID))
-      // console.log('employees-state', state.employees)
     },
     clearEmployeeState: () => {
       return {

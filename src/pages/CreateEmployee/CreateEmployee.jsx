@@ -84,41 +84,9 @@ export default function CreateEmployee() {
     mockedEmployees.forEach((fakeEmployee) =>
       dispatch(addEmployee(fakeEmployee)),
     )
-
-    // const employeesFromLocalStorage = JSON.parse(
-    //   localStorage.getItem('employees'),
-    // )
-
-    // console.log('employeeFromLocalStorage', employeesFromLocalStorage)
-    // console.log('mockedEmployees', mockedEmployees)
-
-    // if (employeesFromLocalStorage !== null) {
-    //   console.log('toto')
-    //   console.log('employeesFromLocalStorage', employeesFromLocalStorage)
-    //   console.log('mockedEmployees', mockedEmployees)
-
-    //   const mergeEmployeesDatas = [].concat(
-    //     mockedEmployees,
-    //     employeesFromLocalStorage,
-    //   )
-
-    //   console.log('mergeEmployeesDatas', mergeEmployeesDatas)
-
-    //   localStorage.removeItem('employees')
-
-    //   const mergeEmployeesDatasToString = JSON.stringify(mergeEmployeesDatas)
-
-    //   localStorage.setItem('employees', mergeEmployeesDatasToString)
-    // } else {
-    //   console.log('titi')
-
-    //   const mockedEmployeeToString = JSON.stringify(mockedEmployees)
-
-    //   localStorage.setItem('employees', mockedEmployeeToString)
-    // }
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     const creationFormInputs = {
       employeeID: uniqueID,
@@ -147,7 +115,7 @@ export default function CreateEmployee() {
 
       dispatch(addEmployee(creationFormInputs))
     } else {
-      toast.error('Emplty fields are not allowed')
+      toast.error('Empty fields are not allowed')
     }
   }
   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
