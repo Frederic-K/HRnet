@@ -18,8 +18,14 @@ export const employeesSlice = createSlice({
     },
     deleteEmployee: (state, action) => {
       console.log('action.payload', action.payload)
+      let selected = action.payload
+      console.log('slice selected line', action.payload)
       // state.employees.filter((el) => el.employeeID !== action.payload)
-      state.employees.filter((el) => !action.payload.includes(el.employeeID))
+      // state.employees.filter((el) => !action.payload.includes(el.employeeID))
+
+      state.employees.filter((el) => !selected.includes(el.employeeID))
+
+      localStorage.setItem('employees', JSON.stringify(state.employees))
     },
     clearEmployeeState: () => {
       return {

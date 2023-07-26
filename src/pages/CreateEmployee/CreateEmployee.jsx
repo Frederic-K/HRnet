@@ -112,7 +112,6 @@ export default function CreateEmployee() {
       creationFormInputs.state !== ''
     ) {
       console.log('creationFormInputs', creationFormInputs)
-
       dispatch(addEmployee(creationFormInputs))
     } else {
       toast.error('Empty fields are not allowed')

@@ -366,28 +366,22 @@ export default function ManageEmployees() {
     setIsFilterShown(!isFilterShown)
   }
 
-  const handleDeleteClick = () => {
-    const undeleteRows = employees.filter(
-      (el) => !selected.includes(el.employeeID),
-    )
-    dispatch(clearEmployeeState())
-    undeleteRows.forEach((undeleteRow) => dispatch(addEmployee(undeleteRow)))
-    // undeleteRows.forEach((undeleteRow) =>
-    //   localStorage.setItem(
-    //     `employee+${undeleteRow.employeeID}`,
-    //     JSON.stringify(undeleteRow),
-    //   ),
-    // )
-    setRows(undeleteRows)
-    setSelected([])
-  }
-
   // const handleDeleteClick = () => {
-  //   console.log('selected', selected)
-  //   dispatch(deleteEmployee(selected))
-  //   console.log('employees', employees)
+  //   const undeleteRows = employees.filter(
+  //     (el) => !selected.includes(el.employeeID),
+  //   )
+  //   dispatch(clearEmployeeState())
+  //   undeleteRows.forEach((undeleteRow) => dispatch(addEmployee(undeleteRow)))
+  //   setRows(undeleteRows)
   //   setSelected([])
   // }
+
+  const handleDeleteClick = () => {
+    console.log('selected', selected)
+    dispatch(deleteEmployee(selected))
+    console.log('employees', employees)
+    setSelected([])
+  }
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
