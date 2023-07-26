@@ -25,6 +25,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import 'dayjs/locale/de'
 import 'dayjs/locale/en-gb'
+import dayjs from 'dayjs'
 
 // CustomActionBar for date picker
 // import DialogActions from '@mui/material/DialogActions'
@@ -70,10 +71,10 @@ export default function CreateEmployee() {
     setLocationState(event.target.value)
   }
 
-  // const [dateOfBirthState, setDateOfBirthState] = useState()
-  // const handleDateOfBirthState = (event) => {
-  //   setDateOfBirthState(event)
-  // }
+  const [dateOfBirthState, setDateOfBirthState] = useState(null)
+  const handleDateOfBirthState = (e) => {
+    setDateOfBirthState(e)
+  }
 
   const uniqueID = uuidv4()
   // const shortUniqueID = uniqueID.slice(0, 13)
@@ -128,7 +129,7 @@ export default function CreateEmployee() {
     console.log('toto')
     setDepartement('')
     setLocationState('')
-    // setDateOfBirthState('')
+    setDateOfBirthState(null)
   }
   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
   // function CustomActionBar(props) {
@@ -270,8 +271,8 @@ export default function CreateEmployee() {
                   id="dateOfBirth"
                   label="Birthdate *"
                   inputRef={dateOfBirthInput}
-                  // value={dateOfBirthState}
-                  // onChange={handleDateOfBirthState}
+                  value={dateOfBirthState}
+                  onChange={handleDateOfBirthState}
                   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
                   // slots={{
                   //   actionBar: CustomActionBar,
