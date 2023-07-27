@@ -50,6 +50,7 @@ export default function CreateEmployee() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { id } = useSelector(userSelector)
+  let creationFormInputs = ''
 
   useEffect(() => {
     if (!id) {
@@ -100,29 +101,30 @@ export default function CreateEmployee() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const creationFormInputs = {
-      employeeID: uniqueID,
-      firstName: firstNameInput.current.value,
-      lastName: lastNameInput.current.value,
-      dateOfBirth: dateOfBirthInput.current.value,
-      startDate: startDateInput.current.value,
-      department: departement,
-      street: streetInput.current.value,
-      city: cityInput.current.value,
-      zipCode: zipCodeInput.current.value,
-      state: locationState,
-    }
     if (
-      creationFormInputs.firstName !== '' &&
-      creationFormInputs.lastName !== '' &&
-      creationFormInputs.dateOfBirth !== '' &&
-      creationFormInputs.startDate !== '' &&
-      creationFormInputs.department !== '' &&
-      creationFormInputs.street !== '' &&
-      creationFormInputs.city !== '' &&
-      creationFormInputs.zipCode !== '' &&
-      creationFormInputs.state !== ''
+      uniqueID !== '' &&
+      firstNameInput.current.value !== '' &&
+      lastNameInput.current.value !== '' &&
+      dateOfBirthInput.current.value !== '' &&
+      startDateInput.current.value !== '' &&
+      departement !== '' &&
+      streetInput.current.value !== '' &&
+      cityInput.current.value !== '' &&
+      zipCodeInput.current.value !== '' &&
+      locationState !== ''
     ) {
+      creationFormInputs = {
+        employeeID: uniqueID,
+        firstName: firstNameInput.current.value,
+        lastName: lastNameInput.current.value,
+        dateOfBirth: dateOfBirthInput.current.value,
+        startDate: startDateInput.current.value,
+        department: departement,
+        street: streetInput.current.value,
+        city: cityInput.current.value,
+        zipCode: zipCodeInput.current.value,
+        state: locationState,
+      }
       console.log('creationFormInputs', creationFormInputs)
       dispatch(addEmployee(creationFormInputs))
     } else {

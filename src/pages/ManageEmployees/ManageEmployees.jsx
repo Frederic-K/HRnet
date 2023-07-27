@@ -1,3 +1,4 @@
+// Mui components
 import PropTypes from 'prop-types'
 import { alpha } from '@mui/material/styles'
 import Box from '@mui/material/Box'
@@ -22,13 +23,15 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import { visuallyHidden } from '@mui/utils'
 import TextField from '@mui/material/TextField'
-
+// Components
 import Header from '../../components/Header/Header'
+// React
 import { useRef, useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { userSelector } from '../../features/userSlice'
 import { employeeSelector, deleteEmployee } from '../../features/employeeSlice'
+//Toaster
 import { Toaster } from 'react-hot-toast'
 import toast from 'react-hot-toast'
 
