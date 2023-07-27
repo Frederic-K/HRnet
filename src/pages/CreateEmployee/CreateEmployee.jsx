@@ -132,7 +132,7 @@ export default function CreateEmployee() {
     }
   }
 
-  const handeResetClick = () => {
+  const handleResetClick = () => {
     setDepartement('')
     setLocationState('')
     setDateOfBirthState(null)
@@ -411,7 +411,7 @@ export default function CreateEmployee() {
                     type="reset"
                     fullWidth
                     onClick={() => {
-                      handeResetClick()
+                      handleResetClick()
                     }}
                   >
                     Reset

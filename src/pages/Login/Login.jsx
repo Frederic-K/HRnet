@@ -31,40 +31,40 @@ export default function Login() {
     useSelector(userSelector)
   // console.log('id', id)
 
-  const HandleOpenModal = () => {
+  const handleOpenModal = () => {
     // Ensure that the form is closed
     // HandleCloseModal()
     // Manage form's local state
     setIsModalShow(true)
   }
 
-  const HandleCloseModal = () => {
+  const handleCloseModal = () => {
     dispatch(clearUserState())
     dispatch(clearEmployeeState())
     setIsModalShow(false)
   }
 
-  const HandleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     // console.log('userIduseRef', userId.current.value)
     dispatch(GetUserData(userId.current.value))
   }
-  const HandleReset = () => {
+  const handleReset = () => {
     dispatch(clearUserState())
   }
 
-  const HandleNewInput = () => {
+  const handleNewInput = () => {
     dispatch(clearUserState())
   }
 
   useEffect(() => {
     if (id) {
-      toast.success('Connexion success')
-      HandleOpenModal()
+      toast.success('Successful connection')
+      handleOpenModal()
     } else if (isError) {
       toast.error(errorMessage, { position: 'top-center' })
     } else if (!id) {
-      HandleCloseModal()
+      handleCloseModal()
     }
     // eslint-disable-next-line
   }, [isError, id])
@@ -89,7 +89,7 @@ export default function Login() {
             <div className="modale__activity--container">
               <div
                 className="modale__activity--closeBtn"
-                onClick={() => HandleCloseModal()}
+                onClick={() => handleCloseModal()}
               >
                 <img src={xcrossClose} alt="Close button" />
               </div>
@@ -141,7 +141,7 @@ export default function Login() {
                 noValidate
                 autoComplete="off"
                 onSubmit={(e) => {
-                  HandleSubmit(e)
+                  handleSubmit(e)
                 }}
               >
                 <div className="login__form--textField">
@@ -156,7 +156,7 @@ export default function Login() {
                       helperText="(mocked users : 110 or 120)"
                       inputRef={userId}
                       onChange={() => {
-                        HandleNewInput()
+                        handleNewInput()
                       }}
                     />
                   ) : (
@@ -170,7 +170,7 @@ export default function Login() {
                       helperText="Incorrect entry."
                       inputRef={userId}
                       onChange={() => {
-                        HandleNewInput()
+                        handleNewInput()
                       }}
                     />
                   )}
@@ -184,7 +184,7 @@ export default function Login() {
                       startIcon={<DeleteIcon />}
                       fullWidth
                       onClick={() => {
-                        HandleReset()
+                        handleReset()
                       }}
                     >
                       Reset
