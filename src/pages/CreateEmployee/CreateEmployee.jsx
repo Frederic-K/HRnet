@@ -25,7 +25,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import 'dayjs/locale/de'
 import 'dayjs/locale/en-gb'
-import dayjs from 'dayjs'
+// import dayjs from 'dayjs'
 
 // CustomActionBar for date picker
 // import DialogActions from '@mui/material/DialogActions'

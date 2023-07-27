@@ -26,15 +26,8 @@ export default function Login() {
   const userId = useRef()
   const [isModalShown, setIsModalShow] = useState(false)
 
-  const {
-    isFetching,
-    isError,
-    errorMessage,
-    successMessage,
-    id,
-    firstName,
-    lastName,
-  } = useSelector(userSelector)
+  const { isFetching, isError, errorMessage, id, firstName, lastName } =
+    useSelector(userSelector)
   // console.log('id', id)
 
   const HandleOpenModal = () => {

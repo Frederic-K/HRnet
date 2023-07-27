@@ -28,12 +28,7 @@ import { useRef, useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { userSelector } from '../../features/userSlice'
-import {
-  employeeSelector,
-  addEmployee,
-  clearEmployeeState,
-  deleteEmployee,
-} from '../../features/employeeSlice'
+import { employeeSelector, deleteEmployee } from '../../features/employeeSlice'
 import { Toaster } from 'react-hot-toast'
 import toast from 'react-hot-toast'
 
@@ -379,9 +374,9 @@ export default function ManageEmployees() {
   // }
 
   const handleDeleteClick = () => {
-    console.log('selected', selected)
+    // console.log('selected', selected)
     dispatch(deleteEmployee(selected))
-    console.log('employees', employees)
+    // console.log('employees', employees)
     setSelected([])
   }
 

@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { json } from 'react-router-dom'
 
 const initialState = {
   employees: JSON.parse(localStorage.getItem('employees')) ?? [],
@@ -14,13 +13,13 @@ export const employeesSlice = createSlice({
   initialState,
   reducers: {
     addEmployee: (state, action) => {
-      console.log('action.payload add-1', action.payload)
+      // console.log('action.payload add-1', action.payload)
       // state.employees.push(action.payload)
       state.employees = [...state.employees, action.payload]
       localStorage.setItem('employees', JSON.stringify(state.employees))
     },
     deleteEmployee: (state, action) => {
-      console.log('action.payload', action.payload)
+      // console.log('action.payload', action.payload)
       let selected = action.payload
       //console.log('slice selected line', action.payload)
       state.employees = state.employees.filter(
