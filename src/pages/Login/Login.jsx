@@ -85,27 +85,27 @@ export default function Login() {
       </header>
       <main className="login__container">
         {isModalShown ? (
-          <div className="modale__activity">
-            <div className="modale__activity--container">
+          <div className="modal__activity">
+            <div className="modal__activity--container">
               <div
-                className="modale__activity--closeBtn"
+                className="modal__activity--closeBtn"
                 onClick={() => handleCloseModal()}
               >
                 <img src={xcrossClose} alt="Close button" />
               </div>
-              <div className="modale__activity--logo">
+              <div className="modal__activity--logo">
                 <img src={Logo} alt="Logo Wealth Health" />
               </div>
-              <div className="modale__activity--name">
+              <div className="modal__activity--name">
                 Welcome <br /> {firstName} {lastName}
               </div>
-              <div className="modale__activity--actionTitle">
+              <div className="modal__activity--actionTitle">
                 Please choose your activity
               </div>
-              <div className="modale__activity--links">
+              <div className="modal__activity--links">
                 <NavLink
                   to="/creation-employee"
-                  className="modale__activity--link"
+                  className="modal__activity--link"
                 >
                   <Button variant="contained" fullWidth>
                     Add Employee
@@ -113,7 +113,7 @@ export default function Login() {
                 </NavLink>
                 <NavLink
                   to="/manage-employees"
-                  className="modale__activity--link"
+                  className="modal__activity--link"
                 >
                   <Button variant="contained" fullWidth>
                     List of Employees

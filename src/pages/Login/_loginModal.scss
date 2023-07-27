@@ -1,4 +1,4 @@
-.modale {
+.modal {
   &__activity {
     position: fixed;
     top: 50%;
@@ -15,7 +15,7 @@
       padding-bottom: 55px;
       // background-color: #ffe4c4;
       box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
-      @include modale__bg;
+      @include modal__bg;
       animation: blowUpModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     }
     &--closeBtn {

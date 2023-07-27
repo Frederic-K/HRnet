@@ -46,6 +46,8 @@ import { statesDatas } from '../../services/Datas/statesDatas'
 // uuid
 import { v4 as uuidv4 } from 'uuid'
 
+import Modal from '../../components/Modal/modal'
+
 export default function CreateEmployee() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
