@@ -2,7 +2,7 @@
   width: 100vw;
   height: 100vh;
   position: absolute;
-  z-index: 0;
+  z-index: 5;
   top: 50%;
   left: 50%;
   background-color: rgba(0, 0, 0, 0.2);
@@ -53,13 +53,13 @@
   border-radius: 50%;
   border: none;
   padding: 4px 9px;
-  background: #00bc77;
+  background: #257b5a;
   transition: all 0.25s ease;
   cursor: pointer;
 }
 
 .closeBtn:hover {
-  background: #257b5a;
+  background: #00bc77;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.13);
   transform: scale(1.2);
 }
