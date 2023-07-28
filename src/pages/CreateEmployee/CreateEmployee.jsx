@@ -451,7 +451,12 @@ export default function CreateEmployee() {
             </Grid>
           </Grid>
         </Box>
-        {isModalOpen && <InformationModal setIsModalOpen={setIsModalOpen} />}
+        {isModalOpen && (
+          <InformationModal
+            information={`${firstNameInput.current.value} ${lastNameInput.current.value} has been successfully registered !`}
+            setIsModalOpen={setIsModalOpen}
+          />
+        )}
       </main>
     </>
   )

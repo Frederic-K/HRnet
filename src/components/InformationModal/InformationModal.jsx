@@ -1,25 +1,20 @@
 import styles from './informationModal.module.css'
-export default function InformationModal({ setIsModalOpen }) {
+export default function InformationModal({ setIsModalOpen, information }) {
   return (
-    <div
-      className={styles.informationModal__bg}
-      onClick={() => setIsModalOpen(false)}
-    >
-      <div className={styles.informationModal__centered}>
-        <div className={styles.informationModal__container}>
+    <div className={styles.bg} onClick={() => setIsModalOpen(false)}>
+      <div className={styles.centered}>
+        <div className={styles.container}>
           <button
-            className={styles.informationModal__closeBtn}
+            className={styles.closeBtn}
             onClick={() => {
               setIsModalOpen(false)
             }}
           >
             X
           </button>
-          <div className={styles.informationModal__info}>
-            Employee created !
-          </div>
+          <div className={styles.information}>{information}</div>
           {/* <button
-            className={styles.informationModal__confirmationBtn}
+            className={styles.confirmationBtn}
             type="button"
             onClick={() => {
               setIsModalOpen(false)

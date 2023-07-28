@@ -1,4 +1,4 @@
-.informationModal__bg {
+.bg {
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -9,14 +9,14 @@
   transform: translate(-50%, -50%);
 }
 
-.informationModal__centered {
+.centered {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.informationModal__container {
+.container {
   width: 450px;
   height: 110px;
   display: flex;
@@ -29,20 +29,18 @@
     rgba(255, 246, 235, 1) 0%,
     rgba(255, 228, 196, 1) 70%
   );
-
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.193);
-  animation: blowUpModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
   z-index: 10;
 }
 
-.informationModal__info {
-  padding: 10px;
+.information {
+  padding: 10px 25px;
   color: #00bc77;
   font-size: 1.5rem;
   font-weight: 500;
 }
 
-.informationModal__closeBtn {
+.closeBtn {
   position: absolute;
   right: 0;
   top: 0;
@@ -60,13 +58,13 @@
   cursor: pointer;
 }
 
-.informationModal__closeBtn:hover {
+.closeBtn:hover {
   background: #257b5a;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.13);
   transform: scale(1.2);
 }
 
-/* .informationModal__confirmationBtn {
+/* .confirmationBtn {
   font-size: 1rem;
   font-weight: 500;
   color: #257b5a;
@@ -79,7 +77,7 @@
   transition: all 0.25s ease;
 }
 
-.informationModal__confirmationBtn:hover {
+.confirmationBtn:hover {
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.13);
   transform: none;
   background: rgb(255, 214, 163);
