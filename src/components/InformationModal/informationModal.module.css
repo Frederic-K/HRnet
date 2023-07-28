@@ -1,12 +1,12 @@
 .informationModal__bg {
-  background-color: rgba(0, 0, 0, 0.2);
   width: 100vw;
   height: 100vh;
+  position: absolute;
   z-index: 0;
   top: 50%;
   left: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
   transform: translate(-50%, -50%);
-  position: absolute;
 }
 
 .informationModal__centered {
@@ -17,61 +17,70 @@
 }
 
 .informationModal__container {
-  width: 250px;
-  height: 170px;
-  background: white;
-  color: white;
+  width: 450px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 10px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 246, 235, 1) 0%,
+    rgba(255, 228, 196, 1) 70%
+  );
+
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.193);
+  animation: blowUpModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
   z-index: 10;
-  border-radius: 16px;
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
 }
 
 .informationModal__info {
   padding: 10px;
-  font-size: 14px;
-  color: #2c3e50;
-  text-align: center;
+  color: #00bc77;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 .informationModal__closeBtn {
-  cursor: pointer;
-  font-weight: 500;
-  padding: 4px 8px;
-  border-radius: 8px;
-  border: none;
-  font-size: 18px;
-  color: #2c3e50;
-  background: white;
-  transition: all 0.25s ease;
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.06);
   position: absolute;
   right: 0;
   top: 0;
   align-self: flex-end;
-  margin-top: -7px;
-  margin-right: -7px;
+  margin-top: -9px;
+  margin-right: -9px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
+  border-radius: 50%;
+  border: none;
+  padding: 4px 9px;
+  background: #00bc77;
+  transition: all 0.25s ease;
+  cursor: pointer;
 }
 
 .informationModal__closeBtn:hover {
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
-  transform: translate(-4px, 4px);
+  background: #257b5a;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.13);
+  transform: scale(1.2);
 }
 
-.informationModal__confirmationBtn {
-  margin-top: 10px;
-  cursor: pointer;
+/* .informationModal__confirmationBtn {
+  font-size: 1rem;
   font-weight: 500;
-  padding: 11px 28px;
-  border-radius: 12px;
-  font-size: 0.8rem;
+  color: #257b5a;
   border: none;
-  color: #2c3e50;
-  background: #fcfcfc;
+  padding: 10px 30px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background: bisque;
+  cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .informationModal__confirmationBtn:hover {
-  box-shadow: none;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.13);
   transform: none;
-  background: whitesmoke;
-}
+  background: rgb(255, 214, 163);
+} */

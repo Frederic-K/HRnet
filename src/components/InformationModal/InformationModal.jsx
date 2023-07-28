@@ -18,7 +18,7 @@ export default function InformationModal({ setIsModalOpen }) {
           <div className={styles.informationModal__info}>
             Employee created !
           </div>
-          <button
+          {/* <button
             className={styles.informationModal__confirmationBtn}
             type="button"
             onClick={() => {
@@ -26,7 +26,7 @@ export default function InformationModal({ setIsModalOpen }) {
             }}
           >
             OK
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
