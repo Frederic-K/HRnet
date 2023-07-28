@@ -45,14 +45,16 @@ import { departmentsDatas } from '../../services/Datas/departementsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
 // uuid
 import { v4 as uuidv4 } from 'uuid'
-
-import Modal from '../../components/Modal/modal'
+// Modal
+import InformationModal from '../../components/InformationModal/InformationModal'
 
 export default function CreateEmployee() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { id } = useSelector(userSelector)
   let creationFormInputs = ''
+  // Modal management
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     if (!id) {
@@ -129,6 +131,7 @@ export default function CreateEmployee() {
       }
       console.log('creationFormInputs', creationFormInputs)
       dispatch(addEmployee(creationFormInputs))
+      setIsModalOpen(true)
     } else {
       toast.error('Empty fields are not allowed')
     }
@@ -427,6 +430,7 @@ export default function CreateEmployee() {
                     fullWidth
                     onClick={(e) => {
                       handleSubmit(e)
+                      // setIsModalOpen(true)
                     }}
                   >
                     Create
@@ -447,6 +451,7 @@ export default function CreateEmployee() {
             </Grid>
           </Grid>
         </Box>
+        {isModalOpen && <InformationModal setIsModalOpen={setIsModalOpen} />}
       </main>
     </>
   )
