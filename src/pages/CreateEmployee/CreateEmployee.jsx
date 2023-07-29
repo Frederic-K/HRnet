@@ -46,7 +46,7 @@ import { statesDatas } from '../../services/Datas/statesDatas'
 // uuid
 import { v4 as uuidv4 } from 'uuid'
 // Modal
-import InformationModal from '../../components/InformationModal/InformationModal'
+import InfoModal from '../../components/InfoModal/InfoModal'
 
 export default function CreateEmployee() {
   const navigate = useNavigate()
@@ -452,8 +452,9 @@ export default function CreateEmployee() {
           </Grid>
         </Box>
         {isModalOpen && (
-          <InformationModal
-            information={`${firstNameInput.current.value} ${lastNameInput.current.value} has been successfully registered !`}
+          <InfoModal
+            title={`${firstNameInput.current.value} ${lastNameInput.current.value}`}
+            information={`has been successfully registered !`}
             setIsModalOpen={setIsModalOpen}
           />
         )}

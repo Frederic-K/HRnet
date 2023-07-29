@@ -1,8 +1,8 @@
-import styles from './informationModal.module.css'
-export default function InformationModal({ setIsModalOpen, information }) {
+import styles from '../InfoModal/infoModal.module.css'
+export default function InfoModal({ setIsModalOpen, title, information }) {
   return (
     <div className={styles.bg} onClick={() => setIsModalOpen(false)}>
-      <div className={styles.centered}>
+      <div className={styles.position}>
         <div className={styles.container}>
           <button
             className={styles.closeBtn}
@@ -12,8 +12,12 @@ export default function InformationModal({ setIsModalOpen, information }) {
           >
             X
           </button>
-          <div className={styles.information}>{information}</div>
-          {/* <button
+          <div className={styles.content}>
+            <div className={styles.title}>{title}</div>
+            <div className={styles.information}>{information}</div>
+          </div>
+
+          <button
             className={styles.confirmationBtn}
             type="button"
             onClick={() => {
@@ -21,7 +25,7 @@ export default function InformationModal({ setIsModalOpen, information }) {
             }}
           >
             OK
-          </button> */}
+          </button>
         </div>
       </div>
     </div>
