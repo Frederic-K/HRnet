@@ -455,6 +455,16 @@ export default function CreateEmployee() {
           <InfoModal
             title={`${firstNameInput.current.value} ${lastNameInput.current.value}`}
             information={`has been successfully registered !`}
+            modalBg={
+              'radial-gradient(circle, rgba(255, 246, 235, 1) 0%, rgba(255, 228, 196, 1) 70%)'
+            }
+            closeBtnBg={'#257b5a'}
+            colourCloseBtn={'white'}
+            colourTitle={'#00bc77'}
+            colourInformation={'#257b5a'}
+            colourConfirmBtnBg={'transparent'}
+            colourConfirmBtn={'#257b5a'}
+            // borderConfirmBtn={'2px solid red'}
             setIsModalOpen={setIsModalOpen}
           />
         )}

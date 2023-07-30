@@ -79,12 +79,11 @@
   transform: scale(1.2);
 }
 
-.confirmationBtn {
+/* .confirmationBtn {
   width: 100%;
   font-size: 1.2rem;
   font-weight: 700;
   color: #257b5a;
-
   border: none;
   padding: 10px 30px;
   border-top: 2px solid #257b5a;
@@ -92,10 +91,16 @@
   background: transparent;
   cursor: pointer;
   transition: all 0.25s ease;
-}
+} */
+
+/* .confirmationBtn {
+  transition: all 0.25s ease;
+} */
 
 .confirmationBtn:hover {
-  /* box-shadow: -1px -10px 5px -2px rgba(0, 0, 0, 0.05); */
-  transform: none;
-  background: rgba(255, 214, 163, 0.5);
+  box-shadow: -1px -10px 5px -2px rgba(0, 0, 0, 0.05);
+  /* transform: none; */
+  /* background: rgba(255, 214, 163, 0.5); */
+  background-color: red;
+  color: red;
 }
