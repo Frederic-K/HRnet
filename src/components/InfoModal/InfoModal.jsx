@@ -1,7 +1,18 @@
 import styles from '../InfoModal/infoModal.module.css'
 export default function InfoModal({ setIsModalOpen, title, information }) {
+  let stylesBg = {
+    width: '100vw',
+    height: '100vh',
+    position: 'absolute',
+    zIndex: '5',
+    top: '50%',
+    left: '50%',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    transform: 'translate(-50%, -50%)',
+  }
+
   return (
-    <div className={styles.bg} onClick={() => setIsModalOpen(false)}>
+    <div style={stylesBg} onClick={() => setIsModalOpen(false)}>
       <div className={styles.position}>
         <div className={styles.container}>
           <button
