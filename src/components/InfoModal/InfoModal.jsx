@@ -1,4 +1,5 @@
 // import styles from '../InfoModal/infoModal.module.css'
+import { lighten } from '@mui/material'
 import { PropTypes } from 'prop-types'
 export default function InfoModal({
   setIsModalOpen,
@@ -7,7 +8,9 @@ export default function InfoModal({
   modalBg,
   closeBtnBg,
   colourCloseBtn,
+  alignTitle,
   colourTitle,
+  alignInformation,
   colourInformation,
   colourConfirmBtnBg,
   colourConfirmBtn,
@@ -72,13 +75,14 @@ export default function InfoModal({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     gap: '10px',
   }
 
   const stylesTitle = {
     width: '100%',
-    textAlign: 'center',
+    // textAlign: 'center',
+    textAlign: alignTitle,
     padding: '15px 15px 0px 15px',
     // color: '#00bc77',
     color: colourTitle,
@@ -88,8 +92,10 @@ export default function InfoModal({
 
   const stylesInformation = {
     width: '100%',
-    textAlign: 'center',
-    padding: '0px 25px 15px 25px',
+    // textAlign: 'center',
+    textAlign: alignInformation,
+    // padding: '0px 25px 15px 25px',
+    padding: '0px 15px 15px 15px',
     // color: '#257b5a',
     color: colourInformation,
     fontSize: '1.5rem',
@@ -119,11 +125,30 @@ export default function InfoModal({
   //   background: 'rgba(255, 214, 163, 0.5)',
   // }
 
+  const handleConfirmBtnMouseEnter = (e) => {
+    e.target.style.background = 'rgb(180, 180, 180, 0.40)'
+  }
+
+  const handleConfirmBtnMouseLeave = (e) => {
+    e.target.style.background = colourConfirmBtnBg
+  }
+
+  const handleCloseBtnMouseEnter = (e) => {
+    e.target.style.background = 'rgb(245, 198, 39, 1)'
+  }
+
+  const handleCloseBtnMouseLeave = (e) => {
+    e.target.style.background = closeBtnBg
+  }
+
   return (
-    <div style={stylesBg} onClick={() => setIsModalOpen(false)}>
+    // <div style={stylesBg} onClick={() => setIsModalOpen(false)}>
+    <div style={stylesBg}>
       <div style={stylesPosition}>
         <div style={stylesContainer}>
           <button
+            onMouseEnter={handleCloseBtnMouseEnter}
+            onMouseLeave={handleCloseBtnMouseLeave}
             style={stylesCloseBtn}
             onClick={() => {
               setIsModalOpen(false)
@@ -138,6 +163,9 @@ export default function InfoModal({
 
           <button
             // className={styles.confirmationBtn}
+            onMouseEnter={handleConfirmBtnMouseEnter}
+            onMouseLeave={handleConfirmBtnMouseLeave}
+            // onMouseOver={handleMouseOver}
             style={stylesConfirmationBtn}
             type="button"
             onClick={() => {
@@ -159,21 +187,30 @@ InfoModal.propTypes = {
   modalBg: PropTypes.string,
   closeBtnBg: PropTypes.string,
   colourCloseBtn: PropTypes.string,
+  hoverCloseBtn: PropTypes.string,
+  alignTitle: PropTypes.string,
   colourTitle: PropTypes.string,
+  alignInformation: PropTypes.string,
   colourInformation: PropTypes.string,
   colourConfirmBtn: PropTypes.string,
   borderConfirmBtn: PropTypes.string,
+  hoverConfirmBtn: PropTypes.string,
 }
 
 InfoModal.defaultProps = {
+  setIsModalOpen: 'false',
   title: 'Modal Title',
   information: 'Modal information',
   modalBg: 'white',
   closeBtnBg: 'black',
-  colourConfirmBtnBg: 'transparent',
   colourCloseBtn: 'white',
+  hoverCloseBtn: 'rgb(245, 198, 39, 1)',
+  alignTitle: 'left',
   colourTitle: 'black',
-  colourInformation: 'white',
+  alignInformation: 'left',
+  colourInformation: 'black',
   colourConfirmBtn: 'black',
+  colourConfirmBtnBg: 'transparent',
   borderConfirmBtn: '2px solid black',
+  hoverConfirmBtn: 'rgb(180, 180, 180, 0.40)',
 }

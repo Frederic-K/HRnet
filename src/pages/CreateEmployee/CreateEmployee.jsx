@@ -453,6 +453,7 @@ export default function CreateEmployee() {
         </Box>
         {isModalOpen && (
           <InfoModal
+            setIsModalOpen={setIsModalOpen}
             title={`${firstNameInput.current.value} ${lastNameInput.current.value}`}
             information={`has been successfully registered !`}
             modalBg={
@@ -460,12 +461,15 @@ export default function CreateEmployee() {
             }
             closeBtnBg={'#257b5a'}
             colourCloseBtn={'white'}
+            hoverCloseBtn={'rgb(245, 198, 39, 1)'}
+            alignTitle={'center'}
             colourTitle={'#00bc77'}
+            alignInformation={'center'}
             colourInformation={'#257b5a'}
             colourConfirmBtnBg={'transparent'}
             colourConfirmBtn={'#257b5a'}
-            // borderConfirmBtn={'2px solid red'}
-            setIsModalOpen={setIsModalOpen}
+            borderConfirmBtn={'2px solid #257b5a'}
+            hoverConfirmBtn={'rgb(180, 180, 180, 0.40)'}
           />
         )}
       </main>
