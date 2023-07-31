@@ -49,7 +49,7 @@ export default function InfoModal({
     fontWeight: '500',
     color: 'rgb(255, 255, 255, 1)',
     borderRadius: '50%',
-    border: '2px solid black',
+    border: '1px solid black',
     padding: '4px 9px',
     background: 'rgb(0, 0, 0, 1)',
     cursor: 'pointer',
@@ -104,7 +104,8 @@ export default function InfoModal({
   }
 
   const handleCloseBtnMouseEnter = (e) => {
-    e.target.style.background = 'rgb(255, 255, 255, 1)'
+    // e.target.style.background = 'rgb(255, 255, 255, 1)'
+    e.target.style.background = 'rgb(180, 180, 180, 1)'
     e.target.style.color = 'rgb(0, 0, 0, 1)'
   }
 
