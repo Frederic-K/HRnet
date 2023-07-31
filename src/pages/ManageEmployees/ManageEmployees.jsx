@@ -90,7 +90,8 @@ export default function ManageEmployees() {
       toast.success(`Filtered Employee : ${filteredEmployees.length}`)
       setRows(filteredEmployees)
     } else {
-      toast.error('No results')
+      // toast.error('No results')
+      toast.success(`Filtered Employee : ${filteredEmployees.length}`)
       setRows(employees)
     }
     // eslint-disable-next-line
