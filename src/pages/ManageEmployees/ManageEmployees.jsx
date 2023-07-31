@@ -60,20 +60,6 @@ export default function ManageEmployees() {
     // eslint-disable-next-line
   }, [id])
 
-  // useEffect(() => {
-  //   if (employees.length > 0) {
-  //     console.log('1')
-  //     // setRows(employees)
-  //   } else if (filteredEmployees.length > 0) {
-  //     console.log('2')
-  //     setRows(filteredEmployees)
-  //   } else {
-  //     console.log('3')
-  //     toast.error('Nothing interesting to show you')
-  //     setRows(employees)
-  //   }
-  // }, [employees, filteredEmployees, rows])
-
   useEffect(() => {
     if (employees.length > 0) {
       toast.success(`Employee : ${employees.length}`)
