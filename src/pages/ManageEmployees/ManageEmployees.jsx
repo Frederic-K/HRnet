@@ -62,7 +62,7 @@ export default function ManageEmployees() {
 
   useEffect(() => {
     if (employees.length > 0) {
-      setRows(employees)
+      // setRows(employees)
       toast.success(`Employees: ${employees.length}`)
     } else {
       toast.error('Nothing interesting to show you')
@@ -97,8 +97,11 @@ export default function ManageEmployees() {
           employee.state.toLowerCase().includes(filterValue) ||
           employee.zipCode.toString().includes(filterValue),
       )
+      console.log('filteredEmployee', filteredEmployees)
+      console.log('rows-before', rows)
       setFilteredEmployees(filteredEmployees)
       setRows(filteredEmployees)
+      console.log('rows-after', rows)
     } else {
       // setFilteredEmployees(mockedEmployeesDatas)
       setFilteredEmployees([])
