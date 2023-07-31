@@ -383,6 +383,7 @@ export default function ManageEmployees() {
     // console.log('selected', selected)
     dispatch(deleteEmployee(selected))
     // console.log('employees', employees)
+    // setRows(employees)
     setSelected([])
   }
 
