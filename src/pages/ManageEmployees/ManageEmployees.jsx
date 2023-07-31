@@ -76,21 +76,24 @@ export default function ManageEmployees() {
 
   useEffect(() => {
     if (employees.length > 0) {
-      console.log('1')
+      toast.success(`Employee : ${employees.length}`)
       setRows(employees)
     } else {
       console.log('3')
       toast.error('Nothing interesting to show you')
       setRows(employees)
     }
-  }, [employees, rows])
+  }, [employees])
 
   useEffect(() => {
     if (filteredEmployees.length > 0) {
+      toast.success(`Filtered Employee : ${filteredEmployees.length}`)
       setRows(filteredEmployees)
     } else {
+      toast.error('No results')
       setRows(employees)
     }
+    // eslint-disable-next-line
   }, [filteredEmployees])
 
   function Debounce(func, timeout = 2000) {
