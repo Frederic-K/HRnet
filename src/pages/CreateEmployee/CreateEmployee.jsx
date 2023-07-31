@@ -46,7 +46,7 @@ import { statesDatas } from '../../services/Datas/statesDatas'
 // uuid
 import { v4 as uuidv4 } from 'uuid'
 // Modal
-import InfoModal from '../../components/InfoModal/InfoModal'
+import InfoModal from '../../components/InfoModalComponent/InfoModalComponent'
 
 export default function CreateEmployee() {
   const navigate = useNavigate()
@@ -456,20 +456,18 @@ export default function CreateEmployee() {
             setIsModalOpen={setIsModalOpen}
             title={`${firstNameInput.current.value} ${lastNameInput.current.value}`}
             information={`has been successfully registered !`}
-            modalBg={
-              'radial-gradient(circle, rgba(255, 246, 235, 1) 0%, rgba(255, 228, 196, 1) 70%)'
-            }
-            closeBtnBg={'#257b5a'}
-            colourCloseBtn={'white'}
-            hoverCloseBtn={'rgb(245, 198, 39, 1)'}
-            alignTitle={'center'}
-            colourTitle={'#00bc77'}
-            alignInformation={'center'}
-            colourInformation={'#257b5a'}
-            colourConfirmBtnBg={'transparent'}
-            colourConfirmBtn={'#257b5a'}
-            borderConfirmBtn={'2px solid #257b5a'}
-            hoverConfirmBtn={'rgb(180, 180, 180, 0.40)'}
+            // modalBg={
+            //   'radial-gradient(circle, rgba(255, 246, 235, 1) 0%, rgba(255, 228, 196, 1) 70%)'
+            // }
+            // hoverCloseBtn={'rgb(245, 198, 39, 1)'}
+            // alignTitle={'center'}
+            // colourTitle={'#00bc77'}
+            // alignInformation={'center'}
+            // colourInformation={'#257b5a'}
+            // colourConfirmBtnBg={'transparent'}
+            // colourConfirmBtn={'#257b5a'}
+            // borderConfirmBtn={'2px solid #257b5a'}
+            // hoverConfirmBtn={'rgb(180, 180, 180, 0.40)'}
           />
         )}
       </main>
