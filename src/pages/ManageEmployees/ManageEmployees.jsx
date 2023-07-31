@@ -60,15 +60,38 @@ export default function ManageEmployees() {
     // eslint-disable-next-line
   }, [id])
 
+  // useEffect(() => {
+  //   if (employees.length > 0) {
+  //     console.log('1')
+  //     // setRows(employees)
+  //   } else if (filteredEmployees.length > 0) {
+  //     console.log('2')
+  //     setRows(filteredEmployees)
+  //   } else {
+  //     console.log('3')
+  //     toast.error('Nothing interesting to show you')
+  //     setRows(employees)
+  //   }
+  // }, [employees, filteredEmployees, rows])
+
   useEffect(() => {
     if (employees.length > 0) {
-      // setRows(employees)
-      toast.success(`Employees: ${employees.length}`)
+      console.log('1')
+      setRows(employees)
     } else {
+      console.log('3')
       toast.error('Nothing interesting to show you')
       setRows(employees)
     }
-  }, [employees, filteredEmployees, rows])
+  }, [employees, rows])
+
+  useEffect(() => {
+    if (filteredEmployees.length > 0) {
+      setRows(filteredEmployees)
+    } else {
+      setRows(employees)
+    }
+  }, [filteredEmployees])
 
   function Debounce(func, timeout = 2000) {
     let timer
@@ -105,7 +128,7 @@ export default function ManageEmployees() {
     } else {
       // setFilteredEmployees(mockedEmployeesDatas)
       setFilteredEmployees([])
-      setRows(employees)
+      // setRows(employees)
     }
   }
 
@@ -383,7 +406,7 @@ export default function ManageEmployees() {
     // console.log('selected', selected)
     dispatch(deleteEmployee(selected))
     // console.log('employees', employees)
-    // setRows(employees)
+    setRows(employees)
     setSelected([])
   }
 
