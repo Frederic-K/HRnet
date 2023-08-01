@@ -1,5 +1,5 @@
 import { PropTypes } from 'prop-types'
-export default function InfoModal({
+export default function InfoModalComponent({
   setIsModalOpen,
   title,
   information,
@@ -10,7 +10,6 @@ export default function InfoModal({
   InformationTextColor,
   ValidationBtnBgColor,
   ValidationBtnColor,
-  borderConfirmBtn,
 }) {
   const stylesBg = {
     width: '100vw',
@@ -152,7 +151,7 @@ export default function InfoModal({
   )
 }
 
-InfoModal.propTypes = {
+InfoModalComponent.propTypes = {
   setIsModalOpen: PropTypes.bool,
   title: PropTypes.string,
   information: PropTypes.string,
@@ -167,7 +166,7 @@ InfoModal.propTypes = {
   hoverConfirmBtn: PropTypes.string,
 }
 
-InfoModal.defaultProps = {
+InfoModalComponent.defaultProps = {
   setIsModalOpen: 'false',
   title: 'Modal Title',
   information: 'Modal information',
