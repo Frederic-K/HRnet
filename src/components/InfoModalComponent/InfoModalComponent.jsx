@@ -152,7 +152,6 @@ export default function InfoModalComponent({
 }
 
 InfoModalComponent.propTypes = {
-  setIsModalOpen: PropTypes.bool,
   title: PropTypes.string,
   information: PropTypes.string,
   modalBg: PropTypes.string,
@@ -167,7 +166,6 @@ InfoModalComponent.propTypes = {
 }
 
 InfoModalComponent.defaultProps = {
-  setIsModalOpen: 'false',
   title: 'Modal Title',
   information: 'Modal information',
   modalBg: 'white',
