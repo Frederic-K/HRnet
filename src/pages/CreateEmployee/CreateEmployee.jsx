@@ -459,13 +459,12 @@ export default function CreateEmployee() {
             modalBg={
               'radial-gradient(circle, rgba(255, 246, 235, 1) 0%, rgba(255, 228, 196, 1) 70%)'
             }
-            alignTitle={'center'}
-            colourTitle={'#00bc77'}
-            alignInformation={'center'}
-            colourInformation={'#257b5a'}
-            colourConfirmBtnBg={'transparent'}
-            colourConfirmBtn={'#257b5a'}
-            borderConfirmBtn={'2px solid #257b5a'}
+            TitleTextAlign={'center'}
+            TitleTextColor={'#00bc77'}
+            InformationTextAlign={'center'}
+            InformationTextColor={'#257b5a'}
+            ValidationBtnBgColor={'transparent'}
+            ValidationBtnColor={'#257b5a'}
           />
         )}
       </main>

@@ -4,12 +4,12 @@ export default function InfoModal({
   title,
   information,
   modalBg,
-  alignTitle,
-  colourTitle,
-  alignInformation,
-  colourInformation,
-  colourConfirmBtnBg,
-  colourConfirmBtn,
+  TitleTextAlign,
+  TitleTextColor,
+  InformationTextAlign,
+  InformationTextColor,
+  ValidationBtnBgColor,
+  ValidationBtnColor,
   borderConfirmBtn,
 }) {
   const stylesBg = {
@@ -66,18 +66,18 @@ export default function InfoModal({
 
   const stylesTitle = {
     width: '100%',
-    textAlign: alignTitle,
+    textAlign: TitleTextAlign,
     padding: '15px 15px 0px 15px',
-    color: colourTitle,
+    color: TitleTextColor,
     fontSize: '1.3rem',
     fontWeight: '500',
   }
 
   const stylesInformation = {
     width: '100%',
-    textAlign: alignInformation,
+    textAlign: InformationTextAlign,
     padding: '0px 15px 15px 15px',
-    color: colourInformation,
+    color: InformationTextColor,
     fontSize: '1.3rem',
     fontWeight: '500',
   }
@@ -86,26 +86,26 @@ export default function InfoModal({
     width: '100%',
     fontSize: '1.1rem',
     fontWeight: '700',
-    color: colourConfirmBtn,
+    color: ValidationBtnColor,
     border: 'none',
     padding: '10px 30px',
-    borderTop: borderConfirmBtn,
+    borderTop: `2px solid ${ValidationBtnColor}`,
     borderRadius: '0px 0px 10px 10px',
-    background: colourConfirmBtnBg,
+    background: ValidationBtnBgColor,
     cursor: 'pointer',
   }
 
-  const handleConfirmBtnMouseEnter = (e) => {
+  const handleValidationBtnMouseEnter = (e) => {
     e.target.style.background = 'rgb(180, 180, 180, 0.40)'
   }
 
-  const handleConfirmBtnMouseLeave = (e) => {
-    e.target.style.background = colourConfirmBtnBg
+  const handleValidationBtnMouseLeave = (e) => {
+    e.target.style.background = ValidationBtnBgColor
   }
 
   const handleCloseBtnMouseEnter = (e) => {
-    // e.target.style.background = 'rgb(255, 255, 255, 1)'
-    e.target.style.background = 'rgb(180, 180, 180, 1)'
+    e.target.style.background = 'rgb(255, 255, 255, 1)'
+    // e.target.style.background = modalBg
     e.target.style.color = 'rgb(0, 0, 0, 1)'
   }
 
@@ -135,8 +135,8 @@ export default function InfoModal({
 
           <button
             // className={styles.confirmationBtn}
-            onMouseEnter={handleConfirmBtnMouseEnter}
-            onMouseLeave={handleConfirmBtnMouseLeave}
+            onMouseEnter={handleValidationBtnMouseEnter}
+            onMouseLeave={handleValidationBtnMouseLeave}
             // onMouseOver={handleMouseOver}
             style={stylesConfirmationBtn}
             type="button"
@@ -158,11 +158,11 @@ InfoModal.propTypes = {
   information: PropTypes.string,
   modalBg: PropTypes.string,
   hoverCloseBtn: PropTypes.string,
-  alignTitle: PropTypes.string,
-  colourTitle: PropTypes.string,
-  alignInformation: PropTypes.string,
-  colourInformation: PropTypes.string,
-  colourConfirmBtn: PropTypes.string,
+  TitleTextAlign: PropTypes.string,
+  TitleTextColor: PropTypes.string,
+  InformationTextAlign: PropTypes.string,
+  InformationTextColor: PropTypes.string,
+  ValidationBtnColor: PropTypes.string,
   borderConfirmBtn: PropTypes.string,
   hoverConfirmBtn: PropTypes.string,
 }
@@ -173,12 +173,12 @@ InfoModal.defaultProps = {
   information: 'Modal information',
   modalBg: 'white',
   hoverCloseBtn: 'rgb(245, 198, 39, 1)',
-  alignTitle: 'left',
-  colourTitle: 'black',
-  alignInformation: 'left',
-  colourInformation: 'black',
-  colourConfirmBtn: 'black',
-  colourConfirmBtnBg: 'transparent',
+  TitleTextAlign: 'left',
+  TitleTextColor: 'black',
+  InformationTextAlign: 'left',
+  InformationTextColor: 'black',
+  ValidationBtnColor: 'black',
+  ValidationBtnBgColor: 'transparent',
   borderConfirmBtn: '2px solid black',
   hoverConfirmBtn: 'rgb(180, 180, 180, 0.40)',
 }
