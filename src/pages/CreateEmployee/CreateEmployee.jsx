@@ -11,6 +11,8 @@ import { addEmployee } from '../../features/employeeSlice'
 import Header from '../../components/Header/Header'
 import { Toaster } from 'react-hot-toast'
 import toast from 'react-hot-toast'
+// My info modal component
+import { InfoModal } from 'info-modal-component'
 // Field nd button
 import Button from '@mui/material/Button'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -46,7 +48,7 @@ import { statesDatas } from '../../services/Datas/statesDatas'
 // uuid
 import { v4 as uuidv4 } from 'uuid'
 // Modal
-import InfoModalComponent from '../../components/InfoModalComponent/InfoModalComponent'
+// import InfoModalComponent from '../../components/InfoModalComponent/InfoModalComponent'
 
 export default function CreateEmployee() {
   const navigate = useNavigate()
@@ -452,7 +454,7 @@ export default function CreateEmployee() {
           </Grid>
         </Box>
         {isModalOpen && (
-          <InfoModalComponent
+          <InfoModal
             setIsModalOpen={setIsModalOpen}
             title={`${firstNameInput.current.value} ${lastNameInput.current.value}`}
             information={`has been successfully registered !`}
