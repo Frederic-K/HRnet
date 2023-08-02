@@ -104,7 +104,6 @@ export default function InfoModalComponent({
 
   const handleCloseBtnMouseEnter = (e) => {
     e.target.style.background = 'rgb(255, 255, 255, 1)'
-    // e.target.style.background = modalBg
     e.target.style.color = 'rgb(0, 0, 0, 1)'
   }
 
@@ -133,10 +132,8 @@ export default function InfoModalComponent({
           </div>
 
           <button
-            // className={styles.confirmationBtn}
             onMouseEnter={handleValidationBtnMouseEnter}
             onMouseLeave={handleValidationBtnMouseLeave}
-            // onMouseOver={handleMouseOver}
             style={stylesConfirmationBtn}
             type="button"
             onClick={() => {

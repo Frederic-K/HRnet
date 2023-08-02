@@ -14,11 +14,9 @@
   }
   &__container {
     width: 100%;
-    // position: relative;
   }
   &__search {
     width: 90%;
-    // margin: 40px auto;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -29,12 +27,10 @@
   }
   &__table {
     width: 90%;
-    // margin: auto;
     margin: 100px auto 0px;
     position: relative;
     &--bg {
       background-color: rgba(255, 228, 196, 0.3);
-      // @include table__bg;
     }
     &--action {
       margin: 0px 5px;

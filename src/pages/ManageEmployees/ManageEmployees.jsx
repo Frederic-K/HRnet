@@ -76,7 +76,6 @@ export default function ManageEmployees() {
       toast.success(`Filtered Employee : ${filteredEmployees.length}`)
       setRows(filteredEmployees)
     } else {
-      // toast.error('No results')
       toast.success(`Filtered Employee : ${filteredEmployees.length}`)
       setRows(employees)
     }
@@ -118,7 +117,6 @@ export default function ManageEmployees() {
     } else {
       // setFilteredEmployees(mockedEmployeesDatas)
       setFilteredEmployees([])
-      // setRows(employees)
     }
   }
 
@@ -382,20 +380,8 @@ export default function ManageEmployees() {
     setIsFilterShown(!isFilterShown)
   }
 
-  // const handleDeleteClick = () => {
-  //   const undeleteRows = employees.filter(
-  //     (el) => !selected.includes(el.employeeID),
-  //   )
-  //   dispatch(clearEmployeeState())
-  //   undeleteRows.forEach((undeleteRow) => dispatch(addEmployee(undeleteRow)))
-  //   setRows(undeleteRows)
-  //   setSelected([])
-  // }
-
   const handleDeleteClick = () => {
-    // console.log('selected', selected)
     dispatch(deleteEmployee(selected))
-    // console.log('employees', employees)
     setRows(employees)
     setSelected([])
   }

@@ -32,9 +32,6 @@ export default function Login() {
   // console.log('id', id)
 
   const handleOpenModal = () => {
-    // Ensure that the form is closed
-    // HandleCloseModal()
-    // Manage form's local state
     setIsModalShow(true)
   }
 
