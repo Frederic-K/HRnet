@@ -51,7 +51,9 @@ export default function Login() {
   }
 
   const handleNewInput = () => {
-    dispatch(clearUserState())
+    if (isError === true) {
+      dispatch(clearUserState())
+    }
   }
 
   useEffect(() => {
