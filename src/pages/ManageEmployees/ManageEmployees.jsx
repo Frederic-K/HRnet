@@ -94,7 +94,7 @@ export default function ManageEmployees() {
   const processChanges = Debounce(() => Filter())
 
   function Filter() {
-    let inputSearchValue = searchInput.current.value
+    let inputSearchValue = searchInput.current.value ?? ''
     if (inputSearchValue !== '') {
       let filterValue = inputSearchValue.toLowerCase()
       const filteredEmployees = employees.filter(
