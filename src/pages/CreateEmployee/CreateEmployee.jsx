@@ -284,7 +284,7 @@ export default function CreateEmployee() {
     return errors
   }
   const handleChange = (e) => {
-    setInputFields({ ...inputFields, [e.target.id]: e.target.value })
+    setInputFields({ ...inputFields, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = (event) => {
@@ -450,7 +450,7 @@ export default function CreateEmployee() {
                 </FormControl>
               ) : (
                 <FormControl fullWidth>
-                  <InputLabel id="departement-label">Departement *</InputLabel>
+                  <InputLabel id="departement-label">Departement * </InputLabel>
                   <Select
                     labelId="departement"
                     id="departement"
