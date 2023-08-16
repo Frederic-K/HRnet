@@ -74,10 +74,10 @@ export default function CreateEmployee() {
   // }
 
   const stateNames = statesDatas
-  const [locationState, setLocationState] = useState('')
-  const handleChangeLocationState = (event) => {
-    setLocationState(event.target.value)
-  }
+  // const [locationState, setLocationState] = useState('')
+  // const handleChangeLocationState = (event) => {
+  //   setLocationState(event.target.value)
+  // }
 
   // const [dateOfBirthState, setDateOfBirthState] = useState(null)
   // const handleDateOfBirthState = (e) => {
@@ -99,12 +99,12 @@ export default function CreateEmployee() {
   // const cityInput = useRef()
   // const zipCodeInput = useRef()
 
-  // const handlePopulateClick = () => {
-  //   const mockedEmployees = mockedEmployeesDatas
-  //   mockedEmployees.forEach((fakeEmployee) =>
-  //     dispatch(addEmployee(fakeEmployee)),
-  //   )
-  // }
+  const handlePopulateClick = () => {
+    const mockedEmployees = mockedEmployeesDatas
+    mockedEmployees.forEach((fakeEmployee) =>
+      dispatch(addEmployee(fakeEmployee)),
+    )
+  }
 
   // const handleSubmit = (e) => {
   //   e.preventDefault()
@@ -253,6 +253,7 @@ export default function CreateEmployee() {
     city: '',
     zipCode: '',
     departement: '',
+    state: '',
   })
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
@@ -276,6 +277,9 @@ export default function CreateEmployee() {
     }
     if (inputValues.departement === '') {
       errors.departement = 'Departement is required'
+    }
+    if (inputValues.state === '') {
+      errors.state = 'State is required'
     }
     return errors
   }
@@ -577,7 +581,51 @@ export default function CreateEmployee() {
               )}
             </Grid>
             <Grid xs={12}>
-              <FormControl fullWidth>
+              {errors.state ? (
+                <FormControl error fullWidth>
+                  <InputLabel id="state-label">State *</InputLabel>
+                  <Select
+                    labelId="state"
+                    id="state"
+                    name="state"
+                    value={inputFields.state}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="state" />}
+                  >
+                    {stateNames.map((locationState) => (
+                      <MenuItem
+                        key={locationState.abbreviation}
+                        value={locationState.abbreviation}
+                      >
+                        {locationState.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  <FormHelperText>{`${errors.state}`}</FormHelperText>
+                </FormControl>
+              ) : (
+                <FormControl fullWidth>
+                  <InputLabel id="state-label">State *</InputLabel>
+                  <Select
+                    labelId="state"
+                    id="state"
+                    name="state"
+                    value={inputFields.state}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="state" />}
+                  >
+                    {stateNames.map((locationState) => (
+                      <MenuItem
+                        key={locationState.abbreviation}
+                        value={locationState.abbreviation}
+                      >
+                        {locationState.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+              {/* <FormControl fullWidth>
                 <InputLabel id="state-label">State *</InputLabel>
                 <Select
                   labelId="state"
@@ -596,7 +644,7 @@ export default function CreateEmployee() {
                     </MenuItem>
                   ))}
                 </Select>
-              </FormControl>
+              </FormControl> */}
             </Grid>
             <Grid xs={12}>
               <Stack direction="row" spacing={2}>
@@ -630,7 +678,7 @@ export default function CreateEmployee() {
               </Stack>
             </Grid>
 
-            {/* <Grid xs={12} className="createEmployee__popBtn">
+            <Grid xs={12} className="createEmployee__popBtn">
               <Button
                 color="secondary"
                 onClick={() => {
@@ -639,7 +687,7 @@ export default function CreateEmployee() {
               >
                 Populate
               </Button>
-            </Grid> */}
+            </Grid>
           </Grid>
         </Box>
         {isModalOpen && (
