@@ -284,7 +284,7 @@ export default function CreateEmployee() {
     return errors
   }
   const handleChange = (e) => {
-    setInputFields({ ...inputFields, [e.target.name]: e.target.value })
+    setInputFields({ ...inputFields, [e.target.id]: e.target.value })
   }
 
   const handleSubmit = (event) => {
