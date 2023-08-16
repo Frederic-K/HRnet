@@ -66,17 +66,17 @@ export default function CreateEmployee() {
     // eslint-disable-next-line
   }, [id])
 
-  // const departmentsNames = departmentsDatas
-  // const [departement, setDepartement] = useState('')
-  // const handleChangeDepartement = (event) => {
-  //   setDepartement(event.target.value)
-  // }
+  const departmentsNames = departmentsDatas
+  const [departement, setDepartement] = useState('')
+  const handleChangeDepartement = (event) => {
+    setDepartement(event.target.value)
+  }
 
-  // const stateNames = statesDatas
-  // const [locationState, setLocationState] = useState('')
-  // const handleChangeLocationState = (event) => {
-  //   setLocationState(event.target.value)
-  // }
+  const stateNames = statesDatas
+  const [locationState, setLocationState] = useState('')
+  const handleChangeLocationState = (event) => {
+    setLocationState(event.target.value)
+  }
 
   // const [dateOfBirthState, setDateOfBirthState] = useState(null)
   // const handleDateOfBirthState = (e) => {
@@ -248,6 +248,9 @@ export default function CreateEmployee() {
   const [inputFields, setInputFields] = useState({
     firstName: '',
     lastName: '',
+    street: '',
+    city: '',
+    zipCode: '',
   })
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
@@ -255,10 +258,19 @@ export default function CreateEmployee() {
   const validateValues = (inputValues) => {
     let errors = {}
     if (inputValues.firstName.length < 2) {
-      errors.firstName = 'First name is too short'
+      errors.firstName = 'First name is too short (min char 2)'
     }
     if (inputValues.lastName.length < 2) {
-      errors.lastName = 'Last name is too short'
+      errors.lastName = 'Last name is too short (min char 2)'
+    }
+    if (inputValues.street.length < 2) {
+      errors.street = `Street's name is too short (min char 2)`
+    }
+    if (inputValues.city.length < 2) {
+      errors.city = `City's name is too short (min char 2)`
+    }
+    if (inputValues.zipCode.length < 5) {
+      errors.zipCode = 'Zip Code is too short (min num 5)'
     }
     return errors
   }
@@ -306,28 +318,17 @@ export default function CreateEmployee() {
               </h2>
             </Grid>
             <Grid xs={8}>
-              {/* <TextField
-                id="firstName"
-                name="firstName"
-                label="First Name"
-                variant="outlined"
-                fullWidth
-                autoFocus
-                required
-                value={inputFields.firstName}
-                onChange={handleChange}
-                // inputRef={firstNameInput}
-              /> */}
               {errors.firstName ? (
                 <TextField
                   id="firstName"
                   name="firstName"
-                  label="First Name"
+                  label="First name error"
                   variant="outlined"
                   fullWidth
                   autoFocus
                   required
                   error
+                  helperText={`${errors.firstName}`}
                   value={inputFields.firstName}
                   onChange={handleChange}
                   // inputRef={firstNameInput}
@@ -347,7 +348,7 @@ export default function CreateEmployee() {
                 />
               )}
             </Grid>
-            {/* <Grid xs={4} className="createEmployee__form--datePicker">
+            <Grid xs={4} className="createEmployee__form--datePicker">
               <LocalizationProvider
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
@@ -355,9 +356,10 @@ export default function CreateEmployee() {
                 <DatePicker
                   id="dateOfBirth"
                   label="Birthdate *"
-                  inputRef={dateOfBirthInput}
-                  value={dateOfBirthState}
-                  onChange={handleDateOfBirthState}
+                  // name="dateOfBirth"
+                  // inputRef={dateOfBirthInput}
+                  // value={inputFields.dateOfBirth}
+                  // onChange={handleChange}
                   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
                   // slots={{
                   //   actionBar: CustomActionBar,
@@ -369,17 +371,18 @@ export default function CreateEmployee() {
                   }}
                 />
               </LocalizationProvider>
-            </Grid> */}
+            </Grid>
             <Grid xs={8}>
               {errors.lastName ? (
                 <TextField
                   id="lastName"
                   name="lastName"
-                  label="Last Name"
+                  label="Last name error"
                   variant="outlined"
                   fullWidth
                   required
                   error
+                  helperText={`${errors.lastName}`}
                   value={inputFields.lastName}
                   onChange={handleChange}
                   // inputRef={lastNameInput}
@@ -398,16 +401,16 @@ export default function CreateEmployee() {
                 />
               )}
             </Grid>
-            {/* <Grid xs={4} className="createEmployee__form--datePicker">
+            <Grid xs={4} className="createEmployee__form--datePicker">
               <LocalizationProvider
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
                 <DatePicker
                   label="Start day *"
-                  inputRef={startDateInput}
-                  value={startOfDateState}
-                  onChange={handlestartOfDateState}
+                  // inputRef={startDateInput}
+                  // value={startOfDateState}
+                  // onChange={handlestartOfDateState}
                   slotProps={{
                     actionBar: {
                       actions: ['today', 'clear'],
@@ -415,8 +418,8 @@ export default function CreateEmployee() {
                   }}
                 />
               </LocalizationProvider>
-            </Grid> */}
-            {/* <Grid xs={12}>
+            </Grid>
+            <Grid xs={12}>
               <FormControl fullWidth>
                 <InputLabel id="departement-label">Departement *</InputLabel>
                 <Select
@@ -442,38 +445,91 @@ export default function CreateEmployee() {
               </h2>
             </Grid>
             <Grid xs={12}>
-              <TextField
-                id="street"
-                name="street"
-                label="Street"
-                variant="outlined"
-                required
-                fullWidth
-                inputRef={streetInput}
-              />
+              {errors.street ? (
+                <TextField
+                  id="street"
+                  name="street"
+                  label="Street"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  error
+                  helperText={`${errors.street}`}
+                  value={inputFields.street}
+                  onChange={handleChange}
+                  // inputRef={streetInput}
+                />
+              ) : (
+                <TextField
+                  id="street"
+                  name="street"
+                  label="Street"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  value={inputFields.street}
+                  onChange={handleChange}
+                  // inputRef={streetInput}
+                />
+              )}
             </Grid>
             <Grid xs={6}>
-              <TextField
-                id="city"
-                name="city"
-                label="City"
-                variant="outlined"
-                required
-                fullWidth
-                inputRef={cityInput}
-              />
+              {errors.city ? (
+                <TextField
+                  id="city"
+                  name="city"
+                  label="City"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  error
+                  helperText={`${errors.city}`}
+                  value={inputFields.city}
+                  onChange={handleChange}
+                  // inputRef={cityInput}
+                />
+              ) : (
+                <TextField
+                  id="city"
+                  name="city"
+                  label="City"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  value={inputFields.city}
+                  onChange={handleChange}
+                  // inputRef={cityInput}
+                />
+              )}
             </Grid>
             <Grid xs={6}>
-              <TextField
-                id="zipCode"
-                name="zipCode"
-                label="Zip Code"
-                variant="outlined"
-                type="number"
-                required
-                fullWidth
-                inputRef={zipCodeInput}
-              />
+              {errors.zipCode ? (
+                <TextField
+                  id="zipCode"
+                  name="zipCode"
+                  label="Zip Code"
+                  variant="outlined"
+                  type="number"
+                  required
+                  fullWidth
+                  error
+                  helperText={`${errors.zipCode}`}
+                  value={inputFields.zipCode}
+                  onChange={handleChange}
+                  // inputRef={zipCodeInput}
+                />
+              ) : (
+                <TextField
+                  id="zipCode"
+                  name="zipCode"
+                  label="Zip Code"
+                  variant="outlined"
+                  type="number"
+                  required
+                  fullWidth
+                  // inputRef={zipCodeInput}
+                />
+              )}
             </Grid>
             <Grid xs={12}>
               <FormControl fullWidth>
@@ -496,7 +552,7 @@ export default function CreateEmployee() {
                   ))}
                 </Select>
               </FormControl>
-            </Grid> */}
+            </Grid>
             <Grid xs={12}>
               <Stack direction="row" spacing={2}>
                 <Grid xs={6}>
