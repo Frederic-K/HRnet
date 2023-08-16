@@ -66,85 +66,85 @@ export default function CreateEmployee() {
     // eslint-disable-next-line
   }, [id])
 
-  const departmentsNames = departmentsDatas
-  const [departement, setDepartement] = useState('')
-  const handleChangeDepartement = (event) => {
-    setDepartement(event.target.value)
-  }
+  // const departmentsNames = departmentsDatas
+  // const [departement, setDepartement] = useState('')
+  // const handleChangeDepartement = (event) => {
+  //   setDepartement(event.target.value)
+  // }
 
-  const stateNames = statesDatas
-  const [locationState, setLocationState] = useState('')
-  const handleChangeLocationState = (event) => {
-    setLocationState(event.target.value)
-  }
+  // const stateNames = statesDatas
+  // const [locationState, setLocationState] = useState('')
+  // const handleChangeLocationState = (event) => {
+  //   setLocationState(event.target.value)
+  // }
 
-  const [dateOfBirthState, setDateOfBirthState] = useState(null)
-  const handleDateOfBirthState = (e) => {
-    setDateOfBirthState(e)
-  }
+  // const [dateOfBirthState, setDateOfBirthState] = useState(null)
+  // const handleDateOfBirthState = (e) => {
+  //   setDateOfBirthState(e)
+  // }
 
-  const [startOfDateState, setStartOfDateState] = useState(null)
-  const handlestartOfDateState = (e) => {
-    setStartOfDateState(e)
-  }
+  // const [startOfDateState, setStartOfDateState] = useState(null)
+  // const handlestartOfDateState = (e) => {
+  //   setStartOfDateState(e)
+  // }
 
-  const uniqueID = uuidv4()
-  // const shortUniqueID = uniqueID.slice(0, 13)
-  const firstNameInput = useRef()
-  const dateOfBirthInput = useRef()
-  const lastNameInput = useRef()
-  const startDateInput = useRef()
-  const streetInput = useRef()
-  const cityInput = useRef()
-  const zipCodeInput = useRef()
+  // const uniqueID = uuidv4()
+  // // const shortUniqueID = uniqueID.slice(0, 13)
+  // const firstNameInput = useRef()
+  // const dateOfBirthInput = useRef()
+  // const lastNameInput = useRef()
+  // const startDateInput = useRef()
+  // const streetInput = useRef()
+  // const cityInput = useRef()
+  // const zipCodeInput = useRef()
 
-  const handlePopulateClick = () => {
-    const mockedEmployees = mockedEmployeesDatas
-    mockedEmployees.forEach((fakeEmployee) =>
-      dispatch(addEmployee(fakeEmployee)),
-    )
-  }
+  // const handlePopulateClick = () => {
+  //   const mockedEmployees = mockedEmployeesDatas
+  //   mockedEmployees.forEach((fakeEmployee) =>
+  //     dispatch(addEmployee(fakeEmployee)),
+  //   )
+  // }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (
-      uniqueID !== '' &&
-      firstNameInput.current.value !== '' &&
-      lastNameInput.current.value !== '' &&
-      dateOfBirthInput.current.value !== '' &&
-      startDateInput.current.value !== '' &&
-      departement !== '' &&
-      streetInput.current.value !== '' &&
-      cityInput.current.value !== '' &&
-      zipCodeInput.current.value !== '' &&
-      locationState !== ''
-    ) {
-      creationFormInputs = {
-        employeeID: uniqueID,
-        firstName: firstNameInput.current.value,
-        lastName: lastNameInput.current.value,
-        dateOfBirth: dateOfBirthInput.current.value,
-        startDate: startDateInput.current.value,
-        department: departement,
-        street: streetInput.current.value,
-        city: cityInput.current.value,
-        zipCode: zipCodeInput.current.value,
-        state: locationState,
-      }
-      console.log('creationFormInputs', creationFormInputs)
-      dispatch(addEmployee(creationFormInputs))
-      setIsModalOpen(true)
-    } else {
-      toast.error('Empty fields are not allowed')
-    }
-  }
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   if (
+  //     uniqueID !== '' &&
+  //     firstNameInput.current.value !== '' &&
+  //     lastNameInput.current.value !== '' &&
+  //     dateOfBirthInput.current.value !== '' &&
+  //     startDateInput.current.value !== '' &&
+  //     departement !== '' &&
+  //     streetInput.current.value !== '' &&
+  //     cityInput.current.value !== '' &&
+  //     zipCodeInput.current.value !== '' &&
+  //     locationState !== ''
+  //   ) {
+  //     creationFormInputs = {
+  //       employeeID: uniqueID,
+  //       firstName: firstNameInput.current.value,
+  //       lastName: lastNameInput.current.value,
+  //       dateOfBirth: dateOfBirthInput.current.value,
+  //       startDate: startDateInput.current.value,
+  //       department: departement,
+  //       street: streetInput.current.value,
+  //       city: cityInput.current.value,
+  //       zipCode: zipCodeInput.current.value,
+  //       state: locationState,
+  //     }
+  //     console.log('creationFormInputs', creationFormInputs)
+  //     dispatch(addEmployee(creationFormInputs))
+  //     setIsModalOpen(true)
+  //   } else {
+  //     toast.error('Empty fields are not allowed')
+  //   }
+  // }
 
-  const handleResetClick = () => {
-    setDepartement('')
-    setLocationState('')
-    setDateOfBirthState(null)
-    setStartOfDateState(null)
-  }
+  // const handleResetClick = () => {
+  //   setDepartement('')
+  //   setLocationState('')
+  //   setDateOfBirthState(null)
+  //   setStartOfDateState(null)
+  // }
   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
   // function CustomActionBar(props) {
   //   const { onAccept, onClear, onCancel, onSetToday, actions, className } =
@@ -245,6 +245,44 @@ export default function CreateEmployee() {
   //   )
   // }
 
+  const [inputFields, setInputFields] = useState({
+    firstName: '',
+    lastName: '',
+  })
+  const [errors, setErrors] = useState({})
+  const [submitting, setSubmitting] = useState(false)
+
+  const validateValues = (inputValues) => {
+    let errors = {}
+    if (inputValues.firstName.length < 2) {
+      errors.firstName = 'First name is too short'
+    }
+    if (inputValues.lastName.length < 2) {
+      errors.lastName = 'Last name is too short'
+    }
+    return errors
+  }
+  const handleChange = (e) => {
+    setInputFields({ ...inputFields, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    setErrors(validateValues(inputFields))
+    setSubmitting(true)
+  }
+
+  const finishSubmit = () => {
+    console.log(inputFields)
+  }
+
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && submitting) {
+      finishSubmit()
+      setIsModalOpen(true)
+    }
+  }, [errors])
+
   return (
     <>
       <div className="layout__header">
@@ -257,6 +295,9 @@ export default function CreateEmployee() {
         <div className="createEmployee__banner--title">Create employees</div>
       </section>
       <main className="createEmployee__container">
+        {/* {Object.keys(errors).length === 0 && submitting ? (
+          <span className="success">Successfully submitted ✓</span>
+        ) : null} */}
         <Box className="createEmployee__form" component="form">
           <Grid container spacing={2}>
             <Grid xs={12}>
@@ -265,7 +306,7 @@ export default function CreateEmployee() {
               </h2>
             </Grid>
             <Grid xs={8}>
-              <TextField
+              {/* <TextField
                 id="firstName"
                 name="firstName"
                 label="First Name"
@@ -273,10 +314,40 @@ export default function CreateEmployee() {
                 fullWidth
                 autoFocus
                 required
-                inputRef={firstNameInput}
-              />
+                value={inputFields.firstName}
+                onChange={handleChange}
+                // inputRef={firstNameInput}
+              /> */}
+              {errors.firstName ? (
+                <TextField
+                  id="firstName"
+                  name="firstName"
+                  label="First Name"
+                  variant="outlined"
+                  fullWidth
+                  autoFocus
+                  required
+                  error
+                  value={inputFields.firstName}
+                  onChange={handleChange}
+                  // inputRef={firstNameInput}
+                />
+              ) : (
+                <TextField
+                  id="firstName"
+                  name="firstName"
+                  label="First Name"
+                  variant="outlined"
+                  fullWidth
+                  autoFocus
+                  required
+                  value={inputFields.firstName}
+                  onChange={handleChange}
+                  // inputRef={firstNameInput}
+                />
+              )}
             </Grid>
-            <Grid xs={4} className="createEmployee__form--datePicker">
+            {/* <Grid xs={4} className="createEmployee__form--datePicker">
               <LocalizationProvider
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
@@ -298,19 +369,36 @@ export default function CreateEmployee() {
                   }}
                 />
               </LocalizationProvider>
-            </Grid>
+            </Grid> */}
             <Grid xs={8}>
-              <TextField
-                id="lastName"
-                name="lastName"
-                label="Last Name"
-                variant="outlined"
-                fullWidth
-                required
-                inputRef={lastNameInput}
-              />
+              {errors.lastName ? (
+                <TextField
+                  id="lastName"
+                  name="lastName"
+                  label="Last Name"
+                  variant="outlined"
+                  fullWidth
+                  required
+                  error
+                  value={inputFields.lastName}
+                  onChange={handleChange}
+                  // inputRef={lastNameInput}
+                />
+              ) : (
+                <TextField
+                  id="lastName"
+                  name="lastName"
+                  label="Last Name"
+                  variant="outlined"
+                  fullWidth
+                  required
+                  value={inputFields.lastName}
+                  onChange={handleChange}
+                  // inputRef={lastNameInput}
+                />
+              )}
             </Grid>
-            <Grid xs={4} className="createEmployee__form--datePicker">
+            {/* <Grid xs={4} className="createEmployee__form--datePicker">
               <LocalizationProvider
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
@@ -327,8 +415,8 @@ export default function CreateEmployee() {
                   }}
                 />
               </LocalizationProvider>
-            </Grid>
-            <Grid xs={12}>
+            </Grid> */}
+            {/* <Grid xs={12}>
               <FormControl fullWidth>
                 <InputLabel id="departement-label">Departement *</InputLabel>
                 <Select
@@ -408,7 +496,7 @@ export default function CreateEmployee() {
                   ))}
                 </Select>
               </FormControl>
-            </Grid>
+            </Grid> */}
             <Grid xs={12}>
               <Stack direction="row" spacing={2}>
                 <Grid xs={6}>
@@ -417,9 +505,9 @@ export default function CreateEmployee() {
                     startIcon={<DeleteIcon />}
                     type="reset"
                     fullWidth
-                    onClick={() => {
-                      handleResetClick()
-                    }}
+                    // onClick={() => {
+                    //   handleResetClick()
+                    // }}
                   >
                     Reset
                   </Button>
@@ -441,7 +529,7 @@ export default function CreateEmployee() {
               </Stack>
             </Grid>
 
-            <Grid xs={12} className="createEmployee__popBtn">
+            {/* <Grid xs={12} className="createEmployee__popBtn">
               <Button
                 color="secondary"
                 onClick={() => {
@@ -450,13 +538,14 @@ export default function CreateEmployee() {
               >
                 Populate
               </Button>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Box>
         {isModalOpen && (
           <InfoModal
             setIsModalOpen={setIsModalOpen}
-            title={`${firstNameInput.current.value} ${lastNameInput.current.value}`}
+            // title={`${firstNameInput.current.value} ${lastNameInput.current.value}`}
+            title="banzai"
             information={`has been successfully registered !`}
             modalBg={
               'radial-gradient(circle, rgba(255, 246, 235, 1) 0%, rgba(255, 228, 196, 1) 70%)'
