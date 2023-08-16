@@ -40,6 +40,7 @@ import 'dayjs/locale/en-gb'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
+import FormHelperText from '@mui/material/FormHelperText'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 // Datas
@@ -67,10 +68,10 @@ export default function CreateEmployee() {
   }, [id])
 
   const departmentsNames = departmentsDatas
-  const [departement, setDepartement] = useState('')
-  const handleChangeDepartement = (event) => {
-    setDepartement(event.target.value)
-  }
+  // const [departement, setDepartement] = useState('')
+  // const handleChangeDepartement = (event) => {
+  //   setDepartement(event.target.value)
+  // }
 
   const stateNames = statesDatas
   const [locationState, setLocationState] = useState('')
@@ -251,6 +252,7 @@ export default function CreateEmployee() {
     street: '',
     city: '',
     zipCode: '',
+    departement: '',
   })
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
@@ -271,6 +273,9 @@ export default function CreateEmployee() {
     }
     if (inputValues.zipCode.length < 5) {
       errors.zipCode = 'Zip Code is too short (min num 5)'
+    }
+    if (inputValues.departement === '') {
+      errors.departement = 'Departement is required'
     }
     return errors
   }
@@ -420,15 +425,53 @@ export default function CreateEmployee() {
               </LocalizationProvider>
             </Grid>
             <Grid xs={12}>
-              <FormControl fullWidth>
+              {errors.departement ? (
+                <FormControl error fullWidth>
+                  <InputLabel id="departement-label">Departement *</InputLabel>
+                  <Select
+                    labelId="departement"
+                    id="departement"
+                    name="departement"
+                    value={inputFields.departement}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="departement" />}
+                  >
+                    {departmentsNames.map((departement) => (
+                      <MenuItem key={departement} value={departement}>
+                        {departement}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  <FormHelperText>{`${errors.departement}`}</FormHelperText>
+                </FormControl>
+              ) : (
+                <FormControl fullWidth>
+                  <InputLabel id="departement-label">Departement *</InputLabel>
+                  <Select
+                    labelId="departement"
+                    id="departement"
+                    name="departement"
+                    value={inputFields.departement}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="departement" />}
+                  >
+                    {departmentsNames.map((departement) => (
+                      <MenuItem key={departement} value={departement}>
+                        {departement}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+              {/* <FormControl fullWidth>
                 <InputLabel id="departement-label">Departement *</InputLabel>
                 <Select
                   labelId="departement"
                   id="departement"
                   name="departement"
                   required
-                  value={departement}
-                  onChange={handleChangeDepartement}
+                  // value={departement}
+                  // onChange={handleChangeDepartement}
                   input={<OutlinedInput label="departement" />}
                 >
                   {departmentsNames.map((departement) => (
@@ -437,7 +480,7 @@ export default function CreateEmployee() {
                     </MenuItem>
                   ))}
                 </Select>
-              </FormControl>
+              </FormControl> */}
             </Grid>
             <Grid xs={12}>
               <h2 className="createEmployee__form--caption">
@@ -527,6 +570,8 @@ export default function CreateEmployee() {
                   type="number"
                   required
                   fullWidth
+                  value={inputFields.zipCode}
+                  onChange={handleChange}
                   // inputRef={zipCodeInput}
                 />
               )}
