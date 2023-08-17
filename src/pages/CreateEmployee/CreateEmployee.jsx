@@ -44,7 +44,7 @@ import FormHelperText from '@mui/material/FormHelperText'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 // Datas
-import { departmentsDatas } from '../../services/Datas/departementsDatas'
+import { departmentsDatas } from '../../services/Datas/departmentsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
 // Formatting data
 import { modelingDate } from '../../services/Model/DataModeling'
