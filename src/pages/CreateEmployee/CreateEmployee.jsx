@@ -293,11 +293,11 @@ export default function CreateEmployee() {
     }
     return errors
   }
-  const handleChange = (e) => {
+  const handleChangeInput = (e) => {
     setInputFields({ ...inputFields, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmitClick = (event) => {
     event.preventDefault()
     setErrors(validateValues(inputFields))
     setSubmitting(true)
@@ -305,12 +305,13 @@ export default function CreateEmployee() {
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
-      finishSubmit()
+      validFormSubmit()
       setIsModalOpen(true)
     }
+    // eslint-disable-next-line
   }, [errors])
 
-  const finishSubmit = () => {
+  const validFormSubmit = () => {
     console.log(inputFields)
   }
 
@@ -349,7 +350,7 @@ export default function CreateEmployee() {
                   error
                   helperText={`${errors.firstName}`}
                   value={inputFields.firstName}
-                  onChange={handleChange}
+                  onChange={handleChangeInput}
                   // inputRef={firstNameInput}
                 />
               ) : (
@@ -362,7 +363,7 @@ export default function CreateEmployee() {
                   autoFocus
                   required
                   value={inputFields.firstName}
-                  onChange={handleChange}
+                  onChange={handleChangeInput}
                   // inputRef={firstNameInput}
                 />
               )}
@@ -458,7 +459,7 @@ export default function CreateEmployee() {
                   error
                   helperText={`${errors.lastName}`}
                   value={inputFields.lastName}
-                  onChange={handleChange}
+                  onChange={handleChangeInput}
                   // inputRef={lastNameInput}
                 />
               ) : (
@@ -470,7 +471,7 @@ export default function CreateEmployee() {
                   fullWidth
                   required
                   value={inputFields.lastName}
-                  onChange={handleChange}
+                  onChange={handleChangeInput}
                   // inputRef={lastNameInput}
                 />
               )}
@@ -545,7 +546,7 @@ export default function CreateEmployee() {
                     id="departement"
                     name="departement"
                     value={inputFields.departement}
-                    onChange={handleChange}
+                    onChange={handleChangeInput}
                     input={<OutlinedInput label="departement" />}
                   >
                     {departmentsNames.map((departement) => (
@@ -564,7 +565,7 @@ export default function CreateEmployee() {
                     id="departement"
                     name="departement"
                     value={inputFields.departement}
-                    onChange={handleChange}
+                    onChange={handleChangeInput}
                     input={<OutlinedInput label="departement" />}
                   >
                     {departmentsNames.map((departement) => (
@@ -611,7 +612,7 @@ export default function CreateEmployee() {
                   error
                   helperText={`${errors.street}`}
                   value={inputFields.street}
-                  onChange={handleChange}
+                  onChange={handleChangeInput}
                   // inputRef={streetInput}
                 />
               ) : (
@@ -623,7 +624,7 @@ export default function CreateEmployee() {
                   required
                   fullWidth
                   value={inputFields.street}
-                  onChange={handleChange}
+                  onChange={handleChangeInput}
                   // inputRef={streetInput}
                 />
               )}
@@ -640,7 +641,7 @@ export default function CreateEmployee() {
                   error
                   helperText={`${errors.city}`}
                   value={inputFields.city}
-                  onChange={handleChange}
+                  onChange={handleChangeInput}
                   // inputRef={cityInput}
                 />
               ) : (
@@ -652,7 +653,7 @@ export default function CreateEmployee() {
                   required
                   fullWidth
                   value={inputFields.city}
-                  onChange={handleChange}
+                  onChange={handleChangeInput}
                   // inputRef={cityInput}
                 />
               )}
@@ -670,7 +671,7 @@ export default function CreateEmployee() {
                   error
                   helperText={`${errors.zipCode}`}
                   value={inputFields.zipCode}
-                  onChange={handleChange}
+                  onChange={handleChangeInput}
                   // inputRef={zipCodeInput}
                 />
               ) : (
@@ -683,7 +684,7 @@ export default function CreateEmployee() {
                   required
                   fullWidth
                   value={inputFields.zipCode}
-                  onChange={handleChange}
+                  onChange={handleChangeInput}
                   // inputRef={zipCodeInput}
                 />
               )}
@@ -697,7 +698,7 @@ export default function CreateEmployee() {
                     id="state"
                     name="state"
                     value={inputFields.state}
-                    onChange={handleChange}
+                    onChange={handleChangeInput}
                     input={<OutlinedInput label="state" />}
                   >
                     {stateNames.map((locationState) => (
@@ -719,7 +720,7 @@ export default function CreateEmployee() {
                     id="state"
                     name="state"
                     value={inputFields.state}
-                    onChange={handleChange}
+                    onChange={handleChangeInput}
                     input={<OutlinedInput label="state" />}
                   >
                     {stateNames.map((locationState) => (
@@ -776,7 +777,7 @@ export default function CreateEmployee() {
                     type="submit"
                     fullWidth
                     onClick={(e) => {
-                      handleSubmit(e)
+                      handleSubmitClick(e)
                       // setIsModalOpen(true)
                     }}
                   >
