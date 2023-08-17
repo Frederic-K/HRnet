@@ -94,7 +94,7 @@ export default function CreateEmployee() {
   // const uniqueID = uuidv4()
   // // const shortUniqueID = uniqueID.slice(0, 13)
   // const firstNameInput = useRef()
-  const dateOfBirthInput = useRef()
+  // const dateOfBirthInput = useRef()
   // const lastNameInput = useRef()
   // const startDateInput = useRef()
   // const streetInput = useRef()
@@ -254,7 +254,7 @@ export default function CreateEmployee() {
     street: '',
     city: '',
     zipCode: '',
-    departement: '',
+    department: '',
     state: '',
     dateOfBirth: null,
     startDate: null,
@@ -279,8 +279,8 @@ export default function CreateEmployee() {
     if (inputValues.zipCode.length < 5) {
       errors.zipCode = 'Zip Code is too short (min num 5)'
     }
-    if (inputValues.departement === '') {
-      errors.departement = 'Departement is required'
+    if (inputValues.department === '') {
+      errors.department = 'Department is required'
     }
     if (inputValues.state === '') {
       errors.state = 'State is required'
@@ -543,39 +543,39 @@ export default function CreateEmployee() {
               </LocalizationProvider>
             </Grid>
             <Grid xs={12}>
-              {errors.departement ? (
+              {errors.department ? (
                 <FormControl error fullWidth>
-                  <InputLabel id="departement-label">Departement *</InputLabel>
+                  <InputLabel id="department-label">Department *</InputLabel>
                   <Select
-                    labelId="departement"
-                    id="departement"
-                    name="departement"
-                    value={employeeFormInputFields.departement}
+                    labelId="department"
+                    id="department"
+                    name="department"
+                    value={employeeFormInputFields.department}
                     onChange={handleChangeInput}
-                    input={<OutlinedInput label="departement" />}
+                    input={<OutlinedInput label="department" />}
                   >
-                    {departmentsNames.map((departement) => (
-                      <MenuItem key={departement} value={departement}>
-                        {departement}
+                    {departmentsNames.map((department) => (
+                      <MenuItem key={department} value={department}>
+                        {department}
                       </MenuItem>
                     ))}
                   </Select>
-                  <FormHelperText>{`${errors.departement}`}</FormHelperText>
+                  <FormHelperText>{`${errors.department}`}</FormHelperText>
                 </FormControl>
               ) : (
                 <FormControl fullWidth>
-                  <InputLabel id="departement-label">Departement * </InputLabel>
+                  <InputLabel id="department-label">Department * </InputLabel>
                   <Select
-                    labelId="departement"
-                    id="departement"
-                    name="departement"
-                    value={employeeFormInputFields.departement}
+                    labelId="department"
+                    id="department"
+                    name="department"
+                    value={employeeFormInputFields.department}
                     onChange={handleChangeInput}
-                    input={<OutlinedInput label="departement" />}
+                    input={<OutlinedInput label="department" />}
                   >
-                    {departmentsNames.map((departement) => (
-                      <MenuItem key={departement} value={departement}>
-                        {departement}
+                    {departmentsNames.map((department) => (
+                      <MenuItem key={department} value={department}>
+                        {department}
                       </MenuItem>
                     ))}
                   </Select>
