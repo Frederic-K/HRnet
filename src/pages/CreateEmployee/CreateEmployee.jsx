@@ -255,6 +255,7 @@ export default function CreateEmployee() {
     departement: '',
     state: '',
     dateOfBirth: null,
+    startDate: null,
   })
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
@@ -281,6 +282,12 @@ export default function CreateEmployee() {
     }
     if (inputValues.state === '') {
       errors.state = 'State is required'
+    }
+    if (inputValues.dateOfBirth === null) {
+      errors.dateOfBirth = 'Date is required'
+    }
+    if (inputValues.startDate === null) {
+      errors.startDate = 'Date is required'
     }
     return errors
   }
@@ -364,10 +371,60 @@ export default function CreateEmployee() {
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
-                <DatePicker
+                {errors.dateOfBirth ? (
+                  <DatePicker
+                    // id="dateOfBirth"
+                    label="Birthdate *"
+                    // name="dateOfBirth"
+                    // inputRef={dateOfBirthInput}
+                    value=""
+                    onChange={(newValue) =>
+                      setInputFields({
+                        ...inputFields,
+                        dateOfBirth: newValue,
+                      })
+                    }
+                    // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
+                    // slots={{
+                    //   actionBar: CustomActionBar,
+                    // }}
+                    slotProps={{
+                      actionBar: {
+                        actions: ['today', 'clear'],
+                      },
+                      textField: {
+                        helperText: `${errors.dateOfBirth}`,
+                      },
+                    }}
+                  />
+                ) : (
+                  <DatePicker
+                    // id="dateOfBirth"
+                    label="Birthdate *"
+                    // name="dateOfBirth"
+                    // inputRef={dateOfBirthInput}
+                    value={inputFields.dateOfBirth}
+                    onChange={(newValue) =>
+                      setInputFields({
+                        ...inputFields,
+                        dateOfBirth: newValue,
+                      })
+                    }
+                    // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
+                    // slots={{
+                    //   actionBar: CustomActionBar,
+                    // }}
+                    slotProps={{
+                      actionBar: {
+                        actions: ['today', 'clear'],
+                      },
+                    }}
+                  />
+                )}
+                {/* <DatePicker
                   id="dateOfBirth"
                   label="Birthdate *"
-                  name="dateOfBirth"
+                  // name="dateOfBirth"
                   // inputRef={dateOfBirthInput}
                   value={inputFields.dateOfBirth}
                   onChange={(newValue) =>
@@ -385,7 +442,7 @@ export default function CreateEmployee() {
                       actions: ['today', 'clear'],
                     },
                   }}
-                />
+                /> */}
               </LocalizationProvider>
             </Grid>
             <Grid xs={8}>
@@ -422,17 +479,60 @@ export default function CreateEmployee() {
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
-                <DatePicker
+                {errors.startDate ? (
+                  <DatePicker
+                    label="Start day *"
+                    // inputRef={startDateInput}
+                    value=""
+                    onChange={(newValue) =>
+                      setInputFields({
+                        ...inputFields,
+                        startDate: newValue,
+                      })
+                    }
+                    slotProps={{
+                      actionBar: {
+                        actions: ['today', 'clear'],
+                      },
+                      textField: {
+                        helperText: `${errors.startDate}`,
+                      },
+                    }}
+                  />
+                ) : (
+                  <DatePicker
+                    label="Start day *"
+                    // inputRef={startDateInput}
+                    value={inputFields.startDate}
+                    onChange={(newValue) =>
+                      setInputFields({
+                        ...inputFields,
+                        startDate: newValue,
+                      })
+                    }
+                    slotProps={{
+                      actionBar: {
+                        actions: ['today', 'clear'],
+                      },
+                    }}
+                  />
+                )}
+                {/* <DatePicker
                   label="Start day *"
                   // inputRef={startDateInput}
-                  // value={startOfDateState}
-                  // onChange={handlestartOfDateState}
+                  value={inputFields.startDay}
+                  onChange={(newValue) =>
+                    setInputFields({
+                      ...inputFields,
+                      startDate: newValue,
+                    })
+                  }
                   slotProps={{
                     actionBar: {
                       actions: ['today', 'clear'],
                     },
                   }}
-                />
+                /> */}
               </LocalizationProvider>
             </Grid>
             <Grid xs={12}>
