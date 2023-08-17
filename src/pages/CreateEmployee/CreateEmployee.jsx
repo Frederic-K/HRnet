@@ -248,7 +248,7 @@ export default function CreateEmployee() {
   //   )
   // }
 
-  const [inputFields, setInputFields] = useState({
+  const [employeeFormInputFields, setemployeeFormInputFields] = useState({
     firstName: '',
     lastName: '',
     street: '',
@@ -294,25 +294,30 @@ export default function CreateEmployee() {
     return errors
   }
   const handleChangeInput = (e) => {
-    setInputFields({ ...inputFields, [e.target.name]: e.target.value })
+    setemployeeFormInputFields({
+      ...employeeFormInputFields,
+      [e.target.name]: e.target.value,
+    })
   }
 
   const handleSubmitClick = (event) => {
     event.preventDefault()
-    setErrors(validateValues(inputFields))
+    setErrors(validateValues(employeeFormInputFields))
     setSubmitting(true)
   }
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
       validFormSubmit()
-      setIsModalOpen(true)
+      // setIsModalOpen(true)
     }
     // eslint-disable-next-line
   }, [errors])
 
   const validFormSubmit = () => {
-    console.log(inputFields)
+    console.log(employeeFormInputFields)
+    dispatch(addEmployee(employeeFormInputFields))
+    setIsModalOpen(true)
   }
 
   return (
@@ -349,7 +354,7 @@ export default function CreateEmployee() {
                   required
                   error
                   helperText={`${errors.firstName}`}
-                  value={inputFields.firstName}
+                  value={employeeFormInputFields.firstName}
                   onChange={handleChangeInput}
                   // inputRef={firstNameInput}
                 />
@@ -362,7 +367,7 @@ export default function CreateEmployee() {
                   fullWidth
                   autoFocus
                   required
-                  value={inputFields.firstName}
+                  value={employeeFormInputFields.firstName}
                   onChange={handleChangeInput}
                   // inputRef={firstNameInput}
                 />
@@ -381,8 +386,8 @@ export default function CreateEmployee() {
                     // inputRef={dateOfBirthInput}
                     value=""
                     onChange={(newValue) =>
-                      setInputFields({
-                        ...inputFields,
+                      setemployeeFormInputFields({
+                        ...employeeFormInputFields,
                         dateOfBirth: modelingDate(newValue),
                       })
                     }
@@ -405,10 +410,10 @@ export default function CreateEmployee() {
                     label="Birthdate *"
                     // name="dateOfBirth"
                     // inputRef={dateOfBirthInput}
-                    value={inputFields.dateOfBirth}
+                    value={employeeFormInputFields.dateOfBirth}
                     onChange={(newValue) =>
-                      setInputFields({
-                        ...inputFields,
+                      setemployeeFormInputFields({
+                        ...employeeFormInputFields,
                         dateOfBirth: modelingDate(newValue),
                       })
                     }
@@ -428,10 +433,10 @@ export default function CreateEmployee() {
                   label="Birthdate *"
                   // name="dateOfBirth"
                   // inputRef={dateOfBirthInput}
-                  value={inputFields.dateOfBirth}
+                  value={employeeFormInputFields.dateOfBirth}
                   onChange={(newValue) =>
-                    setInputFields({
-                      ...inputFields,
+                    setemployeeFormInputFields({
+                      ...employeeFormInputFields,
                       dateOfBirth: newValue,
                     })
                   }
@@ -458,7 +463,7 @@ export default function CreateEmployee() {
                   required
                   error
                   helperText={`${errors.lastName}`}
-                  value={inputFields.lastName}
+                  value={employeeFormInputFields.lastName}
                   onChange={handleChangeInput}
                   // inputRef={lastNameInput}
                 />
@@ -470,7 +475,7 @@ export default function CreateEmployee() {
                   variant="outlined"
                   fullWidth
                   required
-                  value={inputFields.lastName}
+                  value={employeeFormInputFields.lastName}
                   onChange={handleChangeInput}
                   // inputRef={lastNameInput}
                 />
@@ -487,8 +492,8 @@ export default function CreateEmployee() {
                     // inputRef={startDateInput}
                     value=""
                     onChange={(newValue) =>
-                      setInputFields({
-                        ...inputFields,
+                      setemployeeFormInputFields({
+                        ...employeeFormInputFields,
                         startDate: modelingDate(newValue),
                       })
                     }
@@ -505,10 +510,10 @@ export default function CreateEmployee() {
                   <DatePicker
                     label="Start day *"
                     // inputRef={startDateInput}
-                    value={inputFields.startDate}
+                    value={employeeFormInputFields.startDate}
                     onChange={(newValue) =>
-                      setInputFields({
-                        ...inputFields,
+                      setemployeeFormInputFields({
+                        ...employeeFormInputFields,
                         startDate: modelingDate(newValue),
                       })
                     }
@@ -522,10 +527,10 @@ export default function CreateEmployee() {
                 {/* <DatePicker
                   label="Start day *"
                   // inputRef={startDateInput}
-                  value={inputFields.startDay}
+                  value={employeeFormInputFields.startDay}
                   onChange={(newValue) =>
-                    setInputFields({
-                      ...inputFields,
+                    setemployeeFormInputFields({
+                      ...employeeFormInputFields,
                       startDate: newValue,
                     })
                   }
@@ -545,7 +550,7 @@ export default function CreateEmployee() {
                     labelId="departement"
                     id="departement"
                     name="departement"
-                    value={inputFields.departement}
+                    value={employeeFormInputFields.departement}
                     onChange={handleChangeInput}
                     input={<OutlinedInput label="departement" />}
                   >
@@ -564,7 +569,7 @@ export default function CreateEmployee() {
                     labelId="departement"
                     id="departement"
                     name="departement"
-                    value={inputFields.departement}
+                    value={employeeFormInputFields.departement}
                     onChange={handleChangeInput}
                     input={<OutlinedInput label="departement" />}
                   >
@@ -611,7 +616,7 @@ export default function CreateEmployee() {
                   fullWidth
                   error
                   helperText={`${errors.street}`}
-                  value={inputFields.street}
+                  value={employeeFormInputFields.street}
                   onChange={handleChangeInput}
                   // inputRef={streetInput}
                 />
@@ -623,7 +628,7 @@ export default function CreateEmployee() {
                   variant="outlined"
                   required
                   fullWidth
-                  value={inputFields.street}
+                  value={employeeFormInputFields.street}
                   onChange={handleChangeInput}
                   // inputRef={streetInput}
                 />
@@ -640,7 +645,7 @@ export default function CreateEmployee() {
                   fullWidth
                   error
                   helperText={`${errors.city}`}
-                  value={inputFields.city}
+                  value={employeeFormInputFields.city}
                   onChange={handleChangeInput}
                   // inputRef={cityInput}
                 />
@@ -652,7 +657,7 @@ export default function CreateEmployee() {
                   variant="outlined"
                   required
                   fullWidth
-                  value={inputFields.city}
+                  value={employeeFormInputFields.city}
                   onChange={handleChangeInput}
                   // inputRef={cityInput}
                 />
@@ -670,7 +675,7 @@ export default function CreateEmployee() {
                   fullWidth
                   error
                   helperText={`${errors.zipCode}`}
-                  value={inputFields.zipCode}
+                  value={employeeFormInputFields.zipCode}
                   onChange={handleChangeInput}
                   // inputRef={zipCodeInput}
                 />
@@ -683,7 +688,7 @@ export default function CreateEmployee() {
                   type="number"
                   required
                   fullWidth
-                  value={inputFields.zipCode}
+                  value={employeeFormInputFields.zipCode}
                   onChange={handleChangeInput}
                   // inputRef={zipCodeInput}
                 />
@@ -697,7 +702,7 @@ export default function CreateEmployee() {
                     labelId="state"
                     id="state"
                     name="state"
-                    value={inputFields.state}
+                    value={employeeFormInputFields.state}
                     onChange={handleChangeInput}
                     input={<OutlinedInput label="state" />}
                   >
@@ -719,7 +724,7 @@ export default function CreateEmployee() {
                     labelId="state"
                     id="state"
                     name="state"
-                    value={inputFields.state}
+                    value={employeeFormInputFields.state}
                     onChange={handleChangeInput}
                     input={<OutlinedInput label="state" />}
                   >
@@ -802,8 +807,8 @@ export default function CreateEmployee() {
         {isModalOpen && (
           <InfoModal
             setIsModalOpen={setIsModalOpen}
-            // title={`${firstNameInput.current.value} ${lastNameInput.current.value}`}
-            title="banzai"
+            title={`${employeeFormInputFields.firstName} ${employeeFormInputFields.lastName}`}
+            // title="banzai"
             information={`has been successfully registered !`}
             modalBg={
               'radial-gradient(circle, rgba(255, 246, 235, 1) 0%, rgba(255, 228, 196, 1) 70%)'
