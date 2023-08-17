@@ -92,7 +92,7 @@ export default function CreateEmployee() {
   // const uniqueID = uuidv4()
   // // const shortUniqueID = uniqueID.slice(0, 13)
   // const firstNameInput = useRef()
-  // const dateOfBirthInput = useRef()
+  const dateOfBirthInput = useRef()
   // const lastNameInput = useRef()
   // const startDateInput = useRef()
   // const streetInput = useRef()
@@ -254,6 +254,7 @@ export default function CreateEmployee() {
     zipCode: '',
     departement: '',
     state: '',
+    dateOfBirth: null,
   })
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
@@ -289,6 +290,7 @@ export default function CreateEmployee() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    console.log('inputFields', inputFields)
     setErrors(validateValues(inputFields))
     setSubmitting(true)
   }
@@ -365,10 +367,15 @@ export default function CreateEmployee() {
                 <DatePicker
                   id="dateOfBirth"
                   label="Birthdate *"
-                  // name="dateOfBirth"
+                  name="dateOfBirth"
                   // inputRef={dateOfBirthInput}
-                  // value={inputFields.dateOfBirth}
-                  // onChange={handleChange}
+                  value={inputFields.dateOfBirth}
+                  onChange={(newValue) =>
+                    setInputFields({
+                      ...inputFields,
+                      dateOfBirth: newValue,
+                    })
+                  }
                   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
                   // slots={{
                   //   actionBar: CustomActionBar,
