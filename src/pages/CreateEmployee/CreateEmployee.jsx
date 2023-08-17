@@ -46,6 +46,8 @@ import Select from '@mui/material/Select'
 // Datas
 import { departmentsDatas } from '../../services/Datas/departementsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
+// Formatting data
+import { modelingDate } from '../../services/Model/DataModeling'
 // uuid
 import { v4 as uuidv4 } from 'uuid'
 // Modal
@@ -297,13 +299,8 @@ export default function CreateEmployee() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log('inputFields', inputFields)
     setErrors(validateValues(inputFields))
     setSubmitting(true)
-  }
-
-  const finishSubmit = () => {
-    console.log(inputFields)
   }
 
   useEffect(() => {
@@ -312,6 +309,10 @@ export default function CreateEmployee() {
       setIsModalOpen(true)
     }
   }, [errors])
+
+  const finishSubmit = () => {
+    console.log(inputFields)
+  }
 
   return (
     <>
@@ -381,7 +382,7 @@ export default function CreateEmployee() {
                     onChange={(newValue) =>
                       setInputFields({
                         ...inputFields,
-                        dateOfBirth: newValue,
+                        dateOfBirth: modelingDate(newValue),
                       })
                     }
                     // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
@@ -407,7 +408,7 @@ export default function CreateEmployee() {
                     onChange={(newValue) =>
                       setInputFields({
                         ...inputFields,
-                        dateOfBirth: newValue,
+                        dateOfBirth: modelingDate(newValue),
                       })
                     }
                     // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
@@ -487,7 +488,7 @@ export default function CreateEmployee() {
                     onChange={(newValue) =>
                       setInputFields({
                         ...inputFields,
-                        startDate: newValue,
+                        startDate: modelingDate(newValue),
                       })
                     }
                     slotProps={{
@@ -507,7 +508,7 @@ export default function CreateEmployee() {
                     onChange={(newValue) =>
                       setInputFields({
                         ...inputFields,
-                        startDate: newValue,
+                        startDate: modelingDate(newValue),
                       })
                     }
                     slotProps={{
