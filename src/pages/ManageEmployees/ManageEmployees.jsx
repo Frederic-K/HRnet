@@ -52,6 +52,7 @@ export default function ManageEmployees() {
   const [rows, setRows] = useState(employees)
   const [filteredEmployees, setFilteredEmployees] = useState([])
   const [isFilterShown, setIsFilterShown] = useState(false)
+  // const [isNoResult, setIsNoResult] = useState(false)
 
   useEffect(() => {
     if (!id) {
@@ -432,6 +433,30 @@ export default function ManageEmployees() {
               component="form"
               onSubmit={(e) => e.preventDefault()}
             >
+              {/* {isNoResult ? (
+                <TextField
+                  id="outlined-basic"
+                  label="Search"
+                  variant="outlined"
+                  error
+                  fullWidth
+                  inputRef={searchInput}
+                  onChange={() => {
+                    processChanges()
+                  }}
+                />
+              ) : (
+                <TextField
+                  id="outlined-basic"
+                  label="Search"
+                  variant="outlined"
+                  fullWidth
+                  inputRef={searchInput}
+                  onChange={() => {
+                    processChanges()
+                  }}
+                />
+              )} */}
               <TextField
                 id="outlined-basic"
                 label="Search"
