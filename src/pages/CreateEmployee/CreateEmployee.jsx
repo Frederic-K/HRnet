@@ -40,11 +40,14 @@ import 'dayjs/locale/en-gb'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
+import FormHelperText from '@mui/material/FormHelperText'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 // Datas
-import { departmentsDatas } from '../../services/Datas/departementsDatas'
+import { departmentsDatas } from '../../services/Datas/departmentsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
+// Formatting data
+import { modelingDate } from '../../services/Model/DataModeling'
 // uuid
 import { v4 as uuidv4 } from 'uuid'
 // Modal
@@ -67,36 +70,36 @@ export default function CreateEmployee() {
   }, [id])
 
   const departmentsNames = departmentsDatas
-  const [departement, setDepartement] = useState('')
-  const handleChangeDepartement = (event) => {
-    setDepartement(event.target.value)
-  }
+  // const [departement, setDepartement] = useState('')
+  // const handleChangeDepartement = (event) => {
+  //   setDepartement(event.target.value)
+  // }
 
   const stateNames = statesDatas
-  const [locationState, setLocationState] = useState('')
-  const handleChangeLocationState = (event) => {
-    setLocationState(event.target.value)
-  }
+  // const [locationState, setLocationState] = useState('')
+  // const handleChangeLocationState = (event) => {
+  //   setLocationState(event.target.value)
+  // }
 
-  const [dateOfBirthState, setDateOfBirthState] = useState(null)
-  const handleDateOfBirthState = (e) => {
-    setDateOfBirthState(e)
-  }
+  // const [dateOfBirthState, setDateOfBirthState] = useState(null)
+  // const handleDateOfBirthState = (e) => {
+  //   setDateOfBirthState(e)
+  // }
 
-  const [startOfDateState, setStartOfDateState] = useState(null)
-  const handlestartOfDateState = (e) => {
-    setStartOfDateState(e)
-  }
+  // const [startOfDateState, setStartOfDateState] = useState(null)
+  // const handlestartOfDateState = (e) => {
+  //   setStartOfDateState(e)
+  // }
 
   const uniqueID = uuidv4()
-  // const shortUniqueID = uniqueID.slice(0, 13)
-  const firstNameInput = useRef()
-  const dateOfBirthInput = useRef()
-  const lastNameInput = useRef()
-  const startDateInput = useRef()
-  const streetInput = useRef()
-  const cityInput = useRef()
-  const zipCodeInput = useRef()
+  // // const shortUniqueID = uniqueID.slice(0, 13)
+  // const firstNameInput = useRef()
+  // const dateOfBirthInput = useRef()
+  // const lastNameInput = useRef()
+  // const startDateInput = useRef()
+  // const streetInput = useRef()
+  // const cityInput = useRef()
+  // const zipCodeInput = useRef()
 
   const handlePopulateClick = () => {
     const mockedEmployees = mockedEmployeesDatas
@@ -105,46 +108,46 @@ export default function CreateEmployee() {
     )
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (
-      uniqueID !== '' &&
-      firstNameInput.current.value !== '' &&
-      lastNameInput.current.value !== '' &&
-      dateOfBirthInput.current.value !== '' &&
-      startDateInput.current.value !== '' &&
-      departement !== '' &&
-      streetInput.current.value !== '' &&
-      cityInput.current.value !== '' &&
-      zipCodeInput.current.value !== '' &&
-      locationState !== ''
-    ) {
-      creationFormInputs = {
-        employeeID: uniqueID,
-        firstName: firstNameInput.current.value,
-        lastName: lastNameInput.current.value,
-        dateOfBirth: dateOfBirthInput.current.value,
-        startDate: startDateInput.current.value,
-        department: departement,
-        street: streetInput.current.value,
-        city: cityInput.current.value,
-        zipCode: zipCodeInput.current.value,
-        state: locationState,
-      }
-      console.log('creationFormInputs', creationFormInputs)
-      dispatch(addEmployee(creationFormInputs))
-      setIsModalOpen(true)
-    } else {
-      toast.error('Empty fields are not allowed')
-    }
-  }
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   if (
+  //     uniqueID !== '' &&
+  //     firstNameInput.current.value !== '' &&
+  //     lastNameInput.current.value !== '' &&
+  //     dateOfBirthInput.current.value !== '' &&
+  //     startDateInput.current.value !== '' &&
+  //     departement !== '' &&
+  //     streetInput.current.value !== '' &&
+  //     cityInput.current.value !== '' &&
+  //     zipCodeInput.current.value !== '' &&
+  //     locationState !== ''
+  //   ) {
+  //     creationFormInputs = {
+  //       employeeID: uniqueID,
+  //       firstName: firstNameInput.current.value,
+  //       lastName: lastNameInput.current.value,
+  //       dateOfBirth: dateOfBirthInput.current.value,
+  //       startDate: startDateInput.current.value,
+  //       department: departement,
+  //       street: streetInput.current.value,
+  //       city: cityInput.current.value,
+  //       zipCode: zipCodeInput.current.value,
+  //       state: locationState,
+  //     }
+  //     console.log('creationFormInputs', creationFormInputs)
+  //     dispatch(addEmployee(creationFormInputs))
+  //     setIsModalOpen(true)
+  //   } else {
+  //     toast.error('Empty fields are not allowed')
+  //   }
+  // }
 
-  const handleResetClick = () => {
-    setDepartement('')
-    setLocationState('')
-    setDateOfBirthState(null)
-    setStartOfDateState(null)
-  }
+  // const handleResetClick = () => {
+  //   setDepartement('')
+  //   setLocationState('')
+  //   setDateOfBirthState(null)
+  //   setStartOfDateState(null)
+  // }
   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
   // function CustomActionBar(props) {
   //   const { onAccept, onClear, onCancel, onSetToday, actions, className } =
@@ -245,6 +248,95 @@ export default function CreateEmployee() {
   //   )
   // }
 
+  const [employeeFormInputFields, setEmployeeFormInputFields] = useState({
+    employeeID: uniqueID,
+    firstName: '',
+    lastName: '',
+    dateOfBirth: null,
+    startDate: null,
+    street: '',
+    city: '',
+    zipCode: '',
+    department: '',
+    state: '',
+  })
+
+  const [errors, setErrors] = useState({})
+  const [submitting, setSubmitting] = useState(false)
+
+  const validateValues = (inputValues) => {
+    let errors = {}
+    if (inputValues.firstName.length < 2) {
+      errors.firstName = 'First name is too short (min char 2)'
+    }
+    if (inputValues.lastName.length < 2) {
+      errors.lastName = 'Last name is too short (min char 2)'
+    }
+    if (inputValues.street.length < 2) {
+      errors.street = `Street's name is too short (min char 2)`
+    }
+    if (inputValues.city.length < 2) {
+      errors.city = `City's name is too short (min char 2)`
+    }
+    if (inputValues.zipCode.length < 5) {
+      errors.zipCode = 'Zip Code is too short (min num 5)'
+    }
+    if (inputValues.department === '') {
+      errors.department = 'Department is required'
+    }
+    if (inputValues.state === '') {
+      errors.state = 'State is required'
+    }
+    if (inputValues.dateOfBirth === null) {
+      errors.dateOfBirth = 'Date is required'
+    }
+    if (inputValues.startDate === null) {
+      errors.startDate = 'Date is required'
+    }
+    return errors
+  }
+  const handleChangeInput = (e) => {
+    setEmployeeFormInputFields({
+      ...employeeFormInputFields,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  const handleSubmitClick = (event) => {
+    event.preventDefault()
+    setErrors(validateValues(employeeFormInputFields))
+    setSubmitting(true)
+  }
+
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && submitting) {
+      validFormSubmit()
+      // setIsModalOpen(true)
+    }
+    // eslint-disable-next-line
+  }, [errors])
+
+  const validFormSubmit = () => {
+    console.log(employeeFormInputFields)
+    dispatch(addEmployee(employeeFormInputFields))
+    setIsModalOpen(true)
+  }
+
+  const handleResetClick = () => {
+    setEmployeeFormInputFields({
+      ...employeeFormInputFields,
+      firstName: '',
+      lastName: '',
+      dateOfBirth: null,
+      startDate: null,
+      street: '',
+      city: '',
+      zipCode: '',
+      department: '',
+      state: '',
+    })
+  }
+
   return (
     <>
       <div className="layout__header">
@@ -257,6 +349,9 @@ export default function CreateEmployee() {
         <div className="createEmployee__banner--title">Create employees</div>
       </section>
       <main className="createEmployee__container">
+        {/* {Object.keys(errors).length === 0 && submitting ? (
+          <span className="success">Successfully submitted ✓</span>
+        ) : null} */}
         <Box className="createEmployee__form" component="form">
           <Grid container spacing={2}>
             <Grid xs={12}>
@@ -265,28 +360,103 @@ export default function CreateEmployee() {
               </h2>
             </Grid>
             <Grid xs={8}>
-              <TextField
-                id="firstName"
-                name="firstName"
-                label="First Name"
-                variant="outlined"
-                fullWidth
-                autoFocus
-                required
-                inputRef={firstNameInput}
-              />
+              {errors.firstName ? (
+                <TextField
+                  id="firstName"
+                  name="firstName"
+                  label="First name error"
+                  variant="outlined"
+                  fullWidth
+                  autoFocus
+                  required
+                  error
+                  helperText={`${errors.firstName}`}
+                  value={employeeFormInputFields.firstName}
+                  onChange={handleChangeInput}
+                  // inputRef={firstNameInput}
+                />
+              ) : (
+                <TextField
+                  id="firstName"
+                  name="firstName"
+                  label="First Name"
+                  variant="outlined"
+                  fullWidth
+                  autoFocus
+                  required
+                  value={employeeFormInputFields.firstName}
+                  onChange={handleChangeInput}
+                  // inputRef={firstNameInput}
+                />
+              )}
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
               <LocalizationProvider
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
-                <DatePicker
+                {errors.dateOfBirth ? (
+                  <DatePicker
+                    // id="dateOfBirth"
+                    label="Birthdate *"
+                    // name="dateOfBirth"
+                    // inputRef={dateOfBirthInput}
+                    value=""
+                    onChange={(newValue) =>
+                      setEmployeeFormInputFields({
+                        ...employeeFormInputFields,
+                        dateOfBirth: modelingDate(newValue),
+                      })
+                    }
+                    // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
+                    // slots={{
+                    //   actionBar: CustomActionBar,
+                    // }}
+                    slotProps={{
+                      actionBar: {
+                        actions: ['today', 'clear'],
+                      },
+                      textField: {
+                        helperText: `${errors.dateOfBirth}`,
+                      },
+                    }}
+                  />
+                ) : (
+                  <DatePicker
+                    // id="dateOfBirth"
+                    label="Birthdate *"
+                    // name="dateOfBirth"
+                    // inputRef={dateOfBirthInput}
+                    value={employeeFormInputFields.dateOfBirth}
+                    onChange={(newValue) =>
+                      setEmployeeFormInputFields({
+                        ...employeeFormInputFields,
+                        dateOfBirth: modelingDate(newValue),
+                      })
+                    }
+                    // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
+                    // slots={{
+                    //   actionBar: CustomActionBar,
+                    // }}
+                    slotProps={{
+                      actionBar: {
+                        actions: ['today', 'clear'],
+                      },
+                    }}
+                  />
+                )}
+                {/* <DatePicker
                   id="dateOfBirth"
                   label="Birthdate *"
-                  inputRef={dateOfBirthInput}
-                  value={dateOfBirthState}
-                  onChange={handleDateOfBirthState}
+                  // name="dateOfBirth"
+                  // inputRef={dateOfBirthInput}
+                  value={employeeFormInputFields.dateOfBirth}
+                  onChange={(newValue) =>
+                    setEmployeeFormInputFields({
+                      ...employeeFormInputFields,
+                      dateOfBirth: newValue,
+                    })
+                  }
                   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
                   // slots={{
                   //   actionBar: CustomActionBar,
@@ -296,48 +466,147 @@ export default function CreateEmployee() {
                       actions: ['today', 'clear'],
                     },
                   }}
-                />
+                /> */}
               </LocalizationProvider>
             </Grid>
             <Grid xs={8}>
-              <TextField
-                id="lastName"
-                name="lastName"
-                label="Last Name"
-                variant="outlined"
-                fullWidth
-                required
-                inputRef={lastNameInput}
-              />
+              {errors.lastName ? (
+                <TextField
+                  id="lastName"
+                  name="lastName"
+                  label="Last name error"
+                  variant="outlined"
+                  fullWidth
+                  required
+                  error
+                  helperText={`${errors.lastName}`}
+                  value={employeeFormInputFields.lastName}
+                  onChange={handleChangeInput}
+                  // inputRef={lastNameInput}
+                />
+              ) : (
+                <TextField
+                  id="lastName"
+                  name="lastName"
+                  label="Last Name"
+                  variant="outlined"
+                  fullWidth
+                  required
+                  value={employeeFormInputFields.lastName}
+                  onChange={handleChangeInput}
+                  // inputRef={lastNameInput}
+                />
+              )}
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
               <LocalizationProvider
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
-                <DatePicker
+                {errors.startDate ? (
+                  <DatePicker
+                    label="Start day *"
+                    // inputRef={startDateInput}
+                    value=""
+                    onChange={(newValue) =>
+                      setEmployeeFormInputFields({
+                        ...employeeFormInputFields,
+                        startDate: modelingDate(newValue),
+                      })
+                    }
+                    slotProps={{
+                      actionBar: {
+                        actions: ['today', 'clear'],
+                      },
+                      textField: {
+                        helperText: `${errors.startDate}`,
+                      },
+                    }}
+                  />
+                ) : (
+                  <DatePicker
+                    label="Start day *"
+                    // inputRef={startDateInput}
+                    value={employeeFormInputFields.startDate}
+                    onChange={(newValue) =>
+                      setEmployeeFormInputFields({
+                        ...employeeFormInputFields,
+                        startDate: modelingDate(newValue),
+                      })
+                    }
+                    slotProps={{
+                      actionBar: {
+                        actions: ['today', 'clear'],
+                      },
+                    }}
+                  />
+                )}
+                {/* <DatePicker
                   label="Start day *"
-                  inputRef={startDateInput}
-                  value={startOfDateState}
-                  onChange={handlestartOfDateState}
+                  // inputRef={startDateInput}
+                  value={employeeFormInputFields.startDay}
+                  onChange={(newValue) =>
+                    setEmployeeFormInputFields({
+                      ...employeeFormInputFields,
+                      startDate: newValue,
+                    })
+                  }
                   slotProps={{
                     actionBar: {
                       actions: ['today', 'clear'],
                     },
                   }}
-                />
+                /> */}
               </LocalizationProvider>
             </Grid>
             <Grid xs={12}>
-              <FormControl fullWidth>
+              {errors.department ? (
+                <FormControl error fullWidth>
+                  <InputLabel id="department-label">Department *</InputLabel>
+                  <Select
+                    labelId="department"
+                    id="department"
+                    name="department"
+                    value={employeeFormInputFields.department}
+                    onChange={handleChangeInput}
+                    input={<OutlinedInput label="department" />}
+                  >
+                    {departmentsNames.map((department) => (
+                      <MenuItem key={department} value={department}>
+                        {department}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  <FormHelperText>{`${errors.department}`}</FormHelperText>
+                </FormControl>
+              ) : (
+                <FormControl fullWidth>
+                  <InputLabel id="department-label">Department * </InputLabel>
+                  <Select
+                    labelId="department"
+                    id="department"
+                    name="department"
+                    value={employeeFormInputFields.department}
+                    onChange={handleChangeInput}
+                    input={<OutlinedInput label="department" />}
+                  >
+                    {departmentsNames.map((department) => (
+                      <MenuItem key={department} value={department}>
+                        {department}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+              {/* <FormControl fullWidth>
                 <InputLabel id="departement-label">Departement *</InputLabel>
                 <Select
                   labelId="departement"
                   id="departement"
                   name="departement"
                   required
-                  value={departement}
-                  onChange={handleChangeDepartement}
+                  // value={departement}
+                  // onChange={handleChangeDepartement}
                   input={<OutlinedInput label="departement" />}
                 >
                   {departmentsNames.map((departement) => (
@@ -346,7 +615,7 @@ export default function CreateEmployee() {
                     </MenuItem>
                   ))}
                 </Select>
-              </FormControl>
+              </FormControl> */}
             </Grid>
             <Grid xs={12}>
               <h2 className="createEmployee__form--caption">
@@ -354,41 +623,140 @@ export default function CreateEmployee() {
               </h2>
             </Grid>
             <Grid xs={12}>
-              <TextField
-                id="street"
-                name="street"
-                label="Street"
-                variant="outlined"
-                required
-                fullWidth
-                inputRef={streetInput}
-              />
+              {errors.street ? (
+                <TextField
+                  id="street"
+                  name="street"
+                  label="Street"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  error
+                  helperText={`${errors.street}`}
+                  value={employeeFormInputFields.street}
+                  onChange={handleChangeInput}
+                  // inputRef={streetInput}
+                />
+              ) : (
+                <TextField
+                  id="street"
+                  name="street"
+                  label="Street"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  value={employeeFormInputFields.street}
+                  onChange={handleChangeInput}
+                  // inputRef={streetInput}
+                />
+              )}
             </Grid>
             <Grid xs={6}>
-              <TextField
-                id="city"
-                name="city"
-                label="City"
-                variant="outlined"
-                required
-                fullWidth
-                inputRef={cityInput}
-              />
+              {errors.city ? (
+                <TextField
+                  id="city"
+                  name="city"
+                  label="City"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  error
+                  helperText={`${errors.city}`}
+                  value={employeeFormInputFields.city}
+                  onChange={handleChangeInput}
+                  // inputRef={cityInput}
+                />
+              ) : (
+                <TextField
+                  id="city"
+                  name="city"
+                  label="City"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  value={employeeFormInputFields.city}
+                  onChange={handleChangeInput}
+                  // inputRef={cityInput}
+                />
+              )}
             </Grid>
             <Grid xs={6}>
-              <TextField
-                id="zipCode"
-                name="zipCode"
-                label="Zip Code"
-                variant="outlined"
-                type="number"
-                required
-                fullWidth
-                inputRef={zipCodeInput}
-              />
+              {errors.zipCode ? (
+                <TextField
+                  id="zipCode"
+                  name="zipCode"
+                  label="Zip Code"
+                  variant="outlined"
+                  type="number"
+                  required
+                  fullWidth
+                  error
+                  helperText={`${errors.zipCode}`}
+                  value={employeeFormInputFields.zipCode}
+                  onChange={handleChangeInput}
+                  // inputRef={zipCodeInput}
+                />
+              ) : (
+                <TextField
+                  id="zipCode"
+                  name="zipCode"
+                  label="Zip Code"
+                  variant="outlined"
+                  type="number"
+                  required
+                  fullWidth
+                  value={employeeFormInputFields.zipCode}
+                  onChange={handleChangeInput}
+                  // inputRef={zipCodeInput}
+                />
+              )}
             </Grid>
             <Grid xs={12}>
-              <FormControl fullWidth>
+              {errors.state ? (
+                <FormControl error fullWidth>
+                  <InputLabel id="state-label">State *</InputLabel>
+                  <Select
+                    labelId="state"
+                    id="state"
+                    name="state"
+                    value={employeeFormInputFields.state}
+                    onChange={handleChangeInput}
+                    input={<OutlinedInput label="state" />}
+                  >
+                    {stateNames.map((locationState) => (
+                      <MenuItem
+                        key={locationState.abbreviation}
+                        value={locationState.abbreviation}
+                      >
+                        {locationState.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  <FormHelperText>{`${errors.state}`}</FormHelperText>
+                </FormControl>
+              ) : (
+                <FormControl fullWidth>
+                  <InputLabel id="state-label">State *</InputLabel>
+                  <Select
+                    labelId="state"
+                    id="state"
+                    name="state"
+                    value={employeeFormInputFields.state}
+                    onChange={handleChangeInput}
+                    input={<OutlinedInput label="state" />}
+                  >
+                    {stateNames.map((locationState) => (
+                      <MenuItem
+                        key={locationState.abbreviation}
+                        value={locationState.abbreviation}
+                      >
+                        {locationState.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+              {/* <FormControl fullWidth>
                 <InputLabel id="state-label">State *</InputLabel>
                 <Select
                   labelId="state"
@@ -407,7 +775,7 @@ export default function CreateEmployee() {
                     </MenuItem>
                   ))}
                 </Select>
-              </FormControl>
+              </FormControl> */}
             </Grid>
             <Grid xs={12}>
               <Stack direction="row" spacing={2}>
@@ -431,7 +799,7 @@ export default function CreateEmployee() {
                     type="submit"
                     fullWidth
                     onClick={(e) => {
-                      handleSubmit(e)
+                      handleSubmitClick(e)
                       // setIsModalOpen(true)
                     }}
                   >
@@ -456,7 +824,8 @@ export default function CreateEmployee() {
         {isModalOpen && (
           <InfoModal
             setIsModalOpen={setIsModalOpen}
-            title={`${firstNameInput.current.value} ${lastNameInput.current.value}`}
+            title={`${employeeFormInputFields.firstName} ${employeeFormInputFields.lastName}`}
+            // title="banzai"
             information={`has been successfully registered !`}
             modalBg={
               'radial-gradient(circle, rgba(255, 246, 235, 1) 0%, rgba(255, 228, 196, 1) 70%)'
