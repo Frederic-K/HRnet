@@ -52,7 +52,7 @@ export default function ManageEmployees() {
   const [rows, setRows] = useState(employees)
   const [filteredEmployees, setFilteredEmployees] = useState([])
   const [isFilterShown, setIsFilterShown] = useState(false)
-  // const [isNoResult, setIsNoResult] = useState(false)
+  const [isNoMatch, setIsNoMatch] = useState(false)
 
   useEffect(() => {
     if (!id) {
@@ -115,9 +115,13 @@ export default function ManageEmployees() {
       setFilteredEmployees(filteredEmployees)
       setRows(filteredEmployees)
       console.log('rows-after', rows)
+      if (filteredEmployees.length === 0) {
+        setIsNoMatch(true)
+      }
     } else {
       // setFilteredEmployees(mockedEmployeesDatas)
       setFilteredEmployees([])
+      setIsNoMatch(false)
     }
   }
 
@@ -433,7 +437,7 @@ export default function ManageEmployees() {
               component="form"
               onSubmit={(e) => e.preventDefault()}
             >
-              {/* {isNoResult ? (
+              {isNoMatch ? (
                 <TextField
                   id="outlined-basic"
                   label="Search"
@@ -456,8 +460,8 @@ export default function ManageEmployees() {
                     processChanges()
                   }}
                 />
-              )} */}
-              <TextField
+              )}
+              {/* <TextField
                 id="outlined-basic"
                 label="Search"
                 variant="outlined"
@@ -466,7 +470,7 @@ export default function ManageEmployees() {
                 onChange={() => {
                   processChanges()
                 }}
-              />
+              /> */}
               <Button
                 type="reset"
                 variant="outlined"
