@@ -91,7 +91,7 @@ export default function CreateEmployee() {
   //   setStartOfDateState(e)
   // }
 
-  // const uniqueID = uuidv4()
+  const uniqueID = uuidv4()
   // // const shortUniqueID = uniqueID.slice(0, 13)
   // const firstNameInput = useRef()
   // const dateOfBirthInput = useRef()
@@ -248,17 +248,19 @@ export default function CreateEmployee() {
   //   )
   // }
 
-  const [employeeFormInputFields, setemployeeFormInputFields] = useState({
+  const [employeeFormInputFields, setEmployeeFormInputFields] = useState({
+    employeeID: uniqueID,
     firstName: '',
     lastName: '',
+    dateOfBirth: null,
+    startDate: null,
     street: '',
     city: '',
     zipCode: '',
     department: '',
     state: '',
-    dateOfBirth: null,
-    startDate: null,
   })
+
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
 
@@ -294,7 +296,7 @@ export default function CreateEmployee() {
     return errors
   }
   const handleChangeInput = (e) => {
-    setemployeeFormInputFields({
+    setEmployeeFormInputFields({
       ...employeeFormInputFields,
       [e.target.name]: e.target.value,
     })
@@ -318,6 +320,21 @@ export default function CreateEmployee() {
     console.log(employeeFormInputFields)
     dispatch(addEmployee(employeeFormInputFields))
     setIsModalOpen(true)
+  }
+
+  const handleResetClick = () => {
+    setEmployeeFormInputFields({
+      ...employeeFormInputFields,
+      firstName: '',
+      lastName: '',
+      dateOfBirth: null,
+      startDate: null,
+      street: '',
+      city: '',
+      zipCode: '',
+      department: '',
+      state: '',
+    })
   }
 
   return (
@@ -386,7 +403,7 @@ export default function CreateEmployee() {
                     // inputRef={dateOfBirthInput}
                     value=""
                     onChange={(newValue) =>
-                      setemployeeFormInputFields({
+                      setEmployeeFormInputFields({
                         ...employeeFormInputFields,
                         dateOfBirth: modelingDate(newValue),
                       })
@@ -412,7 +429,7 @@ export default function CreateEmployee() {
                     // inputRef={dateOfBirthInput}
                     value={employeeFormInputFields.dateOfBirth}
                     onChange={(newValue) =>
-                      setemployeeFormInputFields({
+                      setEmployeeFormInputFields({
                         ...employeeFormInputFields,
                         dateOfBirth: modelingDate(newValue),
                       })
@@ -435,7 +452,7 @@ export default function CreateEmployee() {
                   // inputRef={dateOfBirthInput}
                   value={employeeFormInputFields.dateOfBirth}
                   onChange={(newValue) =>
-                    setemployeeFormInputFields({
+                    setEmployeeFormInputFields({
                       ...employeeFormInputFields,
                       dateOfBirth: newValue,
                     })
@@ -492,7 +509,7 @@ export default function CreateEmployee() {
                     // inputRef={startDateInput}
                     value=""
                     onChange={(newValue) =>
-                      setemployeeFormInputFields({
+                      setEmployeeFormInputFields({
                         ...employeeFormInputFields,
                         startDate: modelingDate(newValue),
                       })
@@ -512,7 +529,7 @@ export default function CreateEmployee() {
                     // inputRef={startDateInput}
                     value={employeeFormInputFields.startDate}
                     onChange={(newValue) =>
-                      setemployeeFormInputFields({
+                      setEmployeeFormInputFields({
                         ...employeeFormInputFields,
                         startDate: modelingDate(newValue),
                       })
@@ -529,7 +546,7 @@ export default function CreateEmployee() {
                   // inputRef={startDateInput}
                   value={employeeFormInputFields.startDay}
                   onChange={(newValue) =>
-                    setemployeeFormInputFields({
+                    setEmployeeFormInputFields({
                       ...employeeFormInputFields,
                       startDate: newValue,
                     })
@@ -768,9 +785,9 @@ export default function CreateEmployee() {
                     startIcon={<DeleteIcon />}
                     type="reset"
                     fullWidth
-                    // onClick={() => {
-                    //   handleResetClick()
-                    // }}
+                    onClick={() => {
+                      handleResetClick()
+                    }}
                   >
                     Reset
                   </Button>
