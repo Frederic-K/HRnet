@@ -27,7 +27,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import 'dayjs/locale/de'
 import 'dayjs/locale/en-gb'
-// import dayjs from 'dayjs'
+import dayjs from 'dayjs'
 
 // CustomActionBar for date picker
 // import DialogActions from '@mui/material/DialogActions'
@@ -265,6 +265,9 @@ export default function CreateEmployee() {
   const [submitting, setSubmitting] = useState(false)
 
   const validateValues = (inputValues) => {
+    const rawMinAge = dayjs().subtract(18, 'year')
+    const minAge = Date.parse(modelingDate(rawMinAge))
+    const age = Date.parse(inputValues.dateOfBirth)
     let errors = {}
     if (inputValues.firstName.length < 2) {
       errors.firstName = 'First name is too short (min char 2)'
@@ -287,12 +290,15 @@ export default function CreateEmployee() {
     if (inputValues.state === '') {
       errors.state = 'State is required'
     }
-    if (inputValues.dateOfBirth === null) {
-      errors.dateOfBirth = 'Date is required'
+    if (inputValues.dateOfBirth === null || age > minAge) {
+      errors.dateOfBirth = 'Ivalid date (min age 18yo)'
     }
     if (inputValues.startDate === null) {
       errors.startDate = 'Date is required'
     }
+    console.log('age', age)
+    console.log('raw minAge', rawMinAge)
+    console.log('minAge', minAge)
     return errors
   }
   const handleChangeInput = (e) => {
@@ -335,6 +341,8 @@ export default function CreateEmployee() {
       department: '',
       state: '',
     })
+    setErrors({})
+    setSubmitting(false)
   }
 
   return (
