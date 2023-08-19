@@ -53,11 +53,14 @@ import { v4 as uuidv4 } from 'uuid'
 // Modal
 // import InfoModalComponent from '../../components/InfoModalComponent/InfoModalComponent'
 
+// DateOfBirth - DatePicker
+import DateOfBirthPicker from '../../components/DateOfBirth/DateOfBirth'
+
 export default function CreateEmployee() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { id } = useSelector(userSelector)
-  let creationFormInputs = ''
+  // let creationFormInputs = ''
   // Modal management
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -406,7 +409,8 @@ export default function CreateEmployee() {
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
-                {errors.dateOfBirth ? (
+                <DateOfBirthPicker />
+                {/* {errors.dateOfBirth ? (
                   <DatePicker
                     // id="dateOfBirth"
                     label="Birthdate *"
@@ -455,7 +459,7 @@ export default function CreateEmployee() {
                       },
                     }}
                   />
-                )}
+                )} */}
                 {/* <DatePicker
                   id="dateOfBirth"
                   label="Birthdate *"
