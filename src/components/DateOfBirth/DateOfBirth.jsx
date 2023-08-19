@@ -12,10 +12,19 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 const minAge = dayjs().subtract(18, 'year')
 
 export default function DateOfBirthPicker() {
-  const [error, setError] = useState(null)
+  const [employeeFormInputFields, setEmployeeFormInputFields] = useState({
+    dateOfBirth: null,
+  })
+
+  console.log(
+    'employeeFormInputFields.dateOfBirth',
+    employeeFormInputFields.dateOfBirth,
+  )
+
+  const [errorDateOfBirth, setErrorDateOfBirth] = useState(null)
 
   const errorMessage = useMemo(() => {
-    switch (error) {
+    switch (errorDateOfBirth) {
       case 'maxDate': {
         return 'Birthdate is required : min 18yo'
       }
@@ -32,14 +41,21 @@ export default function DateOfBirthPicker() {
         return ''
       }
     }
-  }, [error])
+  }, [errorDateOfBirth])
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
       <Box>
         <DatePicker
-          // defaultValue={dayjs()}
-          onError={(newError) => setError(newError)}
+          label="Birthdate *"
+          value={employeeFormInputFields.dateOfBirth}
+          onChange={(newValue) =>
+            setEmployeeFormInputFields({
+              ...employeeFormInputFields,
+              dateOfBirth: newValue,
+            })
+          }
+          onError={(newError) => setErrorDateOfBirth(newError)}
           slotProps={{
             actionBar: {
               actions: ['clear'],

@@ -409,7 +409,9 @@ export default function CreateEmployee() {
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
-                <DateOfBirthPicker />
+                <DateOfBirthPicker
+                  setEmployeeFormInputFields={setEmployeeFormInputFields}
+                />
                 {/* {errors.dateOfBirth ? (
                   <DatePicker
                     // id="dateOfBirth"
