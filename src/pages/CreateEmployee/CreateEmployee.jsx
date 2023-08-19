@@ -318,13 +318,13 @@ export default function CreateEmployee() {
     // if (inputValues.dateOfBirth === null || age > minAge) {
     //   errors.dateOfBirth = 'Ivalid date (min age 18yo)'
     // }
-    if (inputValues.dateOfBirth === null || errorMessage.length > 0) {
+    if (inputValues.dateOfBirth === null || errorMessage !== null) {
       errors.dateOfBirth = 'Invalid date'
       setEmployeeFormInputFields({
         ...employeeFormInputFields,
         dateOfBirth: '',
       })
-      console.log('errorMessageLength', errorMessage.length)
+      console.log('errorMessageLength', errorMessage)
     }
     if (inputValues.startDate === null) {
       errors.startDate = 'Date is required'
