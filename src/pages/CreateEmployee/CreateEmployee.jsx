@@ -265,9 +265,9 @@ export default function CreateEmployee() {
   const [submitting, setSubmitting] = useState(false)
 
   const validateValues = (inputValues) => {
-    const rawMinAge = dayjs().subtract(18, 'year')
-    const minAge = Date.parse(modelingDate(rawMinAge))
-    const age = Date.parse(inputValues.dateOfBirth)
+    // const rawMinAge = dayjs().subtract(18, 'year')
+    // const minAge = Date.parse(modelingDate(rawMinAge))
+    // const age = Date.parse(inputValues.dateOfBirth)
     let errors = {}
     if (inputValues.firstName.length < 2) {
       errors.firstName = 'First name is too short (min char 2)'
@@ -290,15 +290,18 @@ export default function CreateEmployee() {
     if (inputValues.state === '') {
       errors.state = 'State is required'
     }
-    if (inputValues.dateOfBirth === null || age > minAge) {
-      errors.dateOfBirth = 'Ivalid date (min age 18yo)'
+    // if (inputValues.dateOfBirth === null || age > minAge) {
+    //   errors.dateOfBirth = 'Ivalid date (min age 18yo)'
+    // }
+    if (inputValues.dateOfBirth === null) {
+      errors.dateOfBirth = 'Date is required'
     }
     if (inputValues.startDate === null) {
       errors.startDate = 'Date is required'
     }
-    console.log('age', age)
-    console.log('raw minAge', rawMinAge)
-    console.log('minAge', minAge)
+    // console.log('age', age)
+    // console.log('raw minAge', rawMinAge)
+    // console.log('minAge', minAge)
     return errors
   }
   const handleChangeInput = (e) => {
@@ -422,7 +425,7 @@ export default function CreateEmployee() {
                     // }}
                     slotProps={{
                       actionBar: {
-                        actions: ['today', 'clear'],
+                        actions: ['today'],
                       },
                       textField: {
                         helperText: `${errors.dateOfBirth}`,
@@ -448,7 +451,7 @@ export default function CreateEmployee() {
                     // }}
                     slotProps={{
                       actionBar: {
-                        actions: ['today', 'clear'],
+                        actions: ['today'],
                       },
                     }}
                   />
@@ -524,7 +527,7 @@ export default function CreateEmployee() {
                     }
                     slotProps={{
                       actionBar: {
-                        actions: ['today', 'clear'],
+                        actions: ['today'],
                       },
                       textField: {
                         helperText: `${errors.startDate}`,
@@ -544,7 +547,7 @@ export default function CreateEmployee() {
                     }
                     slotProps={{
                       actionBar: {
-                        actions: ['today', 'clear'],
+                        actions: ['today'],
                       },
                     }}
                   />
