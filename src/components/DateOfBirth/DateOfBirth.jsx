@@ -6,6 +6,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
+import { modelingDate } from '../../services/Model/DataModeling'
+
 // const startOfQ12022 = dayjs('2022-01-01T00:00:00.000')
 // const endOfQ12022 = dayjs('2022-03-31T23:59:59.999')
 // const today = dayjs()
@@ -52,7 +54,7 @@ export default function DateOfBirthPicker() {
           onChange={(newValue) =>
             setEmployeeFormInputFields({
               ...employeeFormInputFields,
-              dateOfBirth: newValue,
+              dateOfBirth: modelingDate(newValue),
             })
           }
           onError={(newError) => setErrorDateOfBirth(newError)}

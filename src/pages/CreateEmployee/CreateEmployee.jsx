@@ -1,5 +1,5 @@
 // React
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useMemo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 // Redux User
 import { useDispatch, useSelector } from 'react-redux'
@@ -54,7 +54,7 @@ import { v4 as uuidv4 } from 'uuid'
 // import InfoModalComponent from '../../components/InfoModalComponent/InfoModalComponent'
 
 // DateOfBirth - DatePicker
-import DateOfBirthPicker from '../../components/DateOfBirth/DateOfBirth'
+// import DateOfBirthPicker from '../../components/DateOfBirth/DateOfBirth'
 
 export default function CreateEmployee() {
   const navigate = useNavigate()
@@ -264,6 +264,28 @@ export default function CreateEmployee() {
     state: '',
   })
 
+  const [errorDateOfBirth, setErrorDateOfBirth] = useState(null)
+
+  const errorMessage = useMemo(() => {
+    switch (errorDateOfBirth) {
+      case 'maxDate': {
+        return 'Date required, age > 18yo'
+      }
+
+      case 'minDate': {
+        return 'Date should be > 1970'
+      }
+
+      case 'invalidDate': {
+        return 'Date is required'
+      }
+
+      default: {
+        return null
+      }
+    }
+  }, [errorDateOfBirth])
+
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
 
@@ -296,8 +318,13 @@ export default function CreateEmployee() {
     // if (inputValues.dateOfBirth === null || age > minAge) {
     //   errors.dateOfBirth = 'Ivalid date (min age 18yo)'
     // }
-    if (inputValues.dateOfBirth === null) {
-      errors.dateOfBirth = 'Date is required'
+    if (inputValues.dateOfBirth === null || errorMessage.length > 0) {
+      errors.dateOfBirth = 'Invalid date'
+      setEmployeeFormInputFields({
+        ...employeeFormInputFields,
+        dateOfBirth: '',
+      })
+      console.log('errorMessageLength', errorMessage.length)
     }
     if (inputValues.startDate === null) {
       errors.startDate = 'Date is required'
@@ -316,6 +343,12 @@ export default function CreateEmployee() {
 
   const handleSubmitClick = (event) => {
     event.preventDefault()
+    console.log('inputfield-1', employeeFormInputFields)
+    setEmployeeFormInputFields({
+      ...employeeFormInputFields,
+      dateOfBirth: modelingDate(employeeFormInputFields.dateOfBirth),
+    })
+    console.log('inputfield-2', employeeFormInputFields)
     setErrors(validateValues(employeeFormInputFields))
     setSubmitting(true)
   }
@@ -409,9 +442,9 @@ export default function CreateEmployee() {
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
-                <DateOfBirthPicker
+                {/* <DateOfBirthPicker
                   setEmployeeFormInputFields={setEmployeeFormInputFields}
-                />
+                /> */}
                 {/* {errors.dateOfBirth ? (
                   <DatePicker
                     // id="dateOfBirth"
@@ -462,7 +495,7 @@ export default function CreateEmployee() {
                     }}
                   />
                 )} */}
-                {/* <DatePicker
+                <DatePicker
                   id="dateOfBirth"
                   label="Birthdate *"
                   // name="dateOfBirth"
@@ -474,6 +507,7 @@ export default function CreateEmployee() {
                       dateOfBirth: newValue,
                     })
                   }
+                  onError={(newError) => setErrorDateOfBirth(newError)}
                   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
                   // slots={{
                   //   actionBar: CustomActionBar,
@@ -482,8 +516,13 @@ export default function CreateEmployee() {
                     actionBar: {
                       actions: ['today', 'clear'],
                     },
+                    textField: {
+                      helperText: errorMessage,
+                    },
                   }}
-                /> */}
+                  minDate={dayjs('1970-01-01T00:00:00.000')}
+                  maxDate={dayjs().subtract(18, 'year')}
+                />
               </LocalizationProvider>
             </Grid>
             <Grid xs={8}>
