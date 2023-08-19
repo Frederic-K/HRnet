@@ -41,6 +41,9 @@ export default function DateOfBirthPicker() {
           // defaultValue={dayjs()}
           onError={(newError) => setError(newError)}
           slotProps={{
+            actionBar: {
+              actions: ['clear'],
+            },
             textField: {
               helperText: errorMessage,
             },
