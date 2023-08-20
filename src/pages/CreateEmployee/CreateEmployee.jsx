@@ -273,11 +273,11 @@ export default function CreateEmployee() {
       }
 
       case 'minDate': {
-        return 'Date should be > 1970'
+        return 'Date of birth required, age < 64yo'
       }
 
       case 'invalidDate': {
-        return 'Date is required'
+        return 'Date of birth is required'
       }
 
       default: {
@@ -285,6 +285,28 @@ export default function CreateEmployee() {
       }
     }
   }, [errorDateOfBirth])
+
+  const [errorStartDate, setErrorStartDate] = useState(null)
+
+  const errorMessageStartDate = useMemo(() => {
+    switch (errorStartDate) {
+      // case 'maxDate': {
+      //   return 'Date required, age > 18yo'
+      // }
+
+      case 'minDate': {
+        return 'Start Day, age < 64yo'
+      }
+
+      case 'invalidDate': {
+        return 'Start day is required'
+      }
+
+      default: {
+        return null
+      }
+    }
+  }, [errorStartDate])
 
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
@@ -294,6 +316,7 @@ export default function CreateEmployee() {
     // const minAge = Date.parse(modelingDate(rawMinAge))
     // const age = Date.parse(inputValues.dateOfBirth)
     let errors = {}
+
     if (inputValues.firstName.length < 2) {
       errors.firstName = 'First name is too short (min char 2)'
     }
@@ -318,17 +341,34 @@ export default function CreateEmployee() {
     // if (inputValues.dateOfBirth === null || age > minAge) {
     //   errors.dateOfBirth = 'Ivalid date (min age 18yo)'
     // }
+    // if (inputValues.dateOfBirth === null || errorMessageDateOfBirth !== null) {
+    //   errors.dateOfBirth = 'Invalid date of birth'
+    //   setEmployeeFormInputFields({
+    //     ...employeeFormInputFields,
+    //     dateOfBirth: '',
+    //   })
+    //   console.log('errorMessageDateOfBirthLength', errorMessageDateOfBirth)
+    // }
     if (inputValues.dateOfBirth === null || errorMessageDateOfBirth !== null) {
-      errors.dateOfBirth = 'Invalid date'
+      errors.dateOfBirth = 'Invalid date of birth'
       setEmployeeFormInputFields({
         ...employeeFormInputFields,
-        dateOfBirth: '',
+        dateOfBirth: 'error',
       })
-      console.log('errorMessageDateOfBirthLength', errorMessageDateOfBirth)
+      console.log('errorMessageDateOfBirth', errorMessageDateOfBirth)
     }
-    if (inputValues.startDate === null) {
-      errors.startDate = 'Date is required'
+    if (inputValues.startDate === null || errorMessageStartDate !== null) {
+      errors.startDate = 'Invalid start day'
+      setEmployeeFormInputFields({
+        ...employeeFormInputFields,
+        startDate: 'error',
+      })
+      console.log('errorMessageDateOfBirth', errorMessageStartDate)
     }
+
+    // if (inputValues.startDate === null) {
+    //   errors.startDate = 'Date is required'
+    // }
     // console.log('age', age)
     // console.log('raw minAge', rawMinAge)
     // console.log('minAge', minAge)
@@ -347,6 +387,7 @@ export default function CreateEmployee() {
     setEmployeeFormInputFields({
       ...employeeFormInputFields,
       dateOfBirth: modelingDate(employeeFormInputFields.dateOfBirth),
+      startDate: modelingDate(employeeFormInputFields.startDate),
     })
     console.log('inputfield-2', employeeFormInputFields)
     setErrors(validateValues(employeeFormInputFields))
@@ -501,13 +542,15 @@ export default function CreateEmployee() {
                   // name="dateOfBirth"
                   // inputRef={dateOfBirthInput}
                   value={employeeFormInputFields.dateOfBirth}
-                  onChange={(newValue) =>
+                  onChange={(newValueDateOfBirth) =>
                     setEmployeeFormInputFields({
                       ...employeeFormInputFields,
-                      dateOfBirth: newValue,
+                      dateOfBirth: newValueDateOfBirth,
                     })
                   }
-                  onError={(newError) => setErrorDateOfBirth(newError)}
+                  onError={(newErrorDateOfBirth) =>
+                    setErrorDateOfBirth(newErrorDateOfBirth)
+                  }
                   // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
                   // slots={{
                   //   actionBar: CustomActionBar,
@@ -520,7 +563,7 @@ export default function CreateEmployee() {
                       helperText: errorMessageDateOfBirth,
                     },
                   }}
-                  minDate={dayjs('1970-01-01T00:00:00.000')}
+                  minDate={dayjs().subtract(64, 'year')}
                   maxDate={dayjs().subtract(18, 'year')}
                 />
               </LocalizationProvider>
@@ -559,7 +602,7 @@ export default function CreateEmployee() {
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
-                {errors.startDate ? (
+                {/* {errors.startDate ? (
                   <DatePicker
                     label="Start day *"
                     // inputRef={startDateInput}
@@ -596,23 +639,35 @@ export default function CreateEmployee() {
                       },
                     }}
                   />
-                )}
-                {/* <DatePicker
+                )} */}
+                <DatePicker
+                  id="startDate"
                   label="Start day *"
                   // inputRef={startDateInput}
-                  value={employeeFormInputFields.startDay}
-                  onChange={(newValue) =>
+                  value={employeeFormInputFields.startDate}
+                  onChange={(newValueStartDay) =>
                     setEmployeeFormInputFields({
                       ...employeeFormInputFields,
-                      startDate: newValue,
+                      startDate: newValueStartDay,
                     })
                   }
+                  onError={(newErrorStartDate) =>
+                    setErrorStartDate(newErrorStartDate)
+                  }
+                  // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
+                  // slots={{
+                  //   actionBar: CustomActionBar,
+                  // }}
                   slotProps={{
                     actionBar: {
                       actions: ['today', 'clear'],
                     },
+                    textField: {
+                      helperText: errorMessageStartDate,
+                    },
                   }}
-                /> */}
+                  minDate={dayjs().subtract(64, 'year')}
+                />
               </LocalizationProvider>
             </Grid>
             <Grid xs={12}>
