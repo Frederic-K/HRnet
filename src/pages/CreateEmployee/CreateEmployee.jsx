@@ -266,7 +266,7 @@ export default function CreateEmployee() {
 
   const [errorDateOfBirth, setErrorDateOfBirth] = useState(null)
 
-  const errorMessage = useMemo(() => {
+  const errorMessageDateOfBirth = useMemo(() => {
     switch (errorDateOfBirth) {
       case 'maxDate': {
         return 'Date required, age > 18yo'
@@ -318,13 +318,13 @@ export default function CreateEmployee() {
     // if (inputValues.dateOfBirth === null || age > minAge) {
     //   errors.dateOfBirth = 'Ivalid date (min age 18yo)'
     // }
-    if (inputValues.dateOfBirth === null || errorMessage !== null) {
+    if (inputValues.dateOfBirth === null || errorMessageDateOfBirth !== null) {
       errors.dateOfBirth = 'Invalid date'
       setEmployeeFormInputFields({
         ...employeeFormInputFields,
         dateOfBirth: '',
       })
-      console.log('errorMessageLength', errorMessage)
+      console.log('errorMessageDateOfBirthLength', errorMessageDateOfBirth)
     }
     if (inputValues.startDate === null) {
       errors.startDate = 'Date is required'
@@ -517,7 +517,7 @@ export default function CreateEmployee() {
                       actions: ['today', 'clear'],
                     },
                     textField: {
-                      helperText: errorMessage,
+                      helperText: errorMessageDateOfBirth,
                     },
                   }}
                   minDate={dayjs('1970-01-01T00:00:00.000')}
