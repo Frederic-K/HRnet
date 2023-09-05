@@ -338,17 +338,6 @@ export default function CreateEmployee() {
     if (inputValues.state === '') {
       errors.state = 'State is required'
     }
-    // if (inputValues.dateOfBirth === null || age > minAge) {
-    //   errors.dateOfBirth = 'Ivalid date (min age 18yo)'
-    // }
-    // if (inputValues.dateOfBirth === null || errorMessageDateOfBirth !== null) {
-    //   errors.dateOfBirth = 'Invalid date of birth'
-    //   setEmployeeFormInputFields({
-    //     ...employeeFormInputFields,
-    //     dateOfBirth: '',
-    //   })
-    //   console.log('errorMessageDateOfBirthLength', errorMessageDateOfBirth)
-    // }
     if (inputValues.dateOfBirth === null || errorMessageDateOfBirth !== null) {
       errors.dateOfBirth = 'Invalid date of birth'
       setEmployeeFormInputFields({
