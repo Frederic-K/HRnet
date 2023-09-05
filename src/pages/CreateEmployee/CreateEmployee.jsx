@@ -384,11 +384,11 @@ export default function CreateEmployee() {
   const handleSubmitClick = (event) => {
     event.preventDefault()
     console.log('inputfield-1', employeeFormInputFields)
-    setEmployeeFormInputFields({
-      ...employeeFormInputFields,
-      dateOfBirth: modelingDate(employeeFormInputFields.dateOfBirth),
-      startDate: modelingDate(employeeFormInputFields.startDate),
-    })
+    // setEmployeeFormInputFields({
+    //   ...employeeFormInputFields,
+    //   dateOfBirth: modelingDate(employeeFormInputFields.dateOfBirth),
+    //   startDate: modelingDate(employeeFormInputFields.startDate),
+    // })
     console.log('inputfield-2', employeeFormInputFields)
     setErrors(validateValues(employeeFormInputFields))
     setSubmitting(true)
@@ -403,7 +403,16 @@ export default function CreateEmployee() {
   }, [errors])
 
   const validFormSubmit = () => {
-    console.log(employeeFormInputFields)
+    setEmployeeFormInputFields({
+      ...employeeFormInputFields,
+      dateOfBirth: modelingDate(employeeFormInputFields.dateOfBirth),
+      startDate: modelingDate(employeeFormInputFields.startDate),
+    })
+    console.log('validatValue', employeeFormInputFields)
+    console.log(
+      'testModelingDate',
+      modelingDate(employeeFormInputFields.dateOfBirth),
+    )
     dispatch(addEmployee(employeeFormInputFields))
     setIsModalOpen(true)
   }
