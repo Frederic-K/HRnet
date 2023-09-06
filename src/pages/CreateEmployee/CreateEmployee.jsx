@@ -261,8 +261,8 @@ export default function CreateEmployee() {
     employeeID: uniqueID,
     firstName: '',
     lastName: '',
-    dateOfBirth: null,
-    startDate: null,
+    dateOfBirth: dateOfBirthValue,
+    startDate: dateOfBirthValue,
     street: '',
     city: '',
     zipCode: '',
@@ -443,11 +443,6 @@ export default function CreateEmployee() {
     //   'testModelingDate',
     //   modelingDate(employeeFormInputFields.dateOfBirth),
     // )
-    setEmployeeFormInputFields({
-      ...employeeFormInputFields,
-      dateOfBirth: dateOfBirthValue,
-      startDate: startDateValue,
-    })
     console.log('dateOfBirth-valideForm', dateOfBirthValue)
     console.log('dateOfBirthModelingDAte', employeeFormInputFields.dateOfBirth)
     console.log('startDateValidFrom', startDateValue)
@@ -459,20 +454,20 @@ export default function CreateEmployee() {
   }
 
   const handleResetClick = () => {
+    setDateOfBirthValue(null)
+    setStartDateValue(null)
     setEmployeeFormInputFields({
       ...employeeFormInputFields,
       firstName: '',
       lastName: '',
-      // dateOfBirth: null,
-      // startDate: null,
+      dateOfBirth: dateOfBirthValue,
+      startDate: dateOfBirthValue,
       street: '',
       city: '',
       zipCode: '',
       department: '',
       state: '',
     })
-    setDateOfBirthValue(null)
-    setStartDateValue(null)
     setErrors({})
     setSubmitting(false)
   }
@@ -601,13 +596,8 @@ export default function CreateEmployee() {
                   //   })
                   // }
                   value={dateOfBirthValue}
-                  onChange={
-                    ((newValueDateOfBirth) =>
-                      setDateOfBirthValue(newValueDateOfBirth),
-                    setEmployeeFormInputFields({
-                      ...employeeFormInputFields,
-                      dateOfBirth: dateOfBirthValue,
-                    }))
+                  onChange={(newValueDateOfBirth) =>
+                    setDateOfBirthValue(newValueDateOfBirth)
                   }
                   onError={(newErrorDateOfBirth) =>
                     setErrorDateOfBirth(newErrorDateOfBirth)
