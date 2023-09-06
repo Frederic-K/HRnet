@@ -251,6 +251,12 @@ export default function CreateEmployee() {
   //   )
   // }
 
+  // const tata = 'test'
+
+  const [dateOfBirthValue, setDateOfBirthValue] = useState(null)
+  // const titi = 'retest'
+  const [startDateValue, setStartDateValue] = useState(null)
+
   const [employeeFormInputFields, setEmployeeFormInputFields] = useState({
     employeeID: uniqueID,
     firstName: '',
@@ -311,7 +317,7 @@ export default function CreateEmployee() {
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
 
-  const validateValues = (inputValues) => {
+  const checkInputValues = (inputValues) => {
     // const rawMinAge = dayjs().subtract(18, 'year')
     // const minAge = Date.parse(modelingDate(rawMinAge))
     // const age = Date.parse(inputValues.dateOfBirth)
@@ -338,22 +344,46 @@ export default function CreateEmployee() {
     if (inputValues.state === '') {
       errors.state = 'State is required'
     }
-    if (inputValues.dateOfBirth === null || errorMessageDateOfBirth !== null) {
+    // if (inputValues.dateOfBirth === null || errorMessageDateOfBirth !== null) {
+    //   errors.dateOfBirth = 'Invalid date of birth'
+    //   setEmployeeFormInputFields({
+    //     ...employeeFormInputFields,
+    //     dateOfBirth: 'error',
+    //   })
+    //   // console.log('errorMessageDateOfBirth', errorMessageDateOfBirth)
+    // }
+    // if (inputValues.startDate === null || errorMessageStartDate !== null) {
+    //   errors.startDate = 'Invalid start day'
+    //   setEmployeeFormInputFields({
+    //     ...employeeFormInputFields,
+    //     startDate: 'error',
+    //   })
+    //   // console.log('errorMessageDateOfBirth', errorMessageStartDate)
+    // }
+    // if (inputValues.dateOfBirth === null || errorMessageDateOfBirth !== null) {
+    //   errors.dateOfBirth = 'Invalid date of birth'
+    //   setEmployeeFormInputFields({
+    //     ...employeeFormInputFields,
+    //     dateOfBirth: 'error',
+    //   })
+    //   // console.log('errorMessageDateOfBirth', errorMessageDateOfBirth)
+    // }
+    if (dateOfBirthValue === null || errorMessageDateOfBirth !== null) {
       errors.dateOfBirth = 'Invalid date of birth'
-      setEmployeeFormInputFields({
-        ...employeeFormInputFields,
-        dateOfBirth: 'error',
-      })
-      console.log('errorMessageDateOfBirth', errorMessageDateOfBirth)
+      setDateOfBirthValue('error')
+      console.log('dateOfBirth1', dateOfBirthValue)
     }
-    if (inputValues.startDate === null || errorMessageStartDate !== null) {
+    if (startDateValue === null || errorMessageStartDate !== null) {
       errors.startDate = 'Invalid start day'
-      setEmployeeFormInputFields({
-        ...employeeFormInputFields,
-        startDate: 'error',
-      })
-      console.log('errorMessageDateOfBirth', errorMessageStartDate)
+      setStartDateValue('error')
+      console.log('startDate1', startDateValue)
     }
+    // if (tata !== null) {
+    //   console.log('tata', tata)
+    // }
+    // if (titi !== null) {
+    //   console.log('titi', titi)
+    // }
 
     // if (inputValues.startDate === null) {
     //   errors.startDate = 'Date is required'
@@ -372,19 +402,35 @@ export default function CreateEmployee() {
 
   const handleSubmitClick = (event) => {
     event.preventDefault()
-    console.log('inputfield-1', employeeFormInputFields)
+    // console.log('inputfield-1', employeeFormInputFields)
     // setEmployeeFormInputFields({
     //   ...employeeFormInputFields,
     //   dateOfBirth: modelingDate(employeeFormInputFields.dateOfBirth),
     //   startDate: modelingDate(employeeFormInputFields.startDate),
     // })
-    console.log('inputfield-2', employeeFormInputFields)
-    setErrors(validateValues(employeeFormInputFields))
+    // console.log('inputfield-2', employeeFormInputFields)
+    setErrors(
+      checkInputValues(
+        employeeFormInputFields,
+        dateOfBirthValue,
+        startDateValue,
+      ),
+    )
     setSubmitting(true)
   }
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
+      // setEmployeeFormInputFields({
+      //   ...employeeFormInputFields,
+      //   dateOfBirth: modelingDate(dateOfBirthValue),
+      //   startDate: modelingDate(startDateValue),
+      // })
+      // setEmployeeFormInputFields({
+      //   ...employeeFormInputFields,
+      //   dateOfBirth: dateOfBirthValue,
+      //   startDate: startDateValue,
+      // })
       validFormSubmit()
       // setIsModalOpen(true)
     }
@@ -392,17 +438,23 @@ export default function CreateEmployee() {
   }, [errors])
 
   const validFormSubmit = () => {
+    // console.log('validatValue', employeeFormInputFields)
+    // console.log(
+    //   'testModelingDate',
+    //   modelingDate(employeeFormInputFields.dateOfBirth),
+    // )
     setEmployeeFormInputFields({
       ...employeeFormInputFields,
-      dateOfBirth: modelingDate(employeeFormInputFields.dateOfBirth),
-      startDate: modelingDate(employeeFormInputFields.startDate),
+      dateOfBirth: dateOfBirthValue,
+      startDate: startDateValue,
     })
-    console.log('validatValue', employeeFormInputFields)
-    console.log(
-      'testModelingDate',
-      modelingDate(employeeFormInputFields.dateOfBirth),
-    )
+    console.log('dateOfBirth-valideForm', dateOfBirthValue)
+    console.log('dateOfBirthModelingDAte', employeeFormInputFields.dateOfBirth)
+    console.log('startDateValidFrom', startDateValue)
+    console.log('startDateModelinfDate', employeeFormInputFields.startDate)
     dispatch(addEmployee(employeeFormInputFields))
+    // dispatch(addEmployee(dateOfBirthValue))
+    // dispatch(addEmployee(startDateValue))
     setIsModalOpen(true)
   }
 
@@ -411,14 +463,16 @@ export default function CreateEmployee() {
       ...employeeFormInputFields,
       firstName: '',
       lastName: '',
-      dateOfBirth: null,
-      startDate: null,
+      // dateOfBirth: null,
+      // startDate: null,
       street: '',
       city: '',
       zipCode: '',
       department: '',
       state: '',
     })
+    setDateOfBirthValue(null)
+    setStartDateValue(null)
     setErrors({})
     setSubmitting(false)
   }
@@ -539,12 +593,21 @@ export default function CreateEmployee() {
                   label="Birthdate *"
                   // name="dateOfBirth"
                   // inputRef={dateOfBirthInput}
-                  value={employeeFormInputFields.dateOfBirth}
-                  onChange={(newValueDateOfBirth) =>
+                  // value={employeeFormInputFields.dateOfBirth}
+                  // onChange={(newValueDateOfBirth) =>
+                  //   setEmployeeFormInputFields({
+                  //     ...employeeFormInputFields,
+                  //     dateOfBirth: newValueDateOfBirth,
+                  //   })
+                  // }
+                  value={dateOfBirthValue}
+                  onChange={
+                    ((newValueDateOfBirth) =>
+                      setDateOfBirthValue(newValueDateOfBirth),
                     setEmployeeFormInputFields({
                       ...employeeFormInputFields,
-                      dateOfBirth: newValueDateOfBirth,
-                    })
+                      dateOfBirth: dateOfBirthValue,
+                    }))
                   }
                   onError={(newErrorDateOfBirth) =>
                     setErrorDateOfBirth(newErrorDateOfBirth)
@@ -642,12 +705,16 @@ export default function CreateEmployee() {
                   id="startDate"
                   label="Start day *"
                   // inputRef={startDateInput}
-                  value={employeeFormInputFields.startDate}
+                  // value={employeeFormInputFields.startDate}
+                  // onChange={(newValueStartDay) =>
+                  //   setEmployeeFormInputFields({
+                  //     ...employeeFormInputFields,
+                  //     startDate: newValueStartDay,
+                  //   })
+                  // }
+                  value={startDateValue}
                   onChange={(newValueStartDay) =>
-                    setEmployeeFormInputFields({
-                      ...employeeFormInputFields,
-                      startDate: newValueStartDay,
-                    })
+                    setStartDateValue(newValueStartDay)
                   }
                   onError={(newErrorStartDate) =>
                     setErrorStartDate(newErrorStartDate)
