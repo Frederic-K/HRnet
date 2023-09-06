@@ -261,8 +261,10 @@ export default function CreateEmployee() {
     employeeID: uniqueID,
     firstName: '',
     lastName: '',
-    dateOfBirth: dateOfBirthValue,
-    startDate: dateOfBirthValue,
+    // dateOfBirth: dateOfBirthValue,
+    // startDate: dateOfBirthValue,
+    dateOfBirth: null,
+    startDate: null,
     street: '',
     city: '',
     zipCode: '',
@@ -420,6 +422,26 @@ export default function CreateEmployee() {
   }
 
   useEffect(() => {
+    if (dateOfBirthValue !== null && startDateValue !== null) {
+      setEmployeeFormInputFields({
+        ...employeeFormInputFields,
+        dateOfBirth: modelingDate(dateOfBirthValue),
+        startDate: modelingDate(startDateValue),
+      })
+      console.log('dateOfBirth-valideForm', dateOfBirthValue)
+      console.log(
+        'employeeFormInputFields-dateOfBirth',
+        employeeFormInputFields.dateOfBirth,
+      )
+      console.log('startDateValidFrom', startDateValue)
+      console.log(
+        'employeeFormInputFields-startDate',
+        employeeFormInputFields.startDate,
+      )
+    }
+  }, [dateOfBirthValue, startDateValue])
+
+  useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
       // setEmployeeFormInputFields({
       //   ...employeeFormInputFields,
@@ -431,6 +453,21 @@ export default function CreateEmployee() {
       //   dateOfBirth: dateOfBirthValue,
       //   startDate: startDateValue,
       // })
+      // setEmployeeFormInputFields({
+      //   ...employeeFormInputFields,
+      //   dateOfBirth: dateOfBirthValue,
+      //   startDate: startDateValue,
+      // })
+      // console.log('dateOfBirth-valideForm', dateOfBirthValue)
+      // console.log(
+      //   'employeeFormInputFields-dateOfBirth',
+      //   employeeFormInputFields.dateOfBirth,
+      // )
+      // console.log('startDateValidFrom', startDateValue)
+      // console.log(
+      //   'employeeFormInputFields-startDate',
+      //   employeeFormInputFields.startDate,
+      // )
       validFormSubmit()
       // setIsModalOpen(true)
     }
@@ -443,10 +480,7 @@ export default function CreateEmployee() {
     //   'testModelingDate',
     //   modelingDate(employeeFormInputFields.dateOfBirth),
     // )
-    console.log('dateOfBirth-valideForm', dateOfBirthValue)
-    console.log('dateOfBirthModelingDAte', employeeFormInputFields.dateOfBirth)
-    console.log('startDateValidFrom', startDateValue)
-    console.log('startDateModelinfDate', employeeFormInputFields.startDate)
+
     dispatch(addEmployee(employeeFormInputFields))
     // dispatch(addEmployee(dateOfBirthValue))
     // dispatch(addEmployee(startDateValue))
