@@ -53,6 +53,7 @@ export default function ManageEmployees() {
   const [isFilterShown, setIsFilterShown] = useState(false)
   const [isNoMatch, setIsNoMatch] = useState(false)
 
+  // Check id
   useEffect(() => {
     if (!id) {
       navigate('/')
@@ -60,17 +61,19 @@ export default function ManageEmployees() {
     // eslint-disable-next-line
   }, [id])
 
+  // Toast info about list of recorded employee to user
   useEffect(() => {
     if (employees.length > 0) {
       toast.success(`Employee : ${employees.length}`)
       setRows(employees)
     } else {
-      console.log('3')
+      // console.log('3')
       toast.error('Nothing interesting to show you')
       setRows(employees)
     }
   }, [employees])
 
+  // Toast info about filtered employee from list of employee
   useEffect(() => {
     if (filteredEmployees.length > 0) {
       toast.success(`Filtered Employee : ${filteredEmployees.length}`)
@@ -82,6 +85,7 @@ export default function ManageEmployees() {
     // eslint-disable-next-line
   }, [filteredEmployees])
 
+  // Handle delay after input into search bar
   function Debounce(func, timeout = 2000) {
     let timer
     return (...args) => {
@@ -93,6 +97,7 @@ export default function ManageEmployees() {
   }
   const processChanges = Debounce(() => Filter())
 
+  // Search bar
   function Filter() {
     let inputSearchValue = searchInput.current.value ?? ''
     if (inputSearchValue !== '') {
