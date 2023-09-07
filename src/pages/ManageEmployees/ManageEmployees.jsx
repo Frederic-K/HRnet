@@ -48,7 +48,6 @@ export default function ManageEmployees() {
   const { id } = useSelector(userSelector)
   const { employees } = useSelector(employeeSelector)
   const searchInput = useRef()
-  // const [rows, setRows] = useState(mockedEmployeesDatas)
   const [rows, setRows] = useState(employees)
   const [filteredEmployees, setFilteredEmployees] = useState([])
   const [isFilterShown, setIsFilterShown] = useState(false)
@@ -110,16 +109,17 @@ export default function ManageEmployees() {
           employee.state.toLowerCase().includes(filterValue) ||
           employee.zipCode.toString().includes(filterValue),
       )
-      console.log('filteredEmployee', filteredEmployees)
-      console.log('rows-before', rows)
+      // console.log('filteredEmployee', filteredEmployees)
+      // console.log('rows-before', rows)
       setFilteredEmployees(filteredEmployees)
       setRows(filteredEmployees)
-      console.log('rows-after', rows)
+      // console.log('rows-after', rows)
       if (filteredEmployees.length === 0) {
         setIsNoMatch(true)
+      } else {
+        setIsNoMatch(false)
       }
     } else {
-      // setFilteredEmployees(mockedEmployeesDatas)
       setFilteredEmployees([])
       setIsNoMatch(false)
     }
@@ -461,16 +461,6 @@ export default function ManageEmployees() {
                   }}
                 />
               )}
-              {/* <TextField
-                id="outlined-basic"
-                label="Search"
-                variant="outlined"
-                fullWidth
-                inputRef={searchInput}
-                onChange={() => {
-                  processChanges()
-                }}
-              /> */}
               <Button
                 type="reset"
                 variant="outlined"
