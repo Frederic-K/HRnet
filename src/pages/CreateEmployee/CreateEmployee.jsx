@@ -372,7 +372,6 @@ export default function CreateEmployee() {
                   helperText={`${errors.lastName}`}
                   value={employeeFormInputFields.lastName}
                   onChange={handleChangeInput}
-                  // inputRef={lastNameInput}
                 />
               ) : (
                 <TextField
@@ -384,7 +383,6 @@ export default function CreateEmployee() {
                   required
                   value={employeeFormInputFields.lastName}
                   onChange={handleChangeInput}
-                  // inputRef={lastNameInput}
                 />
               )}
             </Grid>
@@ -642,7 +640,6 @@ export default function CreateEmployee() {
           <InfoModal
             setIsModalOpen={setIsModalOpen}
             title={`${employeeFormInputFields.firstName} ${employeeFormInputFields.lastName}`}
-            // title="banzai"
             information={`has been successfully registered !`}
             modalBg={
               'radial-gradient(circle, rgba(255, 246, 235, 1) 0%, rgba(255, 228, 196, 1) 70%)'
