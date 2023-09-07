@@ -214,7 +214,7 @@ export default function ManageEmployees() {
     },
     {
       id: 'zipCode',
-      numeric: false,
+      numeric: true,
       disablePadding: false,
       label: 'Zip Code',
     },
@@ -534,7 +534,7 @@ export default function ManageEmployees() {
                           <TableCell align="left">{row.street}</TableCell>
                           <TableCell align="left">{row.city}</TableCell>
                           <TableCell align="left">{row.state}</TableCell>
-                          <TableCell align="left">{row.zipCode}</TableCell>
+                          <TableCell align="right">{row.zipCode}</TableCell>
                         </TableRow>
                       )
                     })}
