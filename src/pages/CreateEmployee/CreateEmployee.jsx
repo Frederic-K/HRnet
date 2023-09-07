@@ -421,12 +421,42 @@ export default function CreateEmployee() {
     setSubmitting(true)
   }
 
+  // useEffect(() => {
+  //   if (
+  //     dateOfBirthValue !== null &&
+  //     dateOfBirthValue !== 'error' &&
+  //     startDateValue !== null &&
+  //     startDateValue !== 'error'
+  //   ) {
+  //     setEmployeeFormInputFields({
+  //       ...employeeFormInputFields,
+  //       dateOfBirth: modelingDate(dateOfBirthValue),
+  //       startDate: modelingDate(startDateValue),
+  //     })
+  //     console.log('dateOfBirth-valideForm', dateOfBirthValue)
+  //     console.log(
+  //       'employeeFormInputFields-dateOfBirth',
+  //       employeeFormInputFields.dateOfBirth,
+  //     )
+  //     console.log('startDateValidFrom', startDateValue)
+  //     console.log(
+  //       'employeeFormInputFields-startDate',
+  //       employeeFormInputFields.startDate,
+  //     )
+  //   }
+  // }, [dateOfBirthValue, startDateValue])
+
   useEffect(() => {
-    if (dateOfBirthValue !== null && startDateValue !== null) {
+    if (
+      dateOfBirthValue !== null &&
+      dateOfBirthValue !== 'error' &&
+      startDateValue !== null &&
+      startDateValue !== 'error'
+    ) {
       setEmployeeFormInputFields({
         ...employeeFormInputFields,
-        dateOfBirth: modelingDate(dateOfBirthValue),
-        startDate: modelingDate(startDateValue),
+        dateOfBirth: dateOfBirthValue,
+        startDate: startDateValue,
       })
       console.log('dateOfBirth-valideForm', dateOfBirthValue)
       console.log(
@@ -494,8 +524,8 @@ export default function CreateEmployee() {
       ...employeeFormInputFields,
       firstName: '',
       lastName: '',
-      dateOfBirth: dateOfBirthValue,
-      startDate: dateOfBirthValue,
+      dateOfBirth: null,
+      startDate: null,
       street: '',
       city: '',
       zipCode: '',
