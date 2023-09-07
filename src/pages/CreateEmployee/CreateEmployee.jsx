@@ -67,8 +67,10 @@ export default function CreateEmployee() {
 
   const stateNames = statesDatas
 
+  // Generate unique ID
   const uniqueID = uuidv4()
 
+  // To populate employee list with fake employees
   const handlePopulateClick = () => {
     const mockedEmployees = mockedEmployeesDatas
     mockedEmployees.forEach((fakeEmployee) =>
@@ -76,10 +78,11 @@ export default function CreateEmployee() {
     )
   }
 
+  // Handle datepicker state
   const [dateOfBirthValue, setDateOfBirthValue] = useState(null)
-
   const [startDateValue, setStartDateValue] = useState(null)
 
+  // Employee
   const [employeeFormInputFields, setEmployeeFormInputFields] = useState({
     employeeID: '',
     firstName: '',
@@ -93,6 +96,7 @@ export default function CreateEmployee() {
     state: '',
   })
 
+  // Internal management of invalid date from datepicker component
   const [errorDateOfBirth, setErrorDateOfBirth] = useState(null)
 
   const errorMessageDateOfBirth = useMemo(() => {
@@ -201,7 +205,7 @@ export default function CreateEmployee() {
         ...employeeFormInputFields,
         employeeID: uniqueID,
       })
-      console.log('employeeId', employeeFormInputFields.employeeID)
+      // console.log('employeeId', employeeFormInputFields.employeeID)
     }
     // eslint-disable-next-line
   }, [employeeFormInputFields])
