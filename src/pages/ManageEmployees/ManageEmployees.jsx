@@ -116,6 +116,8 @@ export default function ManageEmployees() {
       // console.log('rows-after', rows)
       if (filteredEmployees.length === 0) {
         setIsNoMatch(true)
+      } else {
+        setIsNoMatch(false)
       }
     } else {
       setFilteredEmployees([])
