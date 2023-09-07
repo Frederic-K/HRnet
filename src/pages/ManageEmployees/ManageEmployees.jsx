@@ -109,11 +109,11 @@ export default function ManageEmployees() {
           employee.state.toLowerCase().includes(filterValue) ||
           employee.zipCode.toString().includes(filterValue),
       )
-      console.log('filteredEmployee', filteredEmployees)
-      console.log('rows-before', rows)
+      // console.log('filteredEmployee', filteredEmployees)
+      // console.log('rows-before', rows)
       setFilteredEmployees(filteredEmployees)
       setRows(filteredEmployees)
-      console.log('rows-after', rows)
+      // console.log('rows-after', rows)
       if (filteredEmployees.length === 0) {
         setIsNoMatch(true)
       }
