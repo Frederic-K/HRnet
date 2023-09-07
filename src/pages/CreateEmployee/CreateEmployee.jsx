@@ -661,7 +661,9 @@ export default function CreateEmployee() {
                   // }
                   value={dateOfBirthValue}
                   onChange={(newValueDateOfBirth) =>
-                    setDateOfBirthValue(newValueDateOfBirth)
+                    setDateOfBirthValue(
+                      dayjs(newValueDateOfBirth).format('MM/DD/YYYY'),
+                    )
                   }
                   onError={(newErrorDateOfBirth) =>
                     setErrorDateOfBirth(newErrorDateOfBirth)
@@ -768,7 +770,9 @@ export default function CreateEmployee() {
                   // }
                   value={startDateValue}
                   onChange={(newValueStartDay) =>
-                    setStartDateValue(newValueStartDay)
+                    setStartDateValue(
+                      dayjs(newValueStartDay).format('MM/DD/YYYY'),
+                    )
                   }
                   onError={(newErrorStartDate) =>
                     setErrorStartDate(newErrorStartDate)
