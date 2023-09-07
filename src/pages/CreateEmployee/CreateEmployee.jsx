@@ -146,7 +146,13 @@ export default function CreateEmployee() {
 
   const checkInputValues = (inputValues) => {
     let errors = {}
-
+    if (inputValues.employeeID === '') {
+      setEmployeeFormInputFields({
+        ...employeeFormInputFields,
+        employeeID: uniqueID,
+      })
+      // console.log('employeeId', employeeFormInputFields.employeeID)
+    }
     if (inputValues.firstName.length < 2) {
       errors.firstName = 'First name is too short (min char 2)'
     }
@@ -171,12 +177,12 @@ export default function CreateEmployee() {
     if (dateOfBirthValue === null || errorMessageDateOfBirth !== null) {
       errors.dateOfBirth = 'Invalid date of birth'
       setDateOfBirthValue('error')
-      console.log('dateOfBirth1', dateOfBirthValue)
+      // console.log('dateOfBirth1', dateOfBirthValue)
     }
     if (startDateValue === null || errorMessageStartDate !== null) {
       errors.startDate = 'Invalid start day'
       setStartDateValue('error')
-      console.log('startDate1', startDateValue)
+      // console.log('startDate1', startDateValue)
     }
     return errors
   }
@@ -199,16 +205,16 @@ export default function CreateEmployee() {
     setSubmitting(true)
   }
 
-  useEffect(() => {
-    if (employeeFormInputFields.employeeID === '') {
-      setEmployeeFormInputFields({
-        ...employeeFormInputFields,
-        employeeID: uniqueID,
-      })
-      // console.log('employeeId', employeeFormInputFields.employeeID)
-    }
-    // eslint-disable-next-line
-  }, [employeeFormInputFields])
+  // useEffect(() => {
+  //   if (employeeFormInputFields.employeeID === '') {
+  //     setEmployeeFormInputFields({
+  //       ...employeeFormInputFields,
+  //       employeeID: uniqueID,
+  //     })
+  //     // console.log('employeeId', employeeFormInputFields.employeeID)
+  //   }
+  //   // eslint-disable-next-line
+  // }, [employeeFormInputFields])
 
   useEffect(() => {
     if (
@@ -222,16 +228,16 @@ export default function CreateEmployee() {
         dateOfBirth: dateOfBirthValue,
         startDate: startDateValue,
       })
-      console.log('dateOfBirth-valideForm', dateOfBirthValue)
-      console.log(
-        'employeeFormInputFields-dateOfBirth',
-        employeeFormInputFields.dateOfBirth,
-      )
-      console.log('startDateValidFrom', startDateValue)
-      console.log(
-        'employeeFormInputFields-startDate',
-        employeeFormInputFields.startDate,
-      )
+      // console.log('dateOfBirth-valideForm', dateOfBirthValue)
+      // console.log(
+      //   'employeeFormInputFields-dateOfBirth',
+      //   employeeFormInputFields.dateOfBirth,
+      // )
+      // console.log('startDateValidFrom', startDateValue)
+      // console.log(
+      //   'employeeFormInputFields-startDate',
+      //   employeeFormInputFields.startDate,
+      // )
     }
     // eslint-disable-next-line
   }, [dateOfBirthValue, startDateValue])
