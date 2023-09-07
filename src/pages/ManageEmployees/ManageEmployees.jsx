@@ -48,7 +48,6 @@ export default function ManageEmployees() {
   const { id } = useSelector(userSelector)
   const { employees } = useSelector(employeeSelector)
   const searchInput = useRef()
-  // const [rows, setRows] = useState(mockedEmployeesDatas)
   const [rows, setRows] = useState(employees)
   const [filteredEmployees, setFilteredEmployees] = useState([])
   const [isFilterShown, setIsFilterShown] = useState(false)
@@ -119,7 +118,6 @@ export default function ManageEmployees() {
         setIsNoMatch(true)
       }
     } else {
-      // setFilteredEmployees(mockedEmployeesDatas)
       setFilteredEmployees([])
       setIsNoMatch(false)
     }
@@ -461,16 +459,6 @@ export default function ManageEmployees() {
                   }}
                 />
               )}
-              {/* <TextField
-                id="outlined-basic"
-                label="Search"
-                variant="outlined"
-                fullWidth
-                inputRef={searchInput}
-                onChange={() => {
-                  processChanges()
-                }}
-              /> */}
               <Button
                 type="reset"
                 variant="outlined"

@@ -1,5 +1,5 @@
 // React
-import { useState, useRef, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 // Redux User
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,7 +10,6 @@ import { addEmployee } from '../../features/employeeSlice'
 // Components
 import Header from '../../components/Header/Header'
 import { Toaster } from 'react-hot-toast'
-import toast from 'react-hot-toast'
 // My info modal component
 import { InfoModal } from 'info-modal-component'
 // Field nd button
@@ -46,21 +45,13 @@ import Select from '@mui/material/Select'
 // Datas
 import { departmentsDatas } from '../../services/Datas/departmentsDatas'
 import { statesDatas } from '../../services/Datas/statesDatas'
-// Formatting data
-import { modelingDate } from '../../services/Model/DataModeling'
 // uuid
 import { v4 as uuidv4 } from 'uuid'
-// Modal
-// import InfoModalComponent from '../../components/InfoModalComponent/InfoModalComponent'
-
-// DateOfBirth - DatePicker
-// import DateOfBirthPicker from '../../components/DateOfBirth/DateOfBirth'
 
 export default function CreateEmployee() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { id } = useSelector(userSelector)
-  // let creationFormInputs = ''
   // Modal management
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -73,36 +64,10 @@ export default function CreateEmployee() {
   }, [id])
 
   const departmentsNames = departmentsDatas
-  // const [departement, setDepartement] = useState('')
-  // const handleChangeDepartement = (event) => {
-  //   setDepartement(event.target.value)
-  // }
 
   const stateNames = statesDatas
-  // const [locationState, setLocationState] = useState('')
-  // const handleChangeLocationState = (event) => {
-  //   setLocationState(event.target.value)
-  // }
-
-  // const [dateOfBirthState, setDateOfBirthState] = useState(null)
-  // const handleDateOfBirthState = (e) => {
-  //   setDateOfBirthState(e)
-  // }
-
-  // const [startOfDateState, setStartOfDateState] = useState(null)
-  // const handlestartOfDateState = (e) => {
-  //   setStartOfDateState(e)
-  // }
 
   const uniqueID = uuidv4()
-  // // const shortUniqueID = uniqueID.slice(0, 13)
-  // const firstNameInput = useRef()
-  // const dateOfBirthInput = useRef()
-  // const lastNameInput = useRef()
-  // const startDateInput = useRef()
-  // const streetInput = useRef()
-  // const cityInput = useRef()
-  // const zipCodeInput = useRef()
 
   const handlePopulateClick = () => {
     const mockedEmployees = mockedEmployeesDatas
@@ -111,159 +76,14 @@ export default function CreateEmployee() {
     )
   }
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   if (
-  //     uniqueID !== '' &&
-  //     firstNameInput.current.value !== '' &&
-  //     lastNameInput.current.value !== '' &&
-  //     dateOfBirthInput.current.value !== '' &&
-  //     startDateInput.current.value !== '' &&
-  //     departement !== '' &&
-  //     streetInput.current.value !== '' &&
-  //     cityInput.current.value !== '' &&
-  //     zipCodeInput.current.value !== '' &&
-  //     locationState !== ''
-  //   ) {
-  //     creationFormInputs = {
-  //       employeeID: uniqueID,
-  //       firstName: firstNameInput.current.value,
-  //       lastName: lastNameInput.current.value,
-  //       dateOfBirth: dateOfBirthInput.current.value,
-  //       startDate: startDateInput.current.value,
-  //       department: departement,
-  //       street: streetInput.current.value,
-  //       city: cityInput.current.value,
-  //       zipCode: zipCodeInput.current.value,
-  //       state: locationState,
-  //     }
-  //     console.log('creationFormInputs', creationFormInputs)
-  //     dispatch(addEmployee(creationFormInputs))
-  //     setIsModalOpen(true)
-  //   } else {
-  //     toast.error('Empty fields are not allowed')
-  //   }
-  // }
-
-  // const handleResetClick = () => {
-  //   setDepartement('')
-  //   setLocationState('')
-  //   setDateOfBirthState(null)
-  //   setStartOfDateState(null)
-  // }
-  // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
-  // function CustomActionBar(props) {
-  //   const { onAccept, onClear, onCancel, onSetToday, actions, className } =
-  //     props
-  //   const localeText = useLocaleText()
-  //   const [anchorEl, setAnchorEl] = useState(null)
-  //   const open = Boolean(anchorEl)
-  //   const id = useId()
-
-  //   if (actions == null || actions.length === 0) {
-  //     return null
-  //   }
-
-  //   const menuItems = actions?.map((actionType) => {
-  //     switch (actionType) {
-  //       case 'clear':
-  //         return (
-  //           <MenuItem
-  //             data-mui-test="clear-action-button"
-  //             onClick={() => {
-  //               onClear()
-  //               setAnchorEl(null)
-  //             }}
-  //             key={actionType}
-  //           >
-  //             {localeText.clearButtonLabel}
-  //           </MenuItem>
-  //         )
-
-  //       case 'cancel':
-  //         return (
-  //           <MenuItem
-  //             onClick={() => {
-  //               setAnchorEl(null)
-  //               onCancel()
-  //             }}
-  //             key={actionType}
-  //           >
-  //             {localeText.cancelButtonLabel}
-  //           </MenuItem>
-  //         )
-
-  //       case 'accept':
-  //         return (
-  //           <MenuItem
-  //             onClick={() => {
-  //               setAnchorEl(null)
-  //               onAccept()
-  //             }}
-  //             key={actionType}
-  //           >
-  //             {localeText.okButtonLabel}
-  //           </MenuItem>
-  //         )
-
-  //       case 'today':
-  //         return (
-  //           <MenuItem
-  //             data-mui-test="today-action-button"
-  //             onClick={() => {
-  //               setAnchorEl(null)
-  //               onSetToday()
-  //             }}
-  //             key={actionType}
-  //           >
-  //             {localeText.todayButtonLabel}
-  //           </MenuItem>
-  //         )
-
-  //       default:
-  //         return null
-  //     }
-  //   })
-
-  //   return (
-  //     <DialogActions className={className}>
-  //       <Button
-  //         id={`picker-actions-${id}`}
-  //         aria-controls={open ? 'basic-menu' : undefined}
-  //         aria-haspopup="true"
-  //         aria-expanded={open ? 'true' : undefined}
-  //         onClick={(event) => setAnchorEl(event.currentTarget)}
-  //       >
-  //         Actions
-  //       </Button>
-  //       <Menu
-  //         id="basic-menu"
-  //         anchorEl={anchorEl}
-  //         open={open}
-  //         onClose={() => setAnchorEl(null)}
-  //         MenuListProps={{
-  //           'aria-labelledby': `picker-actions-${id}`,
-  //         }}
-  //       >
-  //         {menuItems}
-  //       </Menu>
-  //     </DialogActions>
-  //   )
-  // }
-
-  // const tata = 'test'
-
   const [dateOfBirthValue, setDateOfBirthValue] = useState(null)
-  // const titi = 'retest'
+
   const [startDateValue, setStartDateValue] = useState(null)
 
   const [employeeFormInputFields, setEmployeeFormInputFields] = useState({
-    // employeeID: uniqueID,
     employeeID: '',
     firstName: '',
     lastName: '',
-    // dateOfBirth: dateOfBirthValue,
-    // startDate: dateOfBirthValue,
     dateOfBirth: null,
     startDate: null,
     street: '',
@@ -321,9 +141,6 @@ export default function CreateEmployee() {
   const [submitting, setSubmitting] = useState(false)
 
   const checkInputValues = (inputValues) => {
-    // const rawMinAge = dayjs().subtract(18, 'year')
-    // const minAge = Date.parse(modelingDate(rawMinAge))
-    // const age = Date.parse(inputValues.dateOfBirth)
     let errors = {}
 
     if (inputValues.firstName.length < 2) {
@@ -347,30 +164,6 @@ export default function CreateEmployee() {
     if (inputValues.state === '') {
       errors.state = 'State is required'
     }
-    // if (inputValues.dateOfBirth === null || errorMessageDateOfBirth !== null) {
-    //   errors.dateOfBirth = 'Invalid date of birth'
-    //   setEmployeeFormInputFields({
-    //     ...employeeFormInputFields,
-    //     dateOfBirth: 'error',
-    //   })
-    //   // console.log('errorMessageDateOfBirth', errorMessageDateOfBirth)
-    // }
-    // if (inputValues.startDate === null || errorMessageStartDate !== null) {
-    //   errors.startDate = 'Invalid start day'
-    //   setEmployeeFormInputFields({
-    //     ...employeeFormInputFields,
-    //     startDate: 'error',
-    //   })
-    //   // console.log('errorMessageDateOfBirth', errorMessageStartDate)
-    // }
-    // if (inputValues.dateOfBirth === null || errorMessageDateOfBirth !== null) {
-    //   errors.dateOfBirth = 'Invalid date of birth'
-    //   setEmployeeFormInputFields({
-    //     ...employeeFormInputFields,
-    //     dateOfBirth: 'error',
-    //   })
-    //   // console.log('errorMessageDateOfBirth', errorMessageDateOfBirth)
-    // }
     if (dateOfBirthValue === null || errorMessageDateOfBirth !== null) {
       errors.dateOfBirth = 'Invalid date of birth'
       setDateOfBirthValue('error')
@@ -381,19 +174,6 @@ export default function CreateEmployee() {
       setStartDateValue('error')
       console.log('startDate1', startDateValue)
     }
-    // if (tata !== null) {
-    //   console.log('tata', tata)
-    // }
-    // if (titi !== null) {
-    //   console.log('titi', titi)
-    // }
-
-    // if (inputValues.startDate === null) {
-    //   errors.startDate = 'Date is required'
-    // }
-    // console.log('age', age)
-    // console.log('raw minAge', rawMinAge)
-    // console.log('minAge', minAge)
     return errors
   }
   const handleChangeInput = (e) => {
@@ -405,13 +185,6 @@ export default function CreateEmployee() {
 
   const handleSubmitClick = (event) => {
     event.preventDefault()
-    // console.log('inputfield-1', employeeFormInputFields)
-    // setEmployeeFormInputFields({
-    //   ...employeeFormInputFields,
-    //   dateOfBirth: modelingDate(employeeFormInputFields.dateOfBirth),
-    //   startDate: modelingDate(employeeFormInputFields.startDate),
-    // })
-    // console.log('inputfield-2', employeeFormInputFields)
     setErrors(
       checkInputValues(
         employeeFormInputFields,
@@ -430,6 +203,7 @@ export default function CreateEmployee() {
       })
       console.log('employeeId', employeeFormInputFields.employeeID)
     }
+    // eslint-disable-next-line
   }, [employeeFormInputFields])
 
   useEffect(() => {
@@ -455,55 +229,31 @@ export default function CreateEmployee() {
         employeeFormInputFields.startDate,
       )
     }
+    // eslint-disable-next-line
   }, [dateOfBirthValue, startDateValue])
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
-      // setEmployeeFormInputFields({
-      //   ...employeeFormInputFields,
-      //   dateOfBirth: modelingDate(dateOfBirthValue),
-      //   startDate: modelingDate(startDateValue),
-      // })
-      // setEmployeeFormInputFields({
-      //   ...employeeFormInputFields,
-      //   dateOfBirth: dateOfBirthValue,
-      //   startDate: startDateValue,
-      // })
-      // setEmployeeFormInputFields({
-      //   ...employeeFormInputFields,
-      //   dateOfBirth: dateOfBirthValue,
-      //   startDate: startDateValue,
-      // })
-      // console.log('dateOfBirth-valideForm', dateOfBirthValue)
-      // console.log(
-      //   'employeeFormInputFields-dateOfBirth',
-      //   employeeFormInputFields.dateOfBirth,
-      // )
-      // console.log('startDateValidFrom', startDateValue)
-      // console.log(
-      //   'employeeFormInputFields-startDate',
-      //   employeeFormInputFields.startDate,
-      // )
       validFormSubmit()
-      // setIsModalOpen(true)
     }
     // eslint-disable-next-line
   }, [errors])
 
   const validFormSubmit = () => {
-    // console.log('validatValue', employeeFormInputFields)
-    // console.log(
-    //   'testModelingDate',
-    //   modelingDate(employeeFormInputFields.dateOfBirth),
-    // )
     dispatch(addEmployee(employeeFormInputFields))
-    // dispatch(addEmployee(dateOfBirthValue))
-    // dispatch(addEmployee(startDateValue))
     setIsModalOpen(true)
-    cleanEmployeeForm()
+    resetEmployeeUniqueID()
   }
 
-  const cleanEmployeeForm = () => {
+  const resetEmployeeUniqueID = () => {
+    setEmployeeFormInputFields({
+      ...employeeFormInputFields,
+      employeeID: '',
+    })
+  }
+
+  const handleResetClick = () => {
+    resetEmployeeUniqueID()
     setDateOfBirthValue(null)
     setStartDateValue(null)
     setEmployeeFormInputFields({
@@ -523,27 +273,6 @@ export default function CreateEmployee() {
     setSubmitting(false)
   }
 
-  const handleResetClick = () => {
-    cleanEmployeeForm()
-    // setDateOfBirthValue(null)
-    // setStartDateValue(null)
-    // setEmployeeFormInputFields({
-    //   ...employeeFormInputFields,
-    //   employeeID: '',
-    //   firstName: '',
-    //   lastName: '',
-    //   dateOfBirth: null,
-    //   startDate: null,
-    //   street: '',
-    //   city: '',
-    //   zipCode: '',
-    //   department: '',
-    //   state: '',
-    // })
-    // setErrors({})
-    // setSubmitting(false)
-  }
-
   return (
     <>
       <div className="layout__header">
@@ -556,9 +285,6 @@ export default function CreateEmployee() {
         <div className="createEmployee__banner--title">Create employees</div>
       </section>
       <main className="createEmployee__container">
-        {/* {Object.keys(errors).length === 0 && submitting ? (
-          <span className="success">Successfully submitted ✓</span>
-        ) : null} */}
         <Box className="createEmployee__form" component="form">
           <Grid container spacing={2}>
             <Grid xs={12}>
@@ -580,7 +306,6 @@ export default function CreateEmployee() {
                   helperText={`${errors.firstName}`}
                   value={employeeFormInputFields.firstName}
                   onChange={handleChangeInput}
-                  // inputRef={firstNameInput}
                 />
               ) : (
                 <TextField
@@ -593,7 +318,6 @@ export default function CreateEmployee() {
                   required
                   value={employeeFormInputFields.firstName}
                   onChange={handleChangeInput}
-                  // inputRef={firstNameInput}
                 />
               )}
             </Grid>
@@ -602,71 +326,9 @@ export default function CreateEmployee() {
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
-                {/* <DateOfBirthPicker
-                  setEmployeeFormInputFields={setEmployeeFormInputFields}
-                /> */}
-                {/* {errors.dateOfBirth ? (
-                  <DatePicker
-                    // id="dateOfBirth"
-                    label="Birthdate *"
-                    // name="dateOfBirth"
-                    // inputRef={dateOfBirthInput}
-                    value=""
-                    onChange={(newValue) =>
-                      setEmployeeFormInputFields({
-                        ...employeeFormInputFields,
-                        dateOfBirth: modelingDate(newValue),
-                      })
-                    }
-                    // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
-                    // slots={{
-                    //   actionBar: CustomActionBar,
-                    // }}
-                    slotProps={{
-                      actionBar: {
-                        actions: ['today'],
-                      },
-                      textField: {
-                        helperText: `${errors.dateOfBirth}`,
-                      },
-                    }}
-                  />
-                ) : (
-                  <DatePicker
-                    // id="dateOfBirth"
-                    label="Birthdate *"
-                    // name="dateOfBirth"
-                    // inputRef={dateOfBirthInput}
-                    value={employeeFormInputFields.dateOfBirth}
-                    onChange={(newValue) =>
-                      setEmployeeFormInputFields({
-                        ...employeeFormInputFields,
-                        dateOfBirth: modelingDate(newValue),
-                      })
-                    }
-                    // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
-                    // slots={{
-                    //   actionBar: CustomActionBar,
-                    // }}
-                    slotProps={{
-                      actionBar: {
-                        actions: ['today'],
-                      },
-                    }}
-                  />
-                )} */}
                 <DatePicker
                   id="dateOfBirth"
                   label="Birthdate *"
-                  // name="dateOfBirth"
-                  // inputRef={dateOfBirthInput}
-                  // value={employeeFormInputFields.dateOfBirth}
-                  // onChange={(newValueDateOfBirth) =>
-                  //   setEmployeeFormInputFields({
-                  //     ...employeeFormInputFields,
-                  //     dateOfBirth: newValueDateOfBirth,
-                  //   })
-                  // }
                   value={dateOfBirthValue}
                   onChange={(newValueDateOfBirth) =>
                     setDateOfBirthValue(
@@ -727,55 +389,9 @@ export default function CreateEmployee() {
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
-                {/* {errors.startDate ? (
-                  <DatePicker
-                    label="Start day *"
-                    // inputRef={startDateInput}
-                    value=""
-                    onChange={(newValue) =>
-                      setEmployeeFormInputFields({
-                        ...employeeFormInputFields,
-                        startDate: modelingDate(newValue),
-                      })
-                    }
-                    slotProps={{
-                      actionBar: {
-                        actions: ['today'],
-                      },
-                      textField: {
-                        helperText: `${errors.startDate}`,
-                      },
-                    }}
-                  />
-                ) : (
-                  <DatePicker
-                    label="Start day *"
-                    // inputRef={startDateInput}
-                    value={employeeFormInputFields.startDate}
-                    onChange={(newValue) =>
-                      setEmployeeFormInputFields({
-                        ...employeeFormInputFields,
-                        startDate: modelingDate(newValue),
-                      })
-                    }
-                    slotProps={{
-                      actionBar: {
-                        actions: ['today'],
-                      },
-                    }}
-                  />
-                )} */}
                 <DatePicker
                   id="startDate"
                   label="Start day *"
-                  // inputRef={startDateInput}
-                  // value={employeeFormInputFields.startDate}
-                  // onChange={(newValueStartDay) =>
-                  //   setEmployeeFormInputFields({
-                  //     ...employeeFormInputFields,
-                  //     startDate: newValueStartDay,
-                  //   })
-                  // }
                   value={startDateValue}
                   onChange={(newValueStartDay) =>
                     setStartDateValue(
@@ -840,24 +456,6 @@ export default function CreateEmployee() {
                   </Select>
                 </FormControl>
               )}
-              {/* <FormControl fullWidth>
-                <InputLabel id="departement-label">Departement *</InputLabel>
-                <Select
-                  labelId="departement"
-                  id="departement"
-                  name="departement"
-                  required
-                  // value={departement}
-                  // onChange={handleChangeDepartement}
-                  input={<OutlinedInput label="departement" />}
-                >
-                  {departmentsNames.map((departement) => (
-                    <MenuItem key={departement} value={departement}>
-                      {departement}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl> */}
             </Grid>
             <Grid xs={12}>
               <h2 className="createEmployee__form--caption">
@@ -877,7 +475,6 @@ export default function CreateEmployee() {
                   helperText={`${errors.street}`}
                   value={employeeFormInputFields.street}
                   onChange={handleChangeInput}
-                  // inputRef={streetInput}
                 />
               ) : (
                 <TextField
@@ -889,7 +486,6 @@ export default function CreateEmployee() {
                   fullWidth
                   value={employeeFormInputFields.street}
                   onChange={handleChangeInput}
-                  // inputRef={streetInput}
                 />
               )}
             </Grid>
@@ -906,7 +502,6 @@ export default function CreateEmployee() {
                   helperText={`${errors.city}`}
                   value={employeeFormInputFields.city}
                   onChange={handleChangeInput}
-                  // inputRef={cityInput}
                 />
               ) : (
                 <TextField
@@ -918,7 +513,6 @@ export default function CreateEmployee() {
                   fullWidth
                   value={employeeFormInputFields.city}
                   onChange={handleChangeInput}
-                  // inputRef={cityInput}
                 />
               )}
             </Grid>
@@ -936,7 +530,6 @@ export default function CreateEmployee() {
                   helperText={`${errors.zipCode}`}
                   value={employeeFormInputFields.zipCode}
                   onChange={handleChangeInput}
-                  // inputRef={zipCodeInput}
                 />
               ) : (
                 <TextField
@@ -949,7 +542,6 @@ export default function CreateEmployee() {
                   fullWidth
                   value={employeeFormInputFields.zipCode}
                   onChange={handleChangeInput}
-                  // inputRef={zipCodeInput}
                 />
               )}
             </Grid>
@@ -998,26 +590,6 @@ export default function CreateEmployee() {
                   </Select>
                 </FormControl>
               )}
-              {/* <FormControl fullWidth>
-                <InputLabel id="state-label">State *</InputLabel>
-                <Select
-                  labelId="state"
-                  id="state"
-                  name="state"
-                  value={locationState}
-                  onChange={handleChangeLocationState}
-                  input={<OutlinedInput label="state" />}
-                >
-                  {stateNames.map((locationState) => (
-                    <MenuItem
-                      key={locationState.abbreviation}
-                      value={locationState.abbreviation}
-                    >
-                      {locationState.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl> */}
             </Grid>
             <Grid xs={12}>
               <Stack direction="row" spacing={2}>
@@ -1042,7 +614,6 @@ export default function CreateEmployee() {
                     fullWidth
                     onClick={(e) => {
                       handleSubmitClick(e)
-                      // setIsModalOpen(true)
                     }}
                   >
                     Create
