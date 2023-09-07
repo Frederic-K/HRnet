@@ -258,7 +258,8 @@ export default function CreateEmployee() {
   const [startDateValue, setStartDateValue] = useState(null)
 
   const [employeeFormInputFields, setEmployeeFormInputFields] = useState({
-    employeeID: uniqueID,
+    // employeeID: uniqueID,
+    employeeID: '',
     firstName: '',
     lastName: '',
     // dateOfBirth: dateOfBirthValue,
@@ -421,30 +422,15 @@ export default function CreateEmployee() {
     setSubmitting(true)
   }
 
-  // useEffect(() => {
-  //   if (
-  //     dateOfBirthValue !== null &&
-  //     dateOfBirthValue !== 'error' &&
-  //     startDateValue !== null &&
-  //     startDateValue !== 'error'
-  //   ) {
-  //     setEmployeeFormInputFields({
-  //       ...employeeFormInputFields,
-  //       dateOfBirth: modelingDate(dateOfBirthValue),
-  //       startDate: modelingDate(startDateValue),
-  //     })
-  //     console.log('dateOfBirth-valideForm', dateOfBirthValue)
-  //     console.log(
-  //       'employeeFormInputFields-dateOfBirth',
-  //       employeeFormInputFields.dateOfBirth,
-  //     )
-  //     console.log('startDateValidFrom', startDateValue)
-  //     console.log(
-  //       'employeeFormInputFields-startDate',
-  //       employeeFormInputFields.startDate,
-  //     )
-  //   }
-  // }, [dateOfBirthValue, startDateValue])
+  useEffect(() => {
+    if (employeeFormInputFields.employeeID === '') {
+      setEmployeeFormInputFields({
+        ...employeeFormInputFields,
+        employeeID: uniqueID,
+      })
+      console.log('employeeId', employeeFormInputFields.employeeID)
+    }
+  }, [employeeFormInputFields])
 
   useEffect(() => {
     if (
@@ -510,18 +496,19 @@ export default function CreateEmployee() {
     //   'testModelingDate',
     //   modelingDate(employeeFormInputFields.dateOfBirth),
     // )
-
     dispatch(addEmployee(employeeFormInputFields))
     // dispatch(addEmployee(dateOfBirthValue))
     // dispatch(addEmployee(startDateValue))
     setIsModalOpen(true)
+    cleanEmployeeForm()
   }
 
-  const handleResetClick = () => {
+  const cleanEmployeeForm = () => {
     setDateOfBirthValue(null)
     setStartDateValue(null)
     setEmployeeFormInputFields({
       ...employeeFormInputFields,
+      employeeID: '',
       firstName: '',
       lastName: '',
       dateOfBirth: null,
@@ -534,6 +521,27 @@ export default function CreateEmployee() {
     })
     setErrors({})
     setSubmitting(false)
+  }
+
+  const handleResetClick = () => {
+    cleanEmployeeForm()
+    // setDateOfBirthValue(null)
+    // setStartDateValue(null)
+    // setEmployeeFormInputFields({
+    //   ...employeeFormInputFields,
+    //   employeeID: '',
+    //   firstName: '',
+    //   lastName: '',
+    //   dateOfBirth: null,
+    //   startDate: null,
+    //   street: '',
+    //   city: '',
+    //   zipCode: '',
+    //   department: '',
+    //   state: '',
+    // })
+    // setErrors({})
+    // setSubmitting(false)
   }
 
   return (
