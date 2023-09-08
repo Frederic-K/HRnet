@@ -141,6 +141,7 @@ export default function CreateEmployee() {
     }
   }, [errorStartDate])
 
+  // Check form to avoid empty field nd invalid input
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
 
@@ -186,6 +187,7 @@ export default function CreateEmployee() {
     }
     return errors
   }
+
   const handleChangeInput = (e) => {
     setEmployeeFormInputFields({
       ...employeeFormInputFields,
@@ -241,6 +243,16 @@ export default function CreateEmployee() {
     }
     // eslint-disable-next-line
   }, [dateOfBirthValue, startDateValue])
+
+  useEffect(() => {
+    if (employeeFormInputFields.zipCode !== '') {
+      setEmployeeFormInputFields({
+        ...employeeFormInputFields,
+        zipCode: Number(employeeFormInputFields.zipCode),
+      })
+      console.log('zipCodeToNumb', employeeFormInputFields.zipCode)
+    }
+  }, [employeeFormInputFields.zipCode])
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
