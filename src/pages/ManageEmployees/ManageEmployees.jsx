@@ -132,6 +132,9 @@ export default function ManageEmployees() {
   }
 
   function descendingComparator(a, b, orderBy) {
+    if (orderBy === 'dateOfBirth' || orderBy === 'startDate') {
+      return new Date(b[orderBy]).valueOf() - new Date(a[orderBy]).valueOf()
+    }
     if (b[orderBy] < a[orderBy]) {
       return -1
     }
