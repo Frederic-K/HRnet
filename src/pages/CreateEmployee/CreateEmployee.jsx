@@ -96,6 +96,67 @@ export default function CreateEmployee() {
     state: '',
   })
 
+  // Handle employee datas update with inputs
+  const handleChangeInput = (e) => {
+    setEmployeeFormInputFields({
+      ...employeeFormInputFields,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  // Launch values checking when submitting form
+  const handleSubmitClick = (event) => {
+    event.preventDefault()
+    setErrors(
+      checkInputValues(
+        employeeFormInputFields,
+        dateOfBirthValue,
+        startDateValue,
+      ),
+    )
+    setSubmitting(true)
+  }
+
+  // Check form to avoid empty field nd invalid input
+  const [errors, setErrors] = useState({})
+  const [submitting, setSubmitting] = useState(false)
+
+  const checkInputValues = (inputValues) => {
+    let errors = {}
+    if (inputValues.firstName.length < 2) {
+      errors.firstName = 'First name is too short (min char 2)'
+    }
+    if (inputValues.lastName.length < 2) {
+      errors.lastName = 'Last name is too short (min char 2)'
+    }
+    if (inputValues.street.length < 2) {
+      errors.street = `Street's name is too short (min char 2)`
+    }
+    if (inputValues.city.length < 2) {
+      errors.city = `City's name is too short (min char 2)`
+    }
+    if (inputValues.zipCode === '') {
+      errors.zipCode = 'Zip Code is required'
+    }
+    if (inputValues.department === '') {
+      errors.department = 'Department is required'
+    }
+    if (inputValues.state === '') {
+      errors.state = 'State is required'
+    }
+    if (dateOfBirthValue === null || errorMessageDateOfBirth !== null) {
+      errors.dateOfBirth = 'Invalid date of birth'
+      setDateOfBirthValue('error')
+      // console.log('dateOfBirth1', dateOfBirthValue)
+    }
+    if (startDateValue === null || errorMessageStartDate !== null) {
+      errors.startDate = 'Invalid start day'
+      setStartDateValue('error')
+      // console.log('startDate1', startDateValue)
+    }
+    return errors
+  }
+
   // Internal management of invalid date from datepicker component
   const [errorDateOfBirth, setErrorDateOfBirth] = useState(null)
 
@@ -119,6 +180,7 @@ export default function CreateEmployee() {
     }
   }, [errorDateOfBirth])
 
+  // Internal management of invalid date from datepicker component
   const [errorStartDate, setErrorStartDate] = useState(null)
 
   const errorMessageStartDate = useMemo(() => {
@@ -140,74 +202,6 @@ export default function CreateEmployee() {
       }
     }
   }, [errorStartDate])
-
-  // Check form to avoid empty field nd invalid input
-  const [errors, setErrors] = useState({})
-  const [submitting, setSubmitting] = useState(false)
-
-  const checkInputValues = (inputValues) => {
-    let errors = {}
-    // if (inputValues.employeeID === '') {
-    //   setEmployeeFormInputFields({
-    //     ...employeeFormInputFields,
-    //     employeeID: uniqueID,
-    //   })
-    //   // console.log('employeeId', employeeFormInputFields.employeeID)
-    // }
-    if (inputValues.firstName.length < 2) {
-      errors.firstName = 'First name is too short (min char 2)'
-    }
-    if (inputValues.lastName.length < 2) {
-      errors.lastName = 'Last name is too short (min char 2)'
-    }
-    if (inputValues.street.length < 2) {
-      errors.street = `Street's name is too short (min char 2)`
-    }
-    if (inputValues.city.length < 2) {
-      errors.city = `City's name is too short (min char 2)`
-    }
-    if (inputValues.zipCode.length < 5) {
-      errors.zipCode = 'Zip Code is too short (min num 5)'
-    }
-    if (inputValues.department === '') {
-      errors.department = 'Department is required'
-    }
-    if (inputValues.state === '') {
-      errors.state = 'State is required'
-    }
-    if (dateOfBirthValue === null || errorMessageDateOfBirth !== null) {
-      errors.dateOfBirth = 'Invalid date of birth'
-      setDateOfBirthValue('error')
-      // console.log('dateOfBirth1', dateOfBirthValue)
-    }
-    if (startDateValue === null || errorMessageStartDate !== null) {
-      errors.startDate = 'Invalid start day'
-      setStartDateValue('error')
-      // console.log('startDate1', startDateValue)
-    }
-    return errors
-  }
-
-  // Handle employee datas update with inputs
-  const handleChangeInput = (e) => {
-    setEmployeeFormInputFields({
-      ...employeeFormInputFields,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  // Launch values checking when submitting form
-  const handleSubmitClick = (event) => {
-    event.preventDefault()
-    setErrors(
-      checkInputValues(
-        employeeFormInputFields,
-        dateOfBirthValue,
-        startDateValue,
-      ),
-    )
-    setSubmitting(true)
-  }
 
   // Update employee unique ID
   useEffect(() => {
@@ -260,7 +254,7 @@ export default function CreateEmployee() {
     // eslint-disable-next-line
   }, [dateOfBirthValue, startDateValue])
 
-  // Check total erros nd submitting status before dispatch employee data
+  // Final ckeck if errors nd submitting status OK
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
       saveValidatedDatas()
@@ -268,12 +262,14 @@ export default function CreateEmployee() {
     // eslint-disable-next-line
   }, [errors])
 
+  // Save nd dispatch new created employee
   const saveValidatedDatas = () => {
     dispatch(addEmployee(employeeFormInputFields))
     setIsModalOpen(true)
     resetEmployeeUniqueID()
   }
 
+  // Reset uniqueId after all employee s creation to avoid conflict nd weird effect
   const resetEmployeeUniqueID = () => {
     setEmployeeFormInputFields({
       ...employeeFormInputFields,
@@ -281,6 +277,7 @@ export default function CreateEmployee() {
     })
   }
 
+  // Clean when reset button clicked
   const handleResetClick = () => {
     resetEmployeeUniqueID()
     setDateOfBirthValue(null)
