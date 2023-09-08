@@ -251,7 +251,7 @@ export default function ManageEmployees() {
           {headCells.map((headCell) => (
             <TableCell
               key={headCell.id}
-              align={headCell.numeric ? 'right' : 'left'}
+              // align={headCell.numeric ? 'right' : 'left'}
               padding={headCell.disablePadding ? 'none' : 'normal'}
               sortDirection={orderBy === headCell.id ? order : false}
             >
@@ -535,7 +535,7 @@ export default function ManageEmployees() {
                           <TableCell align="left">{row.street}</TableCell>
                           <TableCell align="left">{row.city}</TableCell>
                           <TableCell align="left">{row.state}</TableCell>
-                          <TableCell align="right">{row.zipCode}</TableCell>
+                          <TableCell align="left">{row.zipCode}</TableCell>
                         </TableRow>
                       )
                     })}
