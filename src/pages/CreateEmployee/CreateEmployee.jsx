@@ -147,13 +147,13 @@ export default function CreateEmployee() {
 
   const checkInputValues = (inputValues) => {
     let errors = {}
-    if (inputValues.employeeID === '') {
-      setEmployeeFormInputFields({
-        ...employeeFormInputFields,
-        employeeID: uniqueID,
-      })
-      // console.log('employeeId', employeeFormInputFields.employeeID)
-    }
+    // if (inputValues.employeeID === '') {
+    //   setEmployeeFormInputFields({
+    //     ...employeeFormInputFields,
+    //     employeeID: uniqueID,
+    //   })
+    //   // console.log('employeeId', employeeFormInputFields.employeeID)
+    // }
     if (inputValues.firstName.length < 2) {
       errors.firstName = 'First name is too short (min char 2)'
     }
@@ -188,6 +188,7 @@ export default function CreateEmployee() {
     return errors
   }
 
+  // Handle employee datas update with inputs
   const handleChangeInput = (e) => {
     setEmployeeFormInputFields({
       ...employeeFormInputFields,
@@ -195,6 +196,7 @@ export default function CreateEmployee() {
     })
   }
 
+  // Launch values checking when submitting form
   const handleSubmitClick = (event) => {
     event.preventDefault()
     setErrors(
@@ -207,17 +209,31 @@ export default function CreateEmployee() {
     setSubmitting(true)
   }
 
-  // useEffect(() => {
-  //   if (employeeFormInputFields.employeeID === '') {
-  //     setEmployeeFormInputFields({
-  //       ...employeeFormInputFields,
-  //       employeeID: uniqueID,
-  //     })
-  //     // console.log('employeeId', employeeFormInputFields.employeeID)
-  //   }
-  //   // eslint-disable-next-line
-  // }, [employeeFormInputFields])
+  // Update employee unique ID
+  useEffect(() => {
+    if (employeeFormInputFields.employeeID === '') {
+      setEmployeeFormInputFields({
+        ...employeeFormInputFields,
+        employeeID: uniqueID,
+      })
+      console.log('employeeId', employeeFormInputFields.employeeID)
+    }
+    // eslint-disable-next-line
+  }, [employeeFormInputFields.employeeID])
 
+  // Set zipCode as a number
+  useEffect(() => {
+    if (employeeFormInputFields.zipCode !== '') {
+      setEmployeeFormInputFields({
+        ...employeeFormInputFields,
+        zipCode: Number(employeeFormInputFields.zipCode),
+      })
+      console.log('zipCodeToNumb', employeeFormInputFields.zipCode)
+    }
+    // eslint-disable-next-line
+  }, [employeeFormInputFields.zipCode])
+
+  // Update Employee data with dates
   useEffect(() => {
     if (
       dateOfBirthValue !== null &&
@@ -244,24 +260,15 @@ export default function CreateEmployee() {
     // eslint-disable-next-line
   }, [dateOfBirthValue, startDateValue])
 
-  useEffect(() => {
-    if (employeeFormInputFields.zipCode !== '') {
-      setEmployeeFormInputFields({
-        ...employeeFormInputFields,
-        zipCode: Number(employeeFormInputFields.zipCode),
-      })
-      console.log('zipCodeToNumb', employeeFormInputFields.zipCode)
-    }
-  }, [employeeFormInputFields.zipCode])
-
+  // Check total erros nd submitting status before dispatch employee data
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
-      validFormSubmit()
+      saveValidatedDatas()
     }
     // eslint-disable-next-line
   }, [errors])
 
-  const validFormSubmit = () => {
+  const saveValidatedDatas = () => {
     dispatch(addEmployee(employeeFormInputFields))
     setIsModalOpen(true)
     resetEmployeeUniqueID()
