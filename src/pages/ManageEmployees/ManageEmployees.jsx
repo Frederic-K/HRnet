@@ -49,6 +49,7 @@ export default function ManageEmployees() {
   const { employees } = useSelector(employeeSelector)
   const searchInput = useRef()
   const [rows, setRows] = useState(employees)
+  console.log('rows', rows)
   const [filteredEmployees, setFilteredEmployees] = useState([])
   const [isFilterShown, setIsFilterShown] = useState(false)
   const [isNoMatch, setIsNoMatch] = useState(false)
