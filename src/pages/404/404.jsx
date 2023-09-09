@@ -10,7 +10,7 @@ export default function Error404() {
           Oups! La page que vous demandez n'existe pas.
         </div>
         <NavLink to="/" className="errorPage__link">
-          Retourner à la page d'acceuil'
+          Retourner à la page d'acceuil
         </NavLink>
       </section>
     </main>

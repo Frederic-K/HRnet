@@ -63,10 +63,10 @@ export default function CreateEmployee() {
     // eslint-disable-next-line
   }, [id])
 
+  // Set departments
   const departmentsNames = departmentsDatas
-
+  // Set states
   const stateNames = statesDatas
-
   // Generate unique ID
   const uniqueID = uuidv4()
 
@@ -82,7 +82,7 @@ export default function CreateEmployee() {
   const [dateOfBirthValue, setDateOfBirthValue] = useState(null)
   const [startDateValue, setStartDateValue] = useState(null)
 
-  // Employee
+  // Employee state
   const [employeeFormInputFields, setEmployeeFormInputFields] = useState({
     employeeID: '',
     firstName: '',
@@ -95,27 +95,6 @@ export default function CreateEmployee() {
     department: '',
     state: '',
   })
-
-  // Handle employee datas update with inputs
-  const handleChangeInput = (e) => {
-    setEmployeeFormInputFields({
-      ...employeeFormInputFields,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  // Launch values checking when submitting form
-  const handleSubmitClick = (event) => {
-    event.preventDefault()
-    setErrors(
-      checkInputValues(
-        employeeFormInputFields,
-        dateOfBirthValue,
-        startDateValue,
-      ),
-    )
-    setSubmitting(true)
-  }
 
   // Check form to avoid empty field nd invalid input
   const [errors, setErrors] = useState({})
@@ -210,7 +189,7 @@ export default function CreateEmployee() {
         ...employeeFormInputFields,
         employeeID: uniqueID,
       })
-      console.log('employeeId', employeeFormInputFields.employeeID)
+      // console.log('employeeId', employeeFormInputFields.employeeID)
     }
     // eslint-disable-next-line
   }, [employeeFormInputFields.employeeID])
@@ -222,7 +201,7 @@ export default function CreateEmployee() {
         ...employeeFormInputFields,
         zipCode: Number(employeeFormInputFields.zipCode),
       })
-      console.log('zipCodeToNumb', employeeFormInputFields.zipCode)
+      // console.log('zipCodeToNumb', employeeFormInputFields.zipCode)
     }
     // eslint-disable-next-line
   }, [employeeFormInputFields.zipCode])
@@ -261,6 +240,27 @@ export default function CreateEmployee() {
     }
     // eslint-disable-next-line
   }, [errors])
+
+  // Handle employee datas update with inputs
+  const handleChangeInput = (e) => {
+    setEmployeeFormInputFields({
+      ...employeeFormInputFields,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  // Launch values checking when submitting form
+  const handleSubmitClick = (event) => {
+    event.preventDefault()
+    setErrors(
+      checkInputValues(
+        employeeFormInputFields,
+        dateOfBirthValue,
+        startDateValue,
+      ),
+    )
+    setSubmitting(true)
+  }
 
   // Save nd dispatch new created employee
   const saveValidatedDatas = () => {

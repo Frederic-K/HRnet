@@ -26,10 +26,10 @@ export const employeesSlice = createSlice({
     },
   },
 })
-
+// Actions to manage state
 export const { addEmployee, deleteEmployee, clearEmployeeState } =
   employeesSlice.actions
-
+// Grab state
 export const employeeSelector = (state) => state.employees
 
 export default employeesSlice.reducer

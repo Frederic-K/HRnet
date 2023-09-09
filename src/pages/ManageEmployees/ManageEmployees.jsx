@@ -49,7 +49,7 @@ export default function ManageEmployees() {
   const { employees } = useSelector(employeeSelector)
   const searchInput = useRef()
   const [rows, setRows] = useState(employees)
-  console.log('rows', rows)
+  // console.log('rows', rows)
   const [filteredEmployees, setFilteredEmployees] = useState([])
   const [isFilterShown, setIsFilterShown] = useState(false)
   const [isNoMatch, setIsNoMatch] = useState(false)
@@ -62,7 +62,7 @@ export default function ManageEmployees() {
     // eslint-disable-next-line
   }, [id])
 
-  // Toast info about list of recorded employee to user
+  // Toast infos about list of recorded employees
   useEffect(() => {
     if (employees.length > 0) {
       toast.success(`Employee : ${employees.length}`)
@@ -74,7 +74,7 @@ export default function ManageEmployees() {
     }
   }, [employees])
 
-  // Toast info about filtered employee from list of employee
+  // Toast info about filtered employees from list of employees
   useEffect(() => {
     if (filteredEmployees.length > 0) {
       toast.success(`Filtered Employee : ${filteredEmployees.length}`)
@@ -131,6 +131,7 @@ export default function ManageEmployees() {
     }
   }
 
+  // Sorting
   function descendingComparator(a, b, orderBy) {
     if (orderBy === 'dateOfBirth' || orderBy === 'startDate') {
       return new Date(b[orderBy]).valueOf() - new Date(a[orderBy]).valueOf()
