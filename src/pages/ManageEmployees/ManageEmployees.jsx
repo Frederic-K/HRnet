@@ -330,6 +330,7 @@ export default function ManageEmployees() {
         {numSelected > 0 ? (
           <Tooltip title="Delete">
             <IconButton
+              aria-label="delete employee"
               onClick={() => {
                 handleDeleteClick()
               }}
@@ -340,6 +341,7 @@ export default function ManageEmployees() {
         ) : (
           <Tooltip title="Filter list">
             <IconButton
+              aria-label="filter employee"
               onClick={() => {
                 handleFilterClick()
               }}
@@ -474,6 +476,7 @@ export default function ManageEmployees() {
               <Button
                 type="reset"
                 variant="outlined"
+                aria-label="reset filter"
                 startIcon={<DeleteIcon />}
                 onClick={() => {
                   processChanges()

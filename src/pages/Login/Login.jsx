@@ -106,7 +106,11 @@ export default function Login() {
                   to="/creation-employee"
                   className="modal__activity--link"
                 >
-                  <Button variant="contained" fullWidth>
+                  <Button
+                    variant="contained"
+                    aria-label="navigate to form"
+                    fullWidth
+                  >
                     Add Employee
                   </Button>
                 </NavLink>
@@ -114,7 +118,11 @@ export default function Login() {
                   to="/manage-employees"
                   className="modal__activity--link"
                 >
-                  <Button variant="contained" fullWidth>
+                  <Button
+                    variant="contained"
+                    aria-label="navigate to list"
+                    fullWidth
+                  >
                     List of Employees
                   </Button>
                 </NavLink>
@@ -179,6 +187,7 @@ export default function Login() {
                     <Button
                       className="login__form--btn-reset"
                       variant="outlined"
+                      aria-label="reset login"
                       type="reset"
                       startIcon={<DeleteIcon />}
                       fullWidth
@@ -191,6 +200,7 @@ export default function Login() {
                     <Button
                       className="login__form--btn-submit"
                       variant="contained"
+                      aria-label="submit login"
                       type="submit"
                       endIcon={<SendIcon />}
                       fullWidth

@@ -620,6 +620,7 @@ export default function CreateEmployee() {
                 <Grid xs={6}>
                   <Button
                     variant="outlined"
+                    aria-label="reset form"
                     startIcon={<DeleteIcon />}
                     type="reset"
                     fullWidth
@@ -633,6 +634,7 @@ export default function CreateEmployee() {
                 <Grid xs={6}>
                   <Button
                     variant="contained"
+                    aria-label="submit form"
                     endIcon={<SendIcon />}
                     type="submit"
                     fullWidth
@@ -648,6 +650,7 @@ export default function CreateEmployee() {
 
             <Grid xs={12} className="createEmployee__popBtn">
               <Button
+                aria-label="add fake employees"
                 color="secondary"
                 onClick={() => {
                   handlePopulateClick()

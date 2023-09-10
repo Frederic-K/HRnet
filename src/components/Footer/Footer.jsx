@@ -24,6 +24,7 @@ export default function Footer() {
       <div className="footer__blocks">
         <Button
           variant="outlined"
+          aria-label="navigate to home page"
           size="small"
           className="footer__navHome"
           onClick={() => {
@@ -45,6 +46,7 @@ export default function Footer() {
         </a>
         <Button
           variant="outlined"
+          aria-label="log out"
           size="small"
           className="footer__logout"
           onClick={() => {
