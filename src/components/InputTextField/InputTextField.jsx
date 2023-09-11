@@ -4,6 +4,7 @@ import { TextField } from '@mui/material'
 export default function InputTextField(props) {
   const {
     isError,
+    autoFocus,
     id,
     label,
     name,
@@ -36,6 +37,7 @@ export default function InputTextField(props) {
       ) : (
         <TextField
           fullWidth
+          autoFocus={autoFocus}
           required
           id={id}
           label={label}

@@ -304,6 +304,7 @@ export default function CreateEmployee() {
             <Grid xs={8}>
               <InputTextField
                 isError={errors.firstName}
+                autoFocus={true}
                 id={'firstName'}
                 name={'firstName'}
                 errorName={'firstName'}

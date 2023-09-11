@@ -1,3 +1,34 @@
+Openclassrooms Projet 14 : Faites passer une librairie jQuery vers React - Site Wealth Health : HRnet
+
+![banner](./src/assets/wealthhealthbanner.png)
+
+Le contexte du projet :
+
+- Mon profil : développeur front-end chez Wealth Health.
+- L’entreprise : une grande société financière.
+- La mission : aider la société à améliorer son application web interne HRnet de gestion des dossiers employés.
+- L’objectif :
+  - Faire passer l’application utilisant une librairie JQuery vers React.
+  - Faire une nouvelle version des pages “Create Employee” et “Employee List”
+
+Cahier des charges :
+
+- Spécifications techniques :
+  - L’ensemble de l’application doit être convertie en React
+  - Ajout d’un système de gestion d’état
+  - Optimiser le calendrier
+  - Optimiser la pop-up de confirmation de création du dossier du personnel
+  - Optimiser et stabiliser les menus déroulants
+  - Optimiser le tableau des employés
+  - Publication sur npm d’un des plugins convertie
+  - Réaliser un test de performance et des tests manuels
+- Spécifications fonctionnelles :
+  - Créer une nouvelle version des pages de création d’employés et de la liste des employés
+  - Améliorer le rendu du calendrier
+  - Permettre la personnalisation de la pop-up de confirmation de création du dossier du personnel
+  - Fluidifier l’utilisation des menus déroulants et de la liste des employés
+  - S’assurer de la cohérence du style et éventuellement le moderniser
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
