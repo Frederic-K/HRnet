@@ -10,6 +10,9 @@ import { addEmployee } from '../../features/employeeSlice'
 // Components
 import Header from '../../components/Header/Header'
 import { Toaster } from 'react-hot-toast'
+
+import InputTextField from '../../components/InputTextField/InputTextField'
+
 // My info modal component
 import { InfoModal } from 'info-modal-component'
 // Field nd button
@@ -319,7 +322,18 @@ export default function CreateEmployee() {
               </h2>
             </Grid>
             <Grid xs={8}>
-              {errors.firstName ? (
+              <InputTextField
+                isError={errors.firstName}
+                id={'firstName'}
+                name={'firstName'}
+                errorName={'firstName'}
+                label={'First name'}
+                errorLabel={'First name error'}
+                errorHelperText={`${errors.firstName}`}
+                value={employeeFormInputFields.firstName}
+                onChange={handleChangeInput}
+              />
+              {/* {errors.firstName ? (
                 <TextField
                   id="firstName"
                   name="firstName"
@@ -345,7 +359,7 @@ export default function CreateEmployee() {
                   value={employeeFormInputFields.firstName}
                   onChange={handleChangeInput}
                 />
-              )}
+              )} */}
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
               <LocalizationProvider
@@ -382,7 +396,18 @@ export default function CreateEmployee() {
               </LocalizationProvider>
             </Grid>
             <Grid xs={8}>
-              {errors.lastName ? (
+              <InputTextField
+                isError={errors.lastName}
+                id={'lastName'}
+                name={'lastName'}
+                errorName={'lastName'}
+                label={'Last name'}
+                errorLabel={'Last name error'}
+                errorHelperText={`${errors.lastName}`}
+                value={employeeFormInputFields.lastName}
+                onChange={handleChangeInput}
+              />
+              {/* {errors.lastName ? (
                 <TextField
                   id="lastName"
                   name="lastName"
@@ -406,7 +431,7 @@ export default function CreateEmployee() {
                   value={employeeFormInputFields.lastName}
                   onChange={handleChangeInput}
                 />
-              )}
+              )} */}
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
               <LocalizationProvider
@@ -487,7 +512,18 @@ export default function CreateEmployee() {
               </h2>
             </Grid>
             <Grid xs={12}>
-              {errors.street ? (
+              <InputTextField
+                isError={errors.street}
+                id={'street'}
+                name={'street'}
+                errorName={'street'}
+                label={'Street'}
+                errorLabel={'Street name'}
+                errorHelperText={`${errors.street}`}
+                value={employeeFormInputFields.street}
+                onChange={handleChangeInput}
+              />
+              {/* {errors.street ? (
                 <TextField
                   id="street"
                   name="street"
@@ -511,10 +547,21 @@ export default function CreateEmployee() {
                   value={employeeFormInputFields.street}
                   onChange={handleChangeInput}
                 />
-              )}
+              )} */}
             </Grid>
             <Grid xs={6}>
-              {errors.city ? (
+              <InputTextField
+                isError={errors.city}
+                id={'city'}
+                name={'city'}
+                errorName={'city'}
+                label={'City'}
+                errorLabel={'City name'}
+                errorHelperText={`${errors.city}`}
+                value={employeeFormInputFields.city}
+                onChange={handleChangeInput}
+              />
+              {/* {errors.city ? (
                 <TextField
                   id="city"
                   name="city"
@@ -538,10 +585,22 @@ export default function CreateEmployee() {
                   value={employeeFormInputFields.city}
                   onChange={handleChangeInput}
                 />
-              )}
+              )} */}
             </Grid>
             <Grid xs={6}>
-              {errors.zipCode ? (
+              <InputTextField
+                isError={errors.zipCode}
+                id={'zipCode'}
+                name={'zipCode'}
+                errorName={'zipCode'}
+                label={'Zip Code'}
+                errorLabel={'Zip code'}
+                errorHelperText={`${errors.zipCode}`}
+                value={employeeFormInputFields.zipCode}
+                type={'number'}
+                onChange={handleChangeInput}
+              />
+              {/* {errors.zipCode ? (
                 <TextField
                   id="zipCode"
                   name="zipCode"
@@ -567,7 +626,7 @@ export default function CreateEmployee() {
                   value={employeeFormInputFields.zipCode}
                   onChange={handleChangeInput}
                 />
-              )}
+              )} */}
             </Grid>
             <Grid xs={12}>
               {errors.state ? (
