@@ -4,7 +4,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import 'dayjs/locale/de'
 import 'dayjs/locale/en-gb'
-import dayjs from 'dayjs'
 
 export default function InputDatePicker(props) {
   const { id, label, value, onChange, onError, helperText, minDate, maxDate } =

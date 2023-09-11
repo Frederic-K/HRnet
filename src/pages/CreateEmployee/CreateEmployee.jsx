@@ -21,14 +21,9 @@ import Stack from '@mui/material/Stack'
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
 import Box from '@mui/material/Box'
 // DatePicker
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { DatePicker } from '@mui/x-date-pickers/DatePicker'
-import 'dayjs/locale/de'
-import 'dayjs/locale/en-gb'
 import dayjs from 'dayjs'
 
-import InputDatePicker from '../../components/DatePicker/DatePicker'
+import InputDatePicker from '../../components/InputDatePicker/InputDatePicker'
 
 // CustomActionBar for date picker
 // import DialogActions from '@mui/material/DialogActions'
@@ -336,38 +331,6 @@ export default function CreateEmployee() {
                 minDate={dayjs().subtract(64, 'year')}
                 maxDate={dayjs().subtract(18, 'year')}
               />
-              {/* <LocalizationProvider
-                dateAdapter={AdapterDayjs}
-                adapterLocale="en"
-              >
-                <DatePicker
-                  id="dateOfBirth"
-                  label="Birthdate *"
-                  value={dateOfBirthValue}
-                  onChange={(newValueDateOfBirth) =>
-                    setDateOfBirthValue(
-                      dayjs(newValueDateOfBirth).format('MM/DD/YYYY'),
-                    )
-                  }
-                  onError={(newErrorDateOfBirth) =>
-                    setErrorDateOfBirth(newErrorDateOfBirth)
-                  }
-                  // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
-                  // slots={{
-                  //   actionBar: CustomActionBar,
-                  // }}
-                  slotProps={{
-                    actionBar: {
-                      actions: ['today', 'clear'],
-                    },
-                    textField: {
-                      helperText: errorMessageDateOfBirth,
-                    },
-                  }}
-                  minDate={dayjs().subtract(64, 'year')}
-                  maxDate={dayjs().subtract(18, 'year')}
-                />
-              </LocalizationProvider> */}
             </Grid>
             <Grid xs={8}>
               <InputTextField
@@ -398,37 +361,6 @@ export default function CreateEmployee() {
                 helperText={errorMessageStartDate}
                 minDate={dayjs().subtract(64, 'year')}
               />
-              {/* <LocalizationProvider
-                dateAdapter={AdapterDayjs}
-                adapterLocale="en"
-              >
-                <DatePicker
-                  id="startDate"
-                  label="Start day *"
-                  value={startDateValue}
-                  onChange={(newValueStartDay) =>
-                    setStartDateValue(
-                      dayjs(newValueStartDay).format('MM/DD/YYYY'),
-                    )
-                  }
-                  onError={(newErrorStartDate) =>
-                    setErrorStartDate(newErrorStartDate)
-                  }
-                  // <<<<<<<<<<<< If action bar on date picker needed >>>>>>>>>>>
-                  // slots={{
-                  //   actionBar: CustomActionBar,
-                  // }}
-                  slotProps={{
-                    actionBar: {
-                      actions: ['today', 'clear'],
-                    },
-                    textField: {
-                      helperText: errorMessageStartDate,
-                    },
-                  }}
-                  minDate={dayjs().subtract(64, 'year')}
-                />
-              </LocalizationProvider> */}
             </Grid>
             <Grid xs={12}>
               {errors.department ? (
