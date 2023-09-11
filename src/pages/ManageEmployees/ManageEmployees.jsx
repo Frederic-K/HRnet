@@ -49,7 +49,6 @@ export default function ManageEmployees() {
   const { employees } = useSelector(employeeSelector)
   const searchInput = useRef()
   const [rows, setRows] = useState(employees)
-  // console.log('rows', rows)
   const [filteredEmployees, setFilteredEmployees] = useState([])
   const [isFilterShown, setIsFilterShown] = useState(false)
   const [isNoMatch, setIsNoMatch] = useState(false)
@@ -115,11 +114,8 @@ export default function ManageEmployees() {
           employee.state.toLowerCase().includes(filterValue) ||
           employee.zipCode.toString().includes(filterValue),
       )
-      // console.log('filteredEmployee', filteredEmployees)
-      // console.log('rows-before', rows)
       setFilteredEmployees(filteredEmployees)
       setRows(filteredEmployees)
-      // console.log('rows-after', rows)
       if (filteredEmployees.length === 0) {
         setIsNoMatch(true)
       } else {
@@ -151,10 +147,6 @@ export default function ManageEmployees() {
       : (a, b) => -descendingComparator(a, b, orderBy)
   }
 
-  // Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-  // stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-  // only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-  // with exampleArray.slice().sort(exampleComparator)
   function stableSort(array, comparator) {
     const stabilizedThis = array.map((el, index) => [el, index])
     stabilizedThis.sort((a, b) => {
