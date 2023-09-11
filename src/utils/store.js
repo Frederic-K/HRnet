@@ -1,3 +1,4 @@
+// Redux
 import { configureStore } from '@reduxjs/toolkit'
 import employeesReducer from '../features/employeeSlice'
 import userReducer from '../features/userSlice'

@@ -9,17 +9,6 @@ import { Provider } from 'react-redux'
 import { ThemeProvider } from '@mui/material/styles'
 import { globalTheme } from '../src/styles/themes/theme'
 
-// check CssBaseLine if it worthy :
-// import { CssBaseline, ThemeProvider } from "@mui/material";
-// <React.StrictMode>
-// <Provider store={store}>
-//  <ThemeProvider theme={globalTheme}>
-//  <CssBaseline enableColorScheme />
-//    <App />
-//  </ThemeProvider>
-//</Provider>
-//</React.StrictMode>,
-
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
