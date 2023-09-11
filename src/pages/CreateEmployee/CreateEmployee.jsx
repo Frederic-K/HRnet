@@ -28,6 +28,8 @@ import 'dayjs/locale/de'
 import 'dayjs/locale/en-gb'
 import dayjs from 'dayjs'
 
+import InputDatePicker from '../../components/DatePicker/DatePicker'
+
 // CustomActionBar for date picker
 // import DialogActions from '@mui/material/DialogActions'
 // import Menu from '@mui/material/Menu'
@@ -318,7 +320,23 @@ export default function CreateEmployee() {
               />
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
-              <LocalizationProvider
+              <InputDatePicker
+                id={'dateOfBirth'}
+                label={'Birthdate'}
+                value={dateOfBirthValue}
+                onChange={(newValueDateOfBirth) =>
+                  setDateOfBirthValue(
+                    dayjs(newValueDateOfBirth).format('MM/DD/YYYY'),
+                  )
+                }
+                onError={(newErrorDateOfBirth) =>
+                  setErrorDateOfBirth(newErrorDateOfBirth)
+                }
+                helperText={errorMessageDateOfBirth}
+                minDate={dayjs().subtract(64, 'year')}
+                maxDate={dayjs().subtract(18, 'year')}
+              />
+              {/* <LocalizationProvider
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
@@ -349,7 +367,7 @@ export default function CreateEmployee() {
                   minDate={dayjs().subtract(64, 'year')}
                   maxDate={dayjs().subtract(18, 'year')}
                 />
-              </LocalizationProvider>
+              </LocalizationProvider> */}
             </Grid>
             <Grid xs={8}>
               <InputTextField
@@ -365,7 +383,22 @@ export default function CreateEmployee() {
               />
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
-              <LocalizationProvider
+              <InputDatePicker
+                id={'startDate'}
+                label={'Start day *'}
+                value={startDateValue}
+                onChange={(newValueStartDay) =>
+                  setStartDateValue(
+                    dayjs(newValueStartDay).format('MM/DD/YYYY'),
+                  )
+                }
+                onError={(newErrorStartDate) =>
+                  setErrorStartDate(newErrorStartDate)
+                }
+                helperText={errorMessageStartDate}
+                minDate={dayjs().subtract(64, 'year')}
+              />
+              {/* <LocalizationProvider
                 dateAdapter={AdapterDayjs}
                 adapterLocale="en"
               >
@@ -395,7 +428,7 @@ export default function CreateEmployee() {
                   }}
                   minDate={dayjs().subtract(64, 'year')}
                 />
-              </LocalizationProvider>
+              </LocalizationProvider> */}
             </Grid>
             <Grid xs={12}>
               {errors.department ? (
