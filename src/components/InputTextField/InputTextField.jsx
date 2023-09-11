@@ -11,6 +11,7 @@ export default function InputTextField(props) {
     inputRef,
     onChange,
     value,
+    type,
     errorUserId,
     errorName,
     errorLabel,
@@ -23,7 +24,7 @@ export default function InputTextField(props) {
         <TextField
           error
           fullWidth
-          // required
+          required
           id={errorUserId}
           name={errorName}
           label={errorLabel}
@@ -35,11 +36,12 @@ export default function InputTextField(props) {
       ) : (
         <TextField
           fullWidth
-          // required
+          required
           id={id}
           label={label}
           name={name}
           variant="outlined"
+          type={type}
           helperText={helperText}
           inputRef={inputRef}
           onChange={onChange}

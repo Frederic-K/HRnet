@@ -512,7 +512,18 @@ export default function CreateEmployee() {
               </h2>
             </Grid>
             <Grid xs={12}>
-              {errors.street ? (
+              <InputTextField
+                isError={errors.street}
+                id={'street'}
+                name={'street'}
+                errorName={'street'}
+                label={'Street'}
+                errorLabel={'Street name'}
+                errorHelperText={`${errors.street}`}
+                value={employeeFormInputFields.street}
+                onChange={handleChangeInput}
+              />
+              {/* {errors.street ? (
                 <TextField
                   id="street"
                   name="street"
@@ -536,10 +547,21 @@ export default function CreateEmployee() {
                   value={employeeFormInputFields.street}
                   onChange={handleChangeInput}
                 />
-              )}
+              )} */}
             </Grid>
             <Grid xs={6}>
-              {errors.city ? (
+              <InputTextField
+                isError={errors.city}
+                id={'city'}
+                name={'city'}
+                errorName={'city'}
+                label={'City'}
+                errorLabel={'City name'}
+                errorHelperText={`${errors.city}`}
+                value={employeeFormInputFields.city}
+                onChange={handleChangeInput}
+              />
+              {/* {errors.city ? (
                 <TextField
                   id="city"
                   name="city"
@@ -563,10 +585,22 @@ export default function CreateEmployee() {
                   value={employeeFormInputFields.city}
                   onChange={handleChangeInput}
                 />
-              )}
+              )} */}
             </Grid>
             <Grid xs={6}>
-              {errors.zipCode ? (
+              <InputTextField
+                isError={errors.zipCode}
+                id={'zipCode'}
+                name={'zipCode'}
+                errorName={'zipCode'}
+                label={'Zip Code'}
+                errorLabel={'Zip code'}
+                errorHelperText={`${errors.zipCode}`}
+                value={employeeFormInputFields.zipCode}
+                type={'number'}
+                onChange={handleChangeInput}
+              />
+              {/* {errors.zipCode ? (
                 <TextField
                   id="zipCode"
                   name="zipCode"
@@ -592,7 +626,7 @@ export default function CreateEmployee() {
                   value={employeeFormInputFields.zipCode}
                   onChange={handleChangeInput}
                 />
-              )}
+              )} */}
             </Grid>
             <Grid xs={12}>
               {errors.state ? (
