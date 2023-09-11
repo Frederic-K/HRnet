@@ -157,17 +157,19 @@ export default function Login() {
                 <InputTextField
                   isError={isError}
                   id={'userId'}
+                  errorUserId={'errorUserId'}
                   label={'userId'}
+                  errorLabel={'errorUserId'}
                   name={'userId'}
-                  helperText={'(mocked users : 110 or 120'}
+                  errorName={'errorUserId'}
+                  helperText={'(mocked users : 110 or 120)'}
+                  errorHelperText={
+                    'Incorrect entry (mocked users : 110 or 120)'
+                  }
                   inputRef={userId}
                   onChange={() => {
                     handleNewInput()
                   }}
-                  errorUserId={'errorUserId'}
-                  errorName={'errorUserId'}
-                  errorLabel={'errorUserId'}
-                  errorHelperText={'Incorrect entry.'}
                 />
                 {/* <div className="login__form--textField">
                   {!isError ? (

@@ -10,6 +10,9 @@ import { addEmployee } from '../../features/employeeSlice'
 // Components
 import Header from '../../components/Header/Header'
 import { Toaster } from 'react-hot-toast'
+
+import InputTextField from '../../components/InputTextField/InputTextField'
+
 // My info modal component
 import { InfoModal } from 'info-modal-component'
 // Field nd button
@@ -319,7 +322,18 @@ export default function CreateEmployee() {
               </h2>
             </Grid>
             <Grid xs={8}>
-              {errors.firstName ? (
+              <InputTextField
+                isError={errors.firstName}
+                id={'firstName'}
+                name={'firstName'}
+                errorName={'firstName'}
+                label={'First name'}
+                errorLabel={'First name error'}
+                errorHelperText={`${errors.firstName}`}
+                value={employeeFormInputFields.firstName}
+                onChange={handleChangeInput}
+              />
+              {/* {errors.firstName ? (
                 <TextField
                   id="firstName"
                   name="firstName"
@@ -345,7 +359,7 @@ export default function CreateEmployee() {
                   value={employeeFormInputFields.firstName}
                   onChange={handleChangeInput}
                 />
-              )}
+              )} */}
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
               <LocalizationProvider
@@ -382,7 +396,18 @@ export default function CreateEmployee() {
               </LocalizationProvider>
             </Grid>
             <Grid xs={8}>
-              {errors.lastName ? (
+              <InputTextField
+                isError={errors.lastName}
+                id={'lastName'}
+                name={'lastName'}
+                errorName={'lastName'}
+                label={'Last name'}
+                errorLabel={'Last name error'}
+                errorHelperText={`${errors.lastName}`}
+                value={employeeFormInputFields.lastName}
+                onChange={handleChangeInput}
+              />
+              {/* {errors.lastName ? (
                 <TextField
                   id="lastName"
                   name="lastName"
@@ -406,7 +431,7 @@ export default function CreateEmployee() {
                   value={employeeFormInputFields.lastName}
                   onChange={handleChangeInput}
                 />
-              )}
+              )} */}
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
               <LocalizationProvider
