@@ -198,7 +198,6 @@ export default function CreateEmployee() {
         ...employeeFormInputFields,
         zipCode: Number(employeeFormInputFields.zipCode),
       })
-      // console.log('zipCodeToNumb', employeeFormInputFields.zipCode)
     }
     // eslint-disable-next-line
   }, [employeeFormInputFields.zipCode])
@@ -216,16 +215,6 @@ export default function CreateEmployee() {
         dateOfBirth: dateOfBirthValue,
         startDate: startDateValue,
       })
-      // console.log('dateOfBirth-valideForm', dateOfBirthValue)
-      // console.log(
-      //   'employeeFormInputFields-dateOfBirth',
-      //   employeeFormInputFields.dateOfBirth,
-      // )
-      // console.log('startDateValidFrom', startDateValue)
-      // console.log(
-      //   'employeeFormInputFields-startDate',
-      //   employeeFormInputFields.startDate,
-      // )
     }
     // eslint-disable-next-line
   }, [dateOfBirthValue, startDateValue])
@@ -327,33 +316,6 @@ export default function CreateEmployee() {
                 value={employeeFormInputFields.firstName}
                 onChange={handleChangeInput}
               />
-              {/* {errors.firstName ? (
-                <TextField
-                  id="firstName"
-                  name="firstName"
-                  label="First name error"
-                  variant="outlined"
-                  fullWidth
-                  autoFocus
-                  required
-                  error
-                  helperText={`${errors.firstName}`}
-                  value={employeeFormInputFields.firstName}
-                  onChange={handleChangeInput}
-                />
-              ) : (
-                <TextField
-                  id="firstName"
-                  name="firstName"
-                  label="First Name"
-                  variant="outlined"
-                  fullWidth
-                  autoFocus
-                  required
-                  value={employeeFormInputFields.firstName}
-                  onChange={handleChangeInput}
-                />
-              )} */}
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
               <LocalizationProvider
@@ -401,31 +363,6 @@ export default function CreateEmployee() {
                 value={employeeFormInputFields.lastName}
                 onChange={handleChangeInput}
               />
-              {/* {errors.lastName ? (
-                <TextField
-                  id="lastName"
-                  name="lastName"
-                  label="Last name error"
-                  variant="outlined"
-                  fullWidth
-                  required
-                  error
-                  helperText={`${errors.lastName}`}
-                  value={employeeFormInputFields.lastName}
-                  onChange={handleChangeInput}
-                />
-              ) : (
-                <TextField
-                  id="lastName"
-                  name="lastName"
-                  label="Last Name"
-                  variant="outlined"
-                  fullWidth
-                  required
-                  value={employeeFormInputFields.lastName}
-                  onChange={handleChangeInput}
-                />
-              )} */}
             </Grid>
             <Grid xs={4} className="createEmployee__form--datePicker">
               <LocalizationProvider
@@ -517,31 +454,6 @@ export default function CreateEmployee() {
                 value={employeeFormInputFields.street}
                 onChange={handleChangeInput}
               />
-              {/* {errors.street ? (
-                <TextField
-                  id="street"
-                  name="street"
-                  label="Street"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  error
-                  helperText={`${errors.street}`}
-                  value={employeeFormInputFields.street}
-                  onChange={handleChangeInput}
-                />
-              ) : (
-                <TextField
-                  id="street"
-                  name="street"
-                  label="Street"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  value={employeeFormInputFields.street}
-                  onChange={handleChangeInput}
-                />
-              )} */}
             </Grid>
             <Grid xs={6}>
               <InputTextField
@@ -555,31 +467,6 @@ export default function CreateEmployee() {
                 value={employeeFormInputFields.city}
                 onChange={handleChangeInput}
               />
-              {/* {errors.city ? (
-                <TextField
-                  id="city"
-                  name="city"
-                  label="City"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  error
-                  helperText={`${errors.city}`}
-                  value={employeeFormInputFields.city}
-                  onChange={handleChangeInput}
-                />
-              ) : (
-                <TextField
-                  id="city"
-                  name="city"
-                  label="City"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  value={employeeFormInputFields.city}
-                  onChange={handleChangeInput}
-                />
-              )} */}
             </Grid>
             <Grid xs={6}>
               <InputTextField
@@ -594,33 +481,6 @@ export default function CreateEmployee() {
                 type={'number'}
                 onChange={handleChangeInput}
               />
-              {/* {errors.zipCode ? (
-                <TextField
-                  id="zipCode"
-                  name="zipCode"
-                  label="Zip Code"
-                  variant="outlined"
-                  type="number"
-                  required
-                  fullWidth
-                  error
-                  helperText={`${errors.zipCode}`}
-                  value={employeeFormInputFields.zipCode}
-                  onChange={handleChangeInput}
-                />
-              ) : (
-                <TextField
-                  id="zipCode"
-                  name="zipCode"
-                  label="Zip Code"
-                  variant="outlined"
-                  type="number"
-                  required
-                  fullWidth
-                  value={employeeFormInputFields.zipCode}
-                  onChange={handleChangeInput}
-                />
-              )} */}
             </Grid>
             <Grid xs={12}>
               {errors.state ? (
