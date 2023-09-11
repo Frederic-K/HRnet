@@ -15,7 +15,7 @@ import xcrossClose from '../../assets/close.png'
 import LiveClock from '../../components/LiveClock/LiveClock'
 import LiveDate from '../../components/LiveDate/LiveDate'
 
-import InputTextField from '../../components/TextField/TextField'
+import InputTextField from '../../components/InputTextField/InputTextField'
 
 // Mui components
 import Box from '@mui/material/Box'
