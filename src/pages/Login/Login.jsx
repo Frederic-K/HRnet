@@ -14,6 +14,9 @@ import SpinLoader from '../../components/Loader/spinLoader'
 import xcrossClose from '../../assets/close.png'
 import LiveClock from '../../components/LiveClock/LiveClock'
 import LiveDate from '../../components/LiveDate/LiveDate'
+
+import InputTextField from '../../components/TextField/TextField'
+
 // Mui components
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
@@ -151,7 +154,22 @@ export default function Login() {
                   handleSubmit(e)
                 }}
               >
-                <div className="login__form--textField">
+                <InputTextField
+                  isError={isError}
+                  id={'userId'}
+                  label={'userId'}
+                  name={'userId'}
+                  helperText={'(mocked users : 110 or 120'}
+                  inputRef={userId}
+                  onChange={() => {
+                    handleNewInput()
+                  }}
+                  errorUserId={'errorUserId'}
+                  errorName={'errorUserId'}
+                  errorLabel={'errorUserId'}
+                  errorHelperText={'Incorrect entry.'}
+                />
+                {/* <div className="login__form--textField">
                   {!isError ? (
                     <TextField
                       className="login__form--input"
@@ -181,7 +199,7 @@ export default function Login() {
                       }}
                     />
                   )}
-                </div>
+                </div> */}
                 <div className="login__form--btn">
                   <Stack direction="row" spacing={2}>
                     <Button
