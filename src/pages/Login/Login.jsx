@@ -14,9 +14,7 @@ import SpinLoader from '../../components/Loader/spinLoader'
 import xcrossClose from '../../assets/close.png'
 import LiveClock from '../../components/LiveClock/LiveClock'
 import LiveDate from '../../components/LiveDate/LiveDate'
-
 import InputTextField from '../../components/InputTextField/InputTextField'
-
 // Mui components
 import Box from '@mui/material/Box'
 // import TextField from '@mui/material/TextField'
@@ -32,7 +30,6 @@ export default function Login() {
 
   const { isFetching, isError, errorMessage, id, firstName, lastName } =
     useSelector(userSelector)
-  // console.log('id', id)
 
   const handleOpenModal = () => {
     setIsModalShow(true)
@@ -46,7 +43,6 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // console.log('userIduseRef', userId.current.value)
     dispatch(GetUserData(userId.current.value))
   }
   const handleReset = () => {
@@ -171,37 +167,6 @@ export default function Login() {
                     handleNewInput()
                   }}
                 />
-                {/* <div className="login__form--textField">
-                  {!isError ? (
-                    <TextField
-                      className="login__form--input"
-                      fullWidth
-                      id="userId"
-                      label="userId"
-                      name="userId"
-                      variant="outlined"
-                      helperText="(mocked users : 110 or 120)"
-                      inputRef={userId}
-                      onChange={() => {
-                        handleNewInput()
-                      }}
-                    />
-                  ) : (
-                    <TextField
-                      className="login__form--input"
-                      error
-                      fullWidth
-                      id="errorUserId"
-                      name="errorUserId"
-                      label="errorUserId"
-                      helperText="Incorrect entry."
-                      inputRef={userId}
-                      onChange={() => {
-                        handleNewInput()
-                      }}
-                    />
-                  )}
-                </div> */}
                 <div className="login__form--btn">
                   <Stack direction="row" spacing={2}>
                     <Button
