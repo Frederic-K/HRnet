@@ -10,9 +10,7 @@ import { addEmployee } from '../../features/employeeSlice'
 // Components
 import Header from '../../components/Header/Header'
 import { Toaster } from 'react-hot-toast'
-
 import InputTextField from '../../components/InputTextField/InputTextField'
-
 // My info modal component
 import { InfoModal } from 'info-modal-component'
 // Field nd button
@@ -22,7 +20,6 @@ import SendIcon from '@mui/icons-material/Send'
 import Stack from '@mui/material/Stack'
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
 import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
 // DatePicker
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
@@ -141,7 +138,6 @@ export default function CreateEmployee() {
 
   // Internal management of invalid date from datepicker component
   const [errorDateOfBirth, setErrorDateOfBirth] = useState(null)
-
   const errorMessageDateOfBirth = useMemo(() => {
     switch (errorDateOfBirth) {
       case 'maxDate': {
@@ -164,7 +160,6 @@ export default function CreateEmployee() {
 
   // Internal management of invalid date from datepicker component
   const [errorStartDate, setErrorStartDate] = useState(null)
-
   const errorMessageStartDate = useMemo(() => {
     switch (errorStartDate) {
       // case 'maxDate': {
@@ -192,7 +187,6 @@ export default function CreateEmployee() {
         ...employeeFormInputFields,
         employeeID: uniqueID,
       })
-      // console.log('employeeId', employeeFormInputFields.employeeID)
     }
     // eslint-disable-next-line
   }, [employeeFormInputFields.employeeID])

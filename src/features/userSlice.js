@@ -1,4 +1,6 @@
+// Redux
 import { createSlice } from '@reduxjs/toolkit'
+// API
 import { GetUserData } from '../services/API/GetUserData'
 
 const initialState = {
